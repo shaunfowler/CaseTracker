@@ -7,13 +7,19 @@
 
 import Foundation
 
+extension UserDefaults {
+    static let caseStatus: UserDefaults = {
+        UserDefaults(suiteName: "com.shaunfowler.CaseTracker.case-status")! // ?? UserDefaults.standard
+    }()
+}
+
 class LocalCaseStatusAPI: CaseStatusReadable & CaseStatusWritable {
 
-    private let storage = UserDefaults.standard
+    private let storage = UserDefaults.caseStatus
 
     init() {
         // storage.set(nil, forKey: "case-XXX) // delete
-        // storage.set("", forKey: "case-XXX) // seed
+        [].forEach { storage.set("", forKey: "case-\($0)") } // seed
         // storage.synchronize()
     }
 
