@@ -10,9 +10,12 @@ import SwiftSoup
 
 @main
 struct CaseTrackerApp: App {
+
+    @StateObject var homeViewModel = HomeViewModel()
+
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            HomeView(viewModel: homeViewModel)
         }
     }
 }

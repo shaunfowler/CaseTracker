@@ -10,7 +10,13 @@ import Combine
 
 typealias CaseStatusLocalCache = CaseStatusReadable & CaseStatusWritable & CaseStatusCachable
 
-class CaseStatusRepository {
+protocol Repository {
+    func query(force: Bool) async -> Result<[CaseStatus], Error>
+    func addCase(receiptNumber: String) async -> Result<CaseStatus, Error>
+    func removeCase(receiptNumber: String) async -> Result<(), Error>
+}
+
+class CaseStatusRepository: Repository {
 
     // MARK: - Internal Types
 

@@ -17,7 +17,7 @@ class HomeViewModel: ObservableObject {
     }
 
     private var cancellables = Set<AnyCancellable>()
-    private let repository = CaseStatusRepository()
+    private let repository: Repository
 
     @Published var phase: ScenePhase?
     @Published var cases = [CaseStatus]()
@@ -34,7 +34,9 @@ class HomeViewModel: ObservableObject {
             .first // earliest date
     }
 
-    init() {
+    init(repository: Repository = CaseStatusRepository()) {
+        self.repository = repository
+
         Timer.scheduledTimer(withTimeInterval: Constants.refreshInterval, repeats: true) { _ in
             Task { [weak self] in
                 guard let self = self, self.phase == .active else {

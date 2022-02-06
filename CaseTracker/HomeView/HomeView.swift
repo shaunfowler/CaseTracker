@@ -7,13 +7,15 @@
 
 import SwiftUI
 
-
-
 struct HomeView: View {
 
     @Environment(\.scenePhase) var scenePhase
     @State var refreshing = false
-    @StateObject var viewModel = HomeViewModel()
+    @ObservedObject var viewModel: HomeViewModel
+
+    init(viewModel: HomeViewModel) {
+        self.viewModel = viewModel
+    }
 
     var lastUpdatedLoadingMessage: String {
         if let lastFetch = viewModel.lastFetch {
@@ -43,7 +45,6 @@ struct HomeView: View {
 
     func caseList() -> some View {
         ZStack {
-
             if viewModel.cases.isEmpty {
                 Text("No cases have been added.")
                     .padding()
@@ -107,9 +108,13 @@ struct HomeView: View {
 }
 
 struct ContentView_Previews: PreviewProvider {
+    static let viewModel = HomeViewModel(repository: PreviewDataRepository())
     static var previews: some View {
-        HomeView()
+        HomeView(viewModel: viewModel)
             .previewLayout(.sizeThatFits)
+            .task {
+                await viewModel.fetch()
+            }
     }
 }
 

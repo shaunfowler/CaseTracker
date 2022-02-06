@@ -12,6 +12,7 @@
 		283511B027AA138000851FC6 /* AddCaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283511AF27AA138000851FC6 /* AddCaseView.swift */; };
 		283511B227AA30E100851FC6 /* AddCaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283511B127AA30E100851FC6 /* AddCaseViewModel.swift */; };
 		283511B627AA430B00851FC6 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283511B527AA430B00851FC6 /* DetailsView.swift */; };
+		2877468A27AFB9620042D3FD /* PreviewDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877468927AFB9620042D3FD /* PreviewDataRepository.swift */; };
 		287C42DB27AB69D5005CD181 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287C42DA27AB69D5005CD181 /* Status.swift */; };
 		287C42E327AB6A4C005CD181 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287C42E227AB6A4C005CD181 /* main.swift */; };
 		287C42E827AB6B64005CD181 /* statusTitles.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 287C42E727AB6A63005CD181 /* statusTitles.txt */; };
@@ -49,6 +50,7 @@
 		283511AF27AA138000851FC6 /* AddCaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCaseView.swift; sourceTree = "<group>"; };
 		283511B127AA30E100851FC6 /* AddCaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCaseViewModel.swift; sourceTree = "<group>"; };
 		283511B527AA430B00851FC6 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
+		2877468927AFB9620042D3FD /* PreviewDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewDataRepository.swift; sourceTree = "<group>"; };
 		287C42DA27AB69D5005CD181 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		287C42E027AB6A4C005CD181 /* CaseTrackerCodeGen */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CaseTrackerCodeGen; sourceTree = BUILT_PRODUCTS_DIR; };
 		287C42E227AB6A4C005CD181 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				28FD1AFA27A7CB6F002CA8DE /* Preview Assets.xcassets */,
+				2877468927AFB9620042D3FD /* PreviewDataRepository.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 			files = (
 				28FD1B0B27A8D3F1002CA8DE /* CaseStatusURL.swift in Sources */,
 				283511B627AA430B00851FC6 /* DetailsView.swift in Sources */,
+				2877468A27AFB9620042D3FD /* PreviewDataRepository.swift in Sources */,
 				283511B227AA30E100851FC6 /* AddCaseViewModel.swift in Sources */,
 				28FD1B0327A8C032002CA8DE /* CaseStatusAPI.swift in Sources */,
 				28FD1AF627A7CB6D002CA8DE /* HomeView.swift in Sources */,
