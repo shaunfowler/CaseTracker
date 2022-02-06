@@ -16,10 +16,13 @@ struct HomeView: View {
     @StateObject var viewModel = HomeViewModel()
 
     var lastUpdatedLoadingMessage: String {
-        if let lastFetch = viewModel.lastFetch, !viewModel.loading {
+        if let lastFetch = viewModel.lastFetch {
             return "Last updated at \(lastFetch.formatted())."
         }
-        return "Refreshing cases..."
+        if viewModel.loading {
+            return "Refreshing cases..."
+        }
+        return ""
     }
 
     var body: some View {
@@ -39,34 +42,41 @@ struct HomeView: View {
     }
 
     func caseList() -> some View {
-        List {
-            Section {
-                Text(lastUpdatedLoadingMessage)
-            }
-            .listRowBackground(Color.clear)
-            .modifier(UpdatedCaptionTextStyle())
+        ZStack {
 
-            if let errorMessage = viewModel.errorMessage {
-                Text(errorMessage)
+            if viewModel.cases.isEmpty {
+                Text("No cases have been added.")
+                    .padding()
             }
-
-            ForEach(viewModel.cases, id: \.id) { caseStatus in
-                CaseRowView(model: caseStatus)
-                    .listRowSeparator(.hidden)
-                    .onTapGesture {
-                        viewModel.selectedCase = caseStatus
-                    }
-                    .listRowBackground(Color.clear)
-            }
-            .onDelete { indexSet in
-                if let index = indexSet.first {
-                    viewModel.removeCase(atIndex: index)
+            List {
+                Section {
+                    Text(lastUpdatedLoadingMessage)
                 }
+                .listRowBackground(Color.clear)
+                .modifier(UpdatedCaptionTextStyle())
+
+                if let errorMessage = viewModel.errorMessage {
+                    Text(errorMessage)
+                }
+
+                ForEach(viewModel.cases, id: \.id) { caseStatus in
+                    CaseRowView(model: caseStatus)
+                        .listRowSeparator(.hidden)
+                        .onTapGesture {
+                            viewModel.selectedCase = caseStatus
+                        }
+                        .listRowBackground(Color.clear)
+                }
+                .onDelete { indexSet in
+                    if let index = indexSet.first {
+                        viewModel.removeCase(atIndex: index)
+                    }
+                }
+                .opacity(viewModel.loading ? 0.3 : 1.0)
             }
-            .opacity(viewModel.loading ? 0.3 : 1.0)
+            .background(Color("HomeBackgroundColor"))
+            .listStyle(.plain)
         }
-        .background(Color("HomeBackgroundColor"))
-        .listStyle(.plain)
         .navigationBarTitle("My Cases")
         .toolbar {
             ToolbarItem {

@@ -53,7 +53,7 @@
 		287C42E027AB6A4C005CD181 /* CaseTrackerCodeGen */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CaseTrackerCodeGen; sourceTree = BUILT_PRODUCTS_DIR; };
 		287C42E227AB6A4C005CD181 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		287C42E727AB6A63005CD181 /* statusTitles.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = statusTitles.txt; sourceTree = "<group>"; };
-		28FD1AF027A7CB6D002CA8DE /* CaseTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CaseTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		28FD1AF027A7CB6D002CA8DE /* Case Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Case Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		28FD1AF327A7CB6D002CA8DE /* CaseTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseTrackerApp.swift; sourceTree = "<group>"; };
 		28FD1AF527A7CB6D002CA8DE /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		28FD1AF727A7CB6F002CA8DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -130,7 +130,7 @@
 		28FD1AF127A7CB6D002CA8DE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				28FD1AF027A7CB6D002CA8DE /* CaseTracker.app */,
+				28FD1AF027A7CB6D002CA8DE /* Case Tracker.app */,
 				287C42E027AB6A4C005CD181 /* CaseTrackerCodeGen */,
 			);
 			name = Products;
@@ -234,7 +234,7 @@
 			);
 			name = CaseTracker;
 			productName = CaseTracker;
-			productReference = 28FD1AF027A7CB6D002CA8DE /* CaseTracker.app */;
+			productReference = 28FD1AF027A7CB6D002CA8DE /* Case Tracker.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -525,9 +525,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shaunfowler.CaseTracker;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Case Tracker";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -555,9 +555,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shaunfowler.CaseTracker;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Case Tracker";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
