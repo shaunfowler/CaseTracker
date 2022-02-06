@@ -9,6 +9,8 @@ import SwiftUI
 
 struct CaseRowView: View {
 
+    @ScaledMetric var fontSize: CGFloat = 14
+
     let model: CaseStatus
 
     var body: some View {
@@ -16,7 +18,7 @@ struct CaseRowView: View {
             RoundedRectangle(cornerRadius: 4)
                 .frame(width: 4)
                 .foregroundColor(model.color)
-                .padding(8)
+                .padding(10)
             VStack(alignment: .leading, spacing: 8) {
                 HStack(alignment: .center, spacing: 8) {
                     if let formType = model.formType {
@@ -24,19 +26,21 @@ struct CaseRowView: View {
                             .fontWeight(.bold)
                     }
                     Text(model.id)
-                        .fontWeight(.semibold)
                 }
 
                 Text(model.status)
+                    .font(.system(size: fontSize))
 
                 HStack {
                     if !model.lastUpdatedFormatted.isEmpty {
                         Text(model.lastUpdatedFormatted)
+                            .font(.system(size: fontSize))
                             .opacity(0.5)
                     }
                     Spacer()
                     if !model.lastUpdatedRelativeFormatted.isEmpty {
                         Text(model.lastUpdatedRelativeFormatted)
+                            .font(.system(size: fontSize))
                             .opacity(0.5)
                     }
                 }
@@ -44,7 +48,7 @@ struct CaseRowView: View {
                 // Text(model.dateFetched.description)
             }
             .padding([.leading], 0)
-            .padding([.trailing, .top, .bottom], 8)
+            .padding([.trailing, .top, .bottom], 10)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(Color("CaseRowBackgroundColor"))

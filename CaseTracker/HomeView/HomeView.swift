@@ -45,10 +45,6 @@ struct HomeView: View {
 
     func caseList() -> some View {
         ZStack {
-            if viewModel.cases.isEmpty {
-                Text("No cases have been added.")
-                    .padding()
-            }
             List {
                 Section {
                     Text(lastUpdatedLoadingMessage)
@@ -77,6 +73,11 @@ struct HomeView: View {
             }
             .background(Color("HomeBackgroundColor"))
             .listStyle(.plain)
+
+            if viewModel.cases.isEmpty {
+                Text("No cases have been added.")
+                    .padding()
+            }
         }
         .navigationBarTitle("My Cases")
         .toolbar {
@@ -107,24 +108,36 @@ struct HomeView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static let viewModel = HomeViewModel(repository: PreviewDataRepository())
-    static var previews: some View {
-        HomeView(viewModel: viewModel)
-            .previewLayout(.sizeThatFits)
-            .task {
-                await viewModel.fetch()
-            }
-    }
-}
-
 struct UpdatedCaptionTextStyle: ViewModifier {
-    
+
     func body(content: Content) -> some View {
         content
             .font(.caption.bold())
             .opacity(0.3)
             .frame(maxWidth: .infinity, alignment: .center)
             .listSectionSeparator(.hidden)
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+
+    static let viewModel = HomeViewModel(repository: PreviewDataRepository())
+    static let viewModelEmpty = HomeViewModel(repository: PreviewDataRepository(cases: []))
+
+    static var previews: some View {
+        Group {
+            HomeView(viewModel: viewModel)
+                .task {
+                    await viewModel.fetch()
+                }
+
+
+            HomeView(viewModel: viewModelEmpty)
+                .task {
+                    await viewModel.fetch()
+                }
+        }
+        .preferredColorScheme(.dark)
+        .previewLayout(.sizeThatFits)
     }
 }

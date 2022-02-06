@@ -110,6 +110,7 @@ enum Status: String {
     case requestforAdditionalInformationReceived = "Request for Additional Information Received"
     case requestForADuplicateCardWasApproved = "Request For A Duplicate Card Was Approved"
     case requestforInitialEvidenceWasSent = "Request for Initial Evidence Was Sent"
+    case requestForInitialEvidenceWasSent = "Request For Initial Evidence Was Sent"
     case requestForPremiumProcessingServicesWasReceived = "Request For Premium Processing Services Was Received"
     case requestToRescheduleMyAppointmentWasReceived = "Request To Reschedule My Appointment Was Received"
     case requestWasProcessed = "Request Was Processed"
@@ -178,6 +179,7 @@ enum Status: String {
                 .requestforAdditionalEvidenceWasSent,
                 .requestforAdditionalInformationReceived,
                 .requestforInitialEvidenceWasSent,
+                .requestForInitialEvidenceWasSent,
                 .resubmittedFeeWasNotAccepted,
                 .terminationOfLitigationNoticeWasMailed
 
