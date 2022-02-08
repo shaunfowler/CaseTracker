@@ -51,9 +51,9 @@ struct CaseRowView: View {
             .padding([.trailing, .top, .bottom], 10)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Color("CaseRowBackgroundColor"))
+//        .background(Color("CaseRowBackgroundColor"))
         .cornerRadius(8)
-        .shadow(color: Color("CaseRowShadowColor"), radius: 4)
+//        .shadow(color: Color("CaseRowShadowColor"), radius: 4)
     }
 }
 

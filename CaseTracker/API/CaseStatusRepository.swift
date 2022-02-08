@@ -21,7 +21,7 @@ class CaseStatusRepository: Repository {
     // MARK: - Internal Types
 
     enum Constants {
-        static let cacheExpirySeconds: TimeInterval = 5 * 60 // 5-min
+        static let cacheExpirySeconds: TimeInterval = 30 * 60 // 5-min
     }
 
     // MARK: - Properties

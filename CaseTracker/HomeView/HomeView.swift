@@ -18,12 +18,16 @@ struct HomeView: View {
     }
 
     var lastUpdatedLoadingMessage: String {
-        if let lastFetch = viewModel.lastFetch {
-            return "Last updated at \(lastFetch.formatted())."
-        }
+        // Always show loading if request is pending.
         if viewModel.loading {
             return "Refreshing cases..."
         }
+
+        // Loaded date only if there are cases.
+        if let lastFetch = viewModel.lastFetch, !viewModel.cases.isEmpty {
+            return "Last updated at \(lastFetch.formatted())."
+        }
+
         return ""
     }
 
@@ -57,12 +61,16 @@ struct HomeView: View {
                 }
 
                 ForEach(viewModel.cases, id: \.id) { caseStatus in
-                    CaseRowView(model: caseStatus)
-                        .listRowSeparator(.hidden)
-                        .onTapGesture {
-                            viewModel.selectedCase = caseStatus
-                        }
-                        .listRowBackground(Color.clear)
+                    // TODO: Programatic instead to get rid of ">"
+                    NavigationLink(destination: DetailsView(text: caseStatus.body, id: caseStatus.id)) {
+                        CaseRowView(model: caseStatus)
+                    }
+                    .padding(.trailing, 8)
+                    .background(Color("CaseRowBackgroundColor"))
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .padding([.top, .bottom], 0)
+                    .listRowSeparator(.hidden)
+                    .listRowBackground(Color.clear)
                 }
                 .onDelete { indexSet in
                     if let index = indexSet.first {
@@ -74,7 +82,7 @@ struct HomeView: View {
             .background(Color("HomeBackgroundColor"))
             .listStyle(.plain)
 
-            if viewModel.cases.isEmpty {
+            if !viewModel.loading && viewModel.cases.isEmpty {
                 Text("No cases have been added.")
                     .padding()
             }
@@ -130,7 +138,6 @@ struct ContentView_Previews: PreviewProvider {
                 .task {
                     await viewModel.fetch()
                 }
-
 
             HomeView(viewModel: viewModelEmpty)
                 .task {

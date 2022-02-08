@@ -22,7 +22,7 @@ class HomeViewModel: ObservableObject {
     @Published var phase: ScenePhase?
     @Published var cases = [CaseStatus]()
     @Published var selectedCase: CaseStatus?
-    @Published var loading = false
+    @Published var loading = true
     @Published var errorMessage: String?
     @Published var isAddCaseViewPresented = false
     @Published var isDetailsViewPresented = false
@@ -37,6 +37,7 @@ class HomeViewModel: ObservableObject {
     init(repository: Repository = CaseStatusRepository()) {
         self.repository = repository
 
+        // TODO: Move to repository and use bind to AnyPublisher in view model
         Timer.scheduledTimer(withTimeInterval: Constants.refreshInterval, repeats: true) { _ in
             Task { [weak self] in
                 guard let self = self, self.phase == .active else {

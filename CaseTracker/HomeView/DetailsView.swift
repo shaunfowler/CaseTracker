@@ -9,39 +9,29 @@ import SwiftUI
 
 struct DetailsView: View {
 
-    @Environment(\.dismiss) var dismiss
     @Environment(\.openURL) var openURL
 
     let text: String
     let id: String
 
     var body: some View {
-        VStack() {
-            HStack {
-                Spacer()
-                Button(action: { dismiss() }) {
-                    Text("Close")
-                        .font(.system(size: 18))
+        ScrollView {
+            VStack {
+                Text(text)
+                    .multilineTextAlignment(.center)
+                    .font(.system(.body, design: .serif))
+                    .padding()
+
+                Button("View on USCIS Website") {
+                    openURL(CaseStatusURL.get(id).url)
                 }
+                .buttonStyle(.borderedProminent)
+
+                Spacer()
             }
-
-            Spacer()
-
-            Text(text)
-                .multilineTextAlignment(.center)
-                .font(.system(.body, design: .serif))
-
-            Spacer()
-
-            Button("View on USCIS Website") {
-                openURL(CaseStatusURL.get(id).url)
-            }
-            .buttonStyle(.borderedProminent)
-
-            Spacer()
-
+            .padding()
         }
-        .padding()
+        .navigationBarTitle(id)
     }
 }
 
