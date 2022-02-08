@@ -11,6 +11,8 @@ import SwiftSoup
 @main
 struct CaseTrackerApp: App {
 
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+
     @StateObject var homeViewModel = HomeViewModel()
 
     var body: some Scene {

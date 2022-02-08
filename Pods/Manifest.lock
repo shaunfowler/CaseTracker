@@ -1,16 +1,20 @@
 PODS:
+  - OneSignalXCFramework (3.10.0)
   - SwiftSoup (2.3.8)
 
 DEPENDENCIES:
+  - OneSignalXCFramework (< 4.0, >= 3.0.0)
   - SwiftSoup
 
 SPEC REPOS:
   trunk:
+    - OneSignalXCFramework
     - SwiftSoup
 
 SPEC CHECKSUMS:
+  OneSignalXCFramework: 10648e60ff3d335fbffa62d9b44b700b56d49b51
   SwiftSoup: ba8ea2c91151881a298cba4b0628ef31e835a77f
 
-PODFILE CHECKSUM: 51cbb51c1913f43cc0b6076a69bddcd21ad3b03a
+PODFILE CHECKSUM: 1834953ecc0accdd122ef8440f011cea865a876f
 
 COCOAPODS: 1.11.2

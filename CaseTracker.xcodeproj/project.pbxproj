@@ -13,6 +13,9 @@
 		283511B227AA30E100851FC6 /* AddCaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283511B127AA30E100851FC6 /* AddCaseViewModel.swift */; };
 		283511B627AA430B00851FC6 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283511B527AA430B00851FC6 /* DetailsView.swift */; };
 		2877468A27AFB9620042D3FD /* PreviewDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877468927AFB9620042D3FD /* PreviewDataRepository.swift */; };
+		287746E627B1E52C0042D3FD /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287746E527B1E52C0042D3FD /* NotificationService.swift */; };
+		287746EA27B1E52D0042D3FD /* CaseTrackerNotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 287746E327B1E52C0042D3FD /* CaseTrackerNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		287746F127B1E97E0042D3FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287746F027B1E97E0042D3FD /* AppDelegate.swift */; };
 		287C42DB27AB69D5005CD181 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287C42DA27AB69D5005CD181 /* Status.swift */; };
 		287C42E327AB6A4C005CD181 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287C42E227AB6A4C005CD181 /* main.swift */; };
 		287C42E827AB6B64005CD181 /* statusTitles.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 287C42E727AB6A63005CD181 /* statusTitles.txt */; };
@@ -27,10 +30,32 @@
 		28FD1B0B27A8D3F1002CA8DE /* CaseStatusURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FD1B0A27A8D3F1002CA8DE /* CaseStatusURL.swift */; };
 		28FD1B0D27A8D566002CA8DE /* CaseStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FD1B0C27A8D566002CA8DE /* CaseStatus.swift */; };
 		28FD1B0F27A8D986002CA8DE /* CaseStatusRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FD1B0E27A8D986002CA8DE /* CaseStatusRepository.swift */; };
+		723B4AECB13697BCA4F67F5D /* Pods_CaseTrackerNotificationServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4866DFF7AAD2CC7EC187E76 /* Pods_CaseTrackerNotificationServiceExtension.framework */; };
 		83237ED7827B07E67878E379 /* Pods_CaseTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DB968B738C68FDC577D1D91 /* Pods_CaseTracker.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		287746E827B1E52D0042D3FD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 28FD1AE827A7CB6D002CA8DE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 287746E227B1E52C0042D3FD;
+			remoteInfo = CaseTrackerNotificationServiceExtension;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
+		287746EE27B1E52D0042D3FD /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				287746EA27B1E52D0042D3FD /* CaseTrackerNotificationServiceExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		287C42DE27AB6A4C005CD181 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 8;
@@ -44,13 +69,22 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0166B7A57CB56EDFD1F14123 /* Pods-CaseTrackerNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaseTrackerNotificationServiceExtension.debug.xcconfig"; path = "Target Support Files/Pods-CaseTrackerNotificationServiceExtension/Pods-CaseTrackerNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		1691F8621358FE741C510BBD /* Pods-CaseTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaseTracker.release.xcconfig"; path = "Target Support Files/Pods-CaseTracker/Pods-CaseTracker.release.xcconfig"; sourceTree = "<group>"; };
+		16A879ADB55660DB96DC8CD3 /* Pods-CaseTrackerNotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaseTrackerNotificationServiceExtension.release.xcconfig"; path = "Target Support Files/Pods-CaseTrackerNotificationServiceExtension/Pods-CaseTrackerNotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
 		283511AB27AA08C800851FC6 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		283511AD27AA0ABD00851FC6 /* CaseRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseRowView.swift; sourceTree = "<group>"; };
 		283511AF27AA138000851FC6 /* AddCaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCaseView.swift; sourceTree = "<group>"; };
 		283511B127AA30E100851FC6 /* AddCaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCaseViewModel.swift; sourceTree = "<group>"; };
 		283511B527AA430B00851FC6 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
 		2877468927AFB9620042D3FD /* PreviewDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewDataRepository.swift; sourceTree = "<group>"; };
+		287746DE27B1E0FC0042D3FD /* CaseTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CaseTracker.entitlements; sourceTree = "<group>"; };
+		287746E327B1E52C0042D3FD /* CaseTrackerNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CaseTrackerNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		287746E527B1E52C0042D3FD /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		287746E727B1E52C0042D3FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		287746EF27B1E9680042D3FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		287746F027B1E97E0042D3FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		287746F227B2049E0042D3FD /* CaseTrackerNotificationServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CaseTrackerNotificationServiceExtension.entitlements; sourceTree = "<group>"; };
 		287C42DA27AB69D5005CD181 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		287C42E027AB6A4C005CD181 /* CaseTrackerCodeGen */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CaseTrackerCodeGen; sourceTree = BUILT_PRODUCTS_DIR; };
 		287C42E227AB6A4C005CD181 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -69,9 +103,18 @@
 		28FD1B0E27A8D986002CA8DE /* CaseStatusRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseStatusRepository.swift; sourceTree = "<group>"; };
 		6DB968B738C68FDC577D1D91 /* Pods_CaseTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CaseTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD6BD1FD28DD53AE8EB20386 /* Pods-CaseTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaseTracker.debug.xcconfig"; path = "Target Support Files/Pods-CaseTracker/Pods-CaseTracker.debug.xcconfig"; sourceTree = "<group>"; };
+		C4866DFF7AAD2CC7EC187E76 /* Pods_CaseTrackerNotificationServiceExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CaseTrackerNotificationServiceExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		287746E027B1E52C0042D3FD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				723B4AECB13697BCA4F67F5D /* Pods_CaseTrackerNotificationServiceExtension.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		287C42DD27AB6A4C005CD181 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -95,8 +138,20 @@
 			children = (
 				BD6BD1FD28DD53AE8EB20386 /* Pods-CaseTracker.debug.xcconfig */,
 				1691F8621358FE741C510BBD /* Pods-CaseTracker.release.xcconfig */,
+				0166B7A57CB56EDFD1F14123 /* Pods-CaseTrackerNotificationServiceExtension.debug.xcconfig */,
+				16A879ADB55660DB96DC8CD3 /* Pods-CaseTrackerNotificationServiceExtension.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		287746E427B1E52C0042D3FD /* CaseTrackerNotificationServiceExtension */ = {
+			isa = PBXGroup;
+			children = (
+				287746F227B2049E0042D3FD /* CaseTrackerNotificationServiceExtension.entitlements */,
+				287746E527B1E52C0042D3FD /* NotificationService.swift */,
+				287746E727B1E52C0042D3FD /* Info.plist */,
+			);
+			path = CaseTrackerNotificationServiceExtension;
 			sourceTree = "<group>";
 		};
 		287C42E127AB6A4C005CD181 /* CaseTrackerCodeGen */ = {
@@ -123,6 +178,7 @@
 			children = (
 				28FD1AF227A7CB6D002CA8DE /* CaseTracker */,
 				287C42E127AB6A4C005CD181 /* CaseTrackerCodeGen */,
+				287746E427B1E52C0042D3FD /* CaseTrackerNotificationServiceExtension */,
 				28FD1AF127A7CB6D002CA8DE /* Products */,
 				012881F3AB803C1597193453 /* Pods */,
 				9F4076C32FC7567245419452 /* Frameworks */,
@@ -134,6 +190,7 @@
 			children = (
 				28FD1AF027A7CB6D002CA8DE /* Case Tracker.app */,
 				287C42E027AB6A4C005CD181 /* CaseTrackerCodeGen */,
+				287746E327B1E52C0042D3FD /* CaseTrackerNotificationServiceExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -141,11 +198,14 @@
 		28FD1AF227A7CB6D002CA8DE /* CaseTracker */ = {
 			isa = PBXGroup;
 			children = (
+				287746EF27B1E9680042D3FD /* Info.plist */,
+				287746DE27B1E0FC0042D3FD /* CaseTracker.entitlements */,
 				28FD1B1127A9149B002CA8DE /* AddCaseVIew */,
 				28FD1B1027A9148F002CA8DE /* HomeView */,
 				28CAB0D727A9FE470067A9A9 /* Model */,
 				28FD1B0127A8BFFE002CA8DE /* API */,
 				28FD1AF327A7CB6D002CA8DE /* CaseTrackerApp.swift */,
+				287746F027B1E97E0042D3FD /* AppDelegate.swift */,
 				28FD1AF727A7CB6F002CA8DE /* Assets.xcassets */,
 				28FD1AF927A7CB6F002CA8DE /* Preview Content */,
 			);
@@ -197,6 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				6DB968B738C68FDC577D1D91 /* Pods_CaseTracker.framework */,
+				C4866DFF7AAD2CC7EC187E76 /* Pods_CaseTrackerNotificationServiceExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -204,6 +265,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		287746E227B1E52C0042D3FD /* CaseTrackerNotificationServiceExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 287746EB27B1E52D0042D3FD /* Build configuration list for PBXNativeTarget "CaseTrackerNotificationServiceExtension" */;
+			buildPhases = (
+				5944A54AAA07E2DB5F9B61A2 /* [CP] Check Pods Manifest.lock */,
+				287746DF27B1E52C0042D3FD /* Sources */,
+				287746E027B1E52C0042D3FD /* Frameworks */,
+				287746E127B1E52C0042D3FD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CaseTrackerNotificationServiceExtension;
+			productName = CaseTrackerNotificationServiceExtension;
+			productReference = 287746E327B1E52C0042D3FD /* CaseTrackerNotificationServiceExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		287C42DF27AB6A4C005CD181 /* CaseTrackerCodeGen */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 287C42E427AB6A4C005CD181 /* Build configuration list for PBXNativeTarget "CaseTrackerCodeGen" */;
@@ -230,10 +309,12 @@
 				28FD1AED27A7CB6D002CA8DE /* Frameworks */,
 				28FD1AEE27A7CB6D002CA8DE /* Resources */,
 				CE11B51C28E12466DA48D7CF /* [CP] Embed Pods Frameworks */,
+				287746EE27B1E52D0042D3FD /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				287746E927B1E52D0042D3FD /* PBXTargetDependency */,
 			);
 			name = CaseTracker;
 			productName = CaseTracker;
@@ -250,6 +331,9 @@
 				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
+					287746E227B1E52C0042D3FD = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
 					287C42DF27AB6A4C005CD181 = {
 						CreatedOnToolsVersion = 13.2.1;
 					};
@@ -273,11 +357,19 @@
 			targets = (
 				28FD1AEF27A7CB6D002CA8DE /* CaseTracker */,
 				287C42DF27AB6A4C005CD181 /* CaseTrackerCodeGen */,
+				287746E227B1E52C0042D3FD /* CaseTrackerNotificationServiceExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		287746E127B1E52C0042D3FD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		28FD1AEE27A7CB6D002CA8DE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -312,6 +404,28 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		5944A54AAA07E2DB5F9B61A2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CaseTrackerNotificationServiceExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		CE11B51C28E12466DA48D7CF /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -332,6 +446,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		287746DF27B1E52C0042D3FD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				287746E627B1E52C0042D3FD /* NotificationService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		287C42DC27AB6A4C005CD181 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -359,13 +481,76 @@
 				287C42DB27AB69D5005CD181 /* Status.swift in Sources */,
 				28FD1B0727A8D37B002CA8DE /* RemoteCaseStatusAPI.swift in Sources */,
 				28FD1AF427A7CB6D002CA8DE /* CaseTrackerApp.swift in Sources */,
+				287746F127B1E97E0042D3FD /* AppDelegate.swift in Sources */,
 				28FD1B0527A8CAC7002CA8DE /* HomeViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		287746E927B1E52D0042D3FD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 287746E227B1E52C0042D3FD /* CaseTrackerNotificationServiceExtension */;
+			targetProxy = 287746E827B1E52D0042D3FD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		287746EC27B1E52D0042D3FD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0166B7A57CB56EDFD1F14123 /* Pods-CaseTrackerNotificationServiceExtension.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = CaseTrackerNotificationServiceExtension/CaseTrackerNotificationServiceExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QQR7KQB65R;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CaseTrackerNotificationServiceExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CaseTrackerNotificationServiceExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shaunfowler.CaseTracker.CaseTrackerNotificationServiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		287746ED27B1E52D0042D3FD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 16A879ADB55660DB96DC8CD3 /* Pods-CaseTrackerNotificationServiceExtension.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = CaseTrackerNotificationServiceExtension/CaseTrackerNotificationServiceExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QQR7KQB65R;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CaseTrackerNotificationServiceExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CaseTrackerNotificationServiceExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shaunfowler.CaseTracker.CaseTrackerNotificationServiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		287C42E527AB6A4C005CD181 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -512,14 +697,18 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BD6BD1FD28DD53AE8EB20386 /* Pods-CaseTracker.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CaseTracker/CaseTracker.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"CaseTracker/Preview Content\"";
 				DEVELOPMENT_TEAM = QQR7KQB65R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CaseTracker/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -532,6 +721,7 @@
 				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shaunfowler.CaseTracker;
 				PRODUCT_NAME = "Case Tracker";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -542,14 +732,18 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1691F8621358FE741C510BBD /* Pods-CaseTracker.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CaseTracker/CaseTracker.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"CaseTracker/Preview Content\"";
 				DEVELOPMENT_TEAM = QQR7KQB65R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CaseTracker/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -562,6 +756,7 @@
 				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shaunfowler.CaseTracker;
 				PRODUCT_NAME = "Case Tracker";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -571,6 +766,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		287746EB27B1E52D0042D3FD /* Build configuration list for PBXNativeTarget "CaseTrackerNotificationServiceExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				287746EC27B1E52D0042D3FD /* Debug */,
+				287746ED27B1E52D0042D3FD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		287C42E427AB6A4C005CD181 /* Build configuration list for PBXNativeTarget "CaseTrackerCodeGen" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

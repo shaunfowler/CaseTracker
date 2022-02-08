@@ -119,6 +119,7 @@ struct UpdatedCaptionTextStyle: ViewModifier {
     }
 }
 
+#if DEBUG
 struct ContentView_Previews: PreviewProvider {
 
     static let viewModel = HomeViewModel(repository: PreviewDataRepository())
@@ -141,3 +142,4 @@ struct ContentView_Previews: PreviewProvider {
         .previewLayout(.sizeThatFits)
     }
 }
+#endif
