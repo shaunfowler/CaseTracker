@@ -69,7 +69,7 @@ struct AddCaseView: View {
 
             Spacer()
 
-            Button(action: {
+            PrimaryButton(title: "Add Case", disabled: viewModel.receiptNumber.isEmpty, fullWidth: true) {
                 Task {
                     await viewModel.attemptAddCase()
                     if !viewModel.showError {
@@ -77,18 +77,7 @@ struct AddCaseView: View {
                         await onCaseAdded()
                     }
                 }
-            }) {
-                Text("Add Case")
-                    .fontWeight(.bold)
-                    .frame(maxWidth: .infinity)
-                    .padding([.top, .bottom], 12)
             }
-            .disabled(viewModel.receiptNumber.isEmpty)
-            .frame(maxWidth: .infinity)
-            .foregroundColor(.white)
-            .background(.blue)
-            .clipShape(Capsule())
-            .opacity(viewModel.receiptNumber.isEmpty ? 0.5 : 1.0)
         }
     }
 }

@@ -68,15 +68,16 @@ struct HomeView: View {
             .background(Color("HomeBackgroundColor"))
             .listStyle(.plain)
 
-            if !viewModel.loading && viewModel.cases.isEmpty {
-                Text("No cases have been added.")
-                    .padding()
+            if viewModel.isEmptyState {
+                FirstTimeUserView { viewModel.isAddCaseViewPresented.toggle() }
             }
         }
         .navigationBarTitle("My Cases")
         .toolbar {
             ToolbarItem {
-                addButton()
+                if !viewModel.isEmptyState {
+                    addButton()
+                }
             }
         }
         .alert(isPresented: $viewModel.isNetworkMessagePresented) {
@@ -95,9 +96,7 @@ struct HomeView: View {
     }
 
     func addButton() -> some View {
-        Button(action: {
-            viewModel.isAddCaseViewPresented.toggle()
-        }) {
+        Button(action: { viewModel.isAddCaseViewPresented.toggle() }) {
             Text("Add Case")
         }
     }

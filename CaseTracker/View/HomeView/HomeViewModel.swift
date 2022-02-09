@@ -51,6 +51,10 @@ class HomeViewModel: ObservableObject {
         return ""
     }
 
+    var isEmptyState: Bool {
+        !loading && cases.isEmpty
+    }
+
     // Initialization
 
     init(repository: Repository = CaseStatusRepository()) {
