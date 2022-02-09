@@ -64,7 +64,7 @@ struct AddCaseView: View {
                 .buttonBorderShape(.capsule)
                 .padding()
                 .background(Color("CaseRowBackgroundColor"))
-                .cornerRadius(8)
+                .cornerRadius(4)
                 .focused($isTextFieldFocussed)
 
             Spacer()

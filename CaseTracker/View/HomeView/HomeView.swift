@@ -53,7 +53,7 @@ struct HomeView: View {
                     }
                     .padding(.trailing, 8)
                     .background(Color("CaseRowBackgroundColor"))
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .clipShape(RoundedRectangle(cornerRadius: 4))
                     .padding([.top, .bottom], 0)
                     .listRowSeparator(.hidden)
                     .listRowBackground(Color.clear)
@@ -86,8 +86,7 @@ struct HomeView: View {
         }
         .sheet(isPresented: $viewModel.isAddCaseViewPresented) {
             AddCaseView {
-                // Recall latest case from cache!
-                await viewModel.fetch(force: false)
+                await viewModel.addCaseComplete()
             }
         }
         .onChange(of: scenePhase) { phase in

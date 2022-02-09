@@ -110,6 +110,11 @@ class HomeViewModel: ObservableObject {
         loading = false
     }
 
+    func addCaseComplete() async {
+        // Recall latest case from cache.
+        await fetch(force: false)
+    }
+
     func removeCase(atIndex index: Int) {
         let receiptNumber = cases[index].id
         cases = cases.filter { $0.id != receiptNumber }

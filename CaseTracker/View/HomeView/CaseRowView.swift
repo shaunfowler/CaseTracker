@@ -15,11 +15,14 @@ struct CaseRowView: View {
 
     var body: some View {
         HStack(spacing: 0) {
+
             RoundedRectangle(cornerRadius: 4)
                 .frame(width: 4)
                 .foregroundColor(model.color)
                 .padding(10)
+
             VStack(alignment: .leading, spacing: 8) {
+
                 HStack(alignment: .center, spacing: 8) {
                     if let formType = model.formType {
                         Text(formType)
@@ -48,7 +51,7 @@ struct CaseRowView: View {
                 // Text(model.dateFetched.description)
             }
             .padding([.leading], 0)
-            .padding([.trailing, .top, .bottom], 10)
+            .padding([.trailing, .top, .bottom], 8)
         }
     }
 }
