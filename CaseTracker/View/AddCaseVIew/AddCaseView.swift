@@ -15,7 +15,7 @@ struct AddCaseView: View {
 
     @Environment(\.dismiss) var dismiss
     @StateObject var viewModel = AddCaseViewModel()
-    @FocusState var isTextFieldFocussed: Field?
+    @FocusState var isTextFieldFocussed
 
     var onCaseAdded: () async -> Void
 
@@ -24,7 +24,6 @@ struct AddCaseView: View {
             toolbarButtons
             Spacer()
             receiptNumberInputForm
-            Spacer()
         }
         .padding()
         .background(Color("HomeBackgroundColor"))
@@ -36,7 +35,7 @@ struct AddCaseView: View {
         }
         .task {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                isTextFieldFocussed = .receiptNumberTextField
+                self.isTextFieldFocussed = true
             }
         }
     }
@@ -53,6 +52,9 @@ struct AddCaseView: View {
 
     var receiptNumberInputForm: some View {
         VStack(alignment: .leading, spacing: 16) {
+
+            Spacer()
+
             Text("Enter your receipt number")
                 .font(.headline)
 
@@ -63,7 +65,9 @@ struct AddCaseView: View {
                 .padding()
                 .background(Color("CaseRowBackgroundColor"))
                 .cornerRadius(8)
-                .focused($isTextFieldFocussed, equals: .receiptNumberTextField)
+                .focused($isTextFieldFocussed)
+
+            Spacer()
 
             Button(action: {
                 Task {
@@ -76,13 +80,15 @@ struct AddCaseView: View {
             }) {
                 Text("Add Case")
                     .fontWeight(.bold)
+                    .frame(maxWidth: .infinity)
+                    .padding([.top, .bottom], 12)
             }
+            .disabled(viewModel.receiptNumber.isEmpty)
             .frame(maxWidth: .infinity)
-            .padding([.top, .bottom], 12)
             .foregroundColor(.white)
             .background(.blue)
-            .cornerRadius(8)
-            .padding(.top, 36)
+            .clipShape(Capsule())
+            .opacity(viewModel.receiptNumber.isEmpty ? 0.5 : 1.0)
         }
     }
 }

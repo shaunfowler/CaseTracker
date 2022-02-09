@@ -25,9 +25,7 @@ struct DetailsView: View {
                 Button("View on USCIS Website") {
                     openURL(CaseStatusURL.get(id).url)
                 }
-                .buttonStyle(.borderedProminent)
-
-                Spacer()
+                .padding(.top, 24)
             }
             .padding()
         }
