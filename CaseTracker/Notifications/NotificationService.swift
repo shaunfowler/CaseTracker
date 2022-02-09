@@ -11,6 +11,8 @@ import OSLog
 
 class NotificationService {
 
+    let factory = NotificationFactory()
+
     init() {
         UNUserNotificationCenter
             .current()
@@ -23,22 +25,14 @@ class NotificationService {
             }
     }
 
-    public func display(title: String, subtitle: String? = nil, message: String) {
+    public func request(notification: Notification) {
 
         Logger.notifications.log("Displaying local notification.")
-        
-        let content = UNMutableNotificationContent()
-        content.title = title
-        content.categoryIdentifier = "nc1"
-        if let subtitle = subtitle {
-            content.subtitle = subtitle
-        }
-        content.sound = UNNotificationSound.default
-        content.body = message
 
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        let request = UNNotificationRequest(
+            identifier: UUID().uuidString,
+            content: factory.create(notification),
+            trigger: nil)
 
         UNUserNotificationCenter.current().add(request)
     }

@@ -153,20 +153,9 @@ class CaseStatusRepository: Repository {
     }
 
     private func detectChanges(existingCase: CaseStatus, updatedCase: CaseStatus) {
-        // Check diff
         if existingCase.lastUpdated != updatedCase.lastUpdated || existingCase.status != updatedCase.status {
-            Logger.api.log(
-                "Detected case change from status [\(existingCase.status)] to [\(updatedCase.status)].")
-            let subtitle: String
-            if let formType = updatedCase.formType {
-                subtitle = "\(formType) - \(updatedCase.id)"
-            } else {
-                subtitle = updatedCase.id
-            }
-            notificationService.display(
-                title: "Case Status Updated",
-                subtitle: subtitle,
-                message: "Your case status has been updated by USCIS.")
+            Logger.api.log("Detected case change from status [\(existingCase.status)] to [\(updatedCase.status)].")
+            notificationService.request(notification: .statusUpdated(updatedCase))
         }
     }
 }
