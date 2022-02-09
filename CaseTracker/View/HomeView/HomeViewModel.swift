@@ -24,7 +24,7 @@ class HomeViewModel: ObservableObject {
     @Published var phase: ScenePhase?
     @Published var cases = [CaseStatus]()
     @Published var selectedCase: CaseStatus?
-    @Published var loading = false
+    @Published var loading = true
     @Published var errorMessage: String?
     @Published var isAddCaseViewPresented = false
     @Published var isDetailsViewPresented = false
