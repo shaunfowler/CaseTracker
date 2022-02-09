@@ -27,6 +27,7 @@ class LocalCaseStatusAPI: CaseStatusReadable & CaseStatusWritable {
     // MARK: - CaseStatusReadable
 
     func get(forCaseId id: String) async -> Result<CaseStatus, Error> {
+        Logger.api.debug("Getting case from storage.")
         let decoder = JSONDecoder()
         do {
             if let restored = storage.object(forKey: key(for: id)) as? Data {
@@ -43,6 +44,7 @@ class LocalCaseStatusAPI: CaseStatusReadable & CaseStatusWritable {
     // MARK: - CaseStatusWritable
 
     func set(caseStatus: CaseStatus) async -> Result<Void, Error> {
+        Logger.api.debug("Saving case to storage.")
         let encoder = JSONEncoder()
         let key = key(for: caseStatus.id)
         do {
@@ -59,6 +61,7 @@ class LocalCaseStatusAPI: CaseStatusReadable & CaseStatusWritable {
     }
 
     func remove(receiptNumber: String) async -> Result<(), Error> {
+        Logger.api.info("Removing case from storage.")
         storage.set(nil, forKey: key(for: receiptNumber))
         return .success(())
     }

@@ -17,20 +17,6 @@ struct HomeView: View {
         self.viewModel = viewModel
     }
 
-    var lastUpdatedLoadingMessage: String {
-        // Always show loading if request is pending.
-        if viewModel.loading {
-            return "Refreshing cases..."
-        }
-
-        // Loaded date only if there are cases.
-        if let lastFetch = viewModel.lastFetch, !viewModel.cases.isEmpty {
-            return "Last updated at \(lastFetch.formatted())."
-        }
-
-        return ""
-    }
-
     var body: some View {
         NavigationView {
             caseList()
@@ -43,7 +29,7 @@ struct HomeView: View {
 
     func refresh() async {
         refreshing = true
-        await viewModel.fetch(force: true)
+        await viewModel.refresh()
         refreshing = false
     }
 
@@ -51,7 +37,7 @@ struct HomeView: View {
         ZStack {
             List {
                 Section {
-                    Text(lastUpdatedLoadingMessage)
+                    Text(viewModel.lastUpdatedLoadingMessage)
                 }
                 .listRowBackground(Color.clear)
                 .modifier(UpdatedCaptionTextStyle())
@@ -93,8 +79,9 @@ struct HomeView: View {
                 addButton()
             }
         }
-        .popover(item: $viewModel.selectedCase) { caseStatus in
-            DetailsView(text: caseStatus.body, id: caseStatus.id)
+        .alert(isPresented: $viewModel.isNetworkMessagePresented) {
+            Alert(title: Text("Cannot Reload Cases"),
+                  message: Text("A network connection is not available."))
         }
         .sheet(isPresented: $viewModel.isAddCaseViewPresented) {
             AddCaseView {
@@ -113,17 +100,6 @@ struct HomeView: View {
         }) {
             Text("Add Case")
         }
-    }
-}
-
-struct UpdatedCaptionTextStyle: ViewModifier {
-
-    func body(content: Content) -> some View {
-        content
-            .font(.caption.bold())
-            .opacity(0.3)
-            .frame(maxWidth: .infinity, alignment: .center)
-            .listSectionSeparator(.hidden)
     }
 }
 

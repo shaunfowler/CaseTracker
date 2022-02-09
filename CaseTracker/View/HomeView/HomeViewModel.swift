@@ -13,8 +13,13 @@ import OSLog
 @MainActor
 class HomeViewModel: ObservableObject {
 
+    // MARK: - Private Properties
+
     private var cancellables = Set<AnyCancellable>()
     private let repository: Repository
+    private var isNetworkReachable = true
+
+    // MARK: - Public Properties
 
     @Published var phase: ScenePhase?
     @Published var cases = [CaseStatus]()
@@ -23,6 +28,7 @@ class HomeViewModel: ObservableObject {
     @Published var errorMessage: String?
     @Published var isAddCaseViewPresented = false
     @Published var isDetailsViewPresented = false
+    @Published var isNetworkMessagePresented = false
 
     var lastFetch: Date? {
         cases
@@ -30,6 +36,22 @@ class HomeViewModel: ObservableObject {
             .sorted { lhs, rhs in lhs < rhs }
             .first // earliest date
     }
+
+    var lastUpdatedLoadingMessage: String {
+        // Always show loading if request is pending.
+        if loading {
+            return "Refreshing cases..."
+        }
+
+        // Loaded date only if there are cases.
+        if let lastFetch = lastFetch, !cases.isEmpty {
+            return "Last updated at \(lastFetch.formatted())."
+        }
+
+        return ""
+    }
+
+    // Initialization
 
     init(repository: Repository = CaseStatusRepository()) {
         self.repository = repository
@@ -50,6 +72,14 @@ class HomeViewModel: ObservableObject {
             }
             .store(in: &cancellables)
 
+        repository
+            .networkReachable
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] value in
+                self?.isNetworkReachable = value
+            }
+            .store(in: &cancellables)
+
         $phase
             .compactMap { $0 }
             .sink {
@@ -59,6 +89,14 @@ class HomeViewModel: ObservableObject {
                 }
             }
             .store(in: &cancellables)
+    }
+
+    func refresh() async {
+        guard isNetworkReachable else {
+            isNetworkMessagePresented = true
+            return
+        }
+        await fetch(force: true)
     }
 
     func fetch(force: Bool = false) async {

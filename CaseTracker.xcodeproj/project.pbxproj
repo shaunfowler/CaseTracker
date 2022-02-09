@@ -18,6 +18,7 @@
 		287746FC27B36EF60042D3FD /* ScenePhase+CustomStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287746FB27B36EF60042D3FD /* ScenePhase+CustomStringConvertible.swift */; };
 		2877470027B373020042D3FD /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287746FF27B373020042D3FD /* NotificationService.swift */; };
 		2877470227B379860042D3FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877470127B379860042D3FD /* AppDelegate.swift */; };
+		2877470627B38EB50042D3FD /* UpdatedCaptionTextStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877470527B38EB50042D3FD /* UpdatedCaptionTextStyle.swift */; };
 		287C42DB27AB69D5005CD181 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287C42DA27AB69D5005CD181 /* Status.swift */; };
 		287C42E327AB6A4C005CD181 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287C42E227AB6A4C005CD181 /* main.swift */; };
 		287C42E827AB6B64005CD181 /* statusTitles.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 287C42E727AB6A63005CD181 /* statusTitles.txt */; };
@@ -62,6 +63,7 @@
 		287746FB27B36EF60042D3FD /* ScenePhase+CustomStringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScenePhase+CustomStringConvertible.swift"; sourceTree = "<group>"; };
 		287746FF27B373020042D3FD /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		2877470127B379860042D3FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2877470527B38EB50042D3FD /* UpdatedCaptionTextStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatedCaptionTextStyle.swift; sourceTree = "<group>"; };
 		287C42DA27AB69D5005CD181 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		287C42E027AB6A4C005CD181 /* CaseTrackerCodeGen */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CaseTrackerCodeGen; sourceTree = BUILT_PRODUCTS_DIR; };
 		287C42E227AB6A4C005CD181 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -127,6 +129,24 @@
 			path = Notifications;
 			sourceTree = "<group>";
 		};
+		2877470327B38E860042D3FD /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				2877470527B38EB50042D3FD /* UpdatedCaptionTextStyle.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		2877470427B38E8C0042D3FD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2877470327B38E860042D3FD /* Common */,
+				28FD1B1127A9149B002CA8DE /* AddCaseVIew */,
+				28FD1B1027A9148F002CA8DE /* HomeView */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		287C42E127AB6A4C005CD181 /* CaseTrackerCodeGen */ = {
 			isa = PBXGroup;
 			children = (
@@ -169,9 +189,7 @@
 		28FD1AF227A7CB6D002CA8DE /* CaseTracker */ = {
 			isa = PBXGroup;
 			children = (
-				287746F827B361000042D3FD /* Info.plist */,
-				28FD1B1127A9149B002CA8DE /* AddCaseVIew */,
-				28FD1B1027A9148F002CA8DE /* HomeView */,
+				2877470427B38E8C0042D3FD /* View */,
 				28CAB0D727A9FE470067A9A9 /* Model */,
 				28FD1B0127A8BFFE002CA8DE /* API */,
 				287746FE27B372F40042D3FD /* Notifications */,
@@ -179,6 +197,7 @@
 				2877470127B379860042D3FD /* AppDelegate.swift */,
 				28FD1AF327A7CB6D002CA8DE /* CaseTrackerApp.swift */,
 				287746F627B35F800042D3FD /* BackgroundRefeshManager.swift */,
+				287746F827B361000042D3FD /* Info.plist */,
 				28FD1AF727A7CB6F002CA8DE /* Assets.xcassets */,
 				28FD1AF927A7CB6F002CA8DE /* Preview Content */,
 			);
@@ -390,6 +409,7 @@
 				287746FC27B36EF60042D3FD /* ScenePhase+CustomStringConvertible.swift in Sources */,
 				28FD1B0D27A8D566002CA8DE /* CaseStatus.swift in Sources */,
 				283511AC27AA08C800851FC6 /* Utils.swift in Sources */,
+				2877470627B38EB50042D3FD /* UpdatedCaptionTextStyle.swift in Sources */,
 				28FD1B0927A8D383002CA8DE /* LocalCaseStatusAPI.swift in Sources */,
 				283511B027AA138000851FC6 /* AddCaseView.swift in Sources */,
 				287746FA27B36B0C0042D3FD /* Logger.swift in Sources */,

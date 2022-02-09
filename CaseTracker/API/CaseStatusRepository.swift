@@ -9,6 +9,7 @@ import Foundation
 import Combine
 import UIKit
 import OSLog
+import Network
 
 typealias CaseStatusLocalCache = CaseStatusReadable & CaseStatusWritable & CaseStatusCachable
 
@@ -16,6 +17,7 @@ protocol Repository {
 
     var data: CurrentValueSubject<[CaseStatus], Never> { get }
     var error: CurrentValueSubject<Error?, Never> { get }
+    var networkReachable: CurrentValueSubject<Bool, Never> { get }
 
     func query(force: Bool) async
     func addCase(receiptNumber: String) async -> Result<CaseStatus, Error>
@@ -31,27 +33,33 @@ class CaseStatusRepository: Repository {
         static let refreshInterval: TimeInterval = 10 * 60 // * 60 // 10-min
     }
 
-    // MARK: - Properties
+    // MARK: - Public Properties
+
+    private(set) var data = CurrentValueSubject<[CaseStatus], Never>([])
+    private(set) var error = CurrentValueSubject<Error?, Never>(nil)
+    private(set) var networkReachable = CurrentValueSubject<Bool, Never>(true)
+
+    // MARK: - Private Properties
 
     private var cancellables = Set<AnyCancellable>()
 
     private let local: CaseStatusLocalCache
     private let remote: CaseStatusReadable
 
-    var internalData: [CaseStatus] = [] {
+    private let networkMonitorQueue = DispatchQueue(label: "network-monitor")
+    private let networkPathMonitor: NWPathMonitor = NWPathMonitor()
+
+    private var internalData: [CaseStatus] = [] {
         didSet {
             data.send(internalData)
         }
     }
 
-    var internalError: Error? = nil {
+    private var internalError: Error? = nil {
         didSet {
             error.send(internalError)
         }
     }
-
-    private(set) var data = CurrentValueSubject<[CaseStatus], Never>([])
-    private(set) var error = CurrentValueSubject<Error?, Never>(nil)
 
     // MARK: - Initialization
 
@@ -62,6 +70,7 @@ class CaseStatusRepository: Repository {
         self.local = local
         self.remote = remote
 
+        startNetworkMonitor()
         setupTimer()
     }
 
@@ -112,6 +121,16 @@ class CaseStatusRepository: Repository {
         }
 
         return .failure(CSError.http)
+    }
+
+    private func startNetworkMonitor() {
+        Logger.api.info("Starting network monitor...")
+        networkPathMonitor.pathUpdateHandler = { [weak self] path in
+            let satisfied = path.status == .satisfied
+            Logger.api.info("Network path satisfied: \(satisfied).")
+            self?.networkReachable.send(satisfied)
+        }
+        networkPathMonitor.start(queue: networkMonitorQueue)
     }
 
     private func setupTimer() {
