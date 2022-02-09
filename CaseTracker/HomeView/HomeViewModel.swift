@@ -12,10 +12,6 @@ import Combine
 @MainActor
 class HomeViewModel: ObservableObject {
 
-    private enum Constants {
-        static let refreshInterval: TimeInterval = 10 * 60 // 10-min
-    }
-
     private var cancellables = Set<AnyCancellable>()
     private let repository: Repository
 
@@ -37,17 +33,21 @@ class HomeViewModel: ObservableObject {
     init(repository: Repository = CaseStatusRepository()) {
         self.repository = repository
 
-        // TODO: Move to repository and use bind to AnyPublisher in view model
-        Timer.scheduledTimer(withTimeInterval: Constants.refreshInterval, repeats: true) { _ in
-            Task { [weak self] in
-                guard let self = self, self.phase == .active else {
-                    print("Skipping reload, scene phase:", self?.phase as Any)
-                    return
-                }
-                print("Reloading data on periodic timer...")
-                await self.fetch()
+        repository
+            .data
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] value in
+                self?.cases = value
             }
-        }
+            .store(in: &cancellables)
+
+        repository
+            .error
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] value in
+                self?.errorMessage = value?.localizedDescription
+            }
+            .store(in: &cancellables)
 
         $phase
             .compactMap { $0 }
@@ -63,11 +63,7 @@ class HomeViewModel: ObservableObject {
     func fetch(force: Bool = false) async {
         // Get from cache or remote API if cache is expired.
         loading = true
-        do {
-            cases = try await repository.query(force: force).get()
-        } catch {
-            errorMessage = error.localizedDescription
-        }
+        await repository.query(force: force)
         loading = false
     }
 

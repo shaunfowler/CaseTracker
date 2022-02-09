@@ -7,11 +7,16 @@
 
 import Foundation
 import Combine
+import UIKit
 
 typealias CaseStatusLocalCache = CaseStatusReadable & CaseStatusWritable & CaseStatusCachable
 
 protocol Repository {
-    func query(force: Bool) async -> Result<[CaseStatus], Error>
+
+    var data: CurrentValueSubject<[CaseStatus], Never> { get }
+    var error: CurrentValueSubject<Error?, Never> { get }
+
+    func query(force: Bool) async
     func addCase(receiptNumber: String) async -> Result<CaseStatus, Error>
     func removeCase(receiptNumber: String) async -> Result<(), Error>
 }
@@ -21,13 +26,31 @@ class CaseStatusRepository: Repository {
     // MARK: - Internal Types
 
     enum Constants {
-        static let cacheExpirySeconds: TimeInterval = 30 * 60 // 5-min
+        static let cacheExpirySeconds: TimeInterval = 30 * 60 // 30-min
+        static let refreshInterval: TimeInterval = 10 * 60 // * 60 // 10-min
     }
 
     // MARK: - Properties
 
+    private var cancellables = Set<AnyCancellable>()
+
     private let local: CaseStatusLocalCache
     private let remote: CaseStatusReadable
+
+    var internalData: [CaseStatus] = [] {
+        didSet {
+            data.send(internalData)
+        }
+    }
+
+    var internalError: Error? = nil {
+        didSet {
+            error.send(internalError)
+        }
+    }
+
+    private(set) var data = CurrentValueSubject<[CaseStatus], Never>([])
+    private(set) var error = CurrentValueSubject<Error?, Never>(nil)
 
     // MARK: - Initialization
 
@@ -37,13 +60,16 @@ class CaseStatusRepository: Repository {
     ) {
         self.local = local
         self.remote = remote
+
+        setupTimer()
     }
 
     // MARK: - Public Functions
 
-    func query(force: Bool = false) async -> Result<[CaseStatus], Error> {
+    func query(force: Bool = false) async {
         print("BEGIN - Query")
-        // TODO - How to do concurrently and sync access to `data`?
+        // USCIS doesn't properly return responses for simultaneous requests
+        // Request serially
         var result = [CaseStatus]()
         for receiptNumber in self.local.keys() {
             if case .success(let caseStatus) = await self.get(forCaseId: receiptNumber, force: force) {
@@ -52,7 +78,8 @@ class CaseStatusRepository: Repository {
             }
         }
         print("END - Query")
-        return .success(result.sorted(by: { lhs, rhs in lhs.id < rhs.id }))
+        internalError = nil
+        internalData = result.sorted(by: { lhs, rhs in lhs.id < rhs.id })
     }
 
     func addCase(receiptNumber: String) async -> Result<CaseStatus, Error> {
@@ -85,5 +112,14 @@ class CaseStatusRepository: Repository {
         }
 
         return .failure(CSError.http)
+    }
+
+    private func setupTimer() {
+        Timer.scheduledTimer(withTimeInterval: Constants.refreshInterval, repeats: true) { _ in
+            Task { [weak self] in
+                print("Reloading data on periodic timer...")
+                await self?.query()
+            }
+        }
     }
 }

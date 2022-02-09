@@ -6,8 +6,13 @@
 //
 
 import Foundation
+import Combine
 
 class PreviewDataRepository: Repository {
+
+    var data: CurrentValueSubject<[CaseStatus], Never> = .init([case1, case2])
+
+    var error: CurrentValueSubject<Error?, Never> = .init(nil)
 
     static let case1 = CaseStatus(
         id: "ABC123456789",
@@ -35,8 +40,8 @@ class PreviewDataRepository: Repository {
         }
     }
 
-    func query(force: Bool) async -> Result<[CaseStatus], Error> {
-        .success(cases)
+    func query(force: Bool) async {
+        // no-op
     }
 
     func addCase(receiptNumber: String) async -> Result<CaseStatus, Error> {
