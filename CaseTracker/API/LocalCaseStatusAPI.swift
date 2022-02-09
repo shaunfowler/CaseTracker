@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import OSLog
 
 extension UserDefaults {
     static let caseStatus: UserDefaults = {
@@ -34,6 +35,7 @@ class LocalCaseStatusAPI: CaseStatusReadable & CaseStatusWritable {
             }
             return .failure(CSError.notCached)
         } catch {
+            Logger.api.error("Failed to get case in local storage with error: \(error.localizedDescription).")
             return .failure(error)
         }
     }
@@ -51,6 +53,7 @@ class LocalCaseStatusAPI: CaseStatusReadable & CaseStatusWritable {
 #endif
             return .success(())
         } catch {
+            Logger.api.error("Failed to set case in local storage with error: \(error.localizedDescription).")
             return .failure(error)
         }
     }
@@ -63,15 +66,15 @@ class LocalCaseStatusAPI: CaseStatusReadable & CaseStatusWritable {
 
 extension LocalCaseStatusAPI: CaseStatusCachable {
     func keys() -> [String] {
-        print("Getting keys...")
-        return storage.dictionaryRepresentation().keys
+        let keys: [String] = storage.dictionaryRepresentation().keys
             .filter { $0.starts(with: "case-") }
             .map {
                 var stripped = $0
                 stripped.removeFirst("case-".count)
-                print("Key", stripped)
                 return stripped
             }
+        Logger.api.info("Found \(keys.count) receipt numbers in local storage.")
+        return keys
     }
 
     private func key(for receiptNumber: String) -> String {

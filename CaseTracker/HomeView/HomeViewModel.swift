@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import Combine
+import OSLog
 
 @MainActor
 class HomeViewModel: ObservableObject {
@@ -18,7 +19,7 @@ class HomeViewModel: ObservableObject {
     @Published var phase: ScenePhase?
     @Published var cases = [CaseStatus]()
     @Published var selectedCase: CaseStatus?
-    @Published var loading = true
+    @Published var loading = false
     @Published var errorMessage: String?
     @Published var isAddCaseViewPresented = false
     @Published var isDetailsViewPresented = false
@@ -51,8 +52,8 @@ class HomeViewModel: ObservableObject {
 
         $phase
             .compactMap { $0 }
-            .print("Phase publisher")
             .sink {
+                Logger.view.info("Scene phase changed to: \($0).")
                 if $0 == .active {
                     Task { await self.fetch() }
                 }

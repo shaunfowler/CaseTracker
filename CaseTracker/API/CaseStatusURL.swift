@@ -31,4 +31,11 @@ enum CaseStatusURL {
             return Self.buildUrl(receiptNumber: receiptNumber)
         }
     }
+
+    var redacted: String {
+        switch self {
+        case .get(let receiptNumber):
+            return self.url.absoluteString.replacingOccurrences(of: receiptNumber, with: "xxx")
+        }
+    }
 }

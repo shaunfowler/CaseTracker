@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import UIKit
+import OSLog
 
 typealias CaseStatusLocalCache = CaseStatusReadable & CaseStatusWritable & CaseStatusCachable
 
@@ -67,19 +68,19 @@ class CaseStatusRepository: Repository {
     // MARK: - Public Functions
 
     func query(force: Bool = false) async {
-        print("BEGIN - Query")
+        Logger.main.info("Querying all cases...")
         // USCIS doesn't properly return responses for simultaneous requests
         // Request serially
         var result = [CaseStatus]()
         for receiptNumber in self.local.keys() {
             if case .success(let caseStatus) = await self.get(forCaseId: receiptNumber, force: force) {
-                print(caseStatus)
+                // Logger.main.debug("\(caseStatus)")
                 result.append(caseStatus)
             }
         }
-        print("END - Query")
         internalError = nil
         internalData = result.sorted(by: { lhs, rhs in lhs.id < rhs.id })
+        Logger.main.info("Finished querying \(result.count) cases.")
     }
 
     func addCase(receiptNumber: String) async -> Result<CaseStatus, Error> {
@@ -98,7 +99,6 @@ class CaseStatusRepository: Repository {
         if !force, case .success(let caseStatus) = cachedValue {
             let diff = abs(caseStatus.dateFetched.timeIntervalSinceNow)
             let isExpired =  diff > Constants.cacheExpirySeconds
-            print("repository get for \(id); diff = \(diff); expired: \(isExpired);")
             if !isExpired {
                 return .success(caseStatus)
             }
@@ -117,7 +117,7 @@ class CaseStatusRepository: Repository {
     private func setupTimer() {
         Timer.scheduledTimer(withTimeInterval: Constants.refreshInterval, repeats: true) { _ in
             Task { [weak self] in
-                print("Reloading data on periodic timer...")
+                Logger.main.info("Reloading data on periodic timer...")
                 await self?.query()
             }
         }

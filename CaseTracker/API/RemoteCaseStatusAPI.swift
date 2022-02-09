@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import OSLog
 
 actor RemoteCaseStatusAPI: CaseStatusReadable {
 
@@ -17,8 +18,10 @@ actor RemoteCaseStatusAPI: CaseStatusReadable {
 
     func get(forCaseId id: String) async -> Result<CaseStatus, Error> {
         do {
-            let url = CaseStatusURL.get(id).url
-            print("Requesting", url)
+            let urlContainer = CaseStatusURL.get(id)
+            let url = urlContainer.url
+
+            Logger.api.info("Requesting URL: \(urlContainer.redacted).")
             let (data, response) = try await urlSession.data(for: URLRequest(url: url))
 
             guard let response = (response as? HTTPURLResponse), response.statusCode < 400 else {
@@ -31,7 +34,7 @@ actor RemoteCaseStatusAPI: CaseStatusReadable {
 
             return .success(try CaseStatus(receiptNumber: id, htmlString: htmlString))
         } catch {
-            print("remote error", error)
+            Logger.api.error("Error requesting case. Error: \(error.localizedDescription).")
             return .failure(error)
         }
     }
