@@ -29,7 +29,7 @@ class NotificationFactory {
 
             content.title = "Case Status Updated"
             content.subtitle = subtitle
-            content.body = "Your case status has been updated by USCIS."
+            content.body = "Your case status changed to \"\(caseStatus.status)\"."
             content.sound = UNNotificationSound.default
         }
 

@@ -22,10 +22,12 @@ class HomeViewModel: ObservableObject {
     // MARK: - Public Properties
 
     @Published var phase: ScenePhase?
+
     @Published var cases = [CaseStatus]()
     @Published var selectedCase: CaseStatus?
     @Published var loading = true
     @Published var errorMessage: String?
+
     @Published var isAddCaseViewPresented = false
     @Published var isDetailsViewPresented = false
     @Published var isNetworkMessagePresented = false
