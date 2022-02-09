@@ -15,7 +15,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
     ) -> Bool {
-        Logger.main.info("didFinishLaunchingWithOptions")
         UNUserNotificationCenter.current().delegate = self
         return true
     }
@@ -28,7 +27,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         willPresent notification: UNNotification,
         withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions
     ) -> Void) {
-        Logger.main.info("willPresent")
+        Logger.main.log("Local notification delegate received willPresent.")
         completionHandler([.sound, .badge, .banner])
     }
 }

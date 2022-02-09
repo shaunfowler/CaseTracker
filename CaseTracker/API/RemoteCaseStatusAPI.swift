@@ -21,7 +21,7 @@ actor RemoteCaseStatusAPI: CaseStatusReadable {
             let urlContainer = CaseStatusURL.get(id)
             let url = urlContainer.url
 
-            Logger.api.info("Requesting URL: \(urlContainer.redacted).")
+            Logger.api.log("Requesting URL: \(urlContainer.redacted).")
             let (data, response) = try await urlSession.data(for: URLRequest(url: url))
 
             guard let response = (response as? HTTPURLResponse), response.statusCode < 400 else {

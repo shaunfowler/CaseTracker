@@ -55,9 +55,13 @@ class HomeViewModel: ObservableObject {
         !loading && cases.isEmpty
     }
 
+    var addCaseViewModel: AddCaseViewModel {
+        AddCaseViewModel(repository: repository)
+    }
+
     // Initialization
 
-    init(repository: Repository = CaseStatusRepository()) {
+    init(repository: Repository) {
         self.repository = repository
 
         repository
@@ -87,7 +91,7 @@ class HomeViewModel: ObservableObject {
         $phase
             .compactMap { $0 }
             .sink {
-                Logger.view.info("Scene phase changed to: \($0).")
+                Logger.view.log("Scene phase changed to: \($0).")
                 if $0 == .active {
                     Task { await self.fetch() }
                 }

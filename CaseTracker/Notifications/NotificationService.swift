@@ -15,7 +15,7 @@ class NotificationService {
         UNUserNotificationCenter
             .current()
             .requestAuthorization(options: [.alert, .badge, .sound]) { result, error in
-                Logger.notifications.info("Result from notification authorization request: \(result).")
+                Logger.notifications.log("Result from notification authorization request: \(result).")
                 if let error = error {
                     Logger.notifications.error(
                         "Error from notification authorization request: \(error.localizedDescription).")
@@ -25,7 +25,7 @@ class NotificationService {
 
     public func display(title: String, subtitle: String? = nil, message: String) {
 
-        Logger.notifications.info("Displaying local notification.")
+        Logger.notifications.log("Displaying local notification.")
         
         let content = UNMutableNotificationContent()
         content.title = title

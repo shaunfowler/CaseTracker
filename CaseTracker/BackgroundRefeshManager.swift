@@ -26,7 +26,7 @@ class BackgroundRefeshManager {
     var delegate: BackgroundRefreshableDelegate?
 
     init() {
-        Logger.background.info("Registering task: \(Constants.reloadTaskId).")
+        Logger.background.log("Registering task: \(Constants.reloadTaskId).")
         BGTaskScheduler.shared.register(
             forTaskWithIdentifier: Constants.reloadTaskId,
             using: nil) { task in
@@ -42,8 +42,8 @@ class BackgroundRefeshManager {
             let date = Date(timeIntervalSinceNow: Constants.timeDelay)
             request.earliestBeginDate = date
             try BGTaskScheduler.shared.submit(request)
-            Logger.background.info("Scheduled task: \(Constants.reloadTaskId).")
-            Logger.background.info("Earliest begin date of: \(date.description). Now: \(Date().description).")
+            Logger.background.log("Scheduled task: \(Constants.reloadTaskId).")
+            Logger.background.log("Earliest begin date of: \(date.description). Now: \(Date().description).")
         } catch {
             Logger.background.error(
                 "Failed to submit background task: \(Constants.reloadTaskId). Error: \(error.localizedDescription)")
@@ -51,10 +51,10 @@ class BackgroundRefeshManager {
     }
 
     private func handleAppRefreshTask(task: BGAppRefreshTask) {
-        Logger.background.info("Executing background task: \(Constants.reloadTaskId)...")
+        Logger.background.log("Executing background task: \(Constants.reloadTaskId)...")
         Task {
             await delegate?.refresh()
-            Logger.background.info("Completed background task: \(Constants.reloadTaskId).")
+            Logger.background.log("Completed background task: \(Constants.reloadTaskId).")
             schedule()
             task.setTaskCompleted(success: true)
         }

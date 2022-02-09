@@ -85,7 +85,7 @@ struct HomeView: View {
                   message: Text("A network connection is not available."))
         }
         .sheet(isPresented: $viewModel.isAddCaseViewPresented) {
-            AddCaseView {
+            AddCaseView(viewModel: viewModel.addCaseViewModel) {
                 await viewModel.addCaseComplete()
             }
         }

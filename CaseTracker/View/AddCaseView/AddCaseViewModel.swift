@@ -10,10 +10,14 @@ import Foundation
 @MainActor
 class AddCaseViewModel: ObservableObject {
 
-    private let repository = CaseStatusRepository()
+    private let repository: Repository
 
     @Published var receiptNumber: String = ""
     @Published var showError = false
+
+    init(repository: Repository) {
+        self.repository = repository
+    }
 
     func attemptAddCase() async {
         print("Attempting to add case", receiptNumber)

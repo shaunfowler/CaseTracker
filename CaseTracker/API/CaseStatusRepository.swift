@@ -41,11 +41,11 @@ class CaseStatusRepository: Repository {
 
     // MARK: - Private Properties
 
-    private var cancellables = Set<AnyCancellable>()
-
     private let local: CaseStatusLocalCache
     private let remote: CaseStatusReadable
+    private let notificationService: NotificationService
 
+    private var cancellables = Set<AnyCancellable>()
     private let networkMonitorQueue = DispatchQueue(label: "network-monitor")
     private let networkPathMonitor: NWPathMonitor = NWPathMonitor()
 
@@ -65,10 +65,12 @@ class CaseStatusRepository: Repository {
 
     init(
         local: CaseStatusLocalCache = LocalCaseStatusAPI(),
-        remote: CaseStatusReadable = RemoteCaseStatusAPI()
+        remote: CaseStatusReadable = RemoteCaseStatusAPI(),
+        notificationService: NotificationService
     ) {
         self.local = local
         self.remote = remote
+        self.notificationService = notificationService
 
         startNetworkMonitor()
         setupTimer()
@@ -77,19 +79,19 @@ class CaseStatusRepository: Repository {
     // MARK: - Public Functions
 
     func query(force: Bool = false) async {
-        Logger.main.info("Querying all cases...")
+        Logger.main.log("Querying all cases...")
         // USCIS doesn't properly return responses for simultaneous requests
         // Request serially
         var result = [CaseStatus]()
         for receiptNumber in self.local.keys() {
             if case .success(let caseStatus) = await self.get(forCaseId: receiptNumber, force: force) {
-                // Logger.main.debug("\(caseStatus)")
+                Logger.main.debug("\(caseStatus)")
                 result.append(caseStatus)
             }
         }
         internalError = nil
         internalData = result.sorted(by: { lhs, rhs in lhs.id < rhs.id })
-        Logger.main.info("Finished querying \(result.count) cases.")
+        Logger.main.log("Finished querying \(result.count) cases.")
     }
 
     func addCase(receiptNumber: String) async -> Result<CaseStatus, Error> {
@@ -113,21 +115,29 @@ class CaseStatusRepository: Repository {
             }
         }
 
-        let caseStatusResult = await remote.get(forCaseId: id)
-        if case .success(var caseStatus) = caseStatusResult {
-            caseStatus.dateFetched = Date.now
-            await local.set(caseStatus: caseStatus)
-            return .success(caseStatus)
-        }
+        let result = await remote.get(forCaseId: id)
 
-        return .failure(CSError.http)
+        switch result {
+        case .success(var updatedCase):
+            updatedCase.dateFetched = Date.now
+            let existing = await local.get(forCaseId: updatedCase.id)
+            if case .success(let existingCase) = existing {
+                detectChanges(existingCase: existingCase, updatedCase: updatedCase)
+            }
+            await local.set(caseStatus: updatedCase)
+            return .success(updatedCase)
+
+        case .failure(let error):
+            Logger.api.error("Error fetching case from remote API: \(error.localizedDescription).")
+            return .failure(CSError.http)
+        }
     }
 
     private func startNetworkMonitor() {
-        Logger.api.info("Starting network monitor...")
+        Logger.api.log("Starting network monitor...")
         networkPathMonitor.pathUpdateHandler = { [weak self] path in
             let satisfied = path.status == .satisfied
-            Logger.api.info("Network path satisfied: \(satisfied).")
+            Logger.api.log("Network path satisfied: \(satisfied).")
             self?.networkReachable.send(satisfied)
         }
         networkPathMonitor.start(queue: networkMonitorQueue)
@@ -136,9 +146,27 @@ class CaseStatusRepository: Repository {
     private func setupTimer() {
         Timer.scheduledTimer(withTimeInterval: Constants.refreshInterval, repeats: true) { _ in
             Task { [weak self] in
-                Logger.main.info("Reloading data on periodic timer...")
+                Logger.main.log("Reloading data on periodic timer...")
                 await self?.query()
             }
+        }
+    }
+
+    private func detectChanges(existingCase: CaseStatus, updatedCase: CaseStatus) {
+        // Check diff
+        if existingCase.lastUpdated != updatedCase.lastUpdated || existingCase.status != updatedCase.status {
+            Logger.api.log(
+                "Detected case change from status [\(existingCase.status)] to [\(updatedCase.status)].")
+            let subtitle: String
+            if let formType = updatedCase.formType {
+                subtitle = "\(formType) - \(updatedCase.id)"
+            } else {
+                subtitle = updatedCase.id
+            }
+            notificationService.display(
+                title: "Case Status Updated",
+                subtitle: subtitle,
+                message: "Your case status has been updated by USCIS.")
         }
     }
 }

@@ -14,9 +14,9 @@ struct AddCaseView: View {
     }
 
     @Environment(\.dismiss) var dismiss
-    @StateObject var viewModel = AddCaseViewModel()
     @FocusState var isTextFieldFocussed
 
+    @ObservedObject var viewModel: AddCaseViewModel
     var onCaseAdded: () async -> Void
 
     var body: some View {
@@ -84,6 +84,6 @@ struct AddCaseView: View {
 
 struct AddCaseView_Previews: PreviewProvider {
     static var previews: some View {
-        AddCaseView { }
+        AddCaseView(viewModel: AddCaseViewModel(repository: PreviewDataRepository())) { }
     }
 }

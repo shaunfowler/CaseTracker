@@ -22,12 +22,12 @@ struct CaseTrackerApp: App {
 
     init() {
         // Dependency tree
-        let repository = CaseStatusRepository()
+        self.notificationService = NotificationService()
+
+        let repository = CaseStatusRepository(notificationService: notificationService)
         self.repository = repository
 
         self._homeViewModel = StateObject(wrappedValue: HomeViewModel(repository: repository))
-
-        self.notificationService = NotificationService()
 
         self.backgroundRefreshManager = BackgroundRefeshManager()
         backgroundRefreshManager.delegate = self

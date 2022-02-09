@@ -146,7 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				2877470327B38E860042D3FD /* Common */,
-				28FD1B1127A9149B002CA8DE /* AddCaseVIew */,
+				28FD1B1127A9149B002CA8DE /* AddCaseView */,
 				28FD1B1027A9148F002CA8DE /* HomeView */,
 			);
 			path = View;
@@ -202,6 +202,7 @@
 				2877470127B379860042D3FD /* AppDelegate.swift */,
 				28FD1AF327A7CB6D002CA8DE /* CaseTrackerApp.swift */,
 				287746F627B35F800042D3FD /* BackgroundRefeshManager.swift */,
+				2877468927AFB9620042D3FD /* PreviewDataRepository.swift */,
 				287746F827B361000042D3FD /* Info.plist */,
 				28FD1AF727A7CB6F002CA8DE /* Assets.xcassets */,
 				28FD1AF927A7CB6F002CA8DE /* Preview Content */,
@@ -213,7 +214,6 @@
 			isa = PBXGroup;
 			children = (
 				28FD1AFA27A7CB6F002CA8DE /* Preview Assets.xcassets */,
-				2877468927AFB9620042D3FD /* PreviewDataRepository.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -242,13 +242,13 @@
 			path = HomeView;
 			sourceTree = "<group>";
 		};
-		28FD1B1127A9149B002CA8DE /* AddCaseVIew */ = {
+		28FD1B1127A9149B002CA8DE /* AddCaseView */ = {
 			isa = PBXGroup;
 			children = (
 				283511AF27AA138000851FC6 /* AddCaseView.swift */,
 				283511B127AA30E100851FC6 /* AddCaseViewModel.swift */,
 			);
-			path = AddCaseVIew;
+			path = AddCaseView;
 			sourceTree = "<group>";
 		};
 		9F4076C32FC7567245419452 /* Frameworks */ = {
@@ -581,7 +581,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CaseTracker/Preview Content\"";
 				DEVELOPMENT_TEAM = QQR7KQB65R;
 				ENABLE_PREVIEWS = YES;
@@ -596,7 +596,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shaunfowler.CaseTracker;
 				PRODUCT_NAME = "Case Tracker";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -612,7 +612,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CaseTracker/Preview Content\"";
 				DEVELOPMENT_TEAM = QQR7KQB65R;
 				ENABLE_PREVIEWS = YES;
@@ -627,7 +627,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shaunfowler.CaseTracker;
 				PRODUCT_NAME = "Case Tracker";
 				SWIFT_EMIT_LOC_STRINGS = YES;
