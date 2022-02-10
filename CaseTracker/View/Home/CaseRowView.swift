@@ -49,7 +49,7 @@ struct CaseRowView: View {
                 }
             }
             .padding([.leading], 0)
-            .padding([.trailing, .top, .bottom], 8)
+            .padding([.top, .bottom], 8)
         }
     }
 }

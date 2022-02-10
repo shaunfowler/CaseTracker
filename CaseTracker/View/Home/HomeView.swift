@@ -17,28 +17,13 @@ struct HomeView: View {
         self.viewModel = viewModel
     }
 
-    var body: some View {
-        NavigationView {
-            caseList()
-        }
-        .navigationViewStyle(.stack)
-        .refreshable {
-            await refresh()
-        }
-    }
+    // MARK: - View
 
-    func refresh() async {
-        refreshing = true
-        await viewModel.refresh()
-        refreshing = false
-    }
-
-    func caseList() -> some View {
-        ZStack {
-            List {
-                Section {
-                    Text(viewModel.lastUpdatedLoadingMessage)
-                        .modifier(UpdatedCaptionTextStyle())
+    var caseList: some View {
+        List {
+            Section {
+                Text(viewModel.lastUpdatedLoadingMessage)
+                    .modifier(UpdatedCaptionTextViewModifier())
 
                 if let errorMessage = viewModel.errorMessage {
                     Text(errorMessage)
@@ -48,12 +33,7 @@ struct HomeView: View {
                     NavigationLink(destination: DetailsView(text: caseStatus.body, id: caseStatus.id)) {
                         CaseRowView(model: caseStatus)
                     }
-                    .padding(.trailing, 8)
-                    .background(Color("CaseRowBackgroundColor"))
-                    .clipShape(RoundedRectangle(cornerRadius: 4))
-                    .padding([.top, .bottom], 0)
-                    .listRowSeparator(.hidden)
-                    .listRowBackground(Color.clear)
+                    .modifier(CaseStatusListItemViewModifier())
                 }
                 .onDelete { indexSet in
                     if let index = indexSet.first {
@@ -61,43 +41,71 @@ struct HomeView: View {
                     }
                 }
                 .opacity(viewModel.loading ? 0.3 : 1.0)
+            }
+        }
+        .background(Color("HomeBackgroundColor"))
+        .listStyle(.plain)
+    }
 
-                }
-                .listRowBackground(Color.clear)
-            }
-            .background(Color("HomeBackgroundColor"))
-            .listStyle(.plain)
+    var addButton: some View {
+        Button(action: onAddCasePressed, label: {
+            Text("Add Case")
+        })
+    }
 
-            if viewModel.isEmptyState {
-                FirstTimeUserView { viewModel.isAddCaseViewPresented.toggle() }
-            }
-        }
-        .navigationBarTitle("My Cases")
-        .toolbar {
-            ToolbarItem {
-                if !viewModel.isEmptyState {
-                    addButton()
-                }
-            }
-        }
-        .alert(isPresented: $viewModel.isNetworkMessagePresented) {
-            Alert(title: Text("Cannot Reload Cases"),
-                  message: Text("A network connection is not available."))
-        }
-        .sheet(isPresented: $viewModel.isAddCaseViewPresented) {
-            AddCaseView(viewModel: viewModel.addCaseViewModel) {
-                await viewModel.addCaseComplete()
-            }
-        }
-        .onChange(of: scenePhase) { phase in
-            viewModel.phase = phase
+    var addCaseView: some View {
+        AddCaseView(viewModel: viewModel.addCaseViewModel) {
+            await viewModel.addCaseComplete()
         }
     }
 
-    func addButton() -> some View {
-        Button(action: { viewModel.isAddCaseViewPresented.toggle() }, label: {
-            Text("Add Case")
-        })
+    var networkAlertView: Alert {
+        Alert(title: Text("Cannot Reload Cases"),
+              message: Text("A network connection is not available."))
+    }
+
+    var body: some View {
+        NavigationView {
+            ZStack {
+                caseList
+                if viewModel.isEmptyState {
+                    FirstTimeUserView(onAddCase: onAddCasePressed)
+                }
+            }
+            .toolbar {
+                ToolbarItem {
+                    if !viewModel.isEmptyState {
+                        addButton
+                    }
+                }
+            }
+            .navigationBarTitle("My Cases")
+        }
+        .navigationViewStyle(.stack)
+        .onChange(of: scenePhase) { phase in
+            viewModel.phase = phase
+        }
+        .alert(isPresented: $viewModel.isNetworkMessagePresented) {
+            networkAlertView
+        }
+        .sheet(isPresented: $viewModel.isAddCaseViewPresented) {
+            addCaseView
+        }
+        .refreshable {
+            await refresh()
+        }
+    }
+
+    // MARK: - Functions
+
+    func refresh() async {
+        refreshing = true
+        await viewModel.refresh()
+        refreshing = false
+    }
+
+    func onAddCasePressed() {
+        viewModel.isAddCaseViewPresented.toggle()
     }
 }
 
