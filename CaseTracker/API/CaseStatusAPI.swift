@@ -22,7 +22,7 @@ protocol CaseStatusReadable {
 }
 
 protocol CaseStatusCachable {
-    func keys() -> [String]
+    func keys() async -> [String]
 }
 
 protocol CaseStatusWritable {

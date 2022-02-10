@@ -22,6 +22,9 @@
 		2877470827B3976F0042D3FD /* FirstTimeUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877470727B3976F0042D3FD /* FirstTimeUserView.swift */; };
 		2877470A27B3986E0042D3FD /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877470927B3986E0042D3FD /* PrimaryButton.swift */; };
 		2877470C27B43DCD0042D3FD /* NotificationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877470B27B43DCD0042D3FD /* NotificationFactory.swift */; };
+		2877471127B4762E0042D3FD /* CaseTrackerModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2877470F27B4762E0042D3FD /* CaseTrackerModel.xcdatamodeld */; };
+		2877471327B476AF0042D3FD /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877471227B476AF0042D3FD /* PersistenceController.swift */; };
+		2877471527B47C920042D3FD /* LocalCaseStatusPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877471427B47C920042D3FD /* LocalCaseStatusPersistence.swift */; };
 		287C42DB27AB69D5005CD181 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287C42DA27AB69D5005CD181 /* Status.swift */; };
 		287C42E327AB6A4C005CD181 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287C42E227AB6A4C005CD181 /* main.swift */; };
 		287C42E827AB6B64005CD181 /* statusTitles.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 287C42E727AB6A63005CD181 /* statusTitles.txt */; };
@@ -70,6 +73,9 @@
 		2877470727B3976F0042D3FD /* FirstTimeUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstTimeUserView.swift; sourceTree = "<group>"; };
 		2877470927B3986E0042D3FD /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		2877470B27B43DCD0042D3FD /* NotificationFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationFactory.swift; sourceTree = "<group>"; };
+		2877471027B4762E0042D3FD /* CaseTrackerModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CaseTrackerModel.xcdatamodel; sourceTree = "<group>"; };
+		2877471227B476AF0042D3FD /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		2877471427B47C920042D3FD /* LocalCaseStatusPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCaseStatusPersistence.swift; sourceTree = "<group>"; };
 		287C42DA27AB69D5005CD181 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		287C42E027AB6A4C005CD181 /* CaseTrackerCodeGen */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CaseTrackerCodeGen; sourceTree = BUILT_PRODUCTS_DIR; };
 		287C42E227AB6A4C005CD181 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -158,6 +164,9 @@
 		2877470D27B470320042D3FD /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
+				2877470F27B4762E0042D3FD /* CaseTrackerModel.xcdatamodeld */,
+				2877471227B476AF0042D3FD /* PersistenceController.swift */,
+				2877471427B47C920042D3FD /* LocalCaseStatusPersistence.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -429,7 +438,9 @@
 				28FD1B0D27A8D566002CA8DE /* CaseStatus.swift in Sources */,
 				28FD1B0327A8C032002CA8DE /* CaseStatusAPI.swift in Sources */,
 				28FD1B0F27A8D986002CA8DE /* CaseStatusRepository.swift in Sources */,
+				2877471327B476AF0042D3FD /* PersistenceController.swift in Sources */,
 				28FD1B0B27A8D3F1002CA8DE /* CaseStatusURL.swift in Sources */,
+				2877471527B47C920042D3FD /* LocalCaseStatusPersistence.swift in Sources */,
 				28FD1AF427A7CB6D002CA8DE /* CaseTrackerApp.swift in Sources */,
 				283511B627AA430B00851FC6 /* DetailsView.swift in Sources */,
 				2877470827B3976F0042D3FD /* FirstTimeUserView.swift in Sources */,
@@ -445,6 +456,7 @@
 				287746FC27B36EF60042D3FD /* ScenePhase+CustomStringConvertible.swift in Sources */,
 				287C42DB27AB69D5005CD181 /* Status.swift in Sources */,
 				2877470627B38EB50042D3FD /* UpdatedCaptionTextStyle.swift in Sources */,
+				2877471127B4762E0042D3FD /* CaseTrackerModel.xcdatamodeld in Sources */,
 				283511AC27AA08C800851FC6 /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -687,6 +699,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		2877470F27B4762E0042D3FD /* CaseTrackerModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2877471027B4762E0042D3FD /* CaseTrackerModel.xcdatamodel */,
+			);
+			currentVersion = 2877471027B4762E0042D3FD /* CaseTrackerModel.xcdatamodel */;
+			path = CaseTrackerModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 28FD1AE827A7CB6D002CA8DE /* Project object */;
 }

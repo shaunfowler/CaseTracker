@@ -64,7 +64,7 @@ class CaseStatusRepository: Repository {
     // MARK: - Initialization
 
     init(
-        local: CaseStatusLocalCache = LocalCaseStatusAPI(),
+        local: CaseStatusLocalCache = LocalCaseStatusPersistence(), // LocalCaseStatusAPI(),
         remote: CaseStatusReadable = RemoteCaseStatusAPI(),
         notificationService: NotificationService
     ) {
@@ -83,7 +83,7 @@ class CaseStatusRepository: Repository {
         // USCIS doesn't properly return responses for simultaneous requests
         // Request serially
         var result = [CaseStatus]()
-        for receiptNumber in self.local.keys() {
+        for receiptNumber in await self.local.keys() {
             if case .success(let caseStatus) = await self.get(forCaseId: receiptNumber, force: force) {
                 Logger.main.debug("\(caseStatus)")
                 result.append(caseStatus)

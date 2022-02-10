@@ -38,9 +38,7 @@ struct HomeView: View {
             List {
                 Section {
                     Text(viewModel.lastUpdatedLoadingMessage)
-                }
-                .listRowBackground(Color.clear)
-                .modifier(UpdatedCaptionTextStyle())
+                        .modifier(UpdatedCaptionTextStyle())
 
                 if let errorMessage = viewModel.errorMessage {
                     Text(errorMessage)
@@ -64,6 +62,9 @@ struct HomeView: View {
                     }
                 }
                 .opacity(viewModel.loading ? 0.3 : 1.0)
+
+                }
+                .listRowBackground(Color.clear)
             }
             .background(Color("HomeBackgroundColor"))
             .listStyle(.plain)
