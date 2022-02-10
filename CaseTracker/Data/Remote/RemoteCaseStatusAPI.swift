@@ -27,7 +27,7 @@ actor RemoteCaseStatusAPI: CaseStatusReadable {
             let urlContainer = CaseStatusURL.get(id)
             let url = urlContainer.url
 
-            Logger.api.log("Requesting URL: \(urlContainer.redacted).")
+            Logger.api.log("Requesting URL: \(urlContainer.url.absoluteString, privacy: .public).")
             let (data, response) = try await urlSession.data(for: URLRequest(url: url))
 
             guard let response = (response as? HTTPURLResponse), response.statusCode < 400 else {
@@ -40,7 +40,7 @@ actor RemoteCaseStatusAPI: CaseStatusReadable {
 
             return .success(try CaseStatus(receiptNumber: id, htmlString: htmlString))
         } catch {
-            Logger.api.error("Error requesting case. Error: \(error.localizedDescription).")
+            Logger.api.error("Error requesting case. Error: \(error.localizedDescription, privacy: .public).")
             return .failure(error)
         }
     }

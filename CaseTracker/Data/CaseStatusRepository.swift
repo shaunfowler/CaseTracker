@@ -91,7 +91,7 @@ class CaseStatusRepository: Repository {
         }
         internalError = nil
         internalData = result.sorted(by: { lhs, rhs in lhs.id < rhs.id })
-        Logger.main.log("Finished querying \(result.count) cases.")
+        Logger.main.log("Finished querying \(result.count, privacy: .public) cases.")
     }
 
     func addCase(receiptNumber: String) async -> Result<CaseStatus, Error> {
@@ -128,7 +128,7 @@ class CaseStatusRepository: Repository {
             return .success(updatedCase)
 
         case .failure(let error):
-            Logger.api.error("Error fetching case from remote API: \(error.localizedDescription).")
+            Logger.api.error("Error fetching case from remote API: \(error.localizedDescription, privacy: .public).")
             return .failure(CSError.http)
         }
     }
@@ -137,7 +137,7 @@ class CaseStatusRepository: Repository {
         Logger.api.log("Starting network monitor...")
         networkPathMonitor.pathUpdateHandler = { [weak self] path in
             let satisfied = path.status == .satisfied
-            Logger.api.log("Network path satisfied: \(satisfied).")
+            Logger.api.log("Network path satisfied: \(satisfied, privacy: .public).")
             self?.networkReachable.send(satisfied)
         }
         networkPathMonitor.start(queue: networkMonitorQueue)
@@ -154,7 +154,7 @@ class CaseStatusRepository: Repository {
 
     private func detectChanges(existingCase: CaseStatus, updatedCase: CaseStatus) {
         if existingCase.lastUpdated != updatedCase.lastUpdated || existingCase.status != updatedCase.status {
-            Logger.api.log("Detected case change from status [\(existingCase.status)] to [\(updatedCase.status)].")
+            Logger.api.log("Detected case change from status [\(existingCase.status, privacy: .public)] to [\(updatedCase.status, privacy: .public)].")
             notificationService.request(notification: .statusUpdated(updatedCase))
         }
     }

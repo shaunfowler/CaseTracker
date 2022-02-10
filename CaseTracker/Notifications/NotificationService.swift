@@ -17,10 +17,10 @@ class NotificationService {
         UNUserNotificationCenter
             .current()
             .requestAuthorization(options: [.alert, .badge, .sound]) { result, error in
-                Logger.notifications.log("Result from notification authorization request: \(result).")
+                Logger.notifications.log("Result from notification authorization request: \(result, privacy: .public).")
                 if let error = error {
                     Logger.notifications.error(
-                        "Error from notification authorization request: \(error.localizedDescription).")
+                        "Error from notification authorization request: \(error.localizedDescription, privacy: .public).")
                 }
             }
     }
