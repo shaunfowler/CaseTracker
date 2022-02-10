@@ -71,12 +71,11 @@ class LocalCaseStatusPersistence: CaseStatusReadable, CaseStatusWritable, CaseSt
         var receiptNumbers: [String] = []
         context.performAndWait {
             let request = CaseStatusManagedObject.fetchRequest()
-            request.propertiesToFetch = ["id"]
+            request.propertiesToFetch = ["receiptNumber"]
             if let result = try? self.context.fetch(request) {
-                receiptNumbers = result.compactMap(\.id)
+                receiptNumbers = result.compactMap(\.receiptNumber)
             }
         }
         return receiptNumbers // mock here
     }
 }
-

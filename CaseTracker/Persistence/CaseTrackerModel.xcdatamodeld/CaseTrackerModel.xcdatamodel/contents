@@ -3,9 +3,9 @@
     <entity name="CaseStatusManagedObject" representedClassName="CaseStatusManagedObject" syncable="YES" codeGenerationType="class">
         <attribute name="body" optional="YES" attributeType="String"/>
         <attribute name="formType" optional="YES" attributeType="String"/>
-        <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="lastFetched" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="lastUpdated" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="receiptNumber" optional="YES" attributeType="String"/>
         <attribute name="status" optional="YES" attributeType="String"/>
     </entity>
     <fetchRequest name="FetchAllRequest" entity="CaseStatusManagedObject"/>

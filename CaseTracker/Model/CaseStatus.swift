@@ -24,12 +24,16 @@ struct CaseStatus: Codable, Identifiable {
         return formatter
     }()
 
-    let id: String
+    let receiptNumber: String
     var status: String
     var body: String
     var formType: String?
     var lastUpdated: Date?
-    var dateFetched: Date?
+    var lastFetched: Date?
+
+    var id: String {
+        receiptNumber
+    }
 
     var color: Color {
         return Status(rawValue: status)?.color ?? .blue
@@ -53,7 +57,7 @@ struct CaseStatus: Codable, Identifiable {
 extension CaseStatus: CustomStringConvertible {
     var description: String {
         "CaseStatus(\(id), \(formType ?? "--"), \(status), "
-        + "lastUpdated: \(String(describing: lastUpdated)), dateFetched: \(String(describing: dateFetched)))"
+        + "lastUpdated: \(String(describing: lastUpdated)), dateFetched: \(String(describing: lastFetched)))"
     }
 }
 
@@ -72,12 +76,12 @@ extension CaseStatus {
             throw CSError.invalidCase
         }
 
-        self.id = receiptNumber
+        self.receiptNumber = receiptNumber
         self.status = status
         self.body = body
         self.lastUpdated = extractDate(body: body)
         self.formType = extractFormType(body: body)
 
-        self.dateFetched = Date.now - 1
+        self.lastFetched = Date.now - 1
     }
 }

@@ -58,12 +58,12 @@ struct CaseRowView_Previews: PreviewProvider {
     static var previews: some View {
         CaseRowView(
             model: CaseStatus(
-                id: "MSC1234567890",
+                receiptNumber: "MSC1234567890",
                 status: "Case Was Updated To Show Fingerprints Were Taken",
                 body: "",
                 formType: "I-765",
                 lastUpdated: Date(),
-                dateFetched: Date()))
+                lastFetched: Date()))
             .previewLayout(.sizeThatFits)
     }
 }

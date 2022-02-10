@@ -34,7 +34,7 @@ class HomeViewModel: ObservableObject {
 
     var lastFetch: Date? {
         cases
-            .compactMap { $0.dateFetched }
+            .compactMap { $0.lastFetched }
             .sorted { lhs, rhs in lhs < rhs }
             .first // earliest date
     }

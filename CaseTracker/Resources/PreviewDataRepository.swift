@@ -15,21 +15,21 @@ class PreviewDataRepository: Repository {
     var networkReachable: CurrentValueSubject<Bool, Never> = .init(true)
 
     static let case1 = CaseStatus(
-        id: "ABC123456789",
+        receiptNumber: "ABC123456789",
         status: "Fees Were Waived",
         body: "Body",
         formType: "I-131",
         lastUpdated: Date() - 50 * 86_400,
-        dateFetched: Date()
+        lastFetched: Date()
     )
 
     static let case2 = CaseStatus(
-        id: "XYZ987654321",
+        receiptNumber: "XYZ987654321",
         status: "Request For Initial Evidence Was Sent",
         body: "Body",
         formType: "I-765",
         lastUpdated: Date() - 900 * 86_400,
-        dateFetched: Date()
+        lastFetched: Date()
     )
 
     var cases = [PreviewDataRepository.case1, PreviewDataRepository.case2]
