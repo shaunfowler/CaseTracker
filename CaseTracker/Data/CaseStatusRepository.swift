@@ -55,7 +55,7 @@ class CaseStatusRepository: Repository {
         }
     }
 
-    private var internalError: Error? = nil {
+    private var internalError: Error? {
         didSet {
             error.send(internalError)
         }

@@ -17,7 +17,7 @@ enum CaseStatusURL {
         let queryItems = [
             URLQueryItem(name: "language", value: "ENGLISH"),
             URLQueryItem(name: "caseStatusSearch", value: "caseStatusPage"),
-            URLQueryItem(name: "appReceiptNum", value: receiptNumber),
+            URLQueryItem(name: "appReceiptNum", value: receiptNumber)
         ]
         urlComponents.queryItems = queryItems
         return urlComponents.url!

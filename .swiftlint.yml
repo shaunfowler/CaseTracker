@@ -1,0 +1,11 @@
+disabled_rules:
+  - identifier_name
+
+line_length: 160
+
+excluded:
+  - Carthage
+  - Pods
+  - Source/ExcludedFolder
+  - Source/ExcludedFile.swift
+  - Source/*/ExcludedFile.swift

@@ -20,7 +20,6 @@ func extractDate(body: String) -> Date? {
     return formatter.date(from: String(body[range]))
 }
 
-
 func extractFormType(body: String) -> String? {
     guard let range = body.range(
         of: #"(I-|N-)\d{2,4}\w{0,2}"#,

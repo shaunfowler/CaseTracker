@@ -127,7 +127,7 @@ class HomeViewModel: ObservableObject {
         let receiptNumber = cases[index].id
         cases = cases.filter { $0.id != receiptNumber }
         Task {
-            let _ = await repository.removeCase(receiptNumber: receiptNumber)
+            await repository.removeCase(receiptNumber: receiptNumber)
         }
     }
 }

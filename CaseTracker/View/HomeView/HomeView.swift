@@ -45,7 +45,6 @@ struct HomeView: View {
                 }
 
                 ForEach(viewModel.cases, id: \.id) { caseStatus in
-                    // TODO: Programatic instead to get rid of ">"
                     NavigationLink(destination: DetailsView(text: caseStatus.body, id: caseStatus.id)) {
                         CaseRowView(model: caseStatus)
                     }
@@ -96,9 +95,9 @@ struct HomeView: View {
     }
 
     func addButton() -> some View {
-        Button(action: { viewModel.isAddCaseViewPresented.toggle() }) {
+        Button(action: { viewModel.isAddCaseViewPresented.toggle() }, label: {
             Text("Add Case")
-        }
+        })
     }
 }
 

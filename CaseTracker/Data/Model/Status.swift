@@ -5,6 +5,8 @@
 //  Created by Shaun Fowler on 2/2/22.
 //
 
+// swiftlint:disable line_length
+
 import Foundation
 import SwiftUI
 

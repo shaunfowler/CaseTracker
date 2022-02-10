@@ -11,9 +11,11 @@ import OSLog
 
 // e -l objc -- (void)[[BGTaskScheduler sharedScheduler] _simulateLaunchForTaskWithIdentifier:@"com.shaunfowler.CaseTracker-reload"]
 
+// swiftlint:disable class_delegate_protocol
 protocol BackgroundRefreshableDelegate {
     func refresh() async
 }
+// swiftlint:enable class_delegate_protocol
 
 class BackgroundRefeshManager {
 

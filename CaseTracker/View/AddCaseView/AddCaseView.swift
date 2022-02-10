@@ -43,10 +43,10 @@ struct AddCaseView: View {
     var toolbarButtons: some View {
         HStack {
             Spacer()
-            Button(action: { dismiss() }) {
+            Button(action: { dismiss() }, label: {
                 Text("Close")
                     .font(.system(size: 18))
-            }
+            })
         }
     }
 
