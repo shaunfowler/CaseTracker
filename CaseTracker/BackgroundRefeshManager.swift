@@ -1,5 +1,5 @@
 //
-//  BackgroundRefesher.swift
+//  BackgroundRefeshManager.swift
 //  CaseTracker
 //
 //  Created by Shaun Fowler on 2/8/22.

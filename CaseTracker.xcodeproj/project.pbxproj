@@ -7,39 +7,39 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		283511AC27AA08C800851FC6 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283511AB27AA08C800851FC6 /* Utils.swift */; };
+		283511AE27AA0ABD00851FC6 /* CaseRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283511AD27AA0ABD00851FC6 /* CaseRowView.swift */; };
 		283511B027AA138000851FC6 /* AddCaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283511AF27AA138000851FC6 /* AddCaseView.swift */; };
 		283511B227AA30E100851FC6 /* AddCaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283511B127AA30E100851FC6 /* AddCaseViewModel.swift */; };
-		2877470227B379860042D3FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877470127B379860042D3FD /* AppDelegate.swift */; };
-		28FD1AF827A7CB6F002CA8DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28FD1AF727A7CB6F002CA8DE /* Assets.xcassets */; };
-		287746F727B35F800042D3FD /* BackgroundRefeshManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287746F627B35F800042D3FD /* BackgroundRefeshManager.swift */; };
-		28FD1B0327A8C032002CA8DE /* CSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FD1B0227A8C032002CA8DE /* CSError.swift */; };
-		283511AE27AA0ABD00851FC6 /* CaseRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283511AD27AA0ABD00851FC6 /* CaseRowView.swift */; };
-		28FD1B0D27A8D566002CA8DE /* CaseStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FD1B0C27A8D566002CA8DE /* CaseStatus.swift */; };
-		2877471727B4A3F50042D3FD /* CaseStatusManagedObjectExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877471627B4A3F50042D3FD /* CaseStatusManagedObjectExtensions.swift */; };
-		28FD1B0F27A8D986002CA8DE /* CaseStatusRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FD1B0E27A8D986002CA8DE /* CaseStatusRepository.swift */; };
-		28FD1B0B27A8D3F1002CA8DE /* CaseStatusURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FD1B0A27A8D3F1002CA8DE /* CaseStatusURL.swift */; };
-		28FD1AF427A7CB6D002CA8DE /* CaseTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FD1AF327A7CB6D002CA8DE /* CaseTrackerApp.swift */; };
-		2877471127B4762E0042D3FD /* CaseTrackerModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2877470F27B4762E0042D3FD /* CaseTrackerModel.xcdatamodeld */; };
 		283511B627AA430B00851FC6 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283511B527AA430B00851FC6 /* DetailsView.swift */; };
-		2877470827B3976F0042D3FD /* FirstTimeUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877470727B3976F0042D3FD /* FirstTimeUserView.swift */; };
-		28FD1AF627A7CB6D002CA8DE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FD1AF527A7CB6D002CA8DE /* HomeView.swift */; };
-		28FD1B0527A8CAC7002CA8DE /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FD1B0427A8CAC7002CA8DE /* HomeViewModel.swift */; };
-		2877471527B47C920042D3FD /* LocalCaseStatusPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877471427B47C920042D3FD /* LocalCaseStatusPersistence.swift */; };
-		287746FA27B36B0C0042D3FD /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287746F927B36B0C0042D3FD /* Logger.swift */; };
-		2877470C27B43DCD0042D3FD /* NotificationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877470B27B43DCD0042D3FD /* NotificationFactory.swift */; };
-		2877470027B373020042D3FD /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287746FF27B373020042D3FD /* NotificationService.swift */; };
-		2877471327B476AF0042D3FD /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877471227B476AF0042D3FD /* PersistenceController.swift */; };
-		83237ED7827B07E67878E379 /* Pods_CaseTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DB968B738C68FDC577D1D91 /* Pods_CaseTracker.framework */; };
-		28FD1AFB27A7CB6F002CA8DE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28FD1AFA27A7CB6F002CA8DE /* Preview Assets.xcassets */; };
 		2877468A27AFB9620042D3FD /* PreviewDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877468927AFB9620042D3FD /* PreviewDataRepository.swift */; };
-		2877470A27B3986E0042D3FD /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877470927B3986E0042D3FD /* PrimaryButton.swift */; };
-		28FD1B0727A8D37B002CA8DE /* RemoteCaseStatusAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FD1B0627A8D37B002CA8DE /* RemoteCaseStatusAPI.swift */; };
+		287746F727B35F800042D3FD /* BackgroundRefeshManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287746F627B35F800042D3FD /* BackgroundRefeshManager.swift */; };
+		287746FA27B36B0C0042D3FD /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287746F927B36B0C0042D3FD /* Logger.swift */; };
 		287746FC27B36EF60042D3FD /* ScenePhase+CustomStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287746FB27B36EF60042D3FD /* ScenePhase+CustomStringConvertible.swift */; };
-		287C42DB27AB69D5005CD181 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287C42DA27AB69D5005CD181 /* Status.swift */; };
+		2877470027B373020042D3FD /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287746FF27B373020042D3FD /* NotificationService.swift */; };
+		2877470227B379860042D3FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877470127B379860042D3FD /* AppDelegate.swift */; };
 		2877470627B38EB50042D3FD /* UpdatedCaptionTextStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877470527B38EB50042D3FD /* UpdatedCaptionTextStyle.swift */; };
-		283511AC27AA08C800851FC6 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283511AB27AA08C800851FC6 /* Utils.swift */; };
+		2877470827B3976F0042D3FD /* FirstTimeUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877470727B3976F0042D3FD /* FirstTimeUserView.swift */; };
+		2877470A27B3986E0042D3FD /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877470927B3986E0042D3FD /* PrimaryButton.swift */; };
+		2877470C27B43DCD0042D3FD /* NotificationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877470B27B43DCD0042D3FD /* NotificationFactory.swift */; };
+		2877471127B4762E0042D3FD /* CaseTrackerModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2877470F27B4762E0042D3FD /* CaseTrackerModel.xcdatamodeld */; };
+		2877471327B476AF0042D3FD /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877471227B476AF0042D3FD /* PersistenceController.swift */; };
+		2877471527B47C920042D3FD /* LocalCaseStatusPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877471427B47C920042D3FD /* LocalCaseStatusPersistence.swift */; };
+		2877471727B4A3F50042D3FD /* CaseStatusManagedObjectExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877471627B4A3F50042D3FD /* CaseStatusManagedObjectExtensions.swift */; };
+		287C42DB27AB69D5005CD181 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287C42DA27AB69D5005CD181 /* Status.swift */; };
 		287C42E327AB6A4C005CD181 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287C42E227AB6A4C005CD181 /* main.swift */; };
 		287C42E827AB6B64005CD181 /* statusTitles.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 287C42E727AB6A63005CD181 /* statusTitles.txt */; };
+		28FD1AF427A7CB6D002CA8DE /* CaseTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FD1AF327A7CB6D002CA8DE /* CaseTrackerApp.swift */; };
+		28FD1AF627A7CB6D002CA8DE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FD1AF527A7CB6D002CA8DE /* HomeView.swift */; };
+		28FD1AF827A7CB6F002CA8DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28FD1AF727A7CB6F002CA8DE /* Assets.xcassets */; };
+		28FD1AFB27A7CB6F002CA8DE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28FD1AFA27A7CB6F002CA8DE /* Preview Assets.xcassets */; };
+		28FD1B0327A8C032002CA8DE /* CSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FD1B0227A8C032002CA8DE /* CSError.swift */; };
+		28FD1B0527A8CAC7002CA8DE /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FD1B0427A8CAC7002CA8DE /* HomeViewModel.swift */; };
+		28FD1B0727A8D37B002CA8DE /* RemoteCaseStatusAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FD1B0627A8D37B002CA8DE /* RemoteCaseStatusAPI.swift */; };
+		28FD1B0B27A8D3F1002CA8DE /* CaseStatusURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FD1B0A27A8D3F1002CA8DE /* CaseStatusURL.swift */; };
+		28FD1B0D27A8D566002CA8DE /* CaseStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FD1B0C27A8D566002CA8DE /* CaseStatus.swift */; };
+		28FD1B0F27A8D986002CA8DE /* CaseStatusRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FD1B0E27A8D986002CA8DE /* CaseStatusRepository.swift */; };
+		83237ED7827B07E67878E379 /* Pods_CaseTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DB968B738C68FDC577D1D91 /* Pods_CaseTracker.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -56,44 +56,44 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1691F8621358FE741C510BBD /* Pods-CaseTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaseTracker.release.xcconfig"; path = "Target Support Files/Pods-CaseTracker/Pods-CaseTracker.release.xcconfig"; sourceTree = "<group>"; };
+		283511AB27AA08C800851FC6 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		283511AD27AA0ABD00851FC6 /* CaseRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseRowView.swift; sourceTree = "<group>"; };
 		283511AF27AA138000851FC6 /* AddCaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCaseView.swift; sourceTree = "<group>"; };
 		283511B127AA30E100851FC6 /* AddCaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCaseViewModel.swift; sourceTree = "<group>"; };
-		2877470127B379860042D3FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		28FD1AF727A7CB6F002CA8DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		287746F627B35F800042D3FD /* BackgroundRefeshManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundRefeshManager.swift; sourceTree = "<group>"; };
-		28FD1B0227A8C032002CA8DE /* CSError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSError.swift; sourceTree = "<group>"; };
-		28FD1AF027A7CB6D002CA8DE /* Case Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Case Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		283511AD27AA0ABD00851FC6 /* CaseRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseRowView.swift; sourceTree = "<group>"; };
-		28FD1B0C27A8D566002CA8DE /* CaseStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseStatus.swift; sourceTree = "<group>"; };
-		2877471627B4A3F50042D3FD /* CaseStatusManagedObjectExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseStatusManagedObjectExtensions.swift; sourceTree = "<group>"; };
-		28FD1B0E27A8D986002CA8DE /* CaseStatusRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseStatusRepository.swift; sourceTree = "<group>"; };
-		28FD1B0A27A8D3F1002CA8DE /* CaseStatusURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseStatusURL.swift; sourceTree = "<group>"; };
-		28FD1AF327A7CB6D002CA8DE /* CaseTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseTrackerApp.swift; sourceTree = "<group>"; };
-		287C42E027AB6A4C005CD181 /* CaseTrackerCodeGen */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CaseTrackerCodeGen; sourceTree = BUILT_PRODUCTS_DIR; };
-		2877471027B4762E0042D3FD /* CaseTrackerModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CaseTrackerModel.xcdatamodel; sourceTree = "<group>"; };
 		283511B527AA430B00851FC6 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
-		2877470727B3976F0042D3FD /* FirstTimeUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstTimeUserView.swift; sourceTree = "<group>"; };
-		28FD1AF527A7CB6D002CA8DE /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		28FD1B0427A8CAC7002CA8DE /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		287746F827B361000042D3FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2877471427B47C920042D3FD /* LocalCaseStatusPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCaseStatusPersistence.swift; sourceTree = "<group>"; };
-		287746F927B36B0C0042D3FD /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
-		2877470B27B43DCD0042D3FD /* NotificationFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationFactory.swift; sourceTree = "<group>"; };
-		287746FF27B373020042D3FD /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
-		2877471227B476AF0042D3FD /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
-		BD6BD1FD28DD53AE8EB20386 /* Pods-CaseTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaseTracker.debug.xcconfig"; path = "Target Support Files/Pods-CaseTracker/Pods-CaseTracker.debug.xcconfig"; sourceTree = "<group>"; };
-		1691F8621358FE741C510BBD /* Pods-CaseTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaseTracker.release.xcconfig"; path = "Target Support Files/Pods-CaseTracker/Pods-CaseTracker.release.xcconfig"; sourceTree = "<group>"; };
-		6DB968B738C68FDC577D1D91 /* Pods_CaseTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CaseTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		28FD1AFA27A7CB6F002CA8DE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2877468927AFB9620042D3FD /* PreviewDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewDataRepository.swift; sourceTree = "<group>"; };
-		2877470927B3986E0042D3FD /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
-		28FD1B0627A8D37B002CA8DE /* RemoteCaseStatusAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCaseStatusAPI.swift; sourceTree = "<group>"; };
+		287746F627B35F800042D3FD /* BackgroundRefeshManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundRefeshManager.swift; sourceTree = "<group>"; };
+		287746F827B361000042D3FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		287746F927B36B0C0042D3FD /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		287746FB27B36EF60042D3FD /* ScenePhase+CustomStringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScenePhase+CustomStringConvertible.swift"; sourceTree = "<group>"; };
-		287C42DA27AB69D5005CD181 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
+		287746FF27B373020042D3FD /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		2877470127B379860042D3FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2877470527B38EB50042D3FD /* UpdatedCaptionTextStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatedCaptionTextStyle.swift; sourceTree = "<group>"; };
-		283511AB27AA08C800851FC6 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		2877470727B3976F0042D3FD /* FirstTimeUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstTimeUserView.swift; sourceTree = "<group>"; };
+		2877470927B3986E0042D3FD /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		2877470B27B43DCD0042D3FD /* NotificationFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationFactory.swift; sourceTree = "<group>"; };
+		2877471027B4762E0042D3FD /* CaseTrackerModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CaseTrackerModel.xcdatamodel; sourceTree = "<group>"; };
+		2877471227B476AF0042D3FD /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		2877471427B47C920042D3FD /* LocalCaseStatusPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCaseStatusPersistence.swift; sourceTree = "<group>"; };
+		2877471627B4A3F50042D3FD /* CaseStatusManagedObjectExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseStatusManagedObjectExtensions.swift; sourceTree = "<group>"; };
+		287C42DA27AB69D5005CD181 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
+		287C42E027AB6A4C005CD181 /* CaseTrackerCodeGen */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CaseTrackerCodeGen; sourceTree = BUILT_PRODUCTS_DIR; };
 		287C42E227AB6A4C005CD181 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		287C42E727AB6A63005CD181 /* statusTitles.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = statusTitles.txt; sourceTree = "<group>"; };
+		28FD1AF027A7CB6D002CA8DE /* Case Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Case Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		28FD1AF327A7CB6D002CA8DE /* CaseTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseTrackerApp.swift; sourceTree = "<group>"; };
+		28FD1AF527A7CB6D002CA8DE /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		28FD1AF727A7CB6F002CA8DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		28FD1AFA27A7CB6F002CA8DE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		28FD1B0227A8C032002CA8DE /* CSError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSError.swift; sourceTree = "<group>"; };
+		28FD1B0427A8CAC7002CA8DE /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		28FD1B0627A8D37B002CA8DE /* RemoteCaseStatusAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCaseStatusAPI.swift; sourceTree = "<group>"; };
+		28FD1B0A27A8D3F1002CA8DE /* CaseStatusURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseStatusURL.swift; sourceTree = "<group>"; };
+		28FD1B0C27A8D566002CA8DE /* CaseStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseStatus.swift; sourceTree = "<group>"; };
+		28FD1B0E27A8D986002CA8DE /* CaseStatusRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseStatusRepository.swift; sourceTree = "<group>"; };
+		6DB968B738C68FDC577D1D91 /* Pods_CaseTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CaseTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD6BD1FD28DD53AE8EB20386 /* Pods-CaseTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaseTracker.debug.xcconfig"; path = "Target Support Files/Pods-CaseTracker/Pods-CaseTracker.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,7 +237,6 @@
 			children = (
 				28FD1B0127A8BFFE002CA8DE /* Data */,
 				287746FD27B36F700042D3FD /* Extensions */,
-				28CAB0D727A9FE470067A9A9 /* Model */,
 				287746FE27B372F40042D3FD /* Notifications */,
 				2877470E27B4704D0042D3FD /* Resources */,
 				2877470427B38E8C0042D3FD /* View */,
@@ -259,6 +258,7 @@
 		28FD1B0127A8BFFE002CA8DE /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				28CAB0D727A9FE470067A9A9 /* Model */,
 				2877470D27B470320042D3FD /* Persistence */,
 				2877471827B4AC8E0042D3FD /* Remote */,
 				28FD1B0E27A8D986002CA8DE /* CaseStatusRepository.swift */,

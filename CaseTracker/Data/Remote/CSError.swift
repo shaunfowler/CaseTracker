@@ -1,12 +1,11 @@
 //
-//  CaseStatusAPI.swift
+//  CSError.swift
 //  CaseTracker
 //
 //  Created by Shaun Fowler on 1/31/22.
 //
 
 import Foundation
-import SwiftSoup
 
 enum CSError: Error {
     case corrupt
@@ -16,4 +15,3 @@ enum CSError: Error {
     case notCached
     case invalidCase
 }
-
