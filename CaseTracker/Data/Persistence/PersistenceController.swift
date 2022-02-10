@@ -7,33 +7,18 @@
 
 import Foundation
 import CoreData
+import OSLog
 
 class PersistenceController {
 
     static let shared = PersistenceController()
 
-    static var preview: PersistenceController = {
-        let result = PersistenceController(inMemory: true)
-        let viewContext = result.container.viewContext
-        // Mock data
-        do {
-            try viewContext.save()
-        } catch {
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-        }
-        return result
-    }()
+    let container = NSPersistentContainer(name: "CaseTrackerModel")
 
-    let container: NSPersistentContainer
-
-    init(inMemory: Bool = false) {
-        container = NSPersistentContainer(name: "CaseTrackerModel")
-        if inMemory {
-            container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
-        }
+    init() {
         container.loadPersistentStores(completionHandler: { _, error in
             if let error = error as NSError? {
+                Logger.main.fault("Failed to load CoreData persistent stores. Error: \(error, privacy: .public).")
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
