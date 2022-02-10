@@ -107,8 +107,8 @@ class CaseStatusRepository: Repository {
     private func get(forCaseId id: String, force: Bool = false) async -> Result<CaseStatus, Error> {
         let cachedValue = await local.get(forCaseId: id)
 
-        if !force, case .success(let caseStatus) = cachedValue {
-            let diff = abs(caseStatus.dateFetched.timeIntervalSinceNow)
+        if !force, case .success(let caseStatus) = cachedValue, let lastFetched = caseStatus.dateFetched {
+            let diff = abs(lastFetched.timeIntervalSinceNow)
             let isExpired =  diff > Constants.cacheExpirySeconds
             if !isExpired {
                 return .success(caseStatus)

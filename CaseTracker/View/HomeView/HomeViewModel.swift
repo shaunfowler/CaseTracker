@@ -61,7 +61,7 @@ class HomeViewModel: ObservableObject {
         AddCaseViewModel(repository: repository)
     }
 
-    // Initialization
+    // MARK: - Initialization
 
     init(repository: Repository) {
         self.repository = repository
@@ -101,6 +101,8 @@ class HomeViewModel: ObservableObject {
             .store(in: &cancellables)
     }
 
+    // MARK: - Public Functions
+
     func refresh() async {
         guard isNetworkReachable else {
             isNetworkMessagePresented = true
@@ -136,9 +138,5 @@ extension CaseStatus {
         let formatter = RelativeDateTimeFormatter()
         formatter.formattingContext = .standalone
         return formatter
-    }
-
-    var relativeDateFormatted: String {
-        CaseStatus.relativeFormatter.string(for: dateFetched) ?? dateFetched.formatted()
     }
 }

@@ -47,8 +47,6 @@ struct CaseRowView: View {
                             .opacity(0.5)
                     }
                 }
-
-                // Text(model.dateFetched.description)
             }
             .padding([.leading], 0)
             .padding([.trailing, .top, .bottom], 8)

@@ -29,7 +29,7 @@ struct CaseStatus: Codable, Identifiable {
     var body: String
     var formType: String?
     var lastUpdated: Date?
-    var dateFetched: Date
+    var dateFetched: Date?
 
     var color: Color {
         return Status(rawValue: status)?.color ?? .blue
@@ -53,7 +53,7 @@ struct CaseStatus: Codable, Identifiable {
 extension CaseStatus: CustomStringConvertible {
     var description: String {
         "CaseStatus(\(id), \(formType ?? "--"), \(status), "
-        + "lastUpdated: \(String(describing: lastUpdated)), dateFetched: \(dateFetched))"
+        + "lastUpdated: \(String(describing: lastUpdated)), dateFetched: \(String(describing: dateFetched)))"
     }
 }
 
