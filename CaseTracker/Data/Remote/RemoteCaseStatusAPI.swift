@@ -8,6 +8,12 @@
 import Foundation
 import OSLog
 
+protocol CaseStatusWritable {
+    @discardableResult
+    func set(caseStatus: CaseStatus) async -> Result<(), Error>
+    func remove(receiptNumber: String) async -> Result<(), Error>
+}
+
 actor RemoteCaseStatusAPI: CaseStatusReadable {
 
     var urlSession: URLSession = {

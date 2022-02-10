@@ -9,6 +9,14 @@ import Foundation
 import CoreData
 import OSLog
 
+protocol CaseStatusReadable {
+    func get(forCaseId id: String) async -> Result<CaseStatus, Error>
+}
+
+protocol CaseStatusCachable {
+    func keys() async -> [String]
+}
+
 class LocalCaseStatusPersistence: CaseStatusReadable, CaseStatusWritable, CaseStatusCachable {
 
     private let context = PersistenceController.shared.container.viewContext
