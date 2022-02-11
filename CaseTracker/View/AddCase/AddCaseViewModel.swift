@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import OSLog
 
 @MainActor
 class AddCaseViewModel: ObservableObject {
@@ -20,15 +21,15 @@ class AddCaseViewModel: ObservableObject {
     }
 
     func attemptAddCase() async {
-        print("Attempting to add case", receiptNumber)
+        let receiptNumber = receiptNumber
+        Logger.view.log("Attempting to add case: \(receiptNumber).")
         let result = await repository.addCase(receiptNumber: receiptNumber)
-
         switch result {
         case .failure(let error):
-            print("Error adding case", receiptNumber, error.localizedDescription)
+            Logger.view.log("Error adding case: \(receiptNumber) with error: \(error.localizedDescription)." )
             showError = true
         case .success(let caseStatus):
-            print("Added case", caseStatus)
+            Logger.view.log("Added case: \(caseStatus).")
         }
     }
 }

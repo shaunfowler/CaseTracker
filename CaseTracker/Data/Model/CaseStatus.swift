@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import SwiftSoup
+import OSLog
 
 struct CaseStatus: Codable, Identifiable {
 
@@ -72,7 +73,7 @@ extension CaseStatus {
             }
 
         if let error = try? doc.select("#formErrorMessages").first?.text(), !error.isEmpty {
-            print(error)
+            Logger.api.error("Error message found on webpage: \(error, privacy: .public).")
             throw CSError.invalidCase
         }
 
