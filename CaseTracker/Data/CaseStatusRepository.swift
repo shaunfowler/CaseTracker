@@ -49,18 +49,6 @@ class CaseStatusRepository: Repository {
     private let networkMonitorQueue = DispatchQueue(label: "network-monitor")
     private let networkPathMonitor: NWPathMonitor = NWPathMonitor()
 
-    private var internalData: [CaseStatus] = [] {
-        didSet {
-            data.send(internalData)
-        }
-    }
-
-    private var internalError: Error? {
-        didSet {
-            error.send(internalError)
-        }
-    }
-
     // MARK: - Initialization
 
     init(
@@ -84,7 +72,7 @@ class CaseStatusRepository: Repository {
         do {
             // Send local data to publisher first.
             let localResults = try await local.query().get().sorted(by: { lhs, rhs in lhs.id < rhs.id })
-            internalData = localResults
+            data.value = localResults
 
             // USCIS doesn't properly return responses for simultaneous requests so request serially.
             for receiptNumber in localResults.map(\.receiptNumber) {
@@ -95,8 +83,8 @@ class CaseStatusRepository: Repository {
             }
 
             // Send remote data to publisher.
-            internalError = nil
-            internalData = result.sorted(by: { lhs, rhs in lhs.id < rhs.id })
+            error.value = nil
+            data.value = result.sorted(by: { lhs, rhs in lhs.id < rhs.id })
             Logger.main.log("Finished querying \(result.count, privacy: .public) cases.")
         } catch {
             Logger.main.error("Error querying cases: \(error.localizedDescription, privacy: .public).")
@@ -104,17 +92,19 @@ class CaseStatusRepository: Repository {
     }
 
     func addCase(receiptNumber: String) async -> Result<CaseStatus, Error> {
-        await get(forCaseId: receiptNumber)
+        Logger.api.log("Adding new case: \(receiptNumber)...")
+        return await get(forCaseId: receiptNumber)
     }
 
     func removeCase(receiptNumber: String) async -> Result<(), Error> {
-        await local.remove(receiptNumber: receiptNumber)
+        Logger.api.log("Removing case: \(receiptNumber)...")
+        return await local.remove(receiptNumber: receiptNumber)
     }
 
     // MARK: - Private Functions
 
     private func get(forCaseId id: String, force: Bool = false) async -> Result<CaseStatus, Error> {
-        let cachedValue = internalData.first { $0.receiptNumber == id}
+        let cachedValue = data.value.first { $0.receiptNumber == id}
 
         if !force, let cachedValue = cachedValue, let lastFetched = cachedValue.lastFetched {
             let diff = abs(lastFetched.timeIntervalSinceNow)
