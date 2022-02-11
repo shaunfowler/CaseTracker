@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CaseStatusListItemViewModifier: ViewModifier {
+private struct CaseStatusListItemViewModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .padding(.trailing, 8)
@@ -19,9 +19,19 @@ struct CaseStatusListItemViewModifier: ViewModifier {
     }
 }
 
+extension NavigationLink {
+    func caseStatusListItemStyle() -> some View {
+        modifier(CaseStatusListItemViewModifier())
+    }
+}
+
 struct CaseStatusListItemViewModifier_Previews: PreviewProvider {
     static var previews: some View {
-        Text("I'm a list item.")
-            .modifier(CaseStatusListItemViewModifier())
+        Group {
+            NavigationLink("I'm a list item.") { }
+            .caseStatusListItemStyle()
+        }
+        .padding()
+        .previewLayout(.sizeThatFits)
     }
 }

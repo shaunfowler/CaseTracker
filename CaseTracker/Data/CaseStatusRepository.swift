@@ -11,7 +11,7 @@ import UIKit
 import OSLog
 import Network
 
-typealias CaseStatusLocalCache = CaseStatusReadable & CaseStatusWritable & CaseStatusCachable
+typealias CaseStatusLocalCache = CaseStatusQueryable & CaseStatusWritable
 
 protocol Repository {
 
@@ -80,18 +80,27 @@ class CaseStatusRepository: Repository {
 
     func query(force: Bool = false) async {
         Logger.main.log("Querying all cases...")
-        // USCIS doesn't properly return responses for simultaneous requests
-        // Request serially
         var result = [CaseStatus]()
-        for receiptNumber in await self.local.keys() {
-            if case .success(let caseStatus) = await self.get(forCaseId: receiptNumber, force: force) {
-                Logger.main.debug("\(caseStatus)")
-                result.append(caseStatus)
+        do {
+            // Send local data to publisher first.
+            let localResults = try await local.query().get().sorted(by: { lhs, rhs in lhs.id < rhs.id })
+            internalData = localResults
+
+            // USCIS doesn't properly return responses for simultaneous requests so request serially.
+            for receiptNumber in localResults.map(\.receiptNumber) {
+                if case .success(let caseStatus) = await self.get(forCaseId: receiptNumber, force: force) {
+                    Logger.main.debug("\(caseStatus)")
+                    result.append(caseStatus)
+                }
             }
+
+            // Send remote data to publisher.
+            internalError = nil
+            internalData = result.sorted(by: { lhs, rhs in lhs.id < rhs.id })
+            Logger.main.log("Finished querying \(result.count, privacy: .public) cases.")
+        } catch {
+            Logger.main.error("Error querying cases: \(error.localizedDescription, privacy: .public).")
         }
-        internalError = nil
-        internalData = result.sorted(by: { lhs, rhs in lhs.id < rhs.id })
-        Logger.main.log("Finished querying \(result.count, privacy: .public) cases.")
     }
 
     func addCase(receiptNumber: String) async -> Result<CaseStatus, Error> {
@@ -105,13 +114,13 @@ class CaseStatusRepository: Repository {
     // MARK: - Private Functions
 
     private func get(forCaseId id: String, force: Bool = false) async -> Result<CaseStatus, Error> {
-        let cachedValue = await local.get(forCaseId: id)
+        let cachedValue = internalData.first { $0.receiptNumber == id}
 
-        if !force, case .success(let caseStatus) = cachedValue, let lastFetched = caseStatus.lastFetched {
+        if !force, let cachedValue = cachedValue, let lastFetched = cachedValue.lastFetched {
             let diff = abs(lastFetched.timeIntervalSinceNow)
             let isExpired =  diff > Constants.cacheExpirySeconds
             if !isExpired {
-                return .success(caseStatus)
+                return .success(cachedValue)
             }
         }
 
@@ -119,11 +128,10 @@ class CaseStatusRepository: Repository {
 
         switch result {
         case .success(var updatedCase):
-            updatedCase.lastFetched = Date.now
-            let existing = await local.get(forCaseId: updatedCase.id)
-            if case .success(let existingCase) = existing {
-                detectChanges(existingCase: existingCase, updatedCase: updatedCase)
+            if let cachedValue = cachedValue {
+                detectChanges(existingCase: cachedValue, updatedCase: updatedCase)
             }
+            updatedCase.lastFetched = Date.now
             await local.set(caseStatus: updatedCase)
             return .success(updatedCase)
 

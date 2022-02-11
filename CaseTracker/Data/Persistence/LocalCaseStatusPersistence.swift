@@ -13,46 +13,27 @@ protocol CaseStatusReadable {
     func get(forCaseId id: String) async -> Result<CaseStatus, Error>
 }
 
-protocol CaseStatusCachable {
-    func keys() async -> [String]
+protocol CaseStatusQueryable {
+    func query() async -> Result<[CaseStatus], Error>
 }
 
-class LocalCaseStatusPersistence: CaseStatusReadable, CaseStatusWritable, CaseStatusCachable {
+class LocalCaseStatusPersistence {
+    private let backgroundContext = PersistenceController.shared.container.newBackgroundContext()
+}
 
-    private let context = PersistenceController.shared.container.viewContext
-
-    func get(forCaseId id: String) async -> Result<CaseStatus, Error> {
-        do {
-            var caseStatus: CaseStatus?
-            try context.performAndWait {
-                let fetchRequest = CaseStatusManagedObject.fetchByReceiptNumberRequest(receiptNumber: id)
-                let entities = try self.context.fetch(fetchRequest)
-                if let entity = entities.first {
-                    caseStatus = entity.toModel()
-                }
-            }
-            if let caseStatus = caseStatus {
-                return .success(caseStatus)
-            }
-            return .failure(CSError.notCached)
-        } catch {
-            print(error)
-        }
-
-        return .failure(CSError.notCached)
-    }
+extension LocalCaseStatusPersistence: CaseStatusWritable {
 
     func set(caseStatus: CaseStatus) async -> Result<(), Error> {
         do {
-            try await context.perform {
+            try await backgroundContext.perform {
                 let fetchRequest = CaseStatusManagedObject.fetchByReceiptNumberRequest(receiptNumber: caseStatus.id)
-                let result = try self.context.fetch(fetchRequest)
+                let result = try self.backgroundContext.fetch(fetchRequest)
                 if let existing = result.first {
-                    existing.update(from: caseStatus, context: self.context) // update
+                    existing.update(from: caseStatus, context: self.backgroundContext) // update
                 } else {
-                    CaseStatusManagedObject.from(model: caseStatus, context: self.context) // insert
+                    CaseStatusManagedObject.from(model: caseStatus, context: self.backgroundContext) // insert
                 }
-                try self.context.save()
+                try self.backgroundContext.save()
             }
         } catch {
             return .failure(error)
@@ -62,11 +43,11 @@ class LocalCaseStatusPersistence: CaseStatusReadable, CaseStatusWritable, CaseSt
 
     func remove(receiptNumber: String) async -> Result<(), Error> {
         do {
-            try await context.perform {
+            try await backgroundContext.perform {
                 let fetchRequest = CaseStatusManagedObject.fetchByReceiptNumberRequest(receiptNumber: receiptNumber)
-                if let entity = try self.context.fetch(fetchRequest).first {
-                    self.context.delete(entity)
-                    try self.context.save()
+                if let entity = try self.backgroundContext.fetch(fetchRequest).first {
+                    self.backgroundContext.delete(entity)
+                    try self.backgroundContext.save()
                 }
             }
         } catch {
@@ -74,16 +55,21 @@ class LocalCaseStatusPersistence: CaseStatusReadable, CaseStatusWritable, CaseSt
         }
         return .success(())
     }
+}
 
-    func keys() async -> [String] {
-        var receiptNumbers: [String] = []
-        context.performAndWait {
-            let request = CaseStatusManagedObject.fetchRequest()
-            request.propertiesToFetch = ["receiptNumber"]
-            if let result = try? self.context.fetch(request) {
-                receiptNumbers = result.compactMap(\.receiptNumber)
+extension LocalCaseStatusPersistence: CaseStatusQueryable {
+
+    func query() async -> Result<[CaseStatus], Error> {
+        do {
+            var resultSet: [CaseStatus] = []
+            try await backgroundContext.perform {
+                let request = CaseStatusManagedObject.fetchRequest()
+                let result = try self.backgroundContext.fetch(request)
+                resultSet = result.compactMap { $0.toModel() }
             }
+            return .success(resultSet)
+        } catch {
+            return .failure(error)
         }
-        return receiptNumbers // mock here
     }
 }

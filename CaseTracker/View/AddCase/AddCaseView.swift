@@ -14,7 +14,7 @@ struct AddCaseView: View {
     }
 
     @Environment(\.dismiss) var dismiss
-    @FocusState var isTextFieldFocussed
+    @FocusState var focussedElement: Field?
 
     @ObservedObject var viewModel: AddCaseViewModel
     var onCaseAdded: () async -> Void
@@ -32,11 +32,6 @@ struct AddCaseView: View {
                 title: Text("Could Not Fetch Case"),
                 message: Text("Failed to get case status. Please double check the receipt number.")
             )
-        }
-        .task {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                self.isTextFieldFocussed = true
-            }
         }
     }
 
@@ -65,7 +60,12 @@ struct AddCaseView: View {
                 .padding()
                 .background(Color("CaseRowBackgroundColor"))
                 .cornerRadius(4)
-                .focused($isTextFieldFocussed)
+                .focused($focussedElement, equals: .receiptNumberTextField)
+                .task {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        self.focussedElement = .receiptNumberTextField
+                    }
+                }
 
             Spacer()
 
@@ -84,6 +84,9 @@ struct AddCaseView: View {
 
 struct AddCaseView_Previews: PreviewProvider {
     static var previews: some View {
-        AddCaseView(viewModel: AddCaseViewModel(repository: PreviewDataRepository())) { }
+        // Embed in XStack for FocusState preview crash bug... lol
+        ZStack {
+            AddCaseView(viewModel: AddCaseViewModel(repository: PreviewDataRepository())) { }
+        }
     }
 }

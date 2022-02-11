@@ -92,10 +92,12 @@ class HomeViewModel: ObservableObject {
 
         $phase
             .compactMap { $0 }
-            .sink {
+            .sink { [weak self] in
                 Logger.view.log("Scene phase changed to: \($0, privacy: .public).")
                 if $0 == .active {
-                    Task { await self.fetch() }
+                    Task { [weak self] in
+                        await self?.fetch()
+                    }
                 }
             }
             .store(in: &cancellables)

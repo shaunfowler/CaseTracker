@@ -23,7 +23,7 @@ struct HomeView: View {
         List {
             Section {
                 Text(viewModel.lastUpdatedLoadingMessage)
-                    .modifier(UpdatedCaptionTextViewModifier())
+                    .updatedCaptionTextStyle()
 
                 if let errorMessage = viewModel.errorMessage {
                     Text(errorMessage)
@@ -33,7 +33,7 @@ struct HomeView: View {
                     NavigationLink(destination: DetailsView(text: caseStatus.body, id: caseStatus.id)) {
                         CaseRowView(model: caseStatus)
                     }
-                    .modifier(CaseStatusListItemViewModifier())
+                    .caseStatusListItemStyle()
                 }
                 .onDelete { indexSet in
                     if let index = indexSet.first {

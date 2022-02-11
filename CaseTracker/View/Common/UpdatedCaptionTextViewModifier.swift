@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct UpdatedCaptionTextViewModifier: ViewModifier {
+private struct UpdatedCaptionTextViewModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(.caption.bold())
@@ -16,5 +16,22 @@ struct UpdatedCaptionTextViewModifier: ViewModifier {
             .frame(maxWidth: .infinity, alignment: .center)
             .listSectionSeparator(.hidden)
             .listRowBackground(Color.clear)
+    }
+}
+
+extension View {
+    func updatedCaptionTextStyle() -> some View {
+        modifier(UpdatedCaptionTextViewModifier())
+    }
+}
+
+struct UpdatedCaptionTextViewModifier_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            Text("Some Text")
+                .updatedCaptionTextStyle()
+        }
+        .padding()
+        .previewLayout(.sizeThatFits)
     }
 }

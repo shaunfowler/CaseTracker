@@ -55,15 +55,22 @@ struct CaseRowView: View {
 }
 
 struct CaseRowView_Previews: PreviewProvider {
+
+    static var model = CaseStatus(
+        receiptNumber: "MSC1234567890",
+        status: "Case Was Updated To Show Fingerprints Were Taken",
+        body: "",
+        formType: "I-765",
+        lastUpdated: Date(),
+        lastFetched: Date())
+
     static var previews: some View {
-        CaseRowView(
-            model: CaseStatus(
-                receiptNumber: "MSC1234567890",
-                status: "Case Was Updated To Show Fingerprints Were Taken",
-                body: "",
-                formType: "I-765",
-                lastUpdated: Date(),
-                lastFetched: Date()))
-            .previewLayout(.sizeThatFits)
+        Group {
+            CaseRowView(model: model)
+                .preferredColorScheme(.light)
+            CaseRowView(model: model)
+                .preferredColorScheme(.dark)
+        }
+        .previewLayout(.fixed(width: 350, height: 110))
     }
 }

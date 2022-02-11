@@ -13,9 +13,10 @@ class PersistenceController {
 
     static let shared = PersistenceController()
 
-    let container = NSPersistentContainer(name: "CaseTrackerModel")
+    let container: NSPersistentContainer
 
     init() {
+        container = NSPersistentContainer(name: "CaseTrackerModel")
         container.loadPersistentStores(completionHandler: { _, error in
             if let error = error as NSError? {
                 Logger.main.fault("Failed to load CoreData persistent stores. Error: \(error, privacy: .public).")
