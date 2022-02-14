@@ -69,7 +69,10 @@ struct AddCaseView: View {
 
             Spacer()
 
-            PrimaryButton(title: "Add Case", disabled: viewModel.receiptNumber.isEmpty, fullWidth: true) {
+            PrimaryButton(title: "Add Case",
+                          disabled: viewModel.receiptNumber.isEmpty,
+                          loading: viewModel.isLoading,
+                          fullWidth: true) {
                 Task {
                     await viewModel.attemptAddCase()
                     if !viewModel.showError {

@@ -30,7 +30,7 @@ struct HomeView: View {
                 }
 
                 ForEach(viewModel.cases, id: \.id) { caseStatus in
-                    NavigationLink(destination: DetailsView(text: caseStatus.body, id: caseStatus.id)) {
+                    NavigationLink(destination: DetailsView(caseStatus: caseStatus)) {
                         CaseRowView(model: caseStatus)
                     }
                     .caseStatusListItemStyle()
