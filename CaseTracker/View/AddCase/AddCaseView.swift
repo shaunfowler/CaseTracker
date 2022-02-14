@@ -17,7 +17,6 @@ struct AddCaseView: View {
     @FocusState var focussedElement: Field?
 
     @ObservedObject var viewModel: AddCaseViewModel
-    var onCaseAdded: () async -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: 36) {
@@ -77,7 +76,6 @@ struct AddCaseView: View {
                     await viewModel.attemptAddCase()
                     if !viewModel.showError {
                         dismiss()
-                        await onCaseAdded()
                     }
                 }
             }
@@ -89,7 +87,7 @@ struct AddCaseView_Previews: PreviewProvider {
     static var previews: some View {
         // Embed in XStack for FocusState preview crash bug... lol
         ZStack {
-            AddCaseView(viewModel: AddCaseViewModel(repository: PreviewDataRepository())) { }
+            AddCaseView(viewModel: AddCaseViewModel(repository: PreviewDataRepository()))
         }
     }
 }

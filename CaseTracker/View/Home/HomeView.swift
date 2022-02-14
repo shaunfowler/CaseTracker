@@ -54,9 +54,7 @@ struct HomeView: View {
     }
 
     var addCaseView: some View {
-        AddCaseView(viewModel: viewModel.addCaseViewModel) {
-            await viewModel.addCaseComplete()
-        }
+        AddCaseView(viewModel: viewModel.addCaseViewModel)
     }
 
     var networkAlertView: Alert {

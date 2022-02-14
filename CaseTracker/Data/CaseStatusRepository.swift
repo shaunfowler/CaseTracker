@@ -93,7 +93,12 @@ class CaseStatusRepository: Repository {
 
     func addCase(receiptNumber: String) async -> Result<CaseStatus, Error> {
         Logger.api.log("Adding new case: \(receiptNumber)...")
-        return await get(forCaseId: receiptNumber)
+        let result = await get(forCaseId: receiptNumber)
+        if case .success(let caseStatus) = result {
+            Logger.api.debug("Adding case to local repository publisher.")
+            data.value = [caseStatus] + data.value
+        }
+        return result
     }
 
     func removeCase(receiptNumber: String) async -> Result<(), Error> {

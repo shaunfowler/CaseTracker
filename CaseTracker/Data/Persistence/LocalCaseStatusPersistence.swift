@@ -18,22 +18,23 @@ protocol CaseStatusQueryable {
 }
 
 class LocalCaseStatusPersistence {
-    private let backgroundContext = PersistenceController.shared.container.newBackgroundContext()
+    // private let backgroundContext = PersistenceController.shared.container.newBackgroundContext()
+    private let viewContext = PersistenceController.shared.container.viewContext
 }
 
 extension LocalCaseStatusPersistence: CaseStatusWritable {
 
     func set(caseStatus: CaseStatus) async -> Result<(), Error> {
         do {
-            try await backgroundContext.perform {
+            try viewContext.performAndWait {
                 let fetchRequest = CaseStatusManagedObject.fetchByReceiptNumberRequest(receiptNumber: caseStatus.id)
-                let result = try self.backgroundContext.fetch(fetchRequest)
+                let result = try self.viewContext.fetch(fetchRequest)
                 if let existing = result.first {
-                    existing.update(from: caseStatus, context: self.backgroundContext) // update
+                    existing.update(from: caseStatus, context: self.viewContext) // update
                 } else {
-                    CaseStatusManagedObject.from(model: caseStatus, context: self.backgroundContext) // insert
+                    CaseStatusManagedObject.from(model: caseStatus, context: self.viewContext) // insert
                 }
-                try self.backgroundContext.save()
+                try self.viewContext.save()
             }
         } catch {
             return .failure(error)
@@ -43,11 +44,11 @@ extension LocalCaseStatusPersistence: CaseStatusWritable {
 
     func remove(receiptNumber: String) async -> Result<(), Error> {
         do {
-            try await backgroundContext.perform {
+            try await viewContext.perform {
                 let fetchRequest = CaseStatusManagedObject.fetchByReceiptNumberRequest(receiptNumber: receiptNumber)
-                if let entity = try self.backgroundContext.fetch(fetchRequest).first {
-                    self.backgroundContext.delete(entity)
-                    try self.backgroundContext.save()
+                if let entity = try self.viewContext.fetch(fetchRequest).first {
+                    self.viewContext.delete(entity)
+                    try self.viewContext.save()
                 }
             }
         } catch {
@@ -62,9 +63,9 @@ extension LocalCaseStatusPersistence: CaseStatusQueryable {
     func query() async -> Result<[CaseStatus], Error> {
         do {
             var resultSet: [CaseStatus] = []
-            try await backgroundContext.perform {
+            try viewContext.performAndWait {
                 let request = CaseStatusManagedObject.fetchRequest()
-                let result = try self.backgroundContext.fetch(request)
+                let result = try self.viewContext.fetch(request)
                 resultSet = result.compactMap { $0.toModel() }
             }
             return .success(resultSet)
