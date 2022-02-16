@@ -27,7 +27,7 @@ actor RemoteCaseStatusAPI: CaseStatusReadable {
             let urlContainer = CaseStatusURL.get(id)
             let url = urlContainer.url
 
-            Logger.api.log("Requesting URL: \(urlContainer.url.absoluteString, privacy: .public).")
+            Logger.api.log("Requesting URL: \(urlContainer.url.absoluteString, privacy: .private).")
             let (data, response) = try await urlSession.data(for: URLRequest(url: url))
 
             guard let response = (response as? HTTPURLResponse), response.statusCode < 400 else {

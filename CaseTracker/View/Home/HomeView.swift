@@ -54,7 +54,7 @@ struct HomeView: View {
             Text("Add Case")
         })
     }
-    
+
     var addCaseView: some View {
         AddCaseView(viewModel: viewModel.addCaseViewModel)
     }

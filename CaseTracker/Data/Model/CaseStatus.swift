@@ -53,7 +53,7 @@ struct CaseStatus: Codable, Identifiable {
         }
         return ""
     }
-    
+
     var lastUpdatedRelativeDaysFormatted: String {
         if let lastUpdated = lastUpdated,
            let day = Calendar(identifier: .gregorian).dateComponents([.day], from: lastUpdated, to: .now).day {

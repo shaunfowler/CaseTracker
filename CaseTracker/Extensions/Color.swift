@@ -12,7 +12,7 @@ extension Color {
     static let ctBackground = Color("HomeBackgroundColor")
     static let ctRowBackground = Color("CaseRowBackgroundColor")
     static let ctRowShadow = Color("CaseRowShadowColor")
-    
+
     static let ctGreen = Color("CTGreen")
     static let ctRed = Color("CTRed")
     static let ctYellow = Color("CTYellow")

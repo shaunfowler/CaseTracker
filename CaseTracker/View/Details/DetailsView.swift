@@ -8,23 +8,23 @@
 import SwiftUI
 
 struct DetailsView: View {
-    
+
     @Environment(\.openURL) var openURL
     @Environment(\.dismiss) var dismiss
-    
+
     @State var isPresentingActionSheet = false
     @State var isPresentingDeleteConfirmation = false
-    
+
     let caseStatus: CaseStatus
     let removeCase: (String) -> Void
-    
+
     var caseInfo: some View {
         VStack(alignment: .leading) {
             if let formType = caseStatus.formType {
                 Text("Form \(formType)")
                     .font(.headline)
             }
-            
+
             HStack(alignment: .firstTextBaseline) {
                 Circle()
                     .foregroundColor(caseStatus.color)
@@ -32,7 +32,7 @@ struct DetailsView: View {
                     .offset(y: -2)
                 Text(caseStatus.status)
             }
-            
+
             Text(caseStatus.body)
                 .multilineTextAlignment(.center)
                 .font(.system(.body, design: .serif))
@@ -42,25 +42,25 @@ struct DetailsView: View {
                 .cornerRadius(4)
         }
     }
-    
+
     var externalLinkButton: some View {
         Button("View on USCIS Website") {
             openURL(CaseStatusURL.get(caseStatus.receiptNumber).url)
         }
         .padding(.top, 24)
     }
-    
+
     var removeAlert: Alert {
         Alert(
             title: Text("Remove Case"),
-            message: Text("Are you sure you want to remove case \(caseStatus.receiptNumber)"),
+            message: Text("Are you sure you want to remove case \(caseStatus.receiptNumber)?"),
             primaryButton: .destructive(Text("Remove")) {
                 removeCase(caseStatus.receiptNumber)
                 dismiss()
             },
             secondaryButton: .cancel())
     }
-    
+
     var body: some View {
         ScrollView {
             caseInfo
@@ -86,15 +86,15 @@ struct DetailsView: View {
             }
         }
     }
-    
+
     private func onMoreButtonPressed() {
         isPresentingActionSheet = true
     }
-    
+
     private func copyReceiptNumber() {
         UIPasteboard.general.setValue(caseStatus.receiptNumber, forPasteboardType: "public.plain-text")
     }
-    
+
     private func removeCaseRequest() {
         isPresentingDeleteConfirmation = true
     }

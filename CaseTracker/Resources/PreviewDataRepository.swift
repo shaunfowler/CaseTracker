@@ -31,7 +31,7 @@ class PreviewDataRepository: Repository {
         lastUpdated: Date() - 900 * 86_400,
         lastFetched: Date()
     )
-    
+
     static let case3 = CaseStatus(
         receiptNumber: "SDF000654321",
         status: Status.caseWasApproved.rawValue,
