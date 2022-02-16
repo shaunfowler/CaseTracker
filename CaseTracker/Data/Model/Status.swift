@@ -128,6 +128,7 @@ enum Status: String {
     case withdrawalAcknowledgementNoticeWasSent = "Withdrawal Acknowledgement Notice Was Sent"
     case withdrawalOfMyAppealWasAcknowledged = "Withdrawal Of My Appeal Was Acknowledged"
     case caseWasApprovedAndMyDecisionWasEmailed = "Case Was Approved And My Decision Was Emailed" // custom
+    case caseIsActivelyBeingReviewedByUSCIS = "Case Is Being Actively Reviewed By USCIS" // custom
 
     var color: Color {
         switch self {
