@@ -147,9 +147,8 @@ enum Status: String {
                 .refugeeTravelDocumentWasProduced,
                 .requestForADuplicateCardWasApproved,
                 .travelDocumentWasMailed,
-                .caseWasApprovedAndMyDecisionWasEmailed
-            :
-            return Color("CTGreen")
+                .caseWasApprovedAndMyDecisionWasEmailed:
+            return .ctGreen
 
         case .caseApprovalWasRevoked,
                 .caseRejectedBecauseISentAnIncorrectFee,
@@ -164,16 +163,13 @@ enum Status: String {
                 .caseWasRejectedBecauseIDidNotSignMyForm,
                 .caseWasRejectedBecauseItWasImproperlyFiled,
                 .caseWasRejectedBecauseMyCheckOrMoneyOrderIsNotSigned,
-                .caseWasRelocatedFromAdministrativeAppealsOfficeToUSCISOriginatingOffice,
                 .certifiedApprovalOfMyCaseWasReversedbyTheAppellateAuthority,
                 .intenttoRevokeNoticeWasSent,
                 .petitionApplicationWasRejectedForInsufficientFunds,
                 .petitionWithdrawnOver180DaysNotAutomaticallyRevoked,
                 .revocationNoticeWasSent,
-                .statusTerminationNoticeWasMailed
-            :
-
-            return Color("CTRed")
+                .statusTerminationNoticeWasMailed:
+            return .ctRed
 
         case .interviewWasRescheduled,
                 .interviewWasScheduled,
@@ -183,10 +179,8 @@ enum Status: String {
                 .requestforInitialEvidenceWasSent,
                 .requestForInitialEvidenceWasSent,
                 .resubmittedFeeWasNotAccepted,
-                .terminationOfLitigationNoticeWasMailed
-
-            :
-            return Color("CTYellow")
+                .terminationOfLitigationNoticeWasMailed:
+            return .ctYellow
 
         case .cardIsBeingReturnedtoUSCISbyPostOffice,
                 .cardWasReturnedToUSCIS,
@@ -202,27 +196,25 @@ enum Status: String {
                 .noticeWasReturnedToUSCISBecauseThePostOfficeCouldNotDeliverIt,
                 .requestWasRejected,
                 .travelDocumentWasDestroyedAfterUSCISHeldItFor180Days,
-                .travelDocumentWasReturnedtoUSCISAndWillBeHeldFor180Days
-            :
-            return Color("CTOrange")
+                .travelDocumentWasReturnedtoUSCISAndWillBeHeldFor180Days:
+            return .ctOrange
 
         case .cardDestroyed,
                 .caseIsOnHold,
                 .caseIsPendingataLocalOffice,
                 .caseWasAutomaticallyRevoked,
                 .caseWasNotRevokedorCancelledByUSCIS,
-                .documentDestroyed
-            :
-            return Color("CTGray")
+                .documentDestroyed:
+            return .ctGray
 
         default:
             if rawValue.contains("Case Was Approved") {
-                return Color("CTGreen")
+                return .ctGreen
             }
             if rawValue.contains("Case Rejected") || rawValue.contains("Case Was Rejected") {
-                return Color("CTRed")
+                return .ctRed
             }
-            return Color("CTBlue")
+            return .ctBlue
         }
     }
 }

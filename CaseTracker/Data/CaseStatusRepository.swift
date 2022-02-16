@@ -103,6 +103,7 @@ class CaseStatusRepository: Repository {
 
     func removeCase(receiptNumber: String) async -> Result<(), Error> {
         Logger.api.log("Removing case: \(receiptNumber)...")
+        data.value = data.value.filter { $0.id != receiptNumber }
         return await local.remove(receiptNumber: receiptNumber)
     }
 

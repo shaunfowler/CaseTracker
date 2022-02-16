@@ -122,6 +122,10 @@ class HomeViewModel: ObservableObject {
 
     func removeCase(atIndex index: Int) {
         let receiptNumber = cases[index].id
+        removeCase(receiptNumber: receiptNumber)
+    }
+    
+    func removeCase(receiptNumber: String) {
         cases = cases.filter { $0.id != receiptNumber }
         Task {
             await repository.removeCase(receiptNumber: receiptNumber)

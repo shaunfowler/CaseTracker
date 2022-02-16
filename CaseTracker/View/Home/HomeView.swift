@@ -30,7 +30,9 @@ struct HomeView: View {
                 }
 
                 ForEach(viewModel.cases, id: \.id) { caseStatus in
-                    NavigationLink(destination: DetailsView(caseStatus: caseStatus)) {
+                    NavigationLink(destination: DetailsView(caseStatus: caseStatus) {
+                        viewModel.removeCase(receiptNumber: $0)
+                    }) {
                         CaseRowView(model: caseStatus)
                     }
                     .caseStatusListItemStyle()
@@ -43,7 +45,7 @@ struct HomeView: View {
                 .opacity(viewModel.loading ? 0.3 : 1.0)
             }
         }
-        .background(Color("HomeBackgroundColor"))
+        .background(Color.ctBackground)
         .listStyle(.plain)
     }
 
@@ -52,7 +54,7 @@ struct HomeView: View {
             Text("Add Case")
         })
     }
-
+    
     var addCaseView: some View {
         AddCaseView(viewModel: viewModel.addCaseViewModel)
     }
@@ -125,6 +127,5 @@ struct ContentView_Previews: PreviewProvider {
                 }
         }
         .preferredColorScheme(.dark)
-        .previewLayout(.sizeThatFits)
     }
 }

@@ -41,6 +41,7 @@
 		28FD1B0D27A8D566002CA8DE /* CaseStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FD1B0C27A8D566002CA8DE /* CaseStatus.swift */; };
 		28FD1B0F27A8D986002CA8DE /* CaseStatusRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FD1B0E27A8D986002CA8DE /* CaseStatusRepository.swift */; };
 		83237ED7827B07E67878E379 /* Pods_CaseTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DB968B738C68FDC577D1D91 /* Pods_CaseTracker.framework */; };
+		E6EB47F527BB39FC00438FA3 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EB47F427BB39FC00438FA3 /* Color.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -96,6 +97,7 @@
 		28FD1B0E27A8D986002CA8DE /* CaseStatusRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseStatusRepository.swift; sourceTree = "<group>"; };
 		6DB968B738C68FDC577D1D91 /* Pods_CaseTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CaseTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD6BD1FD28DD53AE8EB20386 /* Pods-CaseTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaseTracker.debug.xcconfig"; path = "Target Support Files/Pods-CaseTracker/Pods-CaseTracker.debug.xcconfig"; sourceTree = "<group>"; };
+		E6EB47F427BB39FC00438FA3 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 		287746FD27B36F700042D3FD /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				E6EB47F427BB39FC00438FA3 /* Color.swift */,
 				287746F927B36B0C0042D3FD /* Logger.swift */,
 				287746FB27B36EF60042D3FD /* ScenePhase+CustomStringConvertible.swift */,
 			);
@@ -480,6 +483,7 @@
 				28FD1B0B27A8D3F1002CA8DE /* CaseStatusURL.swift in Sources */,
 				28FD1AF427A7CB6D002CA8DE /* CaseTrackerApp.swift in Sources */,
 				2877471127B4762E0042D3FD /* CaseTrackerModel.xcdatamodeld in Sources */,
+				E6EB47F527BB39FC00438FA3 /* Color.swift in Sources */,
 				283511B627AA430B00851FC6 /* DetailsView.swift in Sources */,
 				2877470827B3976F0042D3FD /* FirstTimeUserView.swift in Sources */,
 				28FD1AF627A7CB6D002CA8DE /* HomeView.swift in Sources */,
@@ -668,7 +672,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.4;
+				MARKETING_VERSION = 0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shaunfowler.CaseTracker;
 				PRODUCT_NAME = "Case Tracker";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -699,7 +703,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.4;
+				MARKETING_VERSION = 0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shaunfowler.CaseTracker;
 				PRODUCT_NAME = "Case Tracker";
 				SWIFT_EMIT_LOC_STRINGS = YES;

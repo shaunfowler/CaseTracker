@@ -11,7 +11,7 @@ private struct CaseStatusListItemViewModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .padding(.trailing, 8)
-            .background(Color("CaseRowBackgroundColor"))
+            .background(Color.ctRowBackground)
             .clipShape(RoundedRectangle(cornerRadius: 4))
             .padding([.top, .bottom], 0)
             .listRowSeparator(.hidden)

@@ -16,7 +16,7 @@ class PreviewDataRepository: Repository {
 
     static let case1 = CaseStatus(
         receiptNumber: "ABC123456789",
-        status: "Fees Were Waived",
+        status: Status.feesWereWaived.rawValue,
         body: "Body",
         formType: "I-131",
         lastUpdated: Date() - 50 * 86_400,
@@ -25,14 +25,23 @@ class PreviewDataRepository: Repository {
 
     static let case2 = CaseStatus(
         receiptNumber: "XYZ987654321",
-        status: "Request For Initial Evidence Was Sent",
+        status: Status.caseWasRelocatedFromAdministrativeAppealsOfficeToUSCISOriginatingOffice.rawValue,
         body: "Body",
         formType: "I-765",
         lastUpdated: Date() - 900 * 86_400,
         lastFetched: Date()
     )
+    
+    static let case3 = CaseStatus(
+        receiptNumber: "SDF000654321",
+        status: Status.caseWasApproved.rawValue,
+        body: "Body",
+        formType: "I-485",
+        lastUpdated: Date() - 900 * 86_400,
+        lastFetched: Date()
+    )
 
-    var cases = [PreviewDataRepository.case1, PreviewDataRepository.case2]
+    var cases = [PreviewDataRepository.case1, PreviewDataRepository.case2, PreviewDataRepository.case3]
 
     init(cases: [CaseStatus]? = nil) {
         if let cases = cases {
