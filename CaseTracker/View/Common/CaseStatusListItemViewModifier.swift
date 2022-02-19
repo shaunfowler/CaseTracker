@@ -16,7 +16,7 @@ private struct CaseStatusListItemViewModifier: ViewModifier {
             .padding(.trailing, 8)
             .background(Color.ctRowBackground)
             .clipShape(RoundedRectangle(cornerRadius: 8))
-            .padding([.top, .bottom], 4)
+            .padding([.top, .bottom], 2)
             .listRowSeparator(.hidden)
             .listRowBackground(Color.clear)
             .shadow(color: shadowColor, radius: 16, x: 0, y: 0)
