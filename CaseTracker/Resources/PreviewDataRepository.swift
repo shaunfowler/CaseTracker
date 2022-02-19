@@ -9,6 +9,7 @@
 
 import Foundation
 import Combine
+import CaseTrackerCore
 
 class PreviewDataRepository: Repository {
 

@@ -8,7 +8,7 @@
 import Foundation
 import OSLog
 
-protocol CaseStatusWritable {
+public protocol CaseStatusWritable {
     @discardableResult
     func set(caseStatus: CaseStatus) async -> Result<(), Error>
     func remove(receiptNumber: String) async -> Result<(), Error>
@@ -22,7 +22,9 @@ actor RemoteCaseStatusAPI: CaseStatusReadable {
         return URLSession(configuration: config)
     }()
 
-    func get(forCaseId id: String) async -> Result<CaseStatus, Error> {
+    public init() { }
+
+    public func get(forCaseId id: String) async -> Result<CaseStatus, Error> {
         do {
             let urlContainer = CaseStatusURL.get(id)
             let url = urlContainer.url

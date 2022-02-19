@@ -9,11 +9,11 @@ import Foundation
 import NotificationCenter
 import OSLog
 
-class NotificationService {
+public class NotificationService {
 
     let factory = NotificationFactory()
 
-    init() {
+    public init() {
         UNUserNotificationCenter
             .current()
             .requestAuthorization(options: [.alert, .badge, .sound]) { result, error in

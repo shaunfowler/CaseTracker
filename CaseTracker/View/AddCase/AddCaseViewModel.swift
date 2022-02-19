@@ -7,6 +7,7 @@
 
 import Foundation
 import OSLog
+import CaseTrackerCore
 
 @MainActor
 class AddCaseViewModel: ObservableObject {

@@ -11,9 +11,9 @@ import UIKit
 import OSLog
 import Network
 
-typealias CaseStatusLocalCache = CaseStatusQueryable & CaseStatusWritable
+public typealias CaseStatusLocalCache = CaseStatusQueryable & CaseStatusWritable
 
-protocol Repository {
+public protocol Repository {
 
     var data: CurrentValueSubject<[CaseStatus], Never> { get }
     var error: CurrentValueSubject<Error?, Never> { get }
@@ -24,20 +24,20 @@ protocol Repository {
     func removeCase(receiptNumber: String) async -> Result<(), Error>
 }
 
-class CaseStatusRepository: Repository {
+public class CaseStatusRepository: Repository {
 
     // MARK: - Internal Types
 
     enum Constants {
         static let cacheExpirySeconds: TimeInterval = 30 * 60 // 30-min
-        static let refreshInterval: TimeInterval = 1 * 60     // 1-min
+        static let refreshInterval: TimeInterval = 5 * 60     // 5-min
     }
 
     // MARK: - Public Properties
 
-    private(set) var data = CurrentValueSubject<[CaseStatus], Never>([])
-    private(set) var error = CurrentValueSubject<Error?, Never>(nil)
-    private(set) var networkReachable = CurrentValueSubject<Bool, Never>(true)
+    public private(set) var data = CurrentValueSubject<[CaseStatus], Never>([])
+    public private(set) var error = CurrentValueSubject<Error?, Never>(nil)
+    public private(set) var networkReachable = CurrentValueSubject<Bool, Never>(true)
 
     // MARK: - Private Properties
 
@@ -51,9 +51,15 @@ class CaseStatusRepository: Repository {
 
     // MARK: - Initialization
 
-    init(
-        local: CaseStatusLocalCache = LocalCaseStatusPersistence(),
-        remote: CaseStatusReadable = RemoteCaseStatusAPI(),
+    public convenience init(notificationService: NotificationService = NotificationService()) {
+        self.init(local: LocalCaseStatusPersistence(),
+                  remote: RemoteCaseStatusAPI(),
+                  notificationService: notificationService)
+    }
+
+    public init(
+        local: CaseStatusLocalCache,
+        remote: CaseStatusReadable,
         notificationService: NotificationService
     ) {
         self.local = local
@@ -66,7 +72,7 @@ class CaseStatusRepository: Repository {
 
     // MARK: - Public Functions
 
-    func query(force: Bool = false) async {
+    public func query(force: Bool = false) async {
         Logger.main.log("Querying all cases...")
         var result = [CaseStatus]()
         do {
@@ -101,7 +107,7 @@ class CaseStatusRepository: Repository {
         }
     }
 
-    func addCase(receiptNumber: String) async -> Result<CaseStatus, Error> {
+    public func addCase(receiptNumber: String) async -> Result<CaseStatus, Error> {
         Logger.api.log("Adding new case: \(receiptNumber)...")
         let result = await get(forCaseId: receiptNumber)
         if case .success(let caseStatus) = result {
@@ -111,7 +117,7 @@ class CaseStatusRepository: Repository {
         return result
     }
 
-    func removeCase(receiptNumber: String) async -> Result<(), Error> {
+    public func removeCase(receiptNumber: String) async -> Result<(), Error> {
         Logger.api.log("Removing case: \(receiptNumber)...")
         data.value = data.value.filter { $0.id != receiptNumber }
         return await local.remove(receiptNumber: receiptNumber)

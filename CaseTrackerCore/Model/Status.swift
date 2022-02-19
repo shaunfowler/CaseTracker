@@ -10,7 +10,7 @@
 import Foundation
 import SwiftUI
 
-enum Status: String {
+public enum Status: String {
     case advanceParoleDocumentWasProduced = "Advance Parole Document Was Produced"
     case amendedNoticeWasMailed = "Amended Notice Was Mailed"
     case appealWasRemandedToTheOriginatingOfficeForConsideration = "Appeal Was Remanded To The Originating Office For Consideration"
@@ -131,7 +131,7 @@ enum Status: String {
     case caseIsActivelyBeingReviewedByUSCIS = "Case Is Being Actively Reviewed By USCIS" // custom
     case caseApproved = "Case Approved" // custom
 
-    var color: Color {
+    public var color: Color {
         switch self {
         case .advanceParoleDocumentWasProduced,
                 .cardWasDeliveredToMeByThePostOffice,

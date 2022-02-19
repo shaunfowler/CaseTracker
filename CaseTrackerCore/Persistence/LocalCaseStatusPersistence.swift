@@ -9,22 +9,24 @@ import Foundation
 import CoreData
 import OSLog
 
-protocol CaseStatusReadable {
+public protocol CaseStatusReadable {
     func get(forCaseId id: String) async -> Result<CaseStatus, Error>
 }
 
-protocol CaseStatusQueryable {
+public protocol CaseStatusQueryable {
     func query() async -> Result<[CaseStatus], Error>
 }
 
-class LocalCaseStatusPersistence {
-    // private let backgroundContext = PersistenceController.shared.container.newBackgroundContext()
+public class LocalCaseStatusPersistence {
+
     private let viewContext = PersistenceController.shared.container.viewContext
+
+    public init() { }
 }
 
 extension LocalCaseStatusPersistence: CaseStatusWritable {
 
-    func set(caseStatus: CaseStatus) async -> Result<(), Error> {
+    public func set(caseStatus: CaseStatus) async -> Result<(), Error> {
         do {
             try viewContext.performAndWait {
                 let fetchRequest = CaseStatusManagedObject.fetchByReceiptNumberRequest(receiptNumber: caseStatus.id)
@@ -42,7 +44,7 @@ extension LocalCaseStatusPersistence: CaseStatusWritable {
         return .success(())
     }
 
-    func remove(receiptNumber: String) async -> Result<(), Error> {
+    public func remove(receiptNumber: String) async -> Result<(), Error> {
         do {
             try await viewContext.perform {
                 let fetchRequest = CaseStatusManagedObject.fetchByReceiptNumberRequest(receiptNumber: receiptNumber)
@@ -60,7 +62,7 @@ extension LocalCaseStatusPersistence: CaseStatusWritable {
 
 extension LocalCaseStatusPersistence: CaseStatusQueryable {
 
-    func query() async -> Result<[CaseStatus], Error> {
+    public func query() async -> Result<[CaseStatus], Error> {
         do {
             var resultSet: [CaseStatus] = []
             try viewContext.performAndWait {

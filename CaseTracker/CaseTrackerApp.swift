@@ -6,8 +6,8 @@
 //
 
 import SwiftUI
-import SwiftSoup
 import UIKit
+import CaseTrackerCore
 
 @main
 struct CaseTrackerApp: App {

@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import Combine
 import OSLog
+import CaseTrackerCore
 
 @MainActor
 class HomeViewModel: ObservableObject {

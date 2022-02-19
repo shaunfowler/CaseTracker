@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum CaseStatusURL {
+public enum CaseStatusURL {
 
     private static let baseUrl = URL(string: "https://egov.uscis.gov/casestatus/mycasestatus.do?")!
 
@@ -25,7 +25,7 @@ enum CaseStatusURL {
 
     case get(String)
 
-    var url: URL {
+    public var url: URL {
         switch self {
         case .get(let receiptNumber):
             return Self.buildUrl(receiptNumber: receiptNumber)
