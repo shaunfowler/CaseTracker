@@ -74,6 +74,8 @@ class HomeViewModel: ObservableObject {
             }
             .store(in: &cancellables)
 
+        // cases = PreviewDataRepository().cases
+
         repository
             .error
             .receive(on: DispatchQueue.main)

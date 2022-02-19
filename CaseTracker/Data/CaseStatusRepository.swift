@@ -30,7 +30,7 @@ class CaseStatusRepository: Repository {
 
     enum Constants {
         static let cacheExpirySeconds: TimeInterval = 30 * 60 // 30-min
-        static let refreshInterval: TimeInterval = 10 * 60 // * 60 // 10-min
+        static let refreshInterval: TimeInterval = 1 * 60     // 1-min
     }
 
     // MARK: - Public Properties
@@ -52,7 +52,7 @@ class CaseStatusRepository: Repository {
     // MARK: - Initialization
 
     init(
-        local: CaseStatusLocalCache = LocalCaseStatusPersistence(), // LocalCaseStatusAPI(),
+        local: CaseStatusLocalCache = LocalCaseStatusPersistence(),
         remote: CaseStatusReadable = RemoteCaseStatusAPI(),
         notificationService: NotificationService
     ) {
@@ -74,10 +74,20 @@ class CaseStatusRepository: Repository {
             let localResults = try await local.query().get().sorted(by: { lhs, rhs in lhs.id < rhs.id })
             data.value = localResults
 
+            let now = Date.now
+            guard localResults.compactMap({ $0.lastFetched }).contains(where: { element in
+                let expired = hasExpired(lastFetched: element, now: now)
+                print(element, now, expired)
+                return expired
+
+            }) else {
+                Logger.main.log("Using cache for all cases.")
+                return
+            }
+
             // USCIS doesn't properly return responses for simultaneous requests so request serially.
             for receiptNumber in localResults.map(\.receiptNumber) {
                 if case .success(let caseStatus) = await self.get(forCaseId: receiptNumber, force: force) {
-                    Logger.main.debug("\(caseStatus)")
                     result.append(caseStatus)
                 }
             }
@@ -112,12 +122,11 @@ class CaseStatusRepository: Repository {
     private func get(forCaseId id: String, force: Bool = false) async -> Result<CaseStatus, Error> {
         let cachedValue = data.value.first { $0.receiptNumber == id}
 
-        if !force, let cachedValue = cachedValue, let lastFetched = cachedValue.lastFetched {
-            let diff = abs(lastFetched.timeIntervalSinceNow)
-            let isExpired =  diff > Constants.cacheExpirySeconds
-            if !isExpired {
-                return .success(cachedValue)
-            }
+        if !force,
+           let cachedValue = cachedValue,
+           let lastFetched = cachedValue.lastFetched,
+           !hasExpired(lastFetched: lastFetched) {
+            return .success(cachedValue)
         }
 
         let result = await remote.get(forCaseId: id)
@@ -161,5 +170,10 @@ class CaseStatusRepository: Repository {
             Logger.api.log("Detected case change from status [\(existingCase.status, privacy: .public)] to [\(updatedCase.status, privacy: .public)].")
             notificationService.request(notification: .statusUpdated(updatedCase))
         }
+    }
+
+    private func hasExpired(lastFetched: Date, now: Date = .now) -> Bool {
+        let diff = abs(lastFetched.timeIntervalSinceNow)
+        return diff > Constants.cacheExpirySeconds
     }
 }

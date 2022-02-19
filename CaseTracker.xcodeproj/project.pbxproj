@@ -41,8 +41,36 @@
 		28FD1B0D27A8D566002CA8DE /* CaseStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FD1B0C27A8D566002CA8DE /* CaseStatus.swift */; };
 		28FD1B0F27A8D986002CA8DE /* CaseStatusRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FD1B0E27A8D986002CA8DE /* CaseStatusRepository.swift */; };
 		83237ED7827B07E67878E379 /* Pods_CaseTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DB968B738C68FDC577D1D91 /* Pods_CaseTracker.framework */; };
+		E6C59DDE27C08B5900391EBA /* CaseTrackerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6C59DD627C08B5900391EBA /* CaseTrackerCore.framework */; };
+		E6C59DE527C08B5900391EBA /* CaseTrackerCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C59DE427C08B5900391EBA /* CaseTrackerCoreTests.swift */; };
+		E6C59DE927C08B5900391EBA /* CaseTrackerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6C59DD627C08B5900391EBA /* CaseTrackerCore.framework */; };
+		E6C59DEA27C08B5900391EBA /* CaseTrackerCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E6C59DD627C08B5900391EBA /* CaseTrackerCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E6EB47F527BB39FC00438FA3 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EB47F427BB39FC00438FA3 /* Color.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E6C59DDF27C08B5900391EBA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 28FD1AE827A7CB6D002CA8DE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E6C59DD527C08B5900391EBA;
+			remoteInfo = CaseTrackerCore;
+		};
+		E6C59DE127C08B5900391EBA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 28FD1AE827A7CB6D002CA8DE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 28FD1AEF27A7CB6D002CA8DE;
+			remoteInfo = CaseTracker;
+		};
+		E6C59DE727C08B5900391EBA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 28FD1AE827A7CB6D002CA8DE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E6C59DD527C08B5900391EBA;
+			remoteInfo = CaseTrackerCore;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		287C42DE27AB6A4C005CD181 /* CopyFiles */ = {
@@ -54,6 +82,17 @@
 				287C42E827AB6B64005CD181 /* statusTitles.txt in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
+		};
+		E6C59DEB27C08B5900391EBA /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E6C59DEA27C08B5900391EBA /* CaseTrackerCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -97,6 +136,9 @@
 		28FD1B0E27A8D986002CA8DE /* CaseStatusRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseStatusRepository.swift; sourceTree = "<group>"; };
 		6DB968B738C68FDC577D1D91 /* Pods_CaseTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CaseTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD6BD1FD28DD53AE8EB20386 /* Pods-CaseTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaseTracker.debug.xcconfig"; path = "Target Support Files/Pods-CaseTracker/Pods-CaseTracker.debug.xcconfig"; sourceTree = "<group>"; };
+		E6C59DD627C08B5900391EBA /* CaseTrackerCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CaseTrackerCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E6C59DDD27C08B5900391EBA /* CaseTrackerCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaseTrackerCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E6C59DE427C08B5900391EBA /* CaseTrackerCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseTrackerCoreTests.swift; sourceTree = "<group>"; };
 		E6EB47F427BB39FC00438FA3 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -112,7 +154,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6C59DE927C08B5900391EBA /* CaseTrackerCore.framework in Frameworks */,
 				83237ED7827B07E67878E379 /* Pods_CaseTracker.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E6C59DD327C08B5900391EBA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E6C59DDA27C08B5900391EBA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E6C59DDE27C08B5900391EBA /* CaseTrackerCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,6 +290,8 @@
 			children = (
 				28FD1AF227A7CB6D002CA8DE /* CaseTracker */,
 				287C42E127AB6A4C005CD181 /* CaseTrackerCodeGen */,
+				E6C59DD727C08B5900391EBA /* CaseTrackerCore */,
+				E6C59DE327C08B5900391EBA /* CaseTrackerCoreTests */,
 				9F4076C32FC7567245419452 /* Frameworks */,
 				012881F3AB803C1597193453 /* Pods */,
 				28FD1AF127A7CB6D002CA8DE /* Products */,
@@ -243,6 +303,8 @@
 			children = (
 				287C42E027AB6A4C005CD181 /* CaseTrackerCodeGen */,
 				28FD1AF027A7CB6D002CA8DE /* Case Tracker.app */,
+				E6C59DD627C08B5900391EBA /* CaseTrackerCore.framework */,
+				E6C59DDD27C08B5900391EBA /* CaseTrackerCoreTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -309,7 +371,32 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E6C59DD727C08B5900391EBA /* CaseTrackerCore */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CaseTrackerCore;
+			sourceTree = "<group>";
+		};
+		E6C59DE327C08B5900391EBA /* CaseTrackerCoreTests */ = {
+			isa = PBXGroup;
+			children = (
+				E6C59DE427C08B5900391EBA /* CaseTrackerCoreTests.swift */,
+			);
+			path = CaseTrackerCoreTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		E6C59DD127C08B5900391EBA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		287C42DF27AB6A4C005CD181 /* CaseTrackerCodeGen */ = {
@@ -339,15 +426,54 @@
 				28FD1AEE27A7CB6D002CA8DE /* Resources */,
 				CE11B51C28E12466DA48D7CF /* [CP] Embed Pods Frameworks */,
 				2877471927B4ADE10042D3FD /* ShellScript */,
+				E6C59DEB27C08B5900391EBA /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E6C59DE827C08B5900391EBA /* PBXTargetDependency */,
 			);
 			name = CaseTracker;
 			productName = CaseTracker;
 			productReference = 28FD1AF027A7CB6D002CA8DE /* Case Tracker.app */;
 			productType = "com.apple.product-type.application";
+		};
+		E6C59DD527C08B5900391EBA /* CaseTrackerCore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E6C59DF027C08B5900391EBA /* Build configuration list for PBXNativeTarget "CaseTrackerCore" */;
+			buildPhases = (
+				E6C59DD127C08B5900391EBA /* Headers */,
+				E6C59DD227C08B5900391EBA /* Sources */,
+				E6C59DD327C08B5900391EBA /* Frameworks */,
+				E6C59DD427C08B5900391EBA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CaseTrackerCore;
+			productName = CaseTrackerCore;
+			productReference = E6C59DD627C08B5900391EBA /* CaseTrackerCore.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		E6C59DDC27C08B5900391EBA /* CaseTrackerCoreTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E6C59DF127C08B5900391EBA /* Build configuration list for PBXNativeTarget "CaseTrackerCoreTests" */;
+			buildPhases = (
+				E6C59DD927C08B5900391EBA /* Sources */,
+				E6C59DDA27C08B5900391EBA /* Frameworks */,
+				E6C59DDB27C08B5900391EBA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E6C59DE027C08B5900391EBA /* PBXTargetDependency */,
+				E6C59DE227C08B5900391EBA /* PBXTargetDependency */,
+			);
+			name = CaseTrackerCoreTests;
+			productName = CaseTrackerCoreTests;
+			productReference = E6C59DDD27C08B5900391EBA /* CaseTrackerCoreTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -364,6 +490,13 @@
 					};
 					28FD1AEF27A7CB6D002CA8DE = {
 						CreatedOnToolsVersion = 13.2.1;
+					};
+					E6C59DD527C08B5900391EBA = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+					E6C59DDC27C08B5900391EBA = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = 28FD1AEF27A7CB6D002CA8DE;
 					};
 				};
 			};
@@ -382,6 +515,8 @@
 			targets = (
 				28FD1AEF27A7CB6D002CA8DE /* CaseTracker */,
 				287C42DF27AB6A4C005CD181 /* CaseTrackerCodeGen */,
+				E6C59DD527C08B5900391EBA /* CaseTrackerCore */,
+				E6C59DDC27C08B5900391EBA /* CaseTrackerCoreTests */,
 			);
 		};
 /* End PBXProject section */
@@ -393,6 +528,20 @@
 			files = (
 				28FD1AF827A7CB6F002CA8DE /* Assets.xcassets in Resources */,
 				28FD1AFB27A7CB6F002CA8DE /* Preview Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E6C59DD427C08B5900391EBA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E6C59DDB27C08B5900391EBA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,7 +652,40 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E6C59DD227C08B5900391EBA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E6C59DD927C08B5900391EBA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E6C59DE527C08B5900391EBA /* CaseTrackerCoreTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E6C59DE027C08B5900391EBA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E6C59DD527C08B5900391EBA /* CaseTrackerCore */;
+			targetProxy = E6C59DDF27C08B5900391EBA /* PBXContainerItemProxy */;
+		};
+		E6C59DE227C08B5900391EBA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 28FD1AEF27A7CB6D002CA8DE /* CaseTracker */;
+			targetProxy = E6C59DE127C08B5900391EBA /* PBXContainerItemProxy */;
+		};
+		E6C59DE827C08B5900391EBA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E6C59DD527C08B5900391EBA /* CaseTrackerCore */;
+			targetProxy = E6C59DE727C08B5900391EBA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		287C42E527AB6A4C005CD181 /* Debug */ = {
@@ -673,12 +855,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.6;
+				MARKETING_VERSION = 0.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shaunfowler.CaseTracker;
 				PRODUCT_NAME = "Case Tracker";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -705,12 +887,108 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.6;
+				MARKETING_VERSION = 0.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.shaunfowler.CaseTracker;
 				PRODUCT_NAME = "Case Tracker";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		E6C59DEC27C08B5900391EBA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = QQR7KQB65R;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shaunfowler.CaseTrackerCore;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		E6C59DED27C08B5900391EBA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = QQR7KQB65R;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shaunfowler.CaseTrackerCore;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		E6C59DEE27C08B5900391EBA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QQR7KQB65R;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shaunfowler.CaseTrackerCoreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Case Tracker.app/Case Tracker";
+			};
+			name = Debug;
+		};
+		E6C59DEF27C08B5900391EBA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QQR7KQB65R;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shaunfowler.CaseTrackerCoreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Case Tracker.app/Case Tracker";
 			};
 			name = Release;
 		};
@@ -740,6 +1018,24 @@
 			buildConfigurations = (
 				28FD1AFF27A7CB6F002CA8DE /* Debug */,
 				28FD1B0027A7CB6F002CA8DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E6C59DF027C08B5900391EBA /* Build configuration list for PBXNativeTarget "CaseTrackerCore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E6C59DEC27C08B5900391EBA /* Debug */,
+				E6C59DED27C08B5900391EBA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E6C59DF127C08B5900391EBA /* Build configuration list for PBXNativeTarget "CaseTrackerCoreTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E6C59DEE27C08B5900391EBA /* Debug */,
+				E6C59DEF27C08B5900391EBA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

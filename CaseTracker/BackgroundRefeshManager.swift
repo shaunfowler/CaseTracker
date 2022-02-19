@@ -21,7 +21,7 @@ class BackgroundRefeshManager {
 
     private enum Constants {
         static let reloadTaskId = "com.shaunfowler.CaseTracker-reload"
-        static let timeDelay: TimeInterval = 4 * 60 * 60 // 4 hours
+        static let timeDelay: TimeInterval = 2 * 60 * 60 // 2 hours
     }
 
     /// Not weak as value types can register as receiver.

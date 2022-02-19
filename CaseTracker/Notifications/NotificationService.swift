@@ -23,6 +23,8 @@ class NotificationService {
                         "Error from notification authorization request: \(error.localizedDescription, privacy: .public).")
                 }
             }
+
+        // request(notification: .statusUpdated(PreviewDataRepository.case1))
     }
 
     public func request(notification: Notification) {

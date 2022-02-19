@@ -129,6 +129,7 @@ enum Status: String {
     case withdrawalOfMyAppealWasAcknowledged = "Withdrawal Of My Appeal Was Acknowledged"
     case caseWasApprovedAndMyDecisionWasEmailed = "Case Was Approved And My Decision Was Emailed" // custom
     case caseIsActivelyBeingReviewedByUSCIS = "Case Is Being Actively Reviewed By USCIS" // custom
+    case caseApproved = "Case Approved" // custom
 
     var color: Color {
         switch self {
@@ -139,6 +140,7 @@ enum Status: String {
                 .caseApprovalWasCertifiedByUSCIS,
                 .caseApprovalWasReaffirmedAndMailedBackToDepartmentOfState,
                 .caseClosedBenefitReceivedByOtherMeans,
+                .caseApproved,
                 .caseWasApproved,
                 .caseWasApprovedAndUSCISNotifiedTheUSConsulateorPortofEntry,
                 .documentWasMailedToMe,
@@ -209,10 +211,10 @@ enum Status: String {
             return .ctGray
 
         default:
-            if rawValue.contains("Case Was Approved") {
+            if rawValue.contains("Approved") {
                 return .ctGreen
             }
-            if rawValue.contains("Case Rejected") || rawValue.contains("Case Was Rejected") {
+            if rawValue.contains("Rejected") {
                 return .ctRed
             }
             return .ctBlue
