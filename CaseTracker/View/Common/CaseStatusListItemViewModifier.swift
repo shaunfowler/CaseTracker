@@ -7,19 +7,36 @@
 
 import SwiftUI
 
+struct CaseStatusListItemButtonStyle: ButtonStyle {
+
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .padding(.trailing, 8)
+            .background(Color.ctRowBackground)
+            .clipShape(RoundedRectangle(cornerRadius: 8))
+            .padding([.top, .bottom], 2)
+            .listRowSeparator(.hidden)
+            .listRowBackground(Color.clear)
+            .shadow(color: .ctRowShadow, radius: 16, x: 0, y: 0)
+            .scaleEffect(configuration.isPressed ? 1.025 : 1.0)
+            .opacity(configuration.isPressed ? 0.75 : 1.0)
+            .animation(.easeInOut(duration: 0.1), value: configuration.isPressed)
+    }
+}
+
 private struct CaseStatusListItemViewModifier: ViewModifier {
 
     var shadowColor = Color.ctRowShadow
 
     func body(content: Content) -> some View {
         content
-            .padding(.trailing, 8)
-            .background(Color.ctRowBackground)
-            .clipShape(RoundedRectangle(cornerRadius: 8))
-            .padding([.top, .bottom], 4)
-            .listRowSeparator(.hidden)
-            .listRowBackground(Color.clear)
-            .shadow(color: shadowColor, radius: 16, x: 0, y: 0)
+//            .padding(.trailing, 8)
+//            .background(Color.ctRowBackground)
+//            .clipShape(RoundedRectangle(cornerRadius: 8))
+//            .padding([.top, .bottom], 2)
+//            .listRowSeparator(.hidden)
+//            .listRowBackground(Color.clear)
+//            .shadow(color: shadowColor, radius: 16, x: 0, y: 0)
     }
 }
 

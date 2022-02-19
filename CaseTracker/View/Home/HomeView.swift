@@ -20,33 +20,38 @@ struct HomeView: View {
     // MARK: - View
 
     var caseList: some View {
-        List {
-            Section {
-                Text(viewModel.lastUpdatedLoadingMessage)
-                    .updatedCaptionTextStyle()
+        VStack(alignment: .leading) {
 
-                if let errorMessage = viewModel.errorMessage {
-                    Text(errorMessage)
-                }
+            Text(viewModel.lastUpdatedLoadingMessage)
+                .updatedCaptionTextStyle()
+                .padding(.bottom, 4)
 
-                ForEach(viewModel.cases, id: \.id) { caseStatus in
-                    NavigationLink(destination: DetailsView(caseStatus: caseStatus) {
-                        viewModel.removeCase(receiptNumber: $0)
-                    }) {
-                        CaseRowView(model: caseStatus)
-                    }
-                    .caseStatusListItemStyle()
-                }
-                .onDelete { indexSet in
-                    if let index = indexSet.first {
-                        viewModel.removeCase(atIndex: index)
-                    }
-                }
-                .opacity(viewModel.loading ? 0.3 : 1.0)
+            if let errorMessage = viewModel.errorMessage {
+                Text(errorMessage)
             }
+
+            ForEach(viewModel.cases, id: \.id) { caseStatus in
+                NavigationLink(destination: DetailsView(caseStatus: caseStatus) {
+                    viewModel.removeCase(receiptNumber: $0)
+                }) {
+                    CaseRowView(model: caseStatus)
+                }
+                .buttonStyle(CaseStatusListItemButtonStyle())
+                .contextMenu {
+                    Button("Delete", role: .destructive) {
+                        viewModel.removeCase(receiptNumber: caseStatus.receiptNumber)
+                    }
+                }
+            }
+            .onDelete { indexSet in
+                if let index = indexSet.first {
+                    viewModel.removeCase(atIndex: index)
+                }
+            }
+            .opacity(viewModel.loading ? 0.3 : 1.0)
         }
-        .background(Color.ctBackground)
-        .listStyle(.plain)
+        .padding()
+        .buttonStyle(.plain)
     }
 
     var addButton: some View {
@@ -71,7 +76,9 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                caseList
+                ScrollView {
+                    caseList
+                }
                 if viewModel.isEmptyState {
                     FirstTimeUserView(onAddCase: onAddCasePressed)
                 }
@@ -83,6 +90,7 @@ struct HomeView: View {
                     }
                 }
             }
+            .background(Color.ctBackground)
             .navigationBarTitle("My Cases")
         }
         .navigationViewStyle(.stack)

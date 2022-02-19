@@ -50,6 +50,7 @@ struct CaseRowView: View {
             .padding([.leading], 0)
             .padding([.top, .bottom], 10)
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 
