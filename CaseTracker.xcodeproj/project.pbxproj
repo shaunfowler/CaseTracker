@@ -28,6 +28,7 @@
 		28FD1B0527A8CAC7002CA8DE /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FD1B0427A8CAC7002CA8DE /* HomeViewModel.swift */; };
 		663E883F4F611975F307CF7A /* Pods_CaseTrackerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 273FADD093DAD706FCFCF7E6 /* Pods_CaseTrackerCore.framework */; };
 		90E30AC5582C59A7D749E65A /* Pods_CaseTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65EB91B138B30844C2874A26 /* Pods_CaseTracker.framework */; };
+		E6A44B0327C0B36E00C495EF /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A44B0227C0B36E00C495EF /* ActivityView.swift */; };
 		E6C59DDE27C08B5900391EBA /* CaseTrackerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6C59DD627C08B5900391EBA /* CaseTrackerCore.framework */; };
 		E6C59DE527C08B5900391EBA /* CaseTrackerCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C59DE427C08B5900391EBA /* CaseTrackerCoreTests.swift */; };
 		E6C59DE927C08B5900391EBA /* CaseTrackerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6C59DD627C08B5900391EBA /* CaseTrackerCore.framework */; };
@@ -141,6 +142,7 @@
 		65EB91B138B30844C2874A26 /* Pods_CaseTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CaseTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B586A5729462F9BD1B3E2F0 /* Pods-CaseTrackerCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaseTrackerCore.release.xcconfig"; path = "Target Support Files/Pods-CaseTrackerCore/Pods-CaseTrackerCore.release.xcconfig"; sourceTree = "<group>"; };
 		A4E4267FF0DCA58718057690 /* Pods-CaseTrackerCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaseTrackerCore.debug.xcconfig"; path = "Target Support Files/Pods-CaseTrackerCore/Pods-CaseTrackerCore.debug.xcconfig"; sourceTree = "<group>"; };
+		E6A44B0227C0B36E00C495EF /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		E6C59DD627C08B5900391EBA /* CaseTrackerCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CaseTrackerCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6C59DDD27C08B5900391EBA /* CaseTrackerCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaseTrackerCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6C59DE427C08B5900391EBA /* CaseTrackerCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseTrackerCoreTests.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 		2817EDBB27B4F68400F90C2E /* Details */ = {
 			isa = PBXGroup;
 			children = (
+				E6A44B0227C0B36E00C495EF /* ActivityView.swift */,
 				283511B527AA430B00851FC6 /* DetailsView.swift */,
 			);
 			path = Details;
@@ -322,7 +325,6 @@
 		28FD1AF227A7CB6D002CA8DE /* CaseTracker */ = {
 			isa = PBXGroup;
 			children = (
-				28FD1B0127A8BFFE002CA8DE /* Data */,
 				2877470E27B4704D0042D3FD /* Resources */,
 				2877470427B38E8C0042D3FD /* View */,
 				2877470127B379860042D3FD /* AppDelegate.swift */,
@@ -338,13 +340,6 @@
 				28FD1AFA27A7CB6F002CA8DE /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		28FD1B0127A8BFFE002CA8DE /* Data */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Data;
 			sourceTree = "<group>";
 		};
 		28FD1B1027A9148F002CA8DE /* Home */ = {
@@ -669,6 +664,7 @@
 				28FD1AF427A7CB6D002CA8DE /* CaseTrackerApp.swift in Sources */,
 				E6EB47F527BB39FC00438FA3 /* Color.swift in Sources */,
 				283511B627AA430B00851FC6 /* DetailsView.swift in Sources */,
+				E6A44B0327C0B36E00C495EF /* ActivityView.swift in Sources */,
 				2877470827B3976F0042D3FD /* FirstTimeUserView.swift in Sources */,
 				28FD1AF627A7CB6D002CA8DE /* HomeView.swift in Sources */,
 				28FD1B0527A8CAC7002CA8DE /* HomeViewModel.swift in Sources */,

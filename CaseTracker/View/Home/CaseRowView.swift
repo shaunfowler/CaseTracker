@@ -45,10 +45,10 @@ struct CaseRowView: View {
                     }
                 }
                 .font(.system(size: fontSize))
-                .opacity(0.5)
+                .opacity(0.4)
             }
             .padding([.leading], 0)
-            .padding([.top, .bottom], 8)
+            .padding([.top, .bottom], 10)
         }
     }
 }

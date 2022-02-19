@@ -15,32 +15,40 @@ struct DetailsView: View {
 
     @State var isPresentingActionSheet = false
     @State var isPresentingDeleteConfirmation = false
+    @State var isShowingActivityViewController = false
 
     let caseStatus: CaseStatus
     let removeCase: (String) -> Void
 
     var caseInfo: some View {
-        VStack(alignment: .leading) {
-            if let formType = caseStatus.formType {
-                Text("Form \(formType)")
-                    .font(.headline)
+        ZStack {
+            VStack(alignment: .leading) {
+                if let formType = caseStatus.formType {
+                    Text("Form \(formType)")
+                        .font(.headline)
+                }
+
+                HStack(alignment: .firstTextBaseline) {
+                    Circle()
+                        .foregroundColor(caseStatus.color)
+                        .frame(width: 8, height: 8, alignment: .center)
+                        .offset(y: -2)
+                    Text(caseStatus.status)
+                }
+
+                Text(caseStatus.body)
+                    .multilineTextAlignment(.center)
+                    .font(.system(.body, design: .serif))
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color.ctRowBackground)
+                    .cornerRadius(8)
             }
 
-            HStack(alignment: .firstTextBaseline) {
-                Circle()
-                    .foregroundColor(caseStatus.color)
-                    .frame(width: 8, height: 8, alignment: .center)
-                    .offset(y: -2)
-                Text(caseStatus.status)
+            if isShowingActivityViewController {
+                ActivityViewController(url: CaseStatusURL.get(caseStatus.receiptNumber).url,
+                                       showing: $isShowingActivityViewController)
             }
-
-            Text(caseStatus.body)
-                .multilineTextAlignment(.center)
-                .font(.system(.body, design: .serif))
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color.ctRowBackground)
-                .cornerRadius(4)
         }
     }
 
@@ -80,7 +88,11 @@ struct DetailsView: View {
             }
         })
         .toolbar {
-            ToolbarItem {
+            ToolbarItemGroup(placement: .bottomBar) {
+                Button(action: { isShowingActivityViewController.toggle() }, label: {
+                    Image(systemName: "square.and.arrow.up")
+                })
+
                 Button(action: onMoreButtonPressed) {
                     Image(systemName: "ellipsis.circle")
                 }

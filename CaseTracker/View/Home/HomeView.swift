@@ -50,9 +50,13 @@ struct HomeView: View {
     }
 
     var addButton: some View {
-        Button(action: onAddCasePressed, label: {
-            Text("Add Case")
-        })
+        Button(
+            action: onAddCasePressed,
+            label: {
+                Image(systemName: "plus")
+            })
+            .padding([.leading, .top, .bottom], 4)
+            .contentShape(Rectangle())
     }
 
     var addCaseView: some View {
