@@ -39,6 +39,8 @@ class BackgroundRefeshManager {
     }
 
     func schedule() {
+        Logger.background.log("Attempting to schedule background refresh task...")
+        BGTaskScheduler.shared.cancel(taskRequestWithIdentifier: Constants.reloadTaskId)
         do {
             let request = BGAppRefreshTaskRequest(identifier: Constants.reloadTaskId)
             let date = Date(timeIntervalSinceNow: Constants.timeDelay)

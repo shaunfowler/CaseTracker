@@ -74,15 +74,15 @@ class CaseStatusRepository: Repository {
             let localResults = try await local.query().get().sorted(by: { lhs, rhs in lhs.id < rhs.id })
             data.value = localResults
 
+            // If no case has expired cache, skip the `.get()` call
             let now = Date.now
-            guard localResults.compactMap({ $0.lastFetched }).contains(where: { element in
-                let expired = hasExpired(lastFetched: element, now: now)
-                print(element, now, expired)
-                return expired
-
-            }) else {
-                Logger.main.log("Using cache for all cases.")
-                return
+            if !force {
+                guard localResults.compactMap({ $0.lastFetched }).contains(where: { element in
+                    hasExpired(lastFetched: element, now: now)
+                }) else {
+                    Logger.main.log("Using cache for all cases.")
+                    return
+                }
             }
 
             // USCIS doesn't properly return responses for simultaneous requests so request serially.
