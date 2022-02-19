@@ -141,11 +141,9 @@
 		65EB91B138B30844C2874A26 /* Pods_CaseTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CaseTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B586A5729462F9BD1B3E2F0 /* Pods-CaseTrackerCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaseTrackerCore.release.xcconfig"; path = "Target Support Files/Pods-CaseTrackerCore/Pods-CaseTrackerCore.release.xcconfig"; sourceTree = "<group>"; };
 		A4E4267FF0DCA58718057690 /* Pods-CaseTrackerCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaseTrackerCore.debug.xcconfig"; path = "Target Support Files/Pods-CaseTrackerCore/Pods-CaseTrackerCore.debug.xcconfig"; sourceTree = "<group>"; };
-		E6C285EA27C09B2D008EA60E /* Pods_CaseTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_CaseTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6C59DD627C08B5900391EBA /* CaseTrackerCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CaseTrackerCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6C59DDD27C08B5900391EBA /* CaseTrackerCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaseTrackerCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6C59DE427C08B5900391EBA /* CaseTrackerCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseTrackerCoreTests.swift; sourceTree = "<group>"; };
-		E6C59E0A27C0989400391EBA /* Pods_CaseTrackerCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_CaseTrackerCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6EB47F427BB39FC00438FA3 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		E9FAF8233AB232C826ED8660 /* Pods-CaseTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaseTracker.debug.xcconfig"; path = "Target Support Files/Pods-CaseTracker/Pods-CaseTracker.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -381,8 +379,6 @@
 		E6C285E927C09B0B008EA60E /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
-				E6C285EA27C09B2D008EA60E /* Pods_CaseTracker.framework */,
-				E6C59E0A27C0989400391EBA /* Pods_CaseTrackerCore.framework */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
