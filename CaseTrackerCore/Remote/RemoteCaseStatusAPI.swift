@@ -17,8 +17,9 @@ public protocol CaseStatusWritable {
 actor RemoteCaseStatusAPI: CaseStatusReadable {
 
     var urlSession: URLSession = {
-        let config = URLSessionConfiguration.default
+        let config = URLSessionConfiguration.ephemeral
         config.requestCachePolicy = .reloadIgnoringLocalAndRemoteCacheData
+        config.urlCache = nil
         return URLSession(configuration: config)
     }()
 
@@ -31,6 +32,7 @@ actor RemoteCaseStatusAPI: CaseStatusReadable {
 
             Logger.api.log("Requesting URL: \(urlContainer.url.absoluteString, privacy: .private).")
             let (data, response) = try await urlSession.data(for: URLRequest(url: url))
+            await urlSession.reset()
 
             guard let response = (response as? HTTPURLResponse), response.statusCode < 400 else {
                 throw CSError.http
