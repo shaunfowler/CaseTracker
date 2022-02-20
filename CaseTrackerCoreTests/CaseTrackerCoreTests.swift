@@ -6,9 +6,8 @@
 //
 
 import XCTest
-// @testable import CaseTrackerCore
+@testable import CaseTrackerCore
 
 class CaseTrackerCoreTests: XCTestCase {
 
-    func testExample() throws { }
 }

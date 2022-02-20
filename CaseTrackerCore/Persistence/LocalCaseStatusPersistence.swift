@@ -9,14 +9,6 @@ import Foundation
 import CoreData
 import OSLog
 
-public protocol CaseStatusReadable {
-    func get(forCaseId id: String) async -> Result<CaseStatus, Error>
-}
-
-public protocol CaseStatusQueryable {
-    func query() async -> Result<[CaseStatus], Error>
-}
-
 public class LocalCaseStatusPersistence {
 
     private let viewContext = PersistenceController.shared.container.viewContext
