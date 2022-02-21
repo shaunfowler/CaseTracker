@@ -13,6 +13,7 @@ class DetailsViewController: UIViewController {
     // MARK: - Private Properties
 
     private let caseStatus: CaseStatus
+    private let onRemove: (CaseStatus) -> Void
 
     // MARK: - View Computed Properties
 
@@ -97,8 +98,9 @@ class DetailsViewController: UIViewController {
 
     // MARK: - Initialization
 
-    init(caseStatus: CaseStatus) {
+    init(caseStatus: CaseStatus, onRemove: @escaping (CaseStatus) -> Void) {
         self.caseStatus = caseStatus
+        self.onRemove = onRemove
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -114,12 +116,35 @@ class DetailsViewController: UIViewController {
         view.backgroundColor = UIColor(named: "HomeBackgroundColor")
         title = caseStatus.receiptNumber
 
+        setupNavigationBar()
         setupScrollView()
         setupStackView()
         setupStackViewContents()
     }
 
     // MARK: - Layout
+
+    private func setupNavigationBar() {
+        let menu = UIMenu(title: "", children: [
+            UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { _ in
+                let activityViewController = UIActivityViewController(
+                    activityItems: [CaseStatusURL.get(self.caseStatus.receiptNumber).url],
+                    applicationActivities: nil)
+                self.present(activityViewController, animated: true, completion: nil)
+            },
+            UIAction(title: "Copy Receipt Number", image: UIImage(systemName: "doc.on.doc")) { [weak self] _ in
+                guard let self = self else { return }
+                UIPasteboard.general.setValue(self.caseStatus.receiptNumber, forPasteboardType: "public.plain-text")
+            },
+            UIAction(title: "Remove", image: UIImage(systemName: "trash"), attributes: .destructive) { [weak self] _ in
+                guard let self = self else { return }
+                self.onRemove(self.caseStatus)
+                self.navigationController?.popViewController(animated: true)
+            }
+        ])
+        let button = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), menu: menu)
+        navigationItem.rightBarButtonItems = [button]
+    }
 
     private func setupScrollView() {
         view.addSubview(scrollView)
@@ -162,5 +187,9 @@ class DetailsViewController: UIViewController {
         if UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url)
         }
+    }
+
+    @objc private func moreTapped() {
+        print("More")
     }
 }
