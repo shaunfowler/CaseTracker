@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 import Combine
 import CaseTrackerCore
 
@@ -23,6 +24,8 @@ class HomeViewController: UIViewController {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(UINib(nibName: "CaseTableViewRow", bundle: nil), forCellReuseIdentifier: Constants.reuseId)
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
         tableView.dataSource = self
         tableView.delegate = self
         return tableView
@@ -31,7 +34,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = UIColor(named: "HomeBackgroundColor")
 
         setupNavigationBar()
         setupCollectionView()

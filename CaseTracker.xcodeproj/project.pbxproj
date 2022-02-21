@@ -28,6 +28,8 @@
 		28FD1B0527A8CAC7002CA8DE /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FD1B0427A8CAC7002CA8DE /* HomeViewModel.swift */; };
 		663E883F4F611975F307CF7A /* Pods_CaseTrackerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 273FADD093DAD706FCFCF7E6 /* Pods_CaseTrackerCore.framework */; };
 		90E30AC5582C59A7D749E65A /* Pods_CaseTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65EB91B138B30844C2874A26 /* Pods_CaseTracker.framework */; };
+		E69DF72027C385F8003F9FE8 /* PaddedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69DF71F27C385F8003F9FE8 /* PaddedTextField.swift */; };
+		E69DF72127C3863A003F9FE8 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EB47F427BB39FC00438FA3 /* Color.swift */; };
 		E6A44B0327C0B36E00C495EF /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A44B0227C0B36E00C495EF /* ActivityView.swift */; };
 		E6C59DDE27C08B5900391EBA /* CaseTrackerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6C59DD627C08B5900391EBA /* CaseTrackerCore.framework */; };
 		E6C59DE527C08B5900391EBA /* CaseTrackerCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C59DE427C08B5900391EBA /* CaseTrackerCoreTests.swift */; };
@@ -44,7 +46,6 @@
 		E6C59DFA27C0911A00391EBA /* CaseStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FD1B0C27A8D566002CA8DE /* CaseStatus.swift */; };
 		E6C59DFB27C0911A00391EBA /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287C42DA27AB69D5005CD181 /* Status.swift */; };
 		E6C59E0427C0925500391EBA /* ScenePhase+CustomStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287746FB27B36EF60042D3FD /* ScenePhase+CustomStringConvertible.swift */; };
-		E6C59E0527C0925500391EBA /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EB47F427BB39FC00438FA3 /* Color.swift */; };
 		E6C59E0627C0925500391EBA /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287746F927B36B0C0042D3FD /* Logger.swift */; };
 		E6C59E0727C092AF00391EBA /* NotificationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877470B27B43DCD0042D3FD /* NotificationFactory.swift */; };
 		E6C59E0827C092AF00391EBA /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287746FF27B373020042D3FD /* NotificationService.swift */; };
@@ -55,7 +56,6 @@
 		E6E3BB6C27C3072600CA0A81 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E3BB6B27C3072600CA0A81 /* SceneDelegate.swift */; };
 		E6E3BBAC27C3104500CA0A81 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E3BBAB27C3104500CA0A81 /* HomeViewController.swift */; };
 		E6E3BBAE27C317C900CA0A81 /* CaseTableViewRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6E3BBAD27C317C900CA0A81 /* CaseTableViewRow.xib */; };
-		E6EB47F527BB39FC00438FA3 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EB47F427BB39FC00438FA3 /* Color.swift */; };
 		E6F280CB27C32030005FEC6E /* CaseTableViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F280CA27C32030005FEC6E /* CaseTableViewRow.swift */; };
 		E6F280CD27C32727005FEC6E /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F280CC27C32727005FEC6E /* DetailsViewController.swift */; };
 		E6F280D227C34205005FEC6E /* AddCaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F280D027C34205005FEC6E /* AddCaseViewController.swift */; };
@@ -166,6 +166,7 @@
 		65EB91B138B30844C2874A26 /* Pods_CaseTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CaseTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B586A5729462F9BD1B3E2F0 /* Pods-CaseTrackerCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaseTrackerCore.release.xcconfig"; path = "Target Support Files/Pods-CaseTrackerCore/Pods-CaseTrackerCore.release.xcconfig"; sourceTree = "<group>"; };
 		A4E4267FF0DCA58718057690 /* Pods-CaseTrackerCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaseTrackerCore.debug.xcconfig"; path = "Target Support Files/Pods-CaseTrackerCore/Pods-CaseTrackerCore.debug.xcconfig"; sourceTree = "<group>"; };
+		E69DF71F27C385F8003F9FE8 /* PaddedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedTextField.swift; sourceTree = "<group>"; };
 		E6A44B0227C0B36E00C495EF /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		E6C59DD627C08B5900391EBA /* CaseTrackerCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CaseTrackerCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6C59DDD27C08B5900391EBA /* CaseTrackerCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaseTrackerCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -426,6 +427,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E69DF71E27C385EB003F9FE8 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				E69DF71F27C385F8003F9FE8 /* PaddedTextField.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		E6C285E927C09B0B008EA60E /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -474,6 +483,7 @@
 		E6E3BBA827C30B8900CA0A81 /* ViewUIKit */ = {
 			isa = PBXGroup;
 			children = (
+				E69DF71E27C385EB003F9FE8 /* Common */,
 				E6F280D027C34205005FEC6E /* AddCaseViewController.swift */,
 				E6F280D427C343D0005FEC6E /* AddCaseViewController.xib */,
 				E6F280CA27C32030005FEC6E /* CaseTableViewRow.swift */,
@@ -813,7 +823,6 @@
 				2817EDBA27B4F27500F90C2E /* CaseStatusListItemViewModifier.swift in Sources */,
 				E6F280CB27C32030005FEC6E /* CaseTableViewRow.swift in Sources */,
 				28FD1AF427A7CB6D002CA8DE /* CaseTrackerApp.swift in Sources */,
-				E6EB47F527BB39FC00438FA3 /* Color.swift in Sources */,
 				283511B627AA430B00851FC6 /* DetailsView.swift in Sources */,
 				E6F280CD27C32727005FEC6E /* DetailsViewController.swift in Sources */,
 				2877470827B3976F0042D3FD /* FirstTimeUserView.swift in Sources */,
@@ -821,6 +830,7 @@
 				E6E3BBAC27C3104500CA0A81 /* HomeViewController.swift in Sources */,
 				28FD1B0527A8CAC7002CA8DE /* HomeViewModel.swift in Sources */,
 				287746FA27B36B0C0042D3FD /* Logger.swift in Sources */,
+				E69DF72027C385F8003F9FE8 /* PaddedTextField.swift in Sources */,
 				2877468A27AFB9620042D3FD /* PreviewDataRepository.swift in Sources */,
 				2877470A27B3986E0042D3FD /* PrimaryButton.swift in Sources */,
 				E6E3BB6C27C3072600CA0A81 /* SceneDelegate.swift in Sources */,
@@ -838,7 +848,7 @@
 				E6C59DF227C090F100391EBA /* CaseStatusRepository.swift in Sources */,
 				E6C59DF327C090F900391EBA /* CaseStatusURL.swift in Sources */,
 				E6C59E0927C095D200391EBA /* CaseTrackerModel.xcdatamodeld in Sources */,
-				E6C59E0527C0925500391EBA /* Color.swift in Sources */,
+				E69DF72127C3863A003F9FE8 /* Color.swift in Sources */,
 				E6C59DF727C0910700391EBA /* LocalCaseStatusPersistence.swift in Sources */,
 				E6C59E0627C0925500391EBA /* Logger.swift in Sources */,
 				E6C59E0727C092AF00391EBA /* NotificationFactory.swift in Sources */,
