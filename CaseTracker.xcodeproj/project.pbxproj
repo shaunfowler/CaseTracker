@@ -435,6 +435,33 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		E69DF72227C449E3003F9FE8 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				E6F280CA27C32030005FEC6E /* CaseTableViewRow.swift */,
+				E6E3BBAD27C317C900CA0A81 /* CaseTableViewRow.xib */,
+				E6E3BBAB27C3104500CA0A81 /* HomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		E69DF72327C449F0003F9FE8 /* AddCase */ = {
+			isa = PBXGroup;
+			children = (
+				E6F280D027C34205005FEC6E /* AddCaseViewController.swift */,
+				E6F280D427C343D0005FEC6E /* AddCaseViewController.xib */,
+			);
+			path = AddCase;
+			sourceTree = "<group>";
+		};
+		E69DF72427C449FB003F9FE8 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				E6F280CC27C32727005FEC6E /* DetailsViewController.swift */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
 		E6C285E927C09B0B008EA60E /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -483,13 +510,10 @@
 		E6E3BBA827C30B8900CA0A81 /* ViewUIKit */ = {
 			isa = PBXGroup;
 			children = (
+				E69DF72327C449F0003F9FE8 /* AddCase */,
 				E69DF71E27C385EB003F9FE8 /* Common */,
-				E6F280D027C34205005FEC6E /* AddCaseViewController.swift */,
-				E6F280D427C343D0005FEC6E /* AddCaseViewController.xib */,
-				E6F280CA27C32030005FEC6E /* CaseTableViewRow.swift */,
-				E6E3BBAD27C317C900CA0A81 /* CaseTableViewRow.xib */,
-				E6F280CC27C32727005FEC6E /* DetailsViewController.swift */,
-				E6E3BBAB27C3104500CA0A81 /* HomeViewController.swift */,
+				E69DF72427C449FB003F9FE8 /* Details */,
+				E69DF72227C449E3003F9FE8 /* Home */,
 				E6E3BB6B27C3072600CA0A81 /* SceneDelegate.swift */,
 			);
 			path = ViewUIKit;
@@ -1088,7 +1112,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.80;
-				OTHER_SWIFT_FLAGS = "$(inherited) -D UIKIT";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.shaunfowler.CaseTracker;
 				PRODUCT_NAME = "Case Tracker";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1124,7 +1148,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.80;
-				OTHER_SWIFT_FLAGS = "$(inherited) -D UIKIT";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.shaunfowler.CaseTracker;
 				PRODUCT_NAME = "Case Tracker";
 				PROVISIONING_PROFILE_SPECIFIER = "";
