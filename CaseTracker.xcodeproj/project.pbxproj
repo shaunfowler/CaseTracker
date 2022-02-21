@@ -52,7 +52,14 @@
 		E6E3BB5427C2D61900CA0A81 /* CaseTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E3BB5327C2D61900CA0A81 /* CaseTrackerUITests.swift */; };
 		E6E3BB6327C2D62900CA0A81 /* CaseTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E3BB6227C2D62900CA0A81 /* CaseTrackerTests.swift */; };
 		E6E3BB6A27C2DB2D00CA0A81 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E3BB6927C2DB2D00CA0A81 /* Protocols.swift */; };
+		E6E3BB6C27C3072600CA0A81 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E3BB6B27C3072600CA0A81 /* SceneDelegate.swift */; };
+		E6E3BBAC27C3104500CA0A81 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E3BBAB27C3104500CA0A81 /* HomeViewController.swift */; };
+		E6E3BBAE27C317C900CA0A81 /* CaseTableViewRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6E3BBAD27C317C900CA0A81 /* CaseTableViewRow.xib */; };
 		E6EB47F527BB39FC00438FA3 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EB47F427BB39FC00438FA3 /* Color.swift */; };
+		E6F280CB27C32030005FEC6E /* CaseTableViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F280CA27C32030005FEC6E /* CaseTableViewRow.swift */; };
+		E6F280CD27C32727005FEC6E /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F280CC27C32727005FEC6E /* DetailsViewController.swift */; };
+		E6F280D227C34205005FEC6E /* AddCaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F280D027C34205005FEC6E /* AddCaseViewController.swift */; };
+		E6F280D527C343D0005FEC6E /* AddCaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6F280D427C343D0005FEC6E /* AddCaseViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -168,7 +175,14 @@
 		E6E3BB6027C2D62900CA0A81 /* CaseTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaseTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6E3BB6227C2D62900CA0A81 /* CaseTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseTrackerTests.swift; sourceTree = "<group>"; };
 		E6E3BB6927C2DB2D00CA0A81 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		E6E3BB6B27C3072600CA0A81 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		E6E3BBAB27C3104500CA0A81 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		E6E3BBAD27C317C900CA0A81 /* CaseTableViewRow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CaseTableViewRow.xib; sourceTree = "<group>"; };
 		E6EB47F427BB39FC00438FA3 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		E6F280CA27C32030005FEC6E /* CaseTableViewRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseTableViewRow.swift; sourceTree = "<group>"; };
+		E6F280CC27C32727005FEC6E /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		E6F280D027C34205005FEC6E /* AddCaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCaseViewController.swift; sourceTree = "<group>"; };
+		E6F280D427C343D0005FEC6E /* AddCaseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddCaseViewController.xib; sourceTree = "<group>"; };
 		E9FAF8233AB232C826ED8660 /* Pods-CaseTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaseTracker.debug.xcconfig"; path = "Target Support Files/Pods-CaseTracker/Pods-CaseTracker.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -367,6 +381,7 @@
 			children = (
 				2877470E27B4704D0042D3FD /* Resources */,
 				2877470427B38E8C0042D3FD /* View */,
+				E6E3BBA827C30B8900CA0A81 /* ViewUIKit */,
 				2877470127B379860042D3FD /* AppDelegate.swift */,
 				287746F627B35F800042D3FD /* BackgroundRefeshManager.swift */,
 				28FD1AF327A7CB6D002CA8DE /* CaseTrackerApp.swift */,
@@ -454,6 +469,20 @@
 				E6E3BB6227C2D62900CA0A81 /* CaseTrackerTests.swift */,
 			);
 			path = CaseTrackerTests;
+			sourceTree = "<group>";
+		};
+		E6E3BBA827C30B8900CA0A81 /* ViewUIKit */ = {
+			isa = PBXGroup;
+			children = (
+				E6F280D027C34205005FEC6E /* AddCaseViewController.swift */,
+				E6F280D427C343D0005FEC6E /* AddCaseViewController.xib */,
+				E6F280CA27C32030005FEC6E /* CaseTableViewRow.swift */,
+				E6E3BBAD27C317C900CA0A81 /* CaseTableViewRow.xib */,
+				E6F280CC27C32727005FEC6E /* DetailsViewController.swift */,
+				E6E3BBAB27C3104500CA0A81 /* HomeViewController.swift */,
+				E6E3BB6B27C3072600CA0A81 /* SceneDelegate.swift */,
+			);
+			path = ViewUIKit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -643,7 +672,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6F280D527C343D0005FEC6E /* AddCaseViewController.xib in Resources */,
 				28FD1AF827A7CB6F002CA8DE /* Assets.xcassets in Resources */,
+				E6E3BBAE27C317C900CA0A81 /* CaseTableViewRow.xib in Resources */,
 				28FD1AFB27A7CB6F002CA8DE /* Preview Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -774,20 +805,25 @@
 			files = (
 				E6A44B0327C0B36E00C495EF /* ActivityView.swift in Sources */,
 				283511B027AA138000851FC6 /* AddCaseView.swift in Sources */,
+				E6F280D227C34205005FEC6E /* AddCaseViewController.swift in Sources */,
 				283511B227AA30E100851FC6 /* AddCaseViewModel.swift in Sources */,
 				2877470227B379860042D3FD /* AppDelegate.swift in Sources */,
 				287746F727B35F800042D3FD /* BackgroundRefeshManager.swift in Sources */,
 				283511AE27AA0ABD00851FC6 /* CaseRowView.swift in Sources */,
 				2817EDBA27B4F27500F90C2E /* CaseStatusListItemViewModifier.swift in Sources */,
+				E6F280CB27C32030005FEC6E /* CaseTableViewRow.swift in Sources */,
 				28FD1AF427A7CB6D002CA8DE /* CaseTrackerApp.swift in Sources */,
 				E6EB47F527BB39FC00438FA3 /* Color.swift in Sources */,
 				283511B627AA430B00851FC6 /* DetailsView.swift in Sources */,
+				E6F280CD27C32727005FEC6E /* DetailsViewController.swift in Sources */,
 				2877470827B3976F0042D3FD /* FirstTimeUserView.swift in Sources */,
 				28FD1AF627A7CB6D002CA8DE /* HomeView.swift in Sources */,
+				E6E3BBAC27C3104500CA0A81 /* HomeViewController.swift in Sources */,
 				28FD1B0527A8CAC7002CA8DE /* HomeViewModel.swift in Sources */,
 				287746FA27B36B0C0042D3FD /* Logger.swift in Sources */,
 				2877468A27AFB9620042D3FD /* PreviewDataRepository.swift in Sources */,
 				2877470A27B3986E0042D3FD /* PrimaryButton.swift in Sources */,
+				E6E3BB6C27C3072600CA0A81 /* SceneDelegate.swift in Sources */,
 				2877470627B38EB50042D3FD /* UpdatedCaptionTextViewModifier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -954,6 +990,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1041,6 +1078,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.80;
+				OTHER_SWIFT_FLAGS = "$(inherited) -D UIKIT";
 				PRODUCT_BUNDLE_IDENTIFIER = com.shaunfowler.CaseTracker;
 				PRODUCT_NAME = "Case Tracker";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1076,6 +1114,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.80;
+				OTHER_SWIFT_FLAGS = "$(inherited) -D UIKIT";
 				PRODUCT_BUNDLE_IDENTIFIER = com.shaunfowler.CaseTracker;
 				PRODUCT_NAME = "Case Tracker";
 				PROVISIONING_PROFILE_SPECIFIER = "";

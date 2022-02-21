@@ -9,12 +9,20 @@ import Foundation
 import UIKit
 import OSLog
 
-class AppDelegate: NSObject, UIApplicationDelegate {
+#if UIKIT
+@main
+class AppDelegate: NSObject { }
+#else
+class AppDelegate: NSObject { }
+#endif
+
+extension AppDelegate: UIApplicationDelegate {
 
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
+        Logger.main.info("AppDelegate - didFinishLaunchingWithOptions")
         UNUserNotificationCenter.current().delegate = self
         return true
     }
