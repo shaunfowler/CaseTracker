@@ -14,7 +14,7 @@ class HomeViewController: UIViewController {
 
     var subscriptions = Set<AnyCancellable>()
     let repository = CaseStatusRepository()
-    lazy var viewModel = HomeViewModel(repository: CaseStatusRepository())
+    lazy var viewModel = HomeViewModel(repository: repository)
 
     private enum Constants {
         static var cellReuseId = "cv-id1"

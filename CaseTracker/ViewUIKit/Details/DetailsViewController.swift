@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 import CaseTrackerCore
 
 class DetailsViewController: UIViewController {
@@ -126,7 +127,8 @@ class DetailsViewController: UIViewController {
 
     private func setupNavigationBar() {
         let menu = UIMenu(title: "", children: [
-            UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { _ in
+            UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { [weak self] _ in
+                guard let self = self else { return }
                 let activityViewController = UIActivityViewController(
                     activityItems: [CaseStatusURL.get(self.caseStatus.receiptNumber).url],
                     applicationActivities: nil)
@@ -185,7 +187,7 @@ class DetailsViewController: UIViewController {
     @objc private func viewOnWebsiteTapped(_ sender: UIButton) {
         let url = CaseStatusURL.get(caseStatus.receiptNumber).url
         if UIApplication.shared.canOpenURL(url) {
-            UIApplication.shared.open(url)
+            present(SFSafariViewController(url: url), animated: true)
         }
     }
 

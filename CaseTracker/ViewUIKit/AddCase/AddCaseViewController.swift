@@ -35,6 +35,7 @@ class AddCaseViewController: UIViewController {
 
         receiptNumberTextField.backgroundColor = .ctBackground
         receiptNumberTextField.borderStyle = .none
+        receiptNumberTextField.layer.cornerRadius = 8
         receiptNumberTextField.textInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
 
         receiptNumberTextField.addTarget(self, action: #selector(textChanged), for: .editingChanged)
@@ -44,6 +45,8 @@ class AddCaseViewController: UIViewController {
         addCaseButton.heightAnchor.constraint(greaterThanOrEqualToConstant: 44).isActive = true
 
         closeButton.addTarget(self, action: #selector(closeTapped), for: .touchUpInside)
+
+        receiptNumberTextField.becomeFirstResponder()
     }
 
     @objc func textChanged(_ sender: UITextField) {
