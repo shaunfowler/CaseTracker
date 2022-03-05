@@ -16,22 +16,37 @@ class HomeViewController: UIViewController {
     let repository = CaseStatusRepository()
     lazy var viewModel = HomeViewModel(repository: repository)
 
-    private enum Constants {
-        static var cellReuseId = "cv-id1"
-        static var headerReuseId = "table-header-cell"
-    }
-
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(UINib(nibName: "CaseTableViewRow", bundle: nil), forCellReuseIdentifier: Constants.cellReuseId)
-        tableView.register(HeaderTableCell.self, forHeaderFooterViewReuseIdentifier: Constants.headerReuseId)
+        tableView.register(
+            UINib(nibName: CaseTableCellView.Constants.nibName, bundle: nil),
+            forCellReuseIdentifier: CaseTableCellView.Constants.reuseId)
+        tableView.register(
+            CaseTableHeaderView.self,
+            forHeaderFooterViewReuseIdentifier: CaseTableHeaderView.Constants.reuseId)
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
         tableView.dataSource = self
         tableView.delegate = self
         return tableView
     }()
+
+    lazy var addButtonProminent: UIButton = {
+        let button = UIButton(frame: .zero)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.configuration = .borderedProminent()
+        button.configuration?.title = "Add Your First Case"
+        button.addTarget(self, action: #selector(addTapped), for: .touchUpInside)
+        return button
+    }()
+
+    lazy var addButtonConstraints = [
+        addButtonProminent.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+        addButtonProminent.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+    ]
+
+    lazy var addButtonNavBar = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
 
     let refreshControl = UIRefreshControl()
 
@@ -49,13 +64,17 @@ class HomeViewController: UIViewController {
     private func setupNavigationBar() {
         title = "My Cases"
         navigationController?.navigationBar.prefersLargeTitles = true
-
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
-        navigationItem.rightBarButtonItems = [addButton]
     }
 
     private func setupCollectionView() {
         view.addSubview(tableView)
+        view.addSubview(addButtonProminent)
+
+        addButtonConstraints = [
+            addButtonProminent.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            addButtonProminent.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+        ]
+
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
@@ -64,18 +83,37 @@ class HomeViewController: UIViewController {
         ])
     }
 
+    private func hideEmptyViewState() {
+        addButtonProminent.removeFromSuperview()
+        NSLayoutConstraint.deactivate(addButtonConstraints)
+        navigationItem.rightBarButtonItems = [addButtonNavBar]
+    }
+
+    private func showEmptyViewState() {
+        view.addSubview(addButtonProminent)
+        NSLayoutConstraint.activate(addButtonConstraints)
+        navigationItem.rightBarButtonItems = []
+    }
+
     private func setupRefreshControl() {
         refreshControl.addTarget(self, action: #selector(refreshPulled), for: .valueChanged)
-        tableView.refreshControl = refreshControl
+        // tableView.refreshControl = refreshControl
+        tableView.insertSubview(refreshControl, at: 0)
     }
 
     private func loadData() {
         viewModel
             .$cases
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                print("Reload - $cases")
-                self?.tableView.reloadData()
+            .sink { [weak self] cases in
+                guard let self = self else { return }
+                self.tableView.reloadData()
+
+                if cases.isEmpty {
+                    self.showEmptyViewState()
+                } else {
+                    self.hideEmptyViewState()
+                }
             }
             .store(in: &subscriptions)
 
@@ -83,7 +121,6 @@ class HomeViewController: UIViewController {
             .$loading
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                print("Reload - $loading")
                 self?.tableView.reloadData()
             }
             .store(in: &subscriptions)
@@ -101,7 +138,6 @@ class HomeViewController: UIViewController {
     }
 
     @objc func refreshPulled() {
-        print("Refresh")
         Task {
             await viewModel.refresh()
             refreshControl.endRefreshing()
@@ -116,9 +152,9 @@ extension HomeViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellReuseId, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: CaseTableCellView.Constants.reuseId, for: indexPath)
 
-        if let cell = cell as? CaseTableViewRow {
+        if let cell = cell as? CaseTableCellView {
             let data = viewModel.cases[indexPath.row]
             cell.formType.text = data.formType
             cell.receiptNumber.text = data.receiptNumber
@@ -147,34 +183,12 @@ extension HomeViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: Constants.headerReuseId)
-        if let cell = cell as? HeaderTableCell {
-            cell.label.text = viewModel.lastUpdatedLoadingMessage
-        }
+        let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: CaseTableHeaderView.Constants.reuseId)
+        (cell as? CaseTableHeaderView)?.label.text = viewModel.lastUpdatedLoadingMessage
         return cell
     }
 
     private func onCaseRemove(_ caseStatus: CaseStatus) {
         viewModel.removeCase(receiptNumber: caseStatus.receiptNumber)
-    }
-}
-
-class HeaderTableCell: UITableViewHeaderFooterView {
-
-    var label: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 13, weight: .semibold)
-        label.textColor = .systemGray
-        label.textAlignment = .center
-        return label
-    }()
-
-    override func layoutSubviews() {
-        addSubview(label)
-        NSLayoutConstraint.activate([
-            label.centerXAnchor.constraint(equalTo: centerXAnchor),
-            label.heightAnchor.constraint(equalToConstant: 20)
-        ])
     }
 }

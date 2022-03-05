@@ -1,5 +1,5 @@
 //
-//  CaseTableViewRow.swift
+//  CaseTableCellView.swift
 //  CaseTracker
 //
 //  Created by Fowler, Shaun on 2/20/22.
@@ -8,7 +8,12 @@
 import Foundation
 import UIKit
 
-class CaseTableViewRow: UITableViewCell {
+class CaseTableCellView: UITableViewCell {
+
+    enum Constants {
+        static let reuseId = "case-cell"
+        static let nibName = "CaseTableViewRow"
+    }
 
     @IBOutlet var containerView: UIView!
     @IBOutlet var indicator: UIView!
