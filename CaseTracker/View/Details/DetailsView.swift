@@ -90,18 +90,11 @@ struct DetailsView: View {
         .toolbar {
             ToolbarItemGroup(placement: .bottomBar) {
                 Button(action: { isShowingActivityViewController.toggle() }, label: {
-                    Image(systemName: "square.and.arrow.up")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
+                    Label("Share", systemImage: "square.and.arrow.up")
                 })
-                .frame(width: 44)
-
                 Button(action: onMoreButtonPressed) {
-                    Image(systemName: "ellipsis.circle")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
+                    Label("More", systemImage: "ellipsis.circle")
                 }
-                .frame(width: 44)
             }
         }
     }
