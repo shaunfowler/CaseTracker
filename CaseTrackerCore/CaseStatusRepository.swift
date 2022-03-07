@@ -73,6 +73,8 @@ public class CaseStatusRepository: Repository {
     // MARK: - Public Functions
 
     public func query(force: Bool = false) async {
+        defer { os_signpost(.end, log: OSLog.caseTrackerPoi, name: "CaseStatusRepository_query") }
+        os_signpost(.begin, log: OSLog.caseTrackerPoi, name: "CaseStatusRepository_query")
         Logger.main.log("Querying all cases...")
         var result = [CaseStatus]()
         do {
@@ -126,6 +128,8 @@ public class CaseStatusRepository: Repository {
     // MARK: - Private Functions
 
     private func get(forCaseId id: String, force: Bool = false) async -> Result<CaseStatus, Error> {
+        defer { os_signpost(.end, log: OSLog.caseTrackerPoi, name: "CaseStatusRepository_get") }
+        os_signpost(.begin, log: OSLog.caseTrackerPoi, name: "CaseStatusRepository_get")
         let cachedValue = data.value.first { $0.receiptNumber == id}
 
         if !force,

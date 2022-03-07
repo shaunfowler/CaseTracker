@@ -12,7 +12,7 @@ class CaseTableCellView: UITableViewCell {
 
     enum Constants {
         static let reuseId = "case-cell"
-        static let nibName = "CaseTableViewRow"
+        static let nibName = "CaseTableCellView"
     }
 
     @IBOutlet var containerView: UIView!

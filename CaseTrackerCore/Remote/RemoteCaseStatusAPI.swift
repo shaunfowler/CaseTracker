@@ -20,6 +20,8 @@ actor RemoteCaseStatusAPI: CaseStatusReadable {
     public init() { }
 
     public func get(forCaseId id: String) async -> Result<CaseStatus, Error> {
+        defer { os_signpost(.end, log: OSLog.caseTrackerPoi, name: "RemoteCaseStatusAPI_get") }
+        os_signpost(.begin, log: OSLog.caseTrackerPoi, name: "RemoteCaseStatusAPI_get")
         do {
             let urlContainer = CaseStatusURL.get(id)
             let url = urlContainer.url

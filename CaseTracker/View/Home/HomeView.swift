@@ -54,6 +54,8 @@ struct HomeView: View {
             action: onAddCasePressed,
             label: {
                 Image(systemName: "plus")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
             })
             .padding([.leading, .top, .bottom], 4)
             .contentShape(Rectangle())

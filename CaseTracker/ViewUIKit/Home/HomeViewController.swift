@@ -43,7 +43,7 @@ class HomeViewController: UIViewController {
 
     lazy var addButtonConstraints = [
         addButtonProminent.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-        addButtonProminent.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+        addButtonProminent.centerYAnchor.constraint(equalTo: view.centerYAnchor)
     ]
 
     lazy var addButtonNavBar = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
@@ -72,7 +72,7 @@ class HomeViewController: UIViewController {
 
         addButtonConstraints = [
             addButtonProminent.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            addButtonProminent.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            addButtonProminent.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ]
 
         NSLayoutConstraint.activate([

@@ -35,17 +35,17 @@ struct CaseRowView: View {
                 Text(model.status)
                     .font(.system(size: fontSize))
 
-                HStack {
-                    if !model.lastUpdatedFormatted.isEmpty {
+                if !model.lastUpdatedFormatted.isEmpty {
+                    HStack {
                         Text(model.lastUpdatedFormatted)
+                        if !model.lastUpdatedRelativeDaysFormatted.isEmpty {
+                            Text("•")
+                            Text(model.lastUpdatedRelativeDaysFormatted)
+                        }
                     }
-                    Text("•")
-                    if !model.lastUpdatedRelativeDaysFormatted.isEmpty {
-                        Text(model.lastUpdatedRelativeDaysFormatted)
-                    }
+                    .font(.system(size: fontSize))
+                    .opacity(0.4)
                 }
-                .font(.system(size: fontSize))
-                .opacity(0.4)
             }
             .padding([.leading], 0)
             .padding([.top, .bottom], 10)
