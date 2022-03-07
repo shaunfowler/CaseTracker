@@ -37,7 +37,9 @@ struct CaseTrackerApp: App {
         backgroundRefreshManager.delegate = self
 
         // Schedule background refresh
-        backgroundRefreshManager.schedule()
+        #if !targetEnvironment(simulator)
+            backgroundRefreshManager.schedule()
+        #endif
     }
 
     var body: some Scene {

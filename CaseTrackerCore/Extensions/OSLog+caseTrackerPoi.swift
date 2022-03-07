@@ -10,5 +10,6 @@ import OSLog
 
 extension OSLog {
 
-    static let caseTrackerPoi = OSLog(subsystem: "com.shaunfowler.CaseTracker", category: .pointsOfInterest)
+    static let caseTrackerPoi = OSLog(subsystem: "com.shaunfowler.CaseTracker",
+                                      category: .pointsOfInterest)
 }

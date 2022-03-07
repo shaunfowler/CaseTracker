@@ -19,6 +19,8 @@ public class LocalCaseStatusPersistence {
 extension LocalCaseStatusPersistence: CaseStatusWritable {
 
     public func set(caseStatus: CaseStatus) async -> Result<(), Error> {
+        defer { os_signpost(.end, log: OSLog.caseTrackerPoi, name: "LocalCaseStatusPersistence_get") }
+        os_signpost(.begin, log: OSLog.caseTrackerPoi, name: "LocalCaseStatusPersistence_get")
         do {
             try viewContext.performAndWait {
                 let fetchRequest = CaseStatusManagedObject.fetchByReceiptNumberRequest(receiptNumber: caseStatus.id)
@@ -37,6 +39,8 @@ extension LocalCaseStatusPersistence: CaseStatusWritable {
     }
 
     public func remove(receiptNumber: String) async -> Result<(), Error> {
+        defer { os_signpost(.end, log: OSLog.caseTrackerPoi, name: "LocalCaseStatusPersistence_remove") }
+        os_signpost(.begin, log: OSLog.caseTrackerPoi, name: "LocalCaseStatusPersistence_remove")
         do {
             try await viewContext.perform {
                 let fetchRequest = CaseStatusManagedObject.fetchByReceiptNumberRequest(receiptNumber: receiptNumber)
@@ -55,6 +59,8 @@ extension LocalCaseStatusPersistence: CaseStatusWritable {
 extension LocalCaseStatusPersistence: CaseStatusQueryable {
 
     public func query() async -> Result<[CaseStatus], Error> {
+        defer { os_signpost(.end, log: OSLog.caseTrackerPoi, name: "LocalCaseStatusPersistence_query") }
+        os_signpost(.begin, log: OSLog.caseTrackerPoi, name: "LocalCaseStatusPersistence_query")
         do {
             var resultSet: [CaseStatus] = []
             try viewContext.performAndWait {

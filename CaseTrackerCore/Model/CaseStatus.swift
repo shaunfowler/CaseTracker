@@ -88,6 +88,9 @@ extension CaseStatus: CustomStringConvertible {
 
 extension CaseStatus {
     init(receiptNumber: String, htmlString: String) throws {
+        defer { os_signpost(.end, log: OSLog.caseTrackerPoi, name: "CaseStatus_init") }
+        os_signpost(.begin, log: OSLog.caseTrackerPoi, name: "CaseStatus_init")
+
         let doc: Document = try SwiftSoup.parse(htmlString)
 
         guard

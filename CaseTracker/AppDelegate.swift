@@ -22,7 +22,6 @@ extension AppDelegate: UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
-        Logger.main.info("AppDelegate - didFinishLaunchingWithOptions")
         UNUserNotificationCenter.current().delegate = self
         return true
     }

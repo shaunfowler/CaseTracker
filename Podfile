@@ -8,6 +8,7 @@ target 'CaseTracker' do
   # Pods for CaseTracker
 
   pod 'SwiftSoup'
+  pod 'CocoaLumberjack/Swift'
 
 end
 
@@ -18,5 +19,6 @@ target 'CaseTrackerCore' do
   # Pods for CaseTracker
 
   pod 'SwiftSoup'
+  pod 'CocoaLumberjack/Swift'
 
 end
