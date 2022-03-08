@@ -1,0 +1,25 @@
+# For more information about this configuration visit
+# https://docs.fastlane.tools/actions/gym/#gymfile
+
+# In general, you can use the options available
+# fastlane gym --help
+
+# App scheme name
+scheme("CaseTracker")
+
+# Provide provisioning profiles to use
+export_options({
+    method: "app-store",
+    provisioningProfiles: {
+        "com.shaunfowler.CaseTracker" => "match AppStore com.shaunfowler.CaseTracker",
+    }
+})
+
+# Specify the path to store .ipa file
+output_directory("./fastlane/builds")
+
+# Excludes bitcode from the build
+include_bitcode(false)
+
+# Excludes symbols from the build.
+include_symbols(false)
