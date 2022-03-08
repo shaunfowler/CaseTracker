@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 import Combine
-import OSLog
+import CocoaLumberjack
 import CaseTrackerCore
 
 @MainActor
@@ -96,7 +96,7 @@ class HomeViewModel: ObservableObject {
         $phase
             .compactMap { $0 }
             .sink { [weak self] in
-                Logger.view.log("Scene phase changed to: \($0, privacy: .public).")
+                DDLogInfo("Scene phase changed to: \($0).")
                 if $0 == .active {
                     Task { [weak self] in
                         await self?.fetch()

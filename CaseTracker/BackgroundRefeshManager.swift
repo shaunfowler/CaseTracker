@@ -7,7 +7,7 @@
 
 import Foundation
 import BackgroundTasks
-import OSLog
+import CocoaLumberjack
 
 // e -l objc -- (void)[[BGTaskScheduler sharedScheduler] _simulateLaunchForTaskWithIdentifier:@"com.shaunfowler.CaseTracker-reload"]
 
@@ -28,7 +28,7 @@ class BackgroundRefeshManager {
     var delegate: BackgroundRefreshableDelegate?
 
     init() {
-        Logger.background.log("Registering task: \(Constants.reloadTaskId, privacy: .public).")
+        DDLogInfo("Registering task: \(Constants.reloadTaskId).")
         BGTaskScheduler.shared.register(
             forTaskWithIdentifier: Constants.reloadTaskId,
             using: nil) { task in
@@ -39,27 +39,27 @@ class BackgroundRefeshManager {
     }
 
     func schedule() {
-        Logger.background.log("Attempting to schedule background refresh task...")
+        DDLogInfo("Attempting to schedule background refresh task...")
         BGTaskScheduler.shared.cancel(taskRequestWithIdentifier: Constants.reloadTaskId)
         do {
             let request = BGAppRefreshTaskRequest(identifier: Constants.reloadTaskId)
             let date = Date(timeIntervalSinceNow: Constants.timeDelay)
             request.earliestBeginDate = date
             try BGTaskScheduler.shared.submit(request)
-            Logger.background.log("Scheduled task: \(Constants.reloadTaskId).")
-            Logger.background.log(
-                "Earliest begin date of: \(date.description, privacy: .public). Now: \(Date().description, privacy: .public).")
+            DDLogInfo("Scheduled task: \(Constants.reloadTaskId).")
+            DDLogInfo(
+                "Earliest begin date of: \(date.description). Now: \(Date().description).")
         } catch {
-            Logger.background.error(
-                "Failed to submit background task: \(Constants.reloadTaskId, privacy: .public). Error: \(error.localizedDescription, privacy: .public)")
+            DDLogError(
+                "Failed to submit background task: \(Constants.reloadTaskId). Error: \(error.localizedDescription)")
         }
     }
 
     private func handleAppRefreshTask(task: BGAppRefreshTask) {
-        Logger.background.log("Executing background task: \(Constants.reloadTaskId, privacy: .public)...")
+        DDLogInfo("Executing background task: \(Constants.reloadTaskId)...")
         Task {
             await delegate?.refresh()
-            Logger.background.log("Completed background task: \(Constants.reloadTaskId, privacy: .public).")
+            DDLogInfo("Completed background task: \(Constants.reloadTaskId).")
             schedule()
             task.setTaskCompleted(success: true)
         }

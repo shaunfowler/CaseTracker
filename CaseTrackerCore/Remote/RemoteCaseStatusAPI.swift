@@ -7,6 +7,7 @@
 
 import Foundation
 import OSLog
+import CocoaLumberjack
 
 actor RemoteCaseStatusAPI: CaseStatusReadable {
 
@@ -26,7 +27,7 @@ actor RemoteCaseStatusAPI: CaseStatusReadable {
             let urlContainer = CaseStatusURL.get(id)
             let url = urlContainer.url
 
-            Logger.api.log("Requesting URL: \(urlContainer.url.absoluteString, privacy: .private).")
+            DDLogInfo("Requesting URL: \(urlContainer.url.absoluteString).")
             let (data, response) = try await urlSession.data(for: URLRequest(url: url))
             await urlSession.reset()
 
@@ -40,7 +41,7 @@ actor RemoteCaseStatusAPI: CaseStatusReadable {
 
             return .success(try CaseStatus(receiptNumber: id, htmlString: htmlString))
         } catch {
-            Logger.api.error("Error requesting case. Error: \(error.localizedDescription, privacy: .public).")
+            DDLogError("Error requesting case. Error: \(error.localizedDescription).")
             return .failure(error)
         }
     }

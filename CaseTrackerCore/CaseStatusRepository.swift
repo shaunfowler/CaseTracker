@@ -10,6 +10,7 @@ import Combine
 import UIKit
 import OSLog
 import Network
+import CocoaLumberjack
 
 public typealias CaseStatusLocalCache = CaseStatusQueryable & CaseStatusWritable
 
@@ -75,7 +76,7 @@ public class CaseStatusRepository: Repository {
     public func query(force: Bool = false) async {
         defer { os_signpost(.end, log: OSLog.caseTrackerPoi, name: "CaseStatusRepository_query") }
         os_signpost(.begin, log: OSLog.caseTrackerPoi, name: "CaseStatusRepository_query")
-        Logger.main.log("Querying all cases...")
+        DDLogInfo("Querying all cases...")
         var result = [CaseStatus]()
         do {
             // Send local data to publisher first.
@@ -88,7 +89,7 @@ public class CaseStatusRepository: Repository {
                 guard localResults.compactMap({ $0.lastFetched }).contains(where: { element in
                     hasExpired(lastFetched: element, now: now)
                 }) else {
-                    Logger.main.log("Using cache for all cases.")
+                    DDLogInfo("Using cache for all cases.")
                     return
                 }
             }
@@ -103,24 +104,24 @@ public class CaseStatusRepository: Repository {
             // Send remote data to publisher.
             error.value = nil
             data.value = result.sorted(by: { lhs, rhs in lhs.id < rhs.id })
-            Logger.main.log("Finished querying \(result.count, privacy: .public) cases.")
+            DDLogInfo("Finished querying \(result.count) cases.")
         } catch {
-            Logger.main.error("Error querying cases: \(error.localizedDescription, privacy: .public).")
+            DDLogError("Error querying cases: \(error.localizedDescription).")
         }
     }
 
     public func addCase(receiptNumber: String) async -> Result<CaseStatus, Error> {
-        Logger.api.log("Adding new case: \(receiptNumber)...")
+        DDLogInfo("Adding new case: \(receiptNumber)...")
         let result = await get(forCaseId: receiptNumber)
         if case .success(let caseStatus) = result {
-            Logger.api.debug("Adding case to local repository publisher.")
+            DDLogDebug("Adding case to local repository publisher.")
             data.value = [caseStatus] + data.value
         }
         return result
     }
 
     public func removeCase(receiptNumber: String) async -> Result<(), Error> {
-        Logger.api.log("Removing case: \(receiptNumber)...")
+        DDLogInfo("Removing case: \(receiptNumber)...")
         data.value = data.value.filter { $0.id != receiptNumber }
         return await local.remove(receiptNumber: receiptNumber)
     }
@@ -151,16 +152,16 @@ public class CaseStatusRepository: Repository {
             return .success(updatedCase)
 
         case .failure(let error):
-            Logger.api.error("Error fetching case from remote API: \(error.localizedDescription, privacy: .public).")
+            DDLogError("Error fetching case from remote API: \(error.localizedDescription).")
             return .failure(CSError.http)
         }
     }
 
     private func startNetworkMonitor() {
-        Logger.api.log("Starting network monitor...")
+        DDLogInfo("Starting network monitor...")
         networkPathMonitor.pathUpdateHandler = { [weak self] path in
             let satisfied = path.status == .satisfied
-            Logger.api.log("Network path satisfied: \(satisfied, privacy: .public).")
+            DDLogInfo("Network path satisfied: \(satisfied).")
             self?.networkReachable.send(satisfied)
         }
         networkPathMonitor.start(queue: networkMonitorQueue)
@@ -169,7 +170,7 @@ public class CaseStatusRepository: Repository {
     private func setupTimer() {
         Timer.scheduledTimer(withTimeInterval: Constants.refreshInterval, repeats: true) { _ in
             Task { [weak self] in
-                Logger.main.log("Reloading data on periodic timer...")
+                DDLogInfo("Reloading data on periodic timer...")
                 await self?.query()
             }
         }
@@ -177,7 +178,7 @@ public class CaseStatusRepository: Repository {
 
     private func detectChanges(existingCase: CaseStatus, updatedCase: CaseStatus) {
         if existingCase.lastUpdated != updatedCase.lastUpdated || existingCase.status != updatedCase.status {
-            Logger.api.log("Detected case change from status [\(existingCase.status, privacy: .public)] to [\(updatedCase.status, privacy: .public)].")
+            DDLogInfo("Detected case change from status [\(existingCase.status)] to [\(updatedCase.status)].")
             notificationService.request(notification: .statusUpdated(updatedCase))
         }
     }

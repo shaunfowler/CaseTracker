@@ -7,7 +7,7 @@
 
 import Foundation
 import NotificationCenter
-import OSLog
+import CocoaLumberjack
 
 public class NotificationService {
 
@@ -17,10 +17,10 @@ public class NotificationService {
         UNUserNotificationCenter
             .current()
             .requestAuthorization(options: [.alert, .badge, .sound]) { result, error in
-                Logger.notifications.log("Result from notification authorization request: \(result, privacy: .public).")
+                DDLogInfo("Result from notification authorization request: \(result).")
                 if let error = error {
-                    Logger.notifications.error(
-                        "Error from notification authorization request: \(error.localizedDescription, privacy: .public).")
+                    DDLogError(
+                        "Error from notification authorization request: \(error.localizedDescription).")
                 }
             }
 
@@ -29,7 +29,7 @@ public class NotificationService {
 
     public func request(notification: Notification) {
 
-        Logger.notifications.log("Displaying local notification.")
+        DDLogInfo("Displaying local notification.")
 
         let request = UNNotificationRequest(
             identifier: UUID().uuidString,

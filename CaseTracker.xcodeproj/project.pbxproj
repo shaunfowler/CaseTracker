@@ -14,7 +14,7 @@
 		283511B627AA430B00851FC6 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283511B527AA430B00851FC6 /* DetailsView.swift */; };
 		2877468A27AFB9620042D3FD /* PreviewDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877468927AFB9620042D3FD /* PreviewDataRepository.swift */; };
 		287746F727B35F800042D3FD /* BackgroundRefeshManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287746F627B35F800042D3FD /* BackgroundRefeshManager.swift */; };
-		287746FA27B36B0C0042D3FD /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287746F927B36B0C0042D3FD /* Logger.swift */; };
+		287746FA27B36B0C0042D3FD /* LogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287746F927B36B0C0042D3FD /* LogFormatter.swift */; };
 		2877470227B379860042D3FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877470127B379860042D3FD /* AppDelegate.swift */; };
 		2877470627B38EB50042D3FD /* UpdatedCaptionTextViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877470527B38EB50042D3FD /* UpdatedCaptionTextViewModifier.swift */; };
 		2877470827B3976F0042D3FD /* FirstTimeUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877470727B3976F0042D3FD /* FirstTimeUserView.swift */; };
@@ -48,7 +48,7 @@
 		E6C59DFA27C0911A00391EBA /* CaseStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FD1B0C27A8D566002CA8DE /* CaseStatus.swift */; };
 		E6C59DFB27C0911A00391EBA /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287C42DA27AB69D5005CD181 /* Status.swift */; };
 		E6C59E0427C0925500391EBA /* ScenePhase+CustomStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287746FB27B36EF60042D3FD /* ScenePhase+CustomStringConvertible.swift */; };
-		E6C59E0627C0925500391EBA /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287746F927B36B0C0042D3FD /* Logger.swift */; };
+		E6C59E0627C0925500391EBA /* LogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287746F927B36B0C0042D3FD /* LogFormatter.swift */; };
 		E6C59E0727C092AF00391EBA /* NotificationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877470B27B43DCD0042D3FD /* NotificationFactory.swift */; };
 		E6C59E0827C092AF00391EBA /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287746FF27B373020042D3FD /* NotificationService.swift */; };
 		E6C59E0927C095D200391EBA /* CaseTrackerModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2877470F27B4762E0042D3FD /* CaseTrackerModel.xcdatamodeld */; };
@@ -137,7 +137,7 @@
 		2877468927AFB9620042D3FD /* PreviewDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewDataRepository.swift; sourceTree = "<group>"; };
 		287746F627B35F800042D3FD /* BackgroundRefeshManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundRefeshManager.swift; sourceTree = "<group>"; };
 		287746F827B361000042D3FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		287746F927B36B0C0042D3FD /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		287746F927B36B0C0042D3FD /* LogFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogFormatter.swift; sourceTree = "<group>"; };
 		287746FB27B36EF60042D3FD /* ScenePhase+CustomStringConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScenePhase+CustomStringConvertible.swift"; sourceTree = "<group>"; };
 		287746FF27B373020042D3FD /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		2877470127B379860042D3FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -265,7 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				E6EB47F427BB39FC00438FA3 /* Color.swift */,
-				287746F927B36B0C0042D3FD /* Logger.swift */,
+				287746F927B36B0C0042D3FD /* LogFormatter.swift */,
 				287746FB27B36EF60042D3FD /* ScenePhase+CustomStringConvertible.swift */,
 				28E8447827D59FE20061E381 /* OSLog+caseTrackerPoi.swift */,
 			);
@@ -860,7 +860,7 @@
 				28E8441B27D32C1F0061E381 /* CaseTableHeaderView.swift in Sources */,
 				E6E3BBAC27C3104500CA0A81 /* HomeViewController.swift in Sources */,
 				28FD1B0527A8CAC7002CA8DE /* HomeViewModel.swift in Sources */,
-				287746FA27B36B0C0042D3FD /* Logger.swift in Sources */,
+				287746FA27B36B0C0042D3FD /* LogFormatter.swift in Sources */,
 				E69DF72027C385F8003F9FE8 /* PaddedTextField.swift in Sources */,
 				2877468A27AFB9620042D3FD /* PreviewDataRepository.swift in Sources */,
 				2877470A27B3986E0042D3FD /* PrimaryButton.swift in Sources */,
@@ -882,7 +882,7 @@
 				E6C59E0927C095D200391EBA /* CaseTrackerModel.xcdatamodeld in Sources */,
 				E69DF72127C3863A003F9FE8 /* Color.swift in Sources */,
 				E6C59DF727C0910700391EBA /* LocalCaseStatusPersistence.swift in Sources */,
-				E6C59E0627C0925500391EBA /* Logger.swift in Sources */,
+				E6C59E0627C0925500391EBA /* LogFormatter.swift in Sources */,
 				E6C59E0727C092AF00391EBA /* NotificationFactory.swift in Sources */,
 				E6C59E0827C092AF00391EBA /* NotificationService.swift in Sources */,
 				E6C59DF827C0910B00391EBA /* PersistenceController.swift in Sources */,

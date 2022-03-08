@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import OSLog
+import CocoaLumberjack
 import CaseTrackerCore
 
 @MainActor
@@ -25,14 +25,14 @@ class AddCaseViewModel: ObservableObject {
     func attemptAddCase() async {
         isLoading = true
         let receiptNumber = receiptNumber
-        Logger.view.log("Attempting to add case: \(receiptNumber).")
+        DDLogInfo("Attempting to add case: \(receiptNumber).")
         let result = await repository.addCase(receiptNumber: receiptNumber)
         switch result {
         case .failure(let error):
-            Logger.view.log("Error adding case: \(receiptNumber) with error: \(error.localizedDescription)." )
+            DDLogInfo("Error adding case: \(receiptNumber) with error: \(error.localizedDescription)." )
             showError = true
         case .success(let caseStatus):
-            Logger.view.log("Added case: \(caseStatus).")
+            DDLogInfo("Added case: \(caseStatus).")
         }
         isLoading = false
     }

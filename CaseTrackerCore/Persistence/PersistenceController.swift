@@ -8,6 +8,7 @@
 import Foundation
 import CoreData
 import OSLog
+import CocoaLumberjack
 
 class PersistenceController {
 
@@ -31,7 +32,7 @@ class PersistenceController {
         container.loadPersistentStores(completionHandler: { _, error in
             defer { os_signpost(.end, log: OSLog.caseTrackerPoi, name: "PersistenceController_init") }
             if let error = error as NSError? {
-                Logger.main.fault("Failed to load CoreData persistent stores. Error: \(error, privacy: .public).")
+                DDLogError("Failed to load CoreData persistent stores. Error: \(error).")
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
