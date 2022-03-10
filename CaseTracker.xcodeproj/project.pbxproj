@@ -21,6 +21,8 @@
 		2877470A27B3986E0042D3FD /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877470927B3986E0042D3FD /* PrimaryButton.swift */; };
 		287C42E327AB6A4C005CD181 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287C42E227AB6A4C005CD181 /* main.swift */; };
 		287C42E827AB6B64005CD181 /* statusTitles.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 287C42E727AB6A63005CD181 /* statusTitles.txt */; };
+		28C2758A27D71AD3009022FE /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C2758927D71AD3009022FE /* SnapshotHelper.swift */; };
+		28C2758D27D731E0009022FE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 28C2758F27D731E0009022FE /* Localizable.strings */; };
 		28E8441B27D32C1F0061E381 /* CaseTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E8441A27D32C1F0061E381 /* CaseTableHeaderView.swift */; };
 		28E8447927D59FE20061E381 /* OSLog+caseTrackerPoi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E8447827D59FE20061E381 /* OSLog+caseTrackerPoi.swift */; };
 		28FD1AF427A7CB6D002CA8DE /* CaseTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FD1AF327A7CB6D002CA8DE /* CaseTrackerApp.swift */; };
@@ -153,6 +155,8 @@
 		287C42E027AB6A4C005CD181 /* CaseTrackerCodeGen */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CaseTrackerCodeGen; sourceTree = BUILT_PRODUCTS_DIR; };
 		287C42E227AB6A4C005CD181 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		287C42E727AB6A63005CD181 /* statusTitles.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = statusTitles.txt; sourceTree = "<group>"; };
+		28C2758927D71AD3009022FE /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
+		28C2758E27D731E0009022FE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		28E8441A27D32C1F0061E381 /* CaseTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseTableHeaderView.swift; sourceTree = "<group>"; };
 		28E8447827D59FE20061E381 /* OSLog+caseTrackerPoi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OSLog+caseTrackerPoi.swift"; sourceTree = "<group>"; };
 		28FD1AF027A7CB6D002CA8DE /* Case Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Case Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -320,6 +324,7 @@
 				28FD1AF727A7CB6F002CA8DE /* Assets.xcassets */,
 				287746F827B361000042D3FD /* Info.plist */,
 				2877468927AFB9620042D3FD /* PreviewDataRepository.swift */,
+				28C2758F27D731E0009022FE /* Localizable.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -501,6 +506,7 @@
 			isa = PBXGroup;
 			children = (
 				E6E3BB5327C2D61900CA0A81 /* CaseTrackerUITests.swift */,
+				28C2758927D71AD3009022FE /* SnapshotHelper.swift */,
 			);
 			path = CaseTrackerUITests;
 			sourceTree = "<group>";
@@ -712,6 +718,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28C2758D27D731E0009022FE /* Localizable.strings in Resources */,
 				E6F280D527C343D0005FEC6E /* AddCaseViewController.xib in Resources */,
 				28FD1AF827A7CB6F002CA8DE /* Assets.xcassets in Resources */,
 				E6E3BBAE27C317C900CA0A81 /* CaseTableCellView.xib in Resources */,
@@ -907,6 +914,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E6E3BB5427C2D61900CA0A81 /* CaseTrackerUITests.swift in Sources */,
+				28C2758A27D71AD3009022FE /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -947,6 +955,17 @@
 			targetProxy = E6E3BB6427C2D62900CA0A81 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		28C2758F27D731E0009022FE /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				28C2758E27D731E0009022FE /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		287C42E527AB6A4C005CD181 /* Debug */ = {
@@ -1120,7 +1139,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.80;
-				OTHER_SWIFT_FLAGS = "$(inherited) -D UIKIT";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.shaunfowler.CaseTracker;
 				PRODUCT_NAME = "Case Tracker";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.shaunfowler.CaseTracker";
@@ -1157,7 +1176,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.80;
-				OTHER_SWIFT_FLAGS = "$(inherited) -D UIKIT";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.shaunfowler.CaseTracker;
 				PRODUCT_NAME = "Case Tracker";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.shaunfowler.CaseTracker";

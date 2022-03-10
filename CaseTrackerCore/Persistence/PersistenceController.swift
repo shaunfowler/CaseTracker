@@ -29,6 +29,15 @@ class PersistenceController {
             managedObjectModel: NSManagedObjectModel(contentsOf: managedObjectModelUrl)!
         )
 
+        #if DEBUG
+        if CommandLine.arguments.contains("-uiTests") {
+            print("*** Using in-memory persistence container ***")
+            let description = NSPersistentStoreDescription()
+            description.url = URL(fileURLWithPath: "/dev/null")
+            container.persistentStoreDescriptions = [description]
+        }
+        #endif
+
         container.loadPersistentStores(completionHandler: { _, error in
             defer { os_signpost(.end, log: OSLog.caseTrackerPoi, name: "PersistenceController_init") }
             if let error = error as NSError? {
