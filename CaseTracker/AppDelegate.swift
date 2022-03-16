@@ -16,6 +16,10 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
         UNUserNotificationCenter.current().delegate = self
+
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(.ctTextPrimary)]
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor(.ctTextPrimary)]
+
         setupLogging()
         return true
     }

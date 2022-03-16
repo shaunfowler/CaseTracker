@@ -11,8 +11,8 @@ import SwiftUI
 private struct UpdatedCaptionTextViewModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .font(.caption.bold())
-            .opacity(0.3)
+            .font(.caption)
+            .foregroundColor(.ctTextTertiary)
             .frame(maxWidth: .infinity, alignment: .center)
             .listSectionSeparator(.hidden)
             .listRowBackground(Color.clear)

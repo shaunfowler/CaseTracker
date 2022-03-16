@@ -16,6 +16,7 @@ struct DetailsView: View {
     @State var isPresentingActionSheet = false
     @State var isPresentingDeleteConfirmation = false
     @State var isShowingActivityViewController = false
+    @State var isPresentingWebView = false
 
     let caseStatus: CaseStatus
     let removeCase: (String) -> Void
@@ -26,6 +27,7 @@ struct DetailsView: View {
                 if let formType = caseStatus.formType {
                     Text("Form \(formType)")
                         .font(.headline)
+                        .foregroundColor(.ctTextPrimary)
                 }
 
                 HStack(alignment: .firstTextBaseline) {
@@ -34,11 +36,13 @@ struct DetailsView: View {
                         .frame(width: 8, height: 8, alignment: .center)
                         .offset(y: -2)
                     Text(caseStatus.status)
+                        .foregroundColor(.ctTextSecondary)
                 }
 
                 Text(caseStatus.body)
                     .multilineTextAlignment(.center)
                     .font(.system(.body, design: .serif))
+                    .foregroundColor(.ctTextSecondary)
                     .padding()
                     .frame(maxWidth: .infinity)
                     .background(Color.ctRowBackground)
@@ -54,7 +58,7 @@ struct DetailsView: View {
 
     var externalLinkButton: some View {
         Button("View on USCIS Website") {
-            openURL(CaseStatusURL.get(caseStatus.receiptNumber).url)
+            isPresentingWebView.toggle()
         }
         .padding(.top, 24)
     }
@@ -96,6 +100,9 @@ struct DetailsView: View {
                     Label("More", systemImage: "ellipsis.circle")
                 }
             }
+        }
+        .popover(isPresented: $isPresentingWebView) {
+            SafariView(url: CaseStatusURL.get(caseStatus.receiptNumber).url)
         }
     }
 

@@ -51,6 +51,7 @@ struct AddCaseView: View {
 
             Text("Enter your receipt number")
                 .font(.headline)
+                .foregroundColor(.ctTextPrimary)
 
             TextField("XYZ0123456789", text: $viewModel.receiptNumber)
                 .disableAutocorrection(true)
@@ -58,6 +59,7 @@ struct AddCaseView: View {
                 .buttonBorderShape(.capsule)
                 .padding()
                 .background(Color.ctRowBackground)
+                .foregroundColor(.ctTextSecondary)
                 .cornerRadius(4)
                 .focused($focussedElement, equals: .receiptNumberTextField)
                 .task {
@@ -85,7 +87,7 @@ struct AddCaseView: View {
 
 struct AddCaseView_Previews: PreviewProvider {
     static var previews: some View {
-        // Embed in XStack for FocusState preview crash bug... lol
+        // Embed in ZStack for FocusState preview crash bug... lol
         ZStack {
             AddCaseView(viewModel: AddCaseViewModel(repository: PreviewDataRepository()))
         }

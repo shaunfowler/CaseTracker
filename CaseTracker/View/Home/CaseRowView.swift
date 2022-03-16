@@ -28,12 +28,15 @@ struct CaseRowView: View {
                     if let formType = model.formType {
                         Text(formType)
                             .fontWeight(.bold)
+                            .foregroundColor(.ctTextPrimary)
                     }
                     Text(model.id)
+                        .foregroundColor(.ctTextPrimary)
                 }
 
                 Text(model.status)
                     .font(.system(size: fontSize))
+                    .foregroundColor(.ctTextSecondary)
 
                 if !model.lastUpdatedFormatted.isEmpty {
                     HStack {
@@ -44,7 +47,7 @@ struct CaseRowView: View {
                         }
                     }
                     .font(.system(size: fontSize))
-                    .opacity(0.4)
+                    .foregroundColor(.ctTextTertiary)
                 }
             }
             .padding([.leading], 0)
