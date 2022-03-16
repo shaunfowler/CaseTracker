@@ -12,7 +12,6 @@ import UIKit
 extension Color {
     public static let ctBackground = Color("HomeBackgroundColor")
     public static let ctRowBackground = Color("CaseRowBackgroundColor")
-    public static let ctRowShadow = Color("CaseRowShadowColor")
 
     public static let ctGreen = Color("CTGreen")
     public static let ctRed = Color("CTRed")
@@ -25,7 +24,6 @@ extension Color {
 extension UIColor {
     public static let ctBackground = UIColor(named: "HomeBackgroundColor")
     public static let ctRowBackground = UIColor(named: "CaseRowBackgroundColor")
-    public static let ctRowShadow = UIColor(named: "CaseRowShadowColor")
 
     public static let ctGreen = UIColor(named: "CTGreen")
     public static let ctRed = UIColor(named: "CTRed")

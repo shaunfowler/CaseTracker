@@ -9,14 +9,7 @@ import Foundation
 import UIKit
 import CocoaLumberjack
 
-#if UIKIT
-@main
-class AppDelegate: NSObject { }
-#else
-class AppDelegate: NSObject { }
-#endif
-
-extension AppDelegate: UIApplicationDelegate {
+class AppDelegate: NSObject, UIApplicationDelegate {
 
     func application(
         _ application: UIApplication,

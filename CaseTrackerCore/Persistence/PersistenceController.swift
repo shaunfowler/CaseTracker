@@ -24,7 +24,7 @@ class PersistenceController {
             .url(forResource: "CaseTrackerModel",
                  withExtension: "momd")!
 
-        container = NSPersistentContainer(
+        container = NSPersistentCloudKitContainer(
             name: "CaseTrackerModel",
             managedObjectModel: NSManagedObjectModel(contentsOf: managedObjectModelUrl)!
         )

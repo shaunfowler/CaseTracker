@@ -9,10 +9,6 @@ import SwiftUI
 import UIKit
 import CaseTrackerCore
 
-#if UIKIT
-
-#else
-
 @main
 struct CaseTrackerApp: App {
 
@@ -54,5 +50,3 @@ extension CaseTrackerApp: BackgroundRefreshableDelegate {
         await repository.query(force: false)
     }
 }
-
-#endif
