@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		280D224627E2F5AB00D1A515 /* InteractionMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280D224527E2F5AB00D1A515 /* InteractionMetrics.swift */; };
 		2817EDBA27B4F27500F90C2E /* CaseStatusListItemViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2817EDB927B4F27500F90C2E /* CaseStatusListItemViewModifier.swift */; };
 		283511AE27AA0ABD00851FC6 /* CaseRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283511AD27AA0ABD00851FC6 /* CaseRowView.swift */; };
 		283511B027AA138000851FC6 /* AddCaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283511AF27AA138000851FC6 /* AddCaseView.swift */; };
@@ -26,6 +27,7 @@
 		28C2758D27D731E0009022FE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 28C2758F27D731E0009022FE /* Localizable.strings */; };
 		28E8447927D59FE20061E381 /* OSLog+caseTrackerPoi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E8447827D59FE20061E381 /* OSLog+caseTrackerPoi.swift */; };
 		28F2BFAE27E185F70066270F /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F2BFAD27E185F70066270F /* SafariView.swift */; };
+		28F2BFCB27E2F00A0066270F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 28F2BFCA27E2F00A0066270F /* GoogleService-Info.plist */; };
 		28FD1AF427A7CB6D002CA8DE /* CaseTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FD1AF327A7CB6D002CA8DE /* CaseTrackerApp.swift */; };
 		28FD1AF627A7CB6D002CA8DE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FD1AF527A7CB6D002CA8DE /* HomeView.swift */; };
 		28FD1AF827A7CB6F002CA8DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28FD1AF727A7CB6F002CA8DE /* Assets.xcassets */; };
@@ -123,6 +125,7 @@
 
 /* Begin PBXFileReference section */
 		273FADD093DAD706FCFCF7E6 /* Pods_CaseTrackerCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CaseTrackerCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		280D224527E2F5AB00D1A515 /* InteractionMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractionMetrics.swift; sourceTree = "<group>"; };
 		2817EDB927B4F27500F90C2E /* CaseStatusListItemViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseStatusListItemViewModifier.swift; sourceTree = "<group>"; };
 		283511AB27AA08C800851FC6 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		283511AD27AA0ABD00851FC6 /* CaseRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseRowView.swift; sourceTree = "<group>"; };
@@ -154,6 +157,7 @@
 		28C2758E27D731E0009022FE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		28E8447827D59FE20061E381 /* OSLog+caseTrackerPoi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OSLog+caseTrackerPoi.swift"; sourceTree = "<group>"; };
 		28F2BFAD27E185F70066270F /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
+		28F2BFCA27E2F00A0066270F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		28FD1AF027A7CB6D002CA8DE /* Case Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Case Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		28FD1AF327A7CB6D002CA8DE /* CaseTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseTrackerApp.swift; sourceTree = "<group>"; };
 		28FD1AF527A7CB6D002CA8DE /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -244,6 +248,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		280D224427E2F58500D1A515 /* Metrics */ = {
+			isa = PBXGroup;
+			children = (
+				280D224527E2F5AB00D1A515 /* InteractionMetrics.swift */,
+			);
+			path = Metrics;
+			sourceTree = "<group>";
+		};
 		2817EDBB27B4F68400F90C2E /* Details */ = {
 			isa = PBXGroup;
 			children = (
@@ -311,6 +323,7 @@
 			children = (
 				28FD1AF927A7CB6F002CA8DE /* Preview Content */,
 				28FD1AF727A7CB6F002CA8DE /* Assets.xcassets */,
+				28F2BFCA27E2F00A0066270F /* GoogleService-Info.plist */,
 				287746F827B361000042D3FD /* Info.plist */,
 				2877468927AFB9620042D3FD /* PreviewDataRepository.swift */,
 				28C2758F27D731E0009022FE /* Localizable.strings */,
@@ -437,6 +450,7 @@
 		E6C59DD727C08B5900391EBA /* CaseTrackerCore */ = {
 			isa = PBXGroup;
 			children = (
+				280D224427E2F58500D1A515 /* Metrics */,
 				287746FD27B36F700042D3FD /* Extensions */,
 				28CAB0D727A9FE470067A9A9 /* Model */,
 				287746FE27B372F40042D3FD /* Notifications */,
@@ -514,6 +528,7 @@
 				2877471927B4ADE10042D3FD /* ShellScript */,
 				E6C59DEB27C08B5900391EBA /* Embed Frameworks */,
 				D86BAB926EAA49D60D78AD18 /* [CP] Embed Pods Frameworks */,
+				289D45AF27E43FF200A9FEBE /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -661,6 +676,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				28C2758D27D731E0009022FE /* Localizable.strings in Resources */,
+				28F2BFCB27E2F00A0066270F /* GoogleService-Info.plist in Resources */,
 				28FD1AF827A7CB6F002CA8DE /* Assets.xcassets in Resources */,
 				28FD1AFB27A7CB6F002CA8DE /* Preview Assets.xcassets in Resources */,
 			);
@@ -713,6 +729,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		289D45AF27E43FF200A9FEBE /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)\n",
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
 		B4830CB72BF89FD3C3A2216C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -819,6 +855,7 @@
 				E6C59DF627C0910300391EBA /* CaseStatusManagedObjectExtensions.swift in Sources */,
 				E6C59DF227C090F100391EBA /* CaseStatusRepository.swift in Sources */,
 				E6C59DF327C090F900391EBA /* CaseStatusURL.swift in Sources */,
+				280D224627E2F5AB00D1A515 /* InteractionMetrics.swift in Sources */,
 				28E8447927D59FE20061E381 /* OSLog+caseTrackerPoi.swift in Sources */,
 				E6C59E0927C095D200391EBA /* CaseTrackerModel.xcdatamodeld in Sources */,
 				E69DF72127C3863A003F9FE8 /* Color.swift in Sources */,
@@ -1051,13 +1088,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E9FAF8233AB232C826ED8660 /* Pods-CaseTracker.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CaseTracker/CaseTracker.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"CaseTracker/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = QQR7KQB65R;
 				ENABLE_PREVIEWS = YES;
@@ -1072,7 +1109,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.90;
+				MARKETING_VERSION = 0.91;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.shaunfowler.CaseTracker;
 				PRODUCT_NAME = "Case Tracker";
@@ -1088,7 +1125,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 49B6DBEA2740F77EB89BE72F /* Pods-CaseTracker.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = CaseTracker/CaseTracker.entitlements;
@@ -1109,7 +1145,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.90;
+				MARKETING_VERSION = 0.91;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.shaunfowler.CaseTracker;
 				PRODUCT_NAME = "Case Tracker";

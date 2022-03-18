@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import CocoaLumberjack
+import Firebase
 
 class AppDelegate: NSObject, UIApplicationDelegate {
 
@@ -19,6 +20,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(.ctTextPrimary)]
         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor(.ctTextPrimary)]
+
+        FirebaseApp.configure()
 
         setupLogging()
         return true

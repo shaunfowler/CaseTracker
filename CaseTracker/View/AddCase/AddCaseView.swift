@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CaseTrackerCore
 
 struct AddCaseView: View {
 
@@ -32,14 +33,20 @@ struct AddCaseView: View {
                 message: Text("Failed to get case status. Please double check the receipt number.")
             )
         }
+        .onAppear {
+            InteractionMetric.viewAddCase.send()
+        }
     }
 
     var toolbarButtons: some View {
         HStack {
             Spacer()
-            Button(action: { dismiss() }, label: {
+            Button(action: {
+                InteractionMetric.tabCloseAddCaseModalButton.send()
+                dismiss()
+            }, label: {
                 Text("Close")
-                    .font(.system(size: 18))
+                    .font(.body)
             })
         }
     }
@@ -75,6 +82,7 @@ struct AddCaseView: View {
                           loading: viewModel.isLoading,
                           fullWidth: true) {
                 Task {
+                    InteractionMetric.tapAddCaseSubmitModalButton.send()
                     await viewModel.attemptAddCase()
                     if !viewModel.showError {
                         dismiss()

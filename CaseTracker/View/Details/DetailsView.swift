@@ -67,10 +67,7 @@ struct DetailsView: View {
         Alert(
             title: Text("Remove Case"),
             message: Text("Are you sure you want to remove case \(caseStatus.receiptNumber)?"),
-            primaryButton: .destructive(Text("Remove")) {
-                removeCase(caseStatus.receiptNumber)
-                dismiss()
-            },
+            primaryButton: .destructive(Text("Remove"), action: performCaseRemove),
             secondaryButton: .cancel())
     }
 
@@ -84,16 +81,12 @@ struct DetailsView: View {
         .navigationBarTitle(caseStatus.receiptNumber)
         .alert(isPresented: $isPresentingDeleteConfirmation) { removeAlert }
         .confirmationDialog(Text(""), isPresented: $isPresentingActionSheet, actions: {
-            Button("Copy Receipt Number") {
-                copyReceiptNumber()
-            }
-            Button("Remove Case", role: .destructive) {
-                removeCaseRequest()
-            }
+            Button("Copy Receipt Number", action: copyReceiptNumber)
+            Button("Remove Case", role: .destructive, action: removeCaseRequest)
         })
         .toolbar {
             ToolbarItemGroup(placement: .bottomBar) {
-                Button(action: { isShowingActivityViewController.toggle() }, label: {
+                Button(action: onShareButtonPressed, label: {
                     Label("Share", systemImage: "square.and.arrow.up")
                 })
                 Button(action: onMoreButtonPressed) {
@@ -104,18 +97,35 @@ struct DetailsView: View {
         .popover(isPresented: $isPresentingWebView) {
             SafariView(url: CaseStatusURL.get(caseStatus.receiptNumber).url)
         }
+        .onAppear {
+            InteractionMetric.viewCaseDetails.send()
+        }
     }
 
     private func onMoreButtonPressed() {
+        InteractionMetric.tapMoreNavBarButton.send()
         isPresentingActionSheet = true
     }
 
+    private func onShareButtonPressed() {
+        InteractionMetric.tapShareNavBarButton.send()
+        isShowingActivityViewController.toggle()
+    }
+
     private func copyReceiptNumber() {
+        InteractionMetric.tapCopyReceiptNumberMenuButton.send()
         UIPasteboard.general.setValue(caseStatus.receiptNumber, forPasteboardType: "public.plain-text")
     }
 
     private func removeCaseRequest() {
+        InteractionMetric.tapRequestRemoveCaseMenuButton.send()
         isPresentingDeleteConfirmation = true
+    }
+
+    private func performCaseRemove() {
+        InteractionMetric.tapRemoveCaseConfirmAlertButton.send()
+        removeCase(caseStatus.receiptNumber)
+        dismiss()
     }
 }
 

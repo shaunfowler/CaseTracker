@@ -22,7 +22,7 @@ struct CaseRowView: View {
                 .foregroundColor(model.color)
                 .padding(10)
 
-            VStack(alignment: .leading, spacing: 8) {
+            VStack(alignment: .leading, spacing: 4) {
 
                 HStack(alignment: .center, spacing: 8) {
                     if let formType = model.formType {

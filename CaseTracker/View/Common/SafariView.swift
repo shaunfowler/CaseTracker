@@ -8,6 +8,7 @@
 import SwiftUI
 import UIKit
 import SafariServices
+import CaseTrackerCore
 
 struct SafariView: UIViewControllerRepresentable {
 
@@ -16,6 +17,7 @@ struct SafariView: UIViewControllerRepresentable {
     func makeUIViewController(
         context: UIViewControllerRepresentableContext<SafariView>
     ) -> SFSafariViewController {
+        InteractionMetric.viewWebsite.send()
         let viewController = SFSafariViewController(url: url)
         viewController.modalPresentationStyle = .fullScreen
         return viewController

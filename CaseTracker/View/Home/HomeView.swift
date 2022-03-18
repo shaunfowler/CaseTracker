@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CaseTrackerCore
 
 struct HomeView: View {
 
@@ -39,6 +40,7 @@ struct HomeView: View {
                 }
                 .onDelete { indexSet in
                     if let index = indexSet.first {
+                        InteractionMetric.swipeDeleteCase.send()
                         viewModel.removeCase(atIndex: index)
                     }
                 }
@@ -51,7 +53,10 @@ struct HomeView: View {
 
     var addButton: some View {
         Button(
-            action: onAddCasePressed,
+            action: {
+                InteractionMetric.tapAddNavBarButton.send()
+                onAddCasePressed()
+            },
             label: {
                 Label("Add Case", systemImage: "plus")
             })
@@ -73,7 +78,10 @@ struct HomeView: View {
             ZStack {
                 caseList
                 if viewModel.isEmptyState {
-                    FirstTimeUserView(onAddCase: onAddCasePressed)
+                    FirstTimeUserView(onAddCase: {
+                        InteractionMetric.tapAddFirstTimeButton.send()
+                        onAddCasePressed()
+                    })
                 }
             }
             .toolbar {
@@ -96,7 +104,11 @@ struct HomeView: View {
             addCaseView
         }
         .refreshable {
+            InteractionMetric.pullToRefreshCaseList.send()
             await refresh()
+        }
+        .onAppear {
+            InteractionMetric.viewHome.send()
         }
     }
 

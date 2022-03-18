@@ -44,7 +44,6 @@ struct ActivityViewController: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: UIActivityViewControllerHost, context: Context) {
         uiViewController.url = url
     }
-
 }
 
 struct ActivityView_Previews: PreviewProvider {
