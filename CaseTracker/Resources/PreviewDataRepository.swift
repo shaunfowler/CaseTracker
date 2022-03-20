@@ -9,7 +9,6 @@
 
 import Foundation
 import Combine
-import CaseTrackerCore
 
 class PreviewDataRepository: Repository {
 
@@ -46,8 +45,8 @@ class PreviewDataRepository: Repository {
 
     static let case4 = CaseStatus(
         receiptNumber: "LIN2118251021",
-        status: Status.responseToUSCISRequestForEvidenceWasReceived.rawValue,
-        body: "On December 29, 2021, we received your response to our Request for Evidence for your Form I-485, Application to Register Permanent Residence or Adjust Status, Receipt Number LIN2118251021. USCIS has begun working on your case again. We will send you a decision or notify you if we need something from you. If you move, go to www.uscis.gov/addresschange to give us your new mailing address.",
+        status: Status.requestforAdditionalEvidenceWasSent.rawValue,
+        body: "On December 29, 2021, we sent a request for additional evidence for your Form I-485, Application to Register Permanent Residence or Adjust Status,  Receipt Number LIN2118251021. The request for evidence explains what we need from you. We will not take action on your case until we receive the evidence or the deadline to submit it expires. Please follow the instructions in the request for evidence. If you do not receive your request for additional evidence by February 8, 2022, please go to www.uscis.gov/e-request to request a copy. If you move, go to www.uscis.gov/addresschange to give us your new mailing address.",
         formType: "I-485",
         lastUpdated: try! Date("2021-12-29T12:00:00+0000", strategy: .iso8601),
         lastFetched: Date()

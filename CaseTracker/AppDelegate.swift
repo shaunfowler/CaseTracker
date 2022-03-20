@@ -16,29 +16,43 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
-        UNUserNotificationCenter.current().delegate = self
-
-        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(.ctTextPrimary)]
-        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor(.ctTextPrimary)]
-
-        FirebaseApp.configure()
-
         setupLogging()
+        setupAnalytics()
+        setupNotifications()
+        setupAppearance()
         return true
     }
 
     private func setupLogging() {
         print(FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask).first?.appendingPathComponent("Caches/Logs") ?? "")
 
+        // File logger
         let fileLogger = DDFileLogger()
         fileLogger.rollingFrequency = 60 * 60 * 48; // 48-hour rolling
         fileLogger.logFileManager.maximumNumberOfLogFiles = 7
-
-        DDOSLogger.sharedInstance.logFormatter = OSLogFormatter()
         fileLogger.logFormatter = FileLogFormatter()
-
-        DDLog.add(DDOSLogger.sharedInstance)
         DDLog.add(fileLogger)
+
+        // OSLog
+        DDOSLogger.sharedInstance.logFormatter = OSLogFormatter()
+        DDLog.add(DDOSLogger.sharedInstance)
+
+        // Crashlytics
+        DDLog.add(CrashlyticsLogger(), with: .all)
+    }
+
+    private func setupAnalytics() {
+        FirebaseApp.configure()
+    }
+
+    private func setupNotifications() {
+        UNUserNotificationCenter.current().delegate = self
+    }
+
+    private func setupAppearance() {
+        let attributes: [NSAttributedString.Key : Any] = [.foregroundColor: UIColor(.ctTextPrimary)]
+        UINavigationBar.appearance().largeTitleTextAttributes = attributes
+        UINavigationBar.appearance().titleTextAttributes = attributes
     }
 }
 

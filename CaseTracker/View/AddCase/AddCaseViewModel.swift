@@ -7,7 +7,6 @@
 
 import Foundation
 import CocoaLumberjack
-import CaseTrackerCore
 
 @MainActor
 class AddCaseViewModel: ObservableObject {

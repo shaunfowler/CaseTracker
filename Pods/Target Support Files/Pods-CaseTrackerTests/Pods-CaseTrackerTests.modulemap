@@ -1,0 +1,6 @@
+framework module Pods_CaseTrackerTests {
+  umbrella header "Pods-CaseTrackerTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

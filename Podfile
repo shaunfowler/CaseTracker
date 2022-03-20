@@ -15,11 +15,11 @@ target 'CaseTracker' do
 
 end
 
-target 'CaseTrackerCore' do
+target 'CaseTrackerTests' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for CaseTrackerCore
+  # Pods for CaseTrackerTests
 
   pod 'SwiftSoup'
   pod 'CocoaLumberjack/Swift'

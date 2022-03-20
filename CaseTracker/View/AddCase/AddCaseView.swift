@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import CaseTrackerCore
 
 struct AddCaseView: View {
 

@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_CaseTrackerCoreVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_CaseTrackerCoreVersionString[];
+FOUNDATION_EXPORT double Pods_CaseTrackerTestsVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_CaseTrackerTestsVersionString[];
 

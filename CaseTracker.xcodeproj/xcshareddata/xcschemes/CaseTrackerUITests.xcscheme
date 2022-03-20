@@ -14,7 +14,7 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E6E3BB5027C2D61900CA0A81"
+               BlueprintIdentifier = "366BF27AE2D5B090DCC0AE995DF8E55F"
                BuildableName = "CaseTrackerUITests.xctest"
                BlueprintName = "CaseTrackerUITests"
                ReferencedContainer = "container:CaseTracker.xcodeproj">
@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E6E3BB5027C2D61900CA0A81"
+               BlueprintIdentifier = "366BF27AE2D5B090DCC0AE995DF8E55F"
                BuildableName = "CaseTrackerUITests.xctest"
                BlueprintName = "CaseTrackerUITests"
                ReferencedContainer = "container:CaseTracker.xcodeproj">
@@ -52,8 +52,8 @@
       allowLocationSimulation = "YES">
       <CommandLineArguments>
          <CommandLineArgument
-            argument = ""
-            isEnabled = "NO">
+            argument = "-uiTests"
+            isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>
@@ -66,7 +66,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E6E3BB5027C2D61900CA0A81"
+            BlueprintIdentifier = "366BF27AE2D5B090DCC0AE995DF8E55F"
             BuildableName = "CaseTrackerUITests.xctest"
             BlueprintName = "CaseTrackerUITests"
             ReferencedContainer = "container:CaseTracker.xcodeproj">

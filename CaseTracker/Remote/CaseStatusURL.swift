@@ -9,11 +9,11 @@ import Foundation
 
 public enum CaseStatusURL {
 
-    private static let baseUrl = URL(string: "https://egov.uscis.gov/casestatus/mycasestatus.do?")!
+    private static let baseUrl = "https://egov.uscis.gov/casestatus/mycasestatus.do?"
 
     private static func buildUrl(receiptNumber: String) -> URL {
         // language=ENGLISH&caseStatusSearch=caseStatusPage&appReceiptNum=XXX
-        var urlComponents = URLComponents(string: "https://egov.uscis.gov/casestatus/mycasestatus.do")!
+        var urlComponents = URLComponents(string: CaseStatusURL.baseUrl)!
         let queryItems = [
             URLQueryItem(name: "language", value: "ENGLISH"),
             URLQueryItem(name: "caseStatusSearch", value: "caseStatusPage"),

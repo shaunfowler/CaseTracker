@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 import Combine
 import CocoaLumberjack
-import CaseTrackerCore
 
 @MainActor
 class HomeViewModel: ObservableObject {

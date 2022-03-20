@@ -8,7 +8,6 @@
 import SwiftUI
 import UIKit
 import SafariServices
-import CaseTrackerCore
 
 struct SafariView: UIViewControllerRepresentable {
 

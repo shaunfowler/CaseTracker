@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "28FD1AEF27A7CB6D002CA8DE"
+               BlueprintIdentifier = "51000DD31EC26A7F96C833C331CA9984"
                BuildableName = "Case Tracker.app"
                BlueprintName = "CaseTracker"
                ReferencedContainer = "container:CaseTracker.xcodeproj">
@@ -42,7 +42,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E6E3BB5027C2D61900CA0A81"
+               BlueprintIdentifier = "366BF27AE2D5B090DCC0AE995DF8E55F"
                BuildableName = "CaseTrackerUITests.xctest"
                BlueprintName = "CaseTrackerUITests"
                ReferencedContainer = "container:CaseTracker.xcodeproj">
@@ -52,7 +52,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E6E3BB5F27C2D62900CA0A81"
+               BlueprintIdentifier = "3D3C3E7BEF35CACCEADC7A513E2CCF5D"
                BuildableName = "CaseTrackerTests.xctest"
                BlueprintName = "CaseTrackerTests"
                ReferencedContainer = "container:CaseTracker.xcodeproj">
@@ -74,7 +74,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "28FD1AEF27A7CB6D002CA8DE"
+            BlueprintIdentifier = "51000DD31EC26A7F96C833C331CA9984"
             BuildableName = "Case Tracker.app"
             BlueprintName = "CaseTracker"
             ReferencedContainer = "container:CaseTracker.xcodeproj">
@@ -87,7 +87,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-FIRDebugEnabled"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-FIRAnalyticsDebugEnabled"
@@ -109,7 +109,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "28FD1AEF27A7CB6D002CA8DE"
+            BlueprintIdentifier = "51000DD31EC26A7F96C833C331CA9984"
             BuildableName = "Case Tracker.app"
             BlueprintName = "CaseTracker"
             ReferencedContainer = "container:CaseTracker.xcodeproj">
