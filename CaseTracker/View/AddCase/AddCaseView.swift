@@ -25,7 +25,7 @@ struct AddCaseView: View {
             receiptNumberInputForm
         }
         .padding()
-        .background(Color.ctBackground)
+        .background(Color.ctBackgroundPrimary)
         .alert(isPresented: $viewModel.showError) {
             Alert(
                 title: Text("Could Not Fetch Case"),
@@ -64,7 +64,7 @@ struct AddCaseView: View {
                 .autocapitalization(.allCharacters)
                 .buttonBorderShape(.capsule)
                 .padding()
-                .background(Color.ctRowBackground)
+                .background(Color.ctBackgroundSecondary)
                 .foregroundColor(.ctTextSecondary)
                 .cornerRadius(4)
                 .focused($focussedElement, equals: .receiptNumberTextField)

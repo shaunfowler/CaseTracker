@@ -10,6 +10,7 @@
 		185B1A2FBE1A7EC869B049E602869CCA /* CaseTrackerModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0404ECD735799F5BE88558EFCFFD4FA5 /* CaseTrackerModel.xcdatamodeld */; };
 		1CA94EED81E148B0B4A3853E85A82779 /* AddCaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281A29036E4280FF808A8FA87906CCAB /* AddCaseViewModel.swift */; };
 		211F5F11B731D2221C0D8AA26A643B20 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7607B1C6F2316CBD1DCE38D9D8C51726 /* Status.swift */; };
+		289D45D327E9784700A9FEBE /* CaseRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E85018D586C414050AC13A5E22E49E /* CaseRowView.swift */; };
 		28FD06858C3FB79E830C3161F45BC3AB /* CSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBC53C5CB5EB6A00466D10037F4BDB6 /* CSError.swift */; };
 		2B20553DF1BAA014B21CD03CC61B7BE1 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2AABCAD5984ECC4C91895C87EEFD63 /* PrimaryButton.swift */; };
 		346F62AFFB0CF3175A1F61E8F3D50496 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7195E4FA66FEBD3EAF7C88A8DA649429 /* GoogleService-Info.plist */; };
@@ -23,7 +24,6 @@
 		5268CEA0967B38269FDCA0AA719283B9 /* FirstTimeUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3C0289361588F2AAE7CFC2A766EFB8 /* FirstTimeUserView.swift */; };
 		5C278A35D186DF3EBBA1A207F710F314 /* LIN2119051099.html in Resources */ = {isa = PBXBuildFile; fileRef = 8B204FE61724522A67E522B763AF54EE /* LIN2119051099.html */; };
 		602EA629D288A5C8F90075CAB292C1D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4696B06911507C0A5DD6D1DC9CC9BE24 /* AppDelegate.swift */; };
-		6134D1085E073E82D2F18B773303E1E7 /* CaseStatusListItemViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14931E5DC05AF35E79FFFBAD5BF692A8 /* CaseStatusListItemViewModifier.swift */; };
 		6806634062C14BFE4128F972EA9B4DBE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79260E849CA9AFD52860404557F6C4DF /* HomeView.swift */; };
 		6CDB69295E80B1B8A47BCC55E85EC720 /* LocalCaseStatusPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF57DD7EBF84B6227A779CBD67EC2A /* LocalCaseStatusPersistence.swift */; };
 		6E2335FE25B9E3CC2BF2AB7CD08AB574 /* MockRemoteCaseStatusAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE506A868FB582A3ABF9FFF2CF9F4CD /* MockRemoteCaseStatusAPI.swift */; };
@@ -39,7 +39,6 @@
 		A72A4B8B1905DDD8419432FD1DDB63FB /* Pods_CaseTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C77D08F54842BD3C9C1856C091B1E6B /* Pods_CaseTracker.framework */; };
 		A969E3EB99F8FF3942779B1AAB883B70 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 07A8C79A056C5C440AF1B2611B573B41 /* Localizable.strings */; };
 		AA5DC5B34CCD80E91FFD479B0C1353A6 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9A1300DB8D807E12941E9C87A2E53C /* HomeViewModel.swift */; };
-		AA9B5C9579202BF02ADD328C8C9BD9F6 /* CaseRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E85018D586C414050AC13A5E22E49E /* CaseRowView.swift */; };
 		AC6E4E09C761C62BA5BB6BEB3A400809 /* CrashlyticsLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AF21ED82544E8A41B62FB7778627DC /* CrashlyticsLogger.swift */; };
 		B5C2AB21528C2EF76EFF2CC170F67E24 /* CaseTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9D85C56C67B078AC9C5CD0F59C9E0B /* CaseTrackerApp.swift */; };
 		B91107F00C85FE64EC43C27F81A6DE24 /* ABC1234.html in Resources */ = {isa = PBXBuildFile; fileRef = 4142C927172AE1D4285446A15FBF9D2C /* ABC1234.html */; };
@@ -93,7 +92,6 @@
 		00DA09206F82ED209AEFDA56D368A0CF /* LogFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogFormatter.swift; sourceTree = "<group>"; };
 		04642A0176483ED3B19434F417FFF363 /* Pods_CaseTrackerCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CaseTrackerCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		13C299DB08A3A12581F66DEE24C4E6AE /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
-		14931E5DC05AF35E79FFFBAD5BF692A8 /* CaseStatusListItemViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseStatusListItemViewModifier.swift; sourceTree = "<group>"; };
 		1F9A1300DB8D807E12941E9C87A2E53C /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		1FF79520D30FA6AC59F4C76B6D9F0749 /* Pods_CaseTrackerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CaseTrackerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		24A7C80C4312B803D00E387D53821661 /* CaseTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaseTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -189,6 +187,13 @@
 			path = CaseTrackerUITests;
 			sourceTree = "<group>";
 		};
+		30594081A05E246BE087F601ABAF13FD /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		3264E8991F20964C96FA3BC4D42C164C /* Logging */ = {
 			isa = PBXGroup;
 			children = (
@@ -197,13 +202,6 @@
 				47A7D70A3262B1FBDFEBD6ED74FECE68 /* OSLog+caseTrackerPoi.swift */,
 			);
 			path = Logging;
-			sourceTree = "<group>";
-		};
-		30594081A05E246BE087F601ABAF13FD /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		419FBDFFE404EB96C5553F60A91D3635 /* Products */ = {
@@ -250,7 +248,6 @@
 		79788704B2426690C3B6DF26A2CE86EA /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				14931E5DC05AF35E79FFFBAD5BF692A8 /* CaseStatusListItemViewModifier.swift */,
 				3C2AABCAD5984ECC4C91895C87EEFD63 /* PrimaryButton.swift */,
 				9A699FDABD9B596D72907908D39C94C4 /* SafariView.swift */,
 				DF3C75F3598EA044184E786D18A07959 /* UpdatedCaptionTextViewModifier.swift */,
@@ -688,9 +685,7 @@
 				602EA629D288A5C8F90075CAB292C1D4 /* AppDelegate.swift in Sources */,
 				373F5A79AE4B81651F7981F6433C0A14 /* BackgroundRefeshManager.swift in Sources */,
 				28FD06858C3FB79E830C3161F45BC3AB /* CSError.swift in Sources */,
-				AA9B5C9579202BF02ADD328C8C9BD9F6 /* CaseRowView.swift in Sources */,
 				DAB1074C8F3881495AB7C8E91882E2E5 /* CaseStatus.swift in Sources */,
-				6134D1085E073E82D2F18B773303E1E7 /* CaseStatusListItemViewModifier.swift in Sources */,
 				D56669BF201857CFB5D51DFB314A58FF /* CaseStatusManagedObjectExtensions.swift in Sources */,
 				7D171BA77791C5252F6C5AB65AB37BFE /* CaseStatusRepository.swift in Sources */,
 				F1E1C9A00D8A2E236B24A7E318932E76 /* CaseStatusURL.swift in Sources */,
@@ -719,6 +714,7 @@
 				211F5F11B731D2221C0D8AA26A643B20 /* Status.swift in Sources */,
 				EC2875C124423E57A1F6FF6C1ACD07BF /* UpdatedCaptionTextViewModifier.swift in Sources */,
 				86BC457883F208140B2D0C7312FB7D81 /* Utils.swift in Sources */,
+				289D45D327E9784700A9FEBE /* CaseRowView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

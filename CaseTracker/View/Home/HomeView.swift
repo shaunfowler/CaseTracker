@@ -21,9 +21,8 @@ struct HomeView: View {
 
     var caseList: some View {
         List {
-            Section {
-                Text(viewModel.lastUpdatedLoadingMessage)
-                    .updatedCaptionTextStyle()
+            Section(header: Text(viewModel.lastUpdatedLoadingMessage)
+                        .updatedCaptionTextStyle()) {
 
                 if let errorMessage = viewModel.errorMessage {
                     Text(errorMessage)
@@ -35,7 +34,6 @@ struct HomeView: View {
                     }) {
                         CaseRowView(model: caseStatus)
                     }
-                    .caseStatusListItemStyle()
                 }
                 .onDelete { indexSet in
                     if let index = indexSet.first {
@@ -46,8 +44,6 @@ struct HomeView: View {
                 .opacity(viewModel.loading ? 0.3 : 1.0)
             }
         }
-        .background(Color.ctBackground)
-        .listStyle(.plain)
     }
 
     var addButton: some View {

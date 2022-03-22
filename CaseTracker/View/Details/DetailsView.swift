@@ -44,7 +44,7 @@ struct DetailsView: View {
                     .foregroundColor(.ctTextSecondary)
                     .padding()
                     .frame(maxWidth: .infinity)
-                    .background(Color.ctRowBackground)
+                    .background(Color.ctBackgroundSecondary)
                     .cornerRadius(8)
             }
 
@@ -76,7 +76,7 @@ struct DetailsView: View {
             externalLinkButton
         }
         .padding()
-        .background(Color.ctBackground)
+        .background(Color.ctBackgroundPrimary)
         .navigationBarTitle(caseStatus.receiptNumber)
         .alert(isPresented: $isPresentingDeleteConfirmation) { removeAlert }
         .confirmationDialog(Text(""), isPresented: $isPresentingActionSheet, actions: {

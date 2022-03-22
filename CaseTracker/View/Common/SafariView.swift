@@ -9,23 +9,30 @@ import SwiftUI
 import UIKit
 import SafariServices
 
-struct SafariView: UIViewControllerRepresentable {
+struct SafariViewWrapped: UIViewControllerRepresentable {
 
     let url: URL
 
     func makeUIViewController(
-        context: UIViewControllerRepresentableContext<SafariView>
+        context: UIViewControllerRepresentableContext<SafariViewWrapped>
     ) -> SFSafariViewController {
         InteractionMetric.viewWebsite.send()
         let viewController = SFSafariViewController(url: url)
-        viewController.modalPresentationStyle = .fullScreen
         return viewController
     }
 
     func updateUIViewController(
         _ uiViewController: SFSafariViewController,
-        context: UIViewControllerRepresentableContext<SafariView>
+        context: UIViewControllerRepresentableContext<SafariViewWrapped>
     ) { }
+}
+
+struct SafariView: View {
+    let url: URL
+    var body: some View {
+        SafariViewWrapped(url: url)
+            .edgesIgnoringSafeArea(.all)
+    }
 }
 
 struct SafariView_Previews: PreviewProvider {

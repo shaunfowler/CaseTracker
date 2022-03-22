@@ -9,8 +9,8 @@ import Foundation
 import SwiftUI
 
 extension Color {
-    public static let ctBackground = Color("HomeBackgroundColor")
-    public static let ctRowBackground = Color("CaseRowBackgroundColor")
+    public static let ctBackgroundPrimary = Color("BackgroundPrimary")
+    public static let ctBackgroundSecondary = Color("BackgroundSecondary")
 
     public static let ctTextPrimary = Color("TextPrimary")
     public static let ctTextSecondary = Color("TextSecondary")

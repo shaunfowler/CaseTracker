@@ -12,10 +12,12 @@ private struct UpdatedCaptionTextViewModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(.caption)
-            .foregroundColor(.ctTextTertiary)
             .frame(maxWidth: .infinity, alignment: .center)
-            .listSectionSeparator(.hidden)
+            .listStyle(.plain)
             .listRowBackground(Color.clear)
+            .listRowSeparator(.hidden)
+            .textCase(.none)
+            .padding(.bottom, 4)
     }
 }
 

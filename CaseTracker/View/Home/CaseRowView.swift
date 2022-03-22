@@ -19,7 +19,7 @@ struct CaseRowView: View {
             RoundedRectangle(cornerRadius: 4)
                 .frame(width: 4)
                 .foregroundColor(model.color)
-                .padding(10)
+                .padding(.trailing, 10)
 
             VStack(alignment: .leading, spacing: 4) {
 
@@ -49,9 +49,8 @@ struct CaseRowView: View {
                     .foregroundColor(.ctTextTertiary)
                 }
             }
-            .padding([.leading], 0)
-            .padding([.top, .bottom], 10)
         }
+        .padding([.top, .bottom], 10)
     }
 }
 
