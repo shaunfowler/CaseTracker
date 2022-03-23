@@ -21,8 +21,6 @@ class HomeViewModel: ObservableObject {
 
     // MARK: - Public Properties
 
-    @Published var phase: ScenePhase?
-
     @Published var cases = [CaseStatus]()
     @Published var selectedCase: CaseStatus?
     @Published var loading = true
@@ -92,14 +90,13 @@ class HomeViewModel: ObservableObject {
             }
             .store(in: &cancellables)
 
-        $phase
-            .compactMap { $0 }
-            .sink { [weak self] in
-                DDLogInfo("Scene phase changed to: \($0).")
-                if $0 == .active {
-                    Task { [weak self] in
-                        await self?.fetch()
-                    }
+        NotificationCenter
+            .default
+            .publisher(for: UIApplication.willEnterForegroundNotification)
+            .sink { [weak self] _ in
+                DDLogInfo("Entering foreground.")
+                Task { [weak self] in
+                    await self?.fetch()
                 }
             }
             .store(in: &cancellables)

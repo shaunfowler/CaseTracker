@@ -9,7 +9,6 @@ import SwiftUI
 
 struct HomeView: View {
 
-    @Environment(\.scenePhase) var scenePhase
     @State var refreshing = false
     @ObservedObject var viewModel: HomeViewModel
 
@@ -90,9 +89,6 @@ struct HomeView: View {
             .navigationBarTitle("My Cases")
         }
         .navigationViewStyle(.stack)
-        .onChange(of: scenePhase) { phase in
-            viewModel.phase = phase
-        }
         .alert(isPresented: $viewModel.isNetworkMessagePresented) {
             networkAlertView
         }
