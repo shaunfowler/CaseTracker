@@ -44,6 +44,7 @@ struct HomeView: View {
                 .opacity(viewModel.loading ? 0.3 : 1.0)
             }
         }
+        .listStyle(.grouped)
     }
 
     var addButton: some View {

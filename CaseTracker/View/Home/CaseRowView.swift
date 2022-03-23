@@ -20,6 +20,7 @@ struct CaseRowView: View {
                 .frame(width: 4)
                 .foregroundColor(model.color)
                 .padding(.trailing, 10)
+                .padding([.top, .bottom], 2)
 
             VStack(alignment: .leading, spacing: 4) {
 
@@ -50,7 +51,7 @@ struct CaseRowView: View {
                 }
             }
         }
-        .padding([.top, .bottom], 10)
+        .padding([.top, .bottom], 15)
     }
 }
 

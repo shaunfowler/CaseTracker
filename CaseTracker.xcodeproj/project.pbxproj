@@ -11,6 +11,7 @@
 		1CA94EED81E148B0B4A3853E85A82779 /* AddCaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281A29036E4280FF808A8FA87906CCAB /* AddCaseViewModel.swift */; };
 		211F5F11B731D2221C0D8AA26A643B20 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7607B1C6F2316CBD1DCE38D9D8C51726 /* Status.swift */; };
 		289D45D327E9784700A9FEBE /* CaseRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E85018D586C414050AC13A5E22E49E /* CaseRowView.swift */; };
+		289D45D527E9868900A9FEBE /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289D45D427E9868900A9FEBE /* HistoryView.swift */; };
 		28FD06858C3FB79E830C3161F45BC3AB /* CSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBC53C5CB5EB6A00466D10037F4BDB6 /* CSError.swift */; };
 		2B20553DF1BAA014B21CD03CC61B7BE1 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2AABCAD5984ECC4C91895C87EEFD63 /* PrimaryButton.swift */; };
 		346F62AFFB0CF3175A1F61E8F3D50496 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7195E4FA66FEBD3EAF7C88A8DA649429 /* GoogleService-Info.plist */; };
@@ -96,6 +97,7 @@
 		1FF79520D30FA6AC59F4C76B6D9F0749 /* Pods_CaseTrackerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CaseTrackerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		24A7C80C4312B803D00E387D53821661 /* CaseTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaseTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		281A29036E4280FF808A8FA87906CCAB /* AddCaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCaseViewModel.swift; sourceTree = "<group>"; };
+		289D45D427E9868900A9FEBE /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		33F81383ED68B9F1E8B75D29E65DF6D0 /* CaseStatusManagedObjectExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseStatusManagedObjectExtensions.swift; sourceTree = "<group>"; };
 		35777688413BC9B7A5F8FCF26631A311 /* Pods-CaseTrackerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaseTrackerTests.debug.xcconfig"; path = "Target Support Files/Pods-CaseTrackerTests/Pods-CaseTrackerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3C2AABCAD5984ECC4C91895C87EEFD63 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 			children = (
 				7B1B91CDC3A131BFE18B4454C56F2ADE /* ActivityView.swift */,
 				461B859879D7C429976788F7715A283D /* DetailsView.swift */,
+				289D45D427E9868900A9FEBE /* HistoryView.swift */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -682,6 +685,7 @@
 				BC68D0E24A5A0E7B6ECA4EDADB7711B5 /* ActivityView.swift in Sources */,
 				F963B185C1B63B5EA83A9A60E7CE9A12 /* AddCaseView.swift in Sources */,
 				1CA94EED81E148B0B4A3853E85A82779 /* AddCaseViewModel.swift in Sources */,
+				289D45D527E9868900A9FEBE /* HistoryView.swift in Sources */,
 				602EA629D288A5C8F90075CAB292C1D4 /* AppDelegate.swift in Sources */,
 				373F5A79AE4B81651F7981F6433C0A14 /* BackgroundRefeshManager.swift in Sources */,
 				28FD06858C3FB79E830C3161F45BC3AB /* CSError.swift in Sources */,

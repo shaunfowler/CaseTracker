@@ -59,7 +59,14 @@ struct DetailsView: View {
         Button("View on USCIS Website") {
             isPresentingWebView.toggle()
         }
-        .padding(.top, 24)
+        .sheet(isPresented: $isPresentingWebView) {
+            SafariView(url: CaseStatusURL.get(caseStatus.receiptNumber).url)
+        }
+        .padding(.vertical, 24)
+    }
+
+    var history: some View {
+        EmptyView()
     }
 
     var removeAlert: Alert {
@@ -74,15 +81,12 @@ struct DetailsView: View {
         ScrollView {
             caseInfo
             externalLinkButton
+            // history
         }
         .padding()
         .background(Color.ctBackgroundPrimary)
         .navigationBarTitle(caseStatus.receiptNumber)
-        .alert(isPresented: $isPresentingDeleteConfirmation) { removeAlert }
-        .confirmationDialog(Text(""), isPresented: $isPresentingActionSheet, actions: {
-            Button("Copy Receipt Number", action: copyReceiptNumber)
-            Button("Remove Case", role: .destructive, action: removeCaseRequest)
-        })
+        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItemGroup(placement: .bottomBar) {
                 Button(action: onShareButtonPressed, label: {
@@ -91,10 +95,12 @@ struct DetailsView: View {
                 Button(action: onMoreButtonPressed) {
                     Label("More", systemImage: "ellipsis.circle")
                 }
+                .confirmationDialog("", isPresented: $isPresentingActionSheet, actions: {
+                    Button("Copy Receipt Number", action: copyReceiptNumber)
+                    Button("Remove Case", role: .destructive, action: removeCaseRequest)
+                        .alert(isPresented: $isPresentingDeleteConfirmation) { removeAlert }
+                })
             }
-        }
-        .popover(isPresented: $isPresentingWebView) {
-            SafariView(url: CaseStatusURL.get(caseStatus.receiptNumber).url)
         }
         .onAppear {
             InteractionMetric.viewCaseDetails.send()
