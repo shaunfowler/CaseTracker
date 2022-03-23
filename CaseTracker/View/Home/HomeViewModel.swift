@@ -130,6 +130,10 @@ class HomeViewModel: ObservableObject {
             await repository.removeCase(receiptNumber: receiptNumber)
         }
     }
+
+    func createDetailsViewModel() -> DetailsViewModel {
+        DetailsViewModel(repository: repository)
+    }
 }
 
 extension CaseStatus {

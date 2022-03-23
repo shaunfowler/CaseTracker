@@ -23,6 +23,7 @@ public protocol Repository {
     func query(force: Bool) async
     func addCase(receiptNumber: String) async -> Result<CaseStatus, Error>
     func removeCase(receiptNumber: String) async -> Result<(), Error>
+    func getHistory(receiptNumber: String) async -> Result<[CaseStatusHistorical], Error>
 }
 
 public class CaseStatusRepository: Repository {
@@ -124,6 +125,10 @@ public class CaseStatusRepository: Repository {
         DDLogInfo("Removing case: \(receiptNumber)...")
         data.value = data.value.filter { $0.id != receiptNumber }
         return await local.remove(receiptNumber: receiptNumber)
+    }
+
+    public func getHistory(receiptNumber: String) async -> Result<[CaseStatusHistorical], Error> {
+        await local.history(receiptNumber: receiptNumber)
     }
 
     // MARK: - Private Functions

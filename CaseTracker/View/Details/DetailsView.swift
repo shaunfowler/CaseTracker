@@ -12,10 +12,7 @@ struct DetailsView: View {
     @Environment(\.openURL) var openURL
     @Environment(\.dismiss) var dismiss
 
-    @State var isPresentingActionSheet = false
-    @State var isPresentingDeleteConfirmation = false
-    @State var isShowingActivityViewController = false
-    @State var isPresentingWebView = false
+    @StateObject var viewModel: DetailsViewModel
 
     let caseStatus: CaseStatus
     let removeCase: (String) -> Void
@@ -48,25 +45,29 @@ struct DetailsView: View {
                     .cornerRadius(8)
             }
 
-            if isShowingActivityViewController {
+            if viewModel.isShowingActivityViewController {
                 ActivityViewController(url: CaseStatusURL.get(caseStatus.receiptNumber).url,
-                                       showing: $isShowingActivityViewController)
+                                       showing: $viewModel.isShowingActivityViewController)
             }
         }
     }
 
     var externalLinkButton: some View {
         Button("View on USCIS Website") {
-            isPresentingWebView.toggle()
+            viewModel.isPresentingWebView.toggle()
         }
-        .sheet(isPresented: $isPresentingWebView) {
+        .sheet(isPresented: $viewModel.isPresentingWebView) {
             SafariView(url: CaseStatusURL.get(caseStatus.receiptNumber).url)
         }
         .padding(.vertical, 24)
     }
 
-    var history: some View {
-        EmptyView()
+    @ViewBuilder var history: some View {
+        if viewModel.history.count > 1 {
+            HistoryView(history: viewModel.history)
+        } else {
+            EmptyView()
+        }
     }
 
     var removeAlert: Alert {
@@ -81,7 +82,7 @@ struct DetailsView: View {
         ScrollView {
             caseInfo
             externalLinkButton
-            // history
+            history
         }
         .padding()
         .background(Color.ctBackgroundPrimary)
@@ -95,26 +96,29 @@ struct DetailsView: View {
                 Button(action: onMoreButtonPressed) {
                     Label("More", systemImage: "ellipsis.circle")
                 }
-                .confirmationDialog("", isPresented: $isPresentingActionSheet, actions: {
+                .confirmationDialog("", isPresented: $viewModel.isPresentingActionSheet, actions: {
                     Button("Copy Receipt Number", action: copyReceiptNumber)
                     Button("Remove Case", role: .destructive, action: removeCaseRequest)
-                        .alert(isPresented: $isPresentingDeleteConfirmation) { removeAlert }
+                        .alert(isPresented: $viewModel.isPresentingDeleteConfirmation) { removeAlert }
                 })
             }
         }
         .onAppear {
             InteractionMetric.viewCaseDetails.send()
+         }
+        .task {
+            await viewModel.load(receiptNumber: caseStatus.receiptNumber)
         }
     }
 
     private func onMoreButtonPressed() {
         InteractionMetric.tapMoreNavBarButton.send()
-        isPresentingActionSheet = true
+        viewModel.isPresentingActionSheet = true
     }
 
     private func onShareButtonPressed() {
         InteractionMetric.tapShareNavBarButton.send()
-        isShowingActivityViewController.toggle()
+        viewModel.isShowingActivityViewController.toggle()
     }
 
     private func copyReceiptNumber() {
@@ -124,7 +128,7 @@ struct DetailsView: View {
 
     private func removeCaseRequest() {
         InteractionMetric.tapRequestRemoveCaseMenuButton.send()
-        isPresentingDeleteConfirmation = true
+        viewModel.isPresentingDeleteConfirmation = true
     }
 
     private func performCaseRemove() {
@@ -136,6 +140,9 @@ struct DetailsView: View {
 
 struct DetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailsView(caseStatus: PreviewDataRepository.case1) { _ in }
+        DetailsView(
+            viewModel: DetailsViewModel(repository: PreviewDataRepository()),
+            caseStatus: PreviewDataRepository.case1
+        ) { _ in }
     }
 }

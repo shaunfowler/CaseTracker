@@ -23,13 +23,21 @@ extension LocalCaseStatusPersistence: CaseStatusWritable {
         os_signpost(.begin, log: OSLog.caseTrackerPoi, name: "LocalCaseStatusPersistence_get")
         do {
             try viewContext.performAndWait {
-                let fetchRequest = CaseStatusManagedObject.fetchByReceiptNumberRequest(receiptNumber: caseStatus.id)
+
+                let fetchRequest = CaseStatusManagedObject.fetchBy(receiptNumber: caseStatus.receiptNumber)
+                let fetchRequestHistorical = CaseStatusHistoricalManagedObject.fetchBy(receiptNumber: caseStatus.receiptNumber, status: caseStatus.status)
+
                 let result = try self.viewContext.fetch(fetchRequest)
                 if let existing = result.first {
                     existing.update(from: caseStatus, context: self.viewContext) // update
+                    if try self.viewContext.fetch(fetchRequestHistorical).isEmpty {
+                        existing.addToHistory(createHistoricalItem(from: caseStatus))
+                    }
                 } else {
-                    CaseStatusManagedObject.from(model: caseStatus, context: self.viewContext) // insert
+                    let new = CaseStatusManagedObject.from(model: caseStatus, context: self.viewContext) // insert
+                    new.addToHistory(createHistoricalItem(from: caseStatus))
                 }
+
                 try self.viewContext.save()
             }
         } catch {
@@ -43,7 +51,7 @@ extension LocalCaseStatusPersistence: CaseStatusWritable {
         os_signpost(.begin, log: OSLog.caseTrackerPoi, name: "LocalCaseStatusPersistence_remove")
         do {
             try await viewContext.perform {
-                let fetchRequest = CaseStatusManagedObject.fetchByReceiptNumberRequest(receiptNumber: receiptNumber)
+                let fetchRequest = CaseStatusManagedObject.fetchBy(receiptNumber: receiptNumber)
                 if let entity = try self.viewContext.fetch(fetchRequest).first {
                     self.viewContext.delete(entity)
                     try self.viewContext.save()
@@ -53,6 +61,14 @@ extension LocalCaseStatusPersistence: CaseStatusWritable {
             return .failure(error)
         }
         return .success(())
+    }
+
+    private func createHistoricalItem(from caseStatus: CaseStatus) -> CaseStatusHistoricalManagedObject {
+        let historicalItem = CaseStatusHistoricalManagedObject(context: viewContext)
+        historicalItem.receiptNumber = caseStatus.receiptNumber
+        historicalItem.date = caseStatus.lastUpdated
+        historicalItem.status = caseStatus.status
+        return historicalItem
     }
 }
 
@@ -65,6 +81,22 @@ extension LocalCaseStatusPersistence: CaseStatusQueryable {
             var resultSet: [CaseStatus] = []
             try viewContext.performAndWait {
                 let request = CaseStatusManagedObject.fetchRequest()
+                let result = try self.viewContext.fetch(request)
+                resultSet = result.compactMap { $0.toModel() }
+            }
+            return .success(resultSet)
+        } catch {
+            return .failure(error)
+        }
+    }
+
+    public func history(receiptNumber: String) async -> Result<[CaseStatusHistorical], Error> {
+        defer { os_signpost(.end, log: OSLog.caseTrackerPoi, name: "LocalCaseStatusPersistence_history") }
+        os_signpost(.begin, log: OSLog.caseTrackerPoi, name: "LocalCaseStatusPersistence_history")
+        do {
+            var resultSet: [CaseStatusHistorical] = []
+            try viewContext.performAndWait {
+                let request = CaseStatusHistoricalManagedObject.fetchBy(receiptNumber: receiptNumber)
                 let result = try self.viewContext.fetch(request)
                 resultSet = result.compactMap { $0.toModel() }
             }

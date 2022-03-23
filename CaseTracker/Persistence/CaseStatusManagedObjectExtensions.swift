@@ -49,7 +49,7 @@ extension CaseStatusManagedObject {
 
     // MARK: - Requests
 
-    static func fetchByReceiptNumberRequest(receiptNumber: String) -> NSFetchRequest<CaseStatusManagedObject> {
+    static func fetchBy(receiptNumber: String) -> NSFetchRequest<CaseStatusManagedObject> {
         let request = NSFetchRequest<CaseStatusManagedObject>(entityName: "CaseStatusManagedObject")
         request.fetchLimit = 1
         request.predicate = NSPredicate(format: "receiptNumber = %@", receiptNumber)

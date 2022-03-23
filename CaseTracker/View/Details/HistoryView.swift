@@ -10,13 +10,13 @@ import SwiftUI
 
 struct HistoryView: View {
 
-    var history = [CaseStatus]()
+    var history = [CaseStatusHistorical]()
 
     var body: some View {
         VStack(alignment: .leading) {
             Text("History")
             VStack(alignment: .leading, spacing: 8) {
-                ForEach(history, id: \.id) { historicalItem in
+                ForEach(history, id: \.date) { historicalItem in
                     HStack(alignment: .center) {
                         Circle()
                             .foregroundColor(historicalItem.color)
@@ -44,6 +44,6 @@ struct HistoryView: View {
 
 struct HistoryView_Previews: PreviewProvider {
     static var previews: some View {
-        HistoryView(history: [PreviewDataRepository.case1, PreviewDataRepository.case2, PreviewDataRepository.case3])
+        HistoryView(history: [])
     }
 }

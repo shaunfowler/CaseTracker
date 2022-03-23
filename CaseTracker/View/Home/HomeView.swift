@@ -28,7 +28,7 @@ struct HomeView: View {
                 }
 
                 ForEach(viewModel.cases, id: \.id) { caseStatus in
-                    NavigationLink(destination: DetailsView(caseStatus: caseStatus) {
+                    NavigationLink(destination: DetailsView(viewModel: viewModel.createDetailsViewModel(), caseStatus: caseStatus) {
                         viewModel.removeCase(receiptNumber: $0)
                     }) {
                         CaseRowView(model: caseStatus)

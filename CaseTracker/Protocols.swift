@@ -13,6 +13,7 @@ public protocol CaseStatusReadable {
 
 public protocol CaseStatusQueryable {
     func query() async -> Result<[CaseStatus], Error>
+    func history(receiptNumber: String) async -> Result<[CaseStatusHistorical], Error>
 }
 
 public protocol CaseStatusWritable {

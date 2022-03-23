@@ -71,4 +71,8 @@ class PreviewDataRepository: Repository {
     func removeCase(receiptNumber: String) async -> Result<(), Error> {
         .success(())
     }
+
+    func getHistory(receiptNumber: String) async -> Result<[CaseStatusHistorical], Error> {
+        .success([])
+    }
 }

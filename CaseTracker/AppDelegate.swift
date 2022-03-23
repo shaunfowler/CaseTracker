@@ -50,7 +50,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     }
 
     private func setupAppearance() {
-        let attributes: [NSAttributedString.Key : Any] = [.foregroundColor: UIColor(.ctTextPrimary)]
+        let attributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor(.ctTextPrimary)]
         UINavigationBar.appearance().largeTitleTextAttributes = attributes
         UINavigationBar.appearance().titleTextAttributes = attributes
     }
