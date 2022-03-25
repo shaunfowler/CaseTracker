@@ -29,21 +29,43 @@ class PersistenceController {
             managedObjectModel: NSManagedObjectModel(contentsOf: managedObjectModelUrl)!
         )
 
-        #if DEBUG
+#if DEBUG
         if CommandLine.arguments.contains("-uiTests") {
             print("*** Using in-memory persistence container ***")
             let description = NSPersistentStoreDescription()
             description.url = URL(fileURLWithPath: "/dev/null")
             container.persistentStoreDescriptions = [description]
         }
-        #endif
+#endif
 
-        container.loadPersistentStores(completionHandler: { _, error in
+        container.loadPersistentStores { _, error in
             defer { os_signpost(.end, log: OSLog.caseTrackerPoi, name: "PersistenceController_init") }
             if let error = error as NSError? {
                 DDLogError("Failed to load CoreData persistent stores. Error: \(error).")
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
-        })
+#if DEBUG
+            if CommandLine.arguments.contains("-uiTests") && CommandLine.arguments.contains("-uiTestsScreenshots") {
+                self.seedTestData()
+            }
+#endif
+        }
+    }
+}
+
+extension PersistenceController {
+
+    func seedTestData() {
+        CaseStatusManagedObject.from(model: PreviewDataRepository.case1, context: container.viewContext)
+        CaseStatusManagedObject.from(model: PreviewDataRepository.case2, context: container.viewContext)
+        CaseStatusManagedObject.from(model: PreviewDataRepository.case3, context: container.viewContext)
+        CaseStatusManagedObject.from(model: PreviewDataRepository.case4, context: container.viewContext)
+
+        CaseStatusHistoricalManagedObject.from(model: PreviewDataRepository.case2History1, context: container.viewContext)
+        CaseStatusHistoricalManagedObject.from(model: PreviewDataRepository.case2History2, context: container.viewContext)
+        CaseStatusHistoricalManagedObject.from(model: PreviewDataRepository.case2History3, context: container.viewContext)
+        CaseStatusHistoricalManagedObject.from(model: PreviewDataRepository.case2History4, context: container.viewContext)
+
+        try? container.viewContext.save()
     }
 }

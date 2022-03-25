@@ -77,8 +77,12 @@ public class CaseStatusRepository: Repository {
     public func query(force: Bool = false) async {
         defer { os_signpost(.end, log: OSLog.caseTrackerPoi, name: "CaseStatusRepository_query") }
         os_signpost(.begin, log: OSLog.caseTrackerPoi, name: "CaseStatusRepository_query")
+
         DDLogInfo("Querying all cases...")
+
         var result = [CaseStatus]()
+        error.value = nil
+
         do {
             // Send local data to publisher first.
             let localResults = try await local.query().get().sorted(by: { lhs, rhs in lhs.id < rhs.id })
@@ -96,17 +100,24 @@ public class CaseStatusRepository: Repository {
             }
 
             // USCIS doesn't properly return responses for simultaneous requests so request serially.
-            for receiptNumber in localResults.map(\.receiptNumber) {
-                if case .success(let caseStatus) = await self.get(forCaseId: receiptNumber, force: force) {
+            for localResult in localResults {
+                let fetched = await self.get(forCaseId: localResult.receiptNumber, force: force)
+                switch fetched {
+                case .success(let caseStatus):
                     result.append(caseStatus)
+                case .failure(let error):
+                    // Fallback to expired result.
+                    DDLogError("Error reloading remote case: \(localResult.receiptNumber).")
+                    result.append(localResult)
+                    self.error.value = error
                 }
             }
 
             // Send remote data to publisher.
-            error.value = nil
             data.value = result.sorted(by: { lhs, rhs in lhs.id < rhs.id })
             DDLogInfo("Finished querying \(result.count) cases.")
         } catch {
+            self.error.value = error
             DDLogError("Error querying cases: \(error.localizedDescription).")
         }
     }
@@ -116,7 +127,7 @@ public class CaseStatusRepository: Repository {
         let result = await get(forCaseId: receiptNumber)
         if case .success(let caseStatus) = result {
             DDLogDebug("Adding case to local repository publisher.")
-            data.value = [caseStatus] + data.value
+            data.value = ([caseStatus] + data.value).sorted(by: { lhs, rhs in lhs.id < rhs.id })
         }
         return result
     }
@@ -158,7 +169,7 @@ public class CaseStatusRepository: Repository {
 
         case .failure(let error):
             DDLogError("Error fetching case from remote API: \(error.localizedDescription).")
-            return .failure(CSError.http)
+            return .failure(error)
         }
     }
 

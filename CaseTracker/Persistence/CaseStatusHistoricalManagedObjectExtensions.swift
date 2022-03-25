@@ -23,6 +23,15 @@ extension CaseStatusHistoricalManagedObject {
         return nil
     }
 
+    @discardableResult
+    static func from(model: CaseStatusHistorical, context: NSManagedObjectContext) -> CaseStatusHistoricalManagedObject {
+        let object = CaseStatusHistoricalManagedObject(context: context)
+        object.receiptNumber = model.receiptNumber
+        object.date = model.date
+        object.status = model.status
+        return object
+    }
+
     // MARK: - Requests
 
     static func fetchBy(receiptNumber: String, status: String) -> NSFetchRequest<CaseStatusHistoricalManagedObject> {

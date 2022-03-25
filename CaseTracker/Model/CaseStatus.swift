@@ -97,12 +97,12 @@ extension CaseStatus {
         guard
             let status = try doc.select(".rows.text-center h1").first?.text(),
             let body = try doc.select(".rows.text-center p").first?.text() else {
-                throw CSError.htmlParse
+                throw CSError.htmlParse(receiptNumber)
             }
 
         if let error = try? doc.select("#formErrorMessages").first?.text(), !error.isEmpty {
             DDLogError("Error message found on webpage: \(error).")
-            throw CSError.invalidCase
+            throw CSError.invalidCase(receiptNumber)
         }
 
         self.receiptNumber = receiptNumber

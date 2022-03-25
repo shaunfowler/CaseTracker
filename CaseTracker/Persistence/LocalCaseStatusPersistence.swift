@@ -81,6 +81,7 @@ extension LocalCaseStatusPersistence: CaseStatusQueryable {
             var resultSet: [CaseStatus] = []
             try viewContext.performAndWait {
                 let request = CaseStatusManagedObject.fetchRequest()
+                request.sortDescriptors = [NSSortDescriptor(key: "receiptNumber", ascending: true)]
                 let result = try self.viewContext.fetch(request)
                 resultSet = result.compactMap { $0.toModel() }
             }
@@ -97,6 +98,7 @@ extension LocalCaseStatusPersistence: CaseStatusQueryable {
             var resultSet: [CaseStatusHistorical] = []
             try viewContext.performAndWait {
                 let request = CaseStatusHistoricalManagedObject.fetchBy(receiptNumber: receiptNumber)
+                request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
                 let result = try self.viewContext.fetch(request)
                 resultSet = result.compactMap { $0.toModel() }
             }

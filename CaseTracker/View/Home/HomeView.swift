@@ -25,6 +25,7 @@ struct HomeView: View {
 
                 if let errorMessage = viewModel.errorMessage {
                     Text(errorMessage)
+                        .updatedCaptionTextStyle()
                 }
 
                 ForEach(viewModel.cases, id: \.id) { caseStatus in
@@ -120,7 +121,7 @@ struct HomeView: View {
 struct ContentView_Previews: PreviewProvider {
 
     static let viewModel = HomeViewModel(repository: PreviewDataRepository())
-    static let viewModelEmpty = HomeViewModel(repository: PreviewDataRepository(cases: []))
+    static let viewModelEmpty = HomeViewModel(repository: PreviewDataRepository(cases: [], history: []))
 
     static var previews: some View {
         Group {

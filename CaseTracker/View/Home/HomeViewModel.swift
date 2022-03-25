@@ -22,6 +22,7 @@ class HomeViewModel: ObservableObject {
     // MARK: - Public Properties
 
     @Published var cases = [CaseStatus]()
+
     @Published var selectedCase: CaseStatus?
     @Published var loading = true
     @Published var errorMessage: String?

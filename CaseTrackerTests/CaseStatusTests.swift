@@ -59,14 +59,24 @@ class CaseStatusTests: XCTestCase {
         let receiptNumber = "ABC1234"
         let html = loadCaseHtml(filename: receiptNumber)!
         XCTAssertThrowsError(try CaseStatus(receiptNumber: "ABC1234", htmlString: html), "") { error in
-            XCTAssertEqual(error as? CSError, CSError.invalidCase)
+            switch error as? CSError {
+            case .invalidCase(let receiptNumber):
+                XCTAssertEqual(receiptNumber, "ABC1234")
+            default:
+                XCTFail("Unexpected error")
+            }
         }
     }
 
     func testParseGarbageData() {
         let html = "df9u823fnsadanguisdgh!)@#&FD*=/*"
         XCTAssertThrowsError(try CaseStatus(receiptNumber: "LIN2119051099", htmlString: html), "") { error in
-            XCTAssertEqual(error as? CSError, CSError.htmlParse)
+            switch error as? CSError {
+            case .htmlParse(let receiptNumber):
+                XCTAssertEqual(receiptNumber, "LIN2119051099")
+            default:
+                XCTFail("Unexpected error")
+            }
         }
     }
 }

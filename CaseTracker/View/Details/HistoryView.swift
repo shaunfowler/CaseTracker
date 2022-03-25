@@ -15,27 +15,37 @@ struct HistoryView: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text("History")
-            VStack(alignment: .leading, spacing: 8) {
-                ForEach(history, id: \.date) { historicalItem in
-                    HStack(alignment: .center) {
-                        Circle()
-                            .foregroundColor(historicalItem.color)
-                            .frame(width: 8, height: 8, alignment: .center)
+            ZStack(alignment: .leading) {
 
-                        VStack(alignment: .leading) {
-                            Text(historicalItem.status)
-                                .font(.caption)
-                                .foregroundColor(.ctTextSecondary)
-                            Text(historicalItem.lastUpdatedFormatted)
-                                .font(.caption2)
-                                .foregroundColor(.ctTextTertiary)
+                Rectangle()
+                    .foregroundColor(.ctBackgroundPrimary)
+                    .frame(maxHeight: .infinity)
+                    .frame(width: 1)
+                    .offset(x: 3.5)
+                    .padding(.horizontal)
+
+                VStack(alignment: .leading, spacing: 8) {
+                    ForEach(history, id: \.date) { historicalItem in
+                        HStack(alignment: .center) {
+                            Circle()
+                                .foregroundColor(historicalItem.color)
+                                .frame(width: 8, height: 8, alignment: .center)
+
+                            VStack(alignment: .leading) {
+                                Text(historicalItem.status)
+                                    .font(.caption2)
+                                    .foregroundColor(.ctTextSecondary)
+                                Text(historicalItem.lastUpdatedFormatted)
+                                    .font(.caption2)
+                                    .foregroundColor(.ctTextTertiary)
+                            }
+
+                            Spacer()
                         }
-
-                        Spacer()
                     }
                 }
+                .padding()
             }
-            .padding()
             .background(Color.ctBackgroundSecondary)
             .cornerRadius(8)
         }
@@ -44,6 +54,24 @@ struct HistoryView: View {
 
 struct HistoryView_Previews: PreviewProvider {
     static var previews: some View {
-        HistoryView(history: [])
+        Group {
+            HistoryView(history: [PreviewDataRepository().caseHistory.first!])
+                .padding()
+                .background(Color.ctBackgroundPrimary)
+                .preferredColorScheme(.light)
+            HistoryView(history: [PreviewDataRepository().caseHistory.first!])
+                .padding()
+                .background(Color.ctBackgroundPrimary)
+                .preferredColorScheme(.dark)
+            HistoryView(history: PreviewDataRepository().caseHistory)
+                .padding()
+                .background(Color.ctBackgroundPrimary)
+                .preferredColorScheme(.light)
+            HistoryView(history: PreviewDataRepository().caseHistory)
+                .padding()
+                .background(Color.ctBackgroundPrimary)
+                .preferredColorScheme(.dark)
+        }
+        .previewLayout(.fixed(width: 300, height: 220))
     }
 }

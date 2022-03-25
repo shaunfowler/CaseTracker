@@ -17,7 +17,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
         setupLogging()
-        setupAnalytics()
+        setupFirebase()
         setupNotifications()
         setupAppearance()
         return true
@@ -41,8 +41,10 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         DDLog.add(CrashlyticsLogger(), with: .all)
     }
 
-    private func setupAnalytics() {
+    private func setupFirebase() {
         FirebaseApp.configure()
+        // Prime feature service
+        _ = FeatureService.shared.isEnabled(feature: .history)
     }
 
     private func setupNotifications() {

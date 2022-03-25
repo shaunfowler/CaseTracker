@@ -27,16 +27,18 @@ actor RemoteCaseStatusAPI: CaseStatusReadable {
             let urlContainer = CaseStatusURL.get(id)
             let url = urlContainer.url
 
-            DDLogInfo("Requesting URL: \(urlContainer.url.absoluteString).")
+            DDLogInfo("Requesting URL: \(url.absoluteString).")
             let (data, response) = try await urlSession.data(for: URLRequest(url: url))
             await urlSession.reset()
 
-            guard let response = (response as? HTTPURLResponse), response.statusCode < 400 else {
-                throw CSError.http
+            let statusCode = (response as? HTTPURLResponse)?.statusCode
+            guard let statusCode = statusCode, statusCode < 400 else {
+                DDLogError("Status code \(statusCode ?? 0) for URL \(url.absoluteString).")
+                throw CSError.http(id, statusCode)
             }
 
             guard let htmlString = String(data: data, encoding: .utf8) else {
-                throw CSError.corrupt
+                throw CSError.corrupt(id)
             }
 
             return .success(try CaseStatus(receiptNumber: id, htmlString: htmlString))

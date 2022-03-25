@@ -14,13 +14,18 @@ class DetailsViewModel: ObservableObject {
     @Published var isPresentingDeleteConfirmation = false
     @Published var isShowingActivityViewController = false
     @Published var isPresentingWebView = false
-
     @Published var history = [CaseStatusHistorical]()
 
-    private let repository: Repository
+    var isHistoryAvailable: Bool {
+        featureService.isEnabled(feature: .history) && !history.isEmpty
+    }
 
-    init(repository: Repository) {
+    private let repository: Repository
+    private let featureService: FeatureServiceProtocol
+
+    init(repository: Repository, featureService: FeatureServiceProtocol = FeatureService.shared) {
         self.repository = repository
+        self.featureService = featureService
     }
 
     func load(receiptNumber: String) async {

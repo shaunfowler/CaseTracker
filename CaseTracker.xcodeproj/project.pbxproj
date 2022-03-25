@@ -24,6 +24,7 @@
 		5268CEA0967B38269FDCA0AA719283B9 /* FirstTimeUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3C0289361588F2AAE7CFC2A766EFB8 /* FirstTimeUserView.swift */; };
 		5C278A35D186DF3EBBA1A207F710F314 /* LIN2119051099.html in Resources */ = {isa = PBXBuildFile; fileRef = 8B204FE61724522A67E522B763AF54EE /* LIN2119051099.html */; };
 		602EA629D288A5C8F90075CAB292C1D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4696B06911507C0A5DD6D1DC9CC9BE24 /* AppDelegate.swift */; };
+		61967BD870AD4F7426ACA9AC278621A4 /* FeatureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D314C012D9DD089080E5578B06EACF /* FeatureService.swift */; };
 		6806634062C14BFE4128F972EA9B4DBE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79260E849CA9AFD52860404557F6C4DF /* HomeView.swift */; };
 		6CDB69295E80B1B8A47BCC55E85EC720 /* LocalCaseStatusPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEF57DD7EBF84B6227A779CBD67EC2A /* LocalCaseStatusPersistence.swift */; };
 		6E2335FE25B9E3CC2BF2AB7CD08AB574 /* MockRemoteCaseStatusAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE506A868FB582A3ABF9FFF2CF9F4CD /* MockRemoteCaseStatusAPI.swift */; };
@@ -42,6 +43,7 @@
 		AA5DC5B34CCD80E91FFD479B0C1353A6 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9A1300DB8D807E12941E9C87A2E53C /* HomeViewModel.swift */; };
 		AA9B5C9579202BF02ADD328C8C9BD9F6 /* CaseRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E85018D586C414050AC13A5E22E49E /* CaseRowView.swift */; };
 		AC6E4E09C761C62BA5BB6BEB3A400809 /* CrashlyticsLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AF21ED82544E8A41B62FB7778627DC /* CrashlyticsLogger.swift */; };
+		B22CEA9F58C1B662CA1EEFAC93340116 /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADB19C90328A3247C4BF7B59FC23BD3E /* RemoteConfigDefaults.plist */; };
 		B5C2AB21528C2EF76EFF2CC170F67E24 /* CaseTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9D85C56C67B078AC9C5CD0F59C9E0B /* CaseTrackerApp.swift */; };
 		B91107F00C85FE64EC43C27F81A6DE24 /* ABC1234.html in Resources */ = {isa = PBXBuildFile; fileRef = 4142C927172AE1D4285446A15FBF9D2C /* ABC1234.html */; };
 		B9B203E2640E4113DB9EAB6B0072FEFE /* CaseStatusHistoricalManagedObjectExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DD28DCD86BFA4648F3EFD164D2A869 /* CaseStatusHistoricalManagedObjectExtensions.swift */; };
@@ -138,7 +140,9 @@
 		9E41BC630B960DD03008433674A0DBD7 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		9F66DEA08C9DAF157039693094D4464E /* RemoteCaseStatusAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCaseStatusAPI.swift; sourceTree = "<group>"; };
 		A11F680A95B738C825D9168786922D33 /* Pods-CaseTrackerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaseTrackerTests.release.xcconfig"; path = "Target Support Files/Pods-CaseTrackerTests/Pods-CaseTrackerTests.release.xcconfig"; sourceTree = "<group>"; };
+		A8D314C012D9DD089080E5578B06EACF /* FeatureService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureService.swift; sourceTree = "<group>"; };
 		AABAB6D4019EFE4FC4CB711A8A2E42E9 /* CaseTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaseTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ADB19C90328A3247C4BF7B59FC23BD3E /* RemoteConfigDefaults.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RemoteConfigDefaults.plist; sourceTree = "<group>"; };
 		B165842D1DE2A7B99DE71C0530D824C6 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		B68F81B6602C9BE078C0375FDAD6D9F4 /* CaseTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseTrackerUITests.swift; sourceTree = "<group>"; };
 		B9AF21ED82544E8A41B62FB7778627DC /* CrashlyticsLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashlyticsLogger.swift; sourceTree = "<group>"; };
@@ -193,6 +197,14 @@
 				483B7392FAF9C2C57F8E6398E26285A1 /* SnapshotHelper.swift */,
 			);
 			path = CaseTrackerUITests;
+			sourceTree = "<group>";
+		};
+		1A6321C1D8A4514C6F3790FC1EC03093 /* RemoteConfiguration */ = {
+			isa = PBXGroup;
+			children = (
+				A8D314C012D9DD089080E5578B06EACF /* FeatureService.swift */,
+			);
+			path = RemoteConfiguration;
 			sourceTree = "<group>";
 		};
 		30594081A05E246BE087F601ABAF13FD /* Recovered References */ = {
@@ -311,6 +323,7 @@
 				60E6F41EA9F33B28DC55E727020EADE9 /* Info.plist */,
 				07A8C79A056C5C440AF1B2611B573B41 /* Localizable.strings */,
 				BA12C9754775922C812F38C5BC44D71D /* PreviewDataRepository.swift */,
+				ADB19C90328A3247C4BF7B59FC23BD3E /* RemoteConfigDefaults.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -419,6 +432,7 @@
 				8ED260FCBDAD9BB53FA9CA1E593DF22D /* Notifications */,
 				BE3611982C134DAAABD3E9A930BAC7F0 /* Persistence */,
 				BDC674C7557B7732276AE4D76858AF44 /* Remote */,
+				1A6321C1D8A4514C6F3790FC1EC03093 /* RemoteConfiguration */,
 				A38A9A5DF4DEF08C939DC45894BD4267 /* Resources */,
 				5AECF404A4E0E30533F025BA029E95EF /* View */,
 				4696B06911507C0A5DD6D1DC9CC9BE24 /* AppDelegate.swift */,
@@ -563,6 +577,7 @@
 				346F62AFFB0CF3175A1F61E8F3D50496 /* GoogleService-Info.plist in Resources */,
 				A969E3EB99F8FF3942779B1AAB883B70 /* Localizable.strings in Resources */,
 				DCC9843752279A13BE873BBF025440DB /* Preview Assets.xcassets in Resources */,
+				B22CEA9F58C1B662CA1EEFAC93340116 /* RemoteConfigDefaults.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -710,6 +725,7 @@
 				AC6E4E09C761C62BA5BB6BEB3A400809 /* CrashlyticsLogger.swift in Sources */,
 				C8CF5551431AEFBA3CCAB8BED5A7B5D4 /* DetailsView.swift in Sources */,
 				F49A758C83670F2F260410B08D6D6CF4 /* DetailsViewModel.swift in Sources */,
+				61967BD870AD4F7426ACA9AC278621A4 /* FeatureService.swift in Sources */,
 				5268CEA0967B38269FDCA0AA719283B9 /* FirstTimeUserView.swift in Sources */,
 				7D1B3B595A3048782F06A62E007C4A18 /* HistoryView.swift in Sources */,
 				6806634062C14BFE4128F972EA9B4DBE /* HomeView.swift in Sources */,

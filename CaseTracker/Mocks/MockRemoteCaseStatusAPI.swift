@@ -18,7 +18,7 @@ class MockRemoteCaseStatusAPI: CaseStatusReadable {
 
     func get(forCaseId id: String) async -> Result<CaseStatus, Error> {
         guard let caseStatus = cases[id] else {
-            return .failure(CSError.invalidCase)
+            return .failure(CSError.invalidCase(id))
         }
         return .success(caseStatus)
     }

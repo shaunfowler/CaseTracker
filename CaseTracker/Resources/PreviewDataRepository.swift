@@ -25,6 +25,30 @@ class PreviewDataRepository: Repository {
         lastFetched: Date()
     )
 
+    static let case2History1 = CaseStatusHistorical(
+        receiptNumber: PreviewDataRepository.case2.receiptNumber,
+        date: PreviewDataRepository.case2.lastUpdated!,
+        status: PreviewDataRepository.case2.status
+    )
+
+    static let case2History2 = CaseStatusHistorical(
+        receiptNumber: PreviewDataRepository.case2.receiptNumber,
+        date: PreviewDataRepository.case2.lastUpdated! - 3000000,
+        status: Status.responseToUSCISRequestForEvidenceWasReceived.rawValue
+    )
+
+    static let case2History3 = CaseStatusHistorical(
+        receiptNumber: PreviewDataRepository.case2.receiptNumber,
+        date: PreviewDataRepository.case2.lastUpdated! - 5000000,
+        status: Status.requestforInitialEvidenceWasSent.rawValue
+    )
+
+    static let case2History4 = CaseStatusHistorical(
+        receiptNumber: PreviewDataRepository.case2.receiptNumber,
+        date: PreviewDataRepository.case2.lastUpdated! - 8000000,
+        status: Status.caseWasReceived.rawValue
+    )
+
     static let case2 = CaseStatus(
         receiptNumber: "MSC2119251333",
         status: Status.caseWasApproved.rawValue,
@@ -52,9 +76,21 @@ class PreviewDataRepository: Repository {
         lastFetched: Date()
     )
 
-    var cases = [PreviewDataRepository.case1, PreviewDataRepository.case2, PreviewDataRepository.case3, PreviewDataRepository.case4]
+    var cases = [
+        PreviewDataRepository.case1,
+        PreviewDataRepository.case2,
+        PreviewDataRepository.case3,
+        PreviewDataRepository.case4
+    ]
 
-    init(cases: [CaseStatus]) {
+    var caseHistory = [
+        PreviewDataRepository.case2History1,
+        PreviewDataRepository.case2History2,
+        PreviewDataRepository.case2History3,
+        PreviewDataRepository.case2History4
+    ]
+
+    init(cases: [CaseStatus], history: [CaseStatusHistorical]) {
         self.cases = cases
     }
 
@@ -73,6 +109,6 @@ class PreviewDataRepository: Repository {
     }
 
     func getHistory(receiptNumber: String) async -> Result<[CaseStatusHistorical], Error> {
-        .success([])
+        return .success([])
     }
 }

@@ -59,11 +59,11 @@ struct DetailsView: View {
         .sheet(isPresented: $viewModel.isPresentingWebView) {
             SafariView(url: CaseStatusURL.get(caseStatus.receiptNumber).url)
         }
-        .padding(.vertical, 24)
+        .padding(.vertical)
     }
 
     @ViewBuilder var history: some View {
-        if viewModel.history.count > 1 {
+        if viewModel.isHistoryAvailable {
             HistoryView(history: viewModel.history)
         } else {
             EmptyView()
