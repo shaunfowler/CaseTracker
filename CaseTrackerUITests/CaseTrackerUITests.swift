@@ -14,34 +14,19 @@ class CaseTrackerUITests: XCTestCase {
 
     override func setUp() {
         setupSnapshot(app)
+        app.launchArguments = ["-uiTests"]
+        app.launch()
     }
 
     // MARK: - Adding cases
 
-    func testScreenshotsAddCases_Light() {
-        app.launchArguments = ["-uiTests", "-uiTestsLightMode"]
-        app.launch()
-        performAddCases("Light")
-    }
-
-    func testScreenshotsAddCases_Dark() {
-        app.launchArguments = ["-uiTests", "-uiTestsDarkMode"]
-        app.launch()
-        performAddCases("Dark")
-    }
-
-    private func performAddCases(_ colorScheme: String) {
-        // First-time view
-        snapshot("FirstTime-\(colorScheme)")
-
+    func testAddCases() {
         // Add case modal
         app.buttons["Add Your First Case"].tap()
-        snapshot("AddCaseEmpty-\(colorScheme)")
 
         // Add case modal filled in
         app.textFields["XYZ0123456789"].tap()
         enterReceiptNumber(serviceCenter: "IOE", number: "9119251367")
-        snapshot("AddCaseFilled-\(colorScheme)")
         app.buttons["Add Case"].tap()
 
         // Add remaining cases
@@ -56,32 +41,16 @@ class CaseTrackerUITests: XCTestCase {
         app.navigationBars["My Cases"].buttons["Add Case"].tap()
         enterReceiptNumber(serviceCenter: "LIN", number: "2118251021")
         app.buttons["Add Case"].firstMatch.tap()
-
-        // Snapshot case list
-        snapshot("CaseList-\(colorScheme)")
     }
 
     // MARK: - Adding case with error
 
-    func testScreenshotAddCaseError_Light() {
-        app.launchArguments = ["-uiTests", "-uiTestsLightMode"]
-        app.launch()
-        performAddCaseError("Light")
-    }
-
-    func testScreenshotAddCaseError_Dark() {
-        app.launchArguments = ["-uiTests", "-uiTestsDarkMode"]
-        app.launch()
-        performAddCaseError("Dark")
-    }
-
-    private func performAddCaseError(_ colorScheme: String) {
+    func testAddCaseError() {
         // Add a case with garbage receipt number
         app.buttons["Add Your First Case"].tap()
         app.textFields["XYZ0123456789"].tap()
         enterReceiptNumber(serviceCenter: "AAA", number: "123")
         app.buttons["Add Case"].tap()
-        snapshot("AddCaseError-\(colorScheme)")
 
         // Dismiss error alert and close modal
         app.buttons["OK"].tap()
