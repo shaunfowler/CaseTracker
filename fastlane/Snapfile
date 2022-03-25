@@ -1,3 +1,5 @@
+scheme("CaseTrackerUITestsFaslane")
+
 devices([
   # "iPhone 8",
   "iPhone 8 Plus",
