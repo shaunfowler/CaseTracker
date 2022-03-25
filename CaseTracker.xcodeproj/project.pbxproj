@@ -50,9 +50,11 @@
 		BC68D0E24A5A0E7B6ECA4EDADB7711B5 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1B91CDC3A131BFE18B4454C56F2ADE /* ActivityView.swift */; };
 		C05D5C82564AF485BFCBFA0A1AC782B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C23D19A526E2A6F15619884C9C6ED1A3 /* Assets.xcassets */; };
 		C8CF5551431AEFBA3CCAB8BED5A7B5D4 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461B859879D7C429976788F7715A283D /* DetailsView.swift */; };
+		CA76C50C55489A1748DC559D322EEE0A /* TestCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CA7944B5887DBFEEEA566BF37C49AA /* TestCoreDataStack.swift */; };
 		D49ED6959E919DA3A92F7EC3BD69D699 /* Pods_CaseTrackerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FF79520D30FA6AC59F4C76B6D9F0749 /* Pods_CaseTrackerTests.framework */; };
 		D56669BF201857CFB5D51DFB314A58FF /* CaseStatusManagedObjectExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F81383ED68B9F1E8B75D29E65DF6D0 /* CaseStatusManagedObjectExtensions.swift */; };
 		DAB1074C8F3881495AB7C8E91882E2E5 /* CaseStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B52ACF4B5908A1A115F9E62EB0B0425 /* CaseStatus.swift */; };
+		DAC3A40671BE2422D0AAEE60FF57E33B /* LocalCaseStatusPersitenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94C9E145FA9E3E8F0A2AF3E279BCB8D /* LocalCaseStatusPersitenceTests.swift */; };
 		DCC9843752279A13BE873BBF025440DB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C944B015E8716F77632FF4AB8A91939 /* Preview Assets.xcassets */; };
 		E88BB4B6C8922EAFA6F2DB6E7241EED7 /* CaseStatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC25DE962C8399BC6A006265A20904CE /* CaseStatusTests.swift */; };
 		EC2875C124423E57A1F6FF6C1ACD07BF /* UpdatedCaptionTextViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3C75F3598EA044184E786D18A07959 /* UpdatedCaptionTextViewModifier.swift */; };
@@ -123,6 +125,7 @@
 		6B52ACF4B5908A1A115F9E62EB0B0425 /* CaseStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseStatus.swift; sourceTree = "<group>"; };
 		71038D5FA73C0DF8394A26084375CA5A /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		7195E4FA66FEBD3EAF7C88A8DA649429 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		72CA7944B5887DBFEEEA566BF37C49AA /* TestCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCoreDataStack.swift; sourceTree = "<group>"; };
 		7607B1C6F2316CBD1DCE38D9D8C51726 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		79260E849CA9AFD52860404557F6C4DF /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		7966C45E504CFCDBA05FF9DC91B6C1DA /* Case Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Case Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -152,6 +155,7 @@
 		C5DDD5164FE370A825583137968D54F8 /* NotificationFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationFactory.swift; sourceTree = "<group>"; };
 		C6B5B9600ABD84E7D90120A1C3855181 /* CaseStatusURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseStatusURL.swift; sourceTree = "<group>"; };
 		C8343F5EE2F8FA1E47BAE99C5DC7933D /* CaseTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CaseTracker.entitlements; sourceTree = "<group>"; };
+		D94C9E145FA9E3E8F0A2AF3E279BCB8D /* LocalCaseStatusPersitenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCaseStatusPersitenceTests.swift; sourceTree = "<group>"; };
 		DA3C0289361588F2AAE7CFC2A766EFB8 /* FirstTimeUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstTimeUserView.swift; sourceTree = "<group>"; };
 		DB9D85C56C67B078AC9C5CD0F59C9E0B /* CaseTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseTrackerApp.swift; sourceTree = "<group>"; };
 		DF3C75F3598EA044184E786D18A07959 /* UpdatedCaptionTextViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatedCaptionTextViewModifier.swift; sourceTree = "<group>"; };
@@ -335,6 +339,8 @@
 				EC25DE962C8399BC6A006265A20904CE /* CaseStatusTests.swift */,
 				BCD6ABE8459406D645A36D5C3AEFAD8C /* LIN2119051098.html */,
 				8B204FE61724522A67E522B763AF54EE /* LIN2119051099.html */,
+				D94C9E145FA9E3E8F0A2AF3E279BCB8D /* LocalCaseStatusPersitenceTests.swift */,
+				72CA7944B5887DBFEEEA566BF37C49AA /* TestCoreDataStack.swift */,
 			);
 			path = CaseTrackerTests;
 			sourceTree = "<group>";
@@ -764,6 +770,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E88BB4B6C8922EAFA6F2DB6E7241EED7 /* CaseStatusTests.swift in Sources */,
+				DAC3A40671BE2422D0AAEE60FF57E33B /* LocalCaseStatusPersitenceTests.swift in Sources */,
+				CA76C50C55489A1748DC559D322EEE0A /* TestCoreDataStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

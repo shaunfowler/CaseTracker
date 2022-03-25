@@ -16,6 +16,8 @@ class PreviewDataRepository: Repository {
     var error: CurrentValueSubject<Error?, Never> = .init(nil)
     var networkReachable: CurrentValueSubject<Bool, Never> = .init(true)
 
+    // MARK: - Case 1
+
     static let case1 = CaseStatus(
         receiptNumber: "IOE9119251367",
         status: Status.caseIsActivelyBeingReviewedByUSCIS.rawValue,
@@ -24,6 +26,8 @@ class PreviewDataRepository: Repository {
         lastUpdated: Date.now,
         lastFetched: Date()
     )
+
+    // MARK: - Case 2
 
     static let case2History1 = CaseStatusHistorical(
         receiptNumber: PreviewDataRepository.case2.receiptNumber,
@@ -54,9 +58,22 @@ class PreviewDataRepository: Repository {
         status: Status.caseWasApproved.rawValue,
         body: "On January 23, 2022, we approved your Form I-765, Application for Employment Authorization, Receipt Number MSC2119251333. We sent you an approval notice. Please follow the instructions in the notice. If you do not receive your approval notice by March 3, 2022, please go to www.uscis.gov/e-request. If you move, go to www.uscis.gov/addresschange to give us your new mailing address.",
         formType: "I-765",
-        lastUpdated: try! Date("2022-01-23T12:00:00+0000", strategy: .iso8601),
+        lastUpdated: try! Date("2022-01-23T12:00:00+0000", strategy: .iso8601), // baseline for last status
         lastFetched: Date()
     )
+
+    static let case2_final = case2
+
+    static var case2_previous = CaseStatus(
+        receiptNumber: case2.receiptNumber,
+        status: Status.caseWasApproved.rawValue,
+        body: "PLACEHOLDER",
+        formType: case2.formType,
+        lastUpdated: case2History2.date,
+        lastFetched: Date()
+    )
+
+    // MARK: - Case 3
 
     static let case3 = CaseStatus(
         receiptNumber: "MSC2119258454",
@@ -67,6 +84,8 @@ class PreviewDataRepository: Repository {
         lastFetched: Date()
     )
 
+    // MARK: - Case 4
+
     static let case4 = CaseStatus(
         receiptNumber: "LIN2118251021",
         status: Status.requestforAdditionalEvidenceWasSent.rawValue,
@@ -75,6 +94,8 @@ class PreviewDataRepository: Repository {
         lastUpdated: try! Date("2021-12-29T12:00:00+0000", strategy: .iso8601),
         lastFetched: Date()
     )
+
+    // MARK: - Instance Properties
 
     var cases = [
         PreviewDataRepository.case1,
@@ -89,6 +110,8 @@ class PreviewDataRepository: Repository {
         PreviewDataRepository.case2History3,
         PreviewDataRepository.case2History4
     ]
+
+    // MARK: Functions
 
     init(cases: [CaseStatus], history: [CaseStatusHistorical]) {
         self.cases = cases

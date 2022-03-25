@@ -11,9 +11,15 @@ import OSLog
 
 public class LocalCaseStatusPersistence {
 
-    private let viewContext = PersistenceController.shared.container.viewContext
+    private let viewContext: NSManagedObjectContext
 
-    public init() { }
+    public init(viewContext: NSManagedObjectContext) {
+        self.viewContext = viewContext
+    }
+
+    convenience init() {
+        self.init(viewContext: PersistenceController.shared.container.viewContext)
+    }
 }
 
 extension LocalCaseStatusPersistence: CaseStatusWritable {

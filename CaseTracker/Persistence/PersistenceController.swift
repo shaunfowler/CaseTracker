@@ -19,7 +19,7 @@ class PersistenceController {
     init() {
         os_signpost(.begin, log: OSLog.caseTrackerPoi, name: "PersistenceController_init")
 
-        // Manually create managed object from the CaseTrackerCore bundle
+        // Manually create managed object from the CaseTrackerCore bundle.
         let managedObjectModelUrl = Bundle(for: PersistenceController.self)
             .url(forResource: "CaseTrackerModel",
                  withExtension: "momd")!
@@ -29,6 +29,7 @@ class PersistenceController {
             managedObjectModel: NSManagedObjectModel(contentsOf: managedObjectModelUrl)!
         )
 
+        // Use in-memory store for UITests.
 #if DEBUG
         if CommandLine.arguments.contains("-uiTests") {
             print("*** Using in-memory persistence container ***")
@@ -44,8 +45,11 @@ class PersistenceController {
                 DDLogError("Failed to load CoreData persistent stores. Error: \(error).")
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
+
+            // Use test data for UITests for screenshotting.
 #if DEBUG
             if CommandLine.arguments.contains("-uiTests") && CommandLine.arguments.contains("-uiTestsScreenshots") {
+                print("*** Seeding CoreData with text data ***")
                 self.seedTestData()
             }
 #endif
@@ -56,11 +60,13 @@ class PersistenceController {
 extension PersistenceController {
 
     func seedTestData() {
+        // Insert 4 cases.
         CaseStatusManagedObject.from(model: PreviewDataRepository.case1, context: container.viewContext)
         CaseStatusManagedObject.from(model: PreviewDataRepository.case2, context: container.viewContext)
         CaseStatusManagedObject.from(model: PreviewDataRepository.case3, context: container.viewContext)
         CaseStatusManagedObject.from(model: PreviewDataRepository.case4, context: container.viewContext)
 
+        // Insert history for case #2.
         CaseStatusHistoricalManagedObject.from(model: PreviewDataRepository.case2History1, context: container.viewContext)
         CaseStatusHistoricalManagedObject.from(model: PreviewDataRepository.case2History2, context: container.viewContext)
         CaseStatusHistoricalManagedObject.from(model: PreviewDataRepository.case2History3, context: container.viewContext)
