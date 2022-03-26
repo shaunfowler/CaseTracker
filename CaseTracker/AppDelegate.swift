@@ -29,9 +29,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         DDLog.add(DDOSLogger.sharedInstance)
 
 #if DEBUG
-        if CommandLine.arguments.contains("-uiTests") {
-            return
-        }
+        if CommandLine.arguments.contains("-uiTests") { return }
 #endif
 
         // File logger
@@ -47,11 +45,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     }
 
     private func setupFirebase() {
-        // #if DEBUG
-        //        if CommandLine.arguments.contains("-uiTests") {
-        //            return
-        //        }
-        // #endif
+#if DEBUG
+        if CommandLine.arguments.contains("-uiTests") { return }
+#endif
         FirebaseApp.configure()
         // Prime feature service
         _ = FeatureService.shared.isEnabled(feature: .history)

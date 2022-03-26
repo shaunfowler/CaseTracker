@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		023AC3B65911AA9182EB4373C7AF29BD /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EC8B4EC5515D1DD8FEB22012FE9352 /* Utils.swift */; };
 		044954E9C8EE5C12A7B78CC965829A2E /* CaseStatusURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51371CEBEA711A87364123E69E96A241 /* CaseStatusURL.swift */; };
+		0DF9673E1C6773235212098718067722 /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 21EA8B01F46C0457BE183A91B2FBBFEB /* RemoteConfigDefaults.plist */; };
 		105D5D3FE0D14E16F451B309D36662A9 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B69D74A3BEEF1F4B2CA9ECEB8051C98 /* Status.swift */; };
 		1073AFE6534E04F80150E9F2BD49B7FB /* LIN2119051098.html in Resources */ = {isa = PBXBuildFile; fileRef = 93017DFA4D478D5F6B369E20F540CA01 /* LIN2119051098.html */; };
 		11F5C10F99649FA58092BA806DDAD7A8 /* RemoteCaseStatusAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB9C87238E4EEAE18CB0C7C7EB83D3F /* RemoteCaseStatusAPI.swift */; };
@@ -43,7 +44,6 @@
 		AA5DC5B34CCD80E91FFD479B0C1353A6 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9A1300DB8D807E12941E9C87A2E53C /* HomeViewModel.swift */; };
 		AA9B5C9579202BF02ADD328C8C9BD9F6 /* CaseRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E85018D586C414050AC13A5E22E49E /* CaseRowView.swift */; };
 		B193E847ADED1D9D94CBA4356AAE0768 /* LIN2119051099.html in Resources */ = {isa = PBXBuildFile; fileRef = E992CB6A8156FBB78BFC0E4B5144C37B /* LIN2119051099.html */; };
-		B22CEA9F58C1B662CA1EEFAC93340116 /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADB19C90328A3247C4BF7B59FC23BD3E /* RemoteConfigDefaults.plist */; };
 		B5C2AB21528C2EF76EFF2CC170F67E24 /* CaseTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9D85C56C67B078AC9C5CD0F59C9E0B /* CaseTrackerApp.swift */; };
 		BC68D0E24A5A0E7B6ECA4EDADB7711B5 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1B91CDC3A131BFE18B4454C56F2ADE /* ActivityView.swift */; };
 		C03AEEA18B0039FCC6ADAEFC8F198FCD /* CaseTrackerScreenshotUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15048B41BAD8CB179CED42965B57B9E5 /* CaseTrackerScreenshotUITests.swift */; };
@@ -109,6 +109,7 @@
 		194AD5A0282647F8DB77990EB1AF1E70 /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 		1F9A1300DB8D807E12941E9C87A2E53C /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		1FF79520D30FA6AC59F4C76B6D9F0749 /* Pods_CaseTrackerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CaseTrackerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		21EA8B01F46C0457BE183A91B2FBBFEB /* RemoteConfigDefaults.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RemoteConfigDefaults.plist; sourceTree = "<group>"; };
 		24A7C80C4312B803D00E387D53821661 /* CaseTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaseTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		281A29036E4280FF808A8FA87906CCAB /* AddCaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCaseViewModel.swift; sourceTree = "<group>"; };
 		2AFF2A0428B8474B3E5CBEC2CABBD9B6 /* OSLog+caseTrackerPoi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OSLog+caseTrackerPoi.swift"; sourceTree = "<group>"; };
@@ -146,7 +147,6 @@
 		A8D314C012D9DD089080E5578B06EACF /* FeatureService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureService.swift; sourceTree = "<group>"; };
 		A9A4C5DBA05E479E4779E023A7535882 /* CaseStatusHistoricalManagedObjectExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseStatusHistoricalManagedObjectExtensions.swift; sourceTree = "<group>"; };
 		AABAB6D4019EFE4FC4CB711A8A2E42E9 /* CaseTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaseTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		ADB19C90328A3247C4BF7B59FC23BD3E /* RemoteConfigDefaults.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RemoteConfigDefaults.plist; sourceTree = "<group>"; };
 		B0FFFEED23E2ED7BF4D518F3D6F882C7 /* BackgroundRefeshManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundRefeshManager.swift; sourceTree = "<group>"; };
 		B68F81B6602C9BE078C0375FDAD6D9F4 /* CaseTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseTrackerUITests.swift; sourceTree = "<group>"; };
 		BA12C9754775922C812F38C5BC44D71D /* PreviewDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewDataRepository.swift; sourceTree = "<group>"; };
@@ -220,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				A8D314C012D9DD089080E5578B06EACF /* FeatureService.swift */,
+				21EA8B01F46C0457BE183A91B2FBBFEB /* RemoteConfigDefaults.plist */,
 			);
 			path = RemoteConfiguration;
 			sourceTree = "<group>";
@@ -362,7 +363,6 @@
 				60E6F41EA9F33B28DC55E727020EADE9 /* Info.plist */,
 				07A8C79A056C5C440AF1B2611B573B41 /* Localizable.strings */,
 				BA12C9754775922C812F38C5BC44D71D /* PreviewDataRepository.swift */,
-				ADB19C90328A3247C4BF7B59FC23BD3E /* RemoteConfigDefaults.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -610,7 +610,7 @@
 				346F62AFFB0CF3175A1F61E8F3D50496 /* GoogleService-Info.plist in Resources */,
 				A969E3EB99F8FF3942779B1AAB883B70 /* Localizable.strings in Resources */,
 				DCC9843752279A13BE873BBF025440DB /* Preview Assets.xcassets in Resources */,
-				B22CEA9F58C1B662CA1EEFAC93340116 /* RemoteConfigDefaults.plist in Resources */,
+				0DF9673E1C6773235212098718067722 /* RemoteConfigDefaults.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

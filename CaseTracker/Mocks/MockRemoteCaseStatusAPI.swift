@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Mock for UITests.
 class MockRemoteCaseStatusAPI: CaseStatusReadable {
 
     private var cases: [String: CaseStatus] = [

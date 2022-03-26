@@ -34,18 +34,19 @@ struct HistoryView: View {
             }
 
             if messageVisible {
-                Text("Case history is only available below if the case status changed while the Case Tracker app is installed.")
+                Text("Complete case history is only available below if the case status changed while the Case Tracker app was installed.")
                     .font(.caption2)
                     .foregroundColor(.ctTextTertiary)
             }
 
             ZStack(alignment: .leading) {
-                Rectangle()
+                RoundedRectangle(cornerRadius: 2)
                     .foregroundColor(.ctTextTertiary.opacity(0.2))
                     .frame(maxHeight: .infinity)
-                    .frame(width: 1)
-                    .offset(x: 3.5)
+                    .frame(width: 4)
+                    .offset(x: 2)
                     .padding(.horizontal)
+                    .padding(.vertical, 8)
 
                 VStack(alignment: .leading, spacing: 8) {
                     ForEach(history, id: \.dateAdded) { historicalItem in

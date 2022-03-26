@@ -28,6 +28,7 @@ class FeatureService: FeatureServiceProtocol {
 
     private init() {
 #if DEBUG
+        if CommandLine.arguments.contains("-uiTests") { return }
         settings.minimumFetchInterval = 30 // 30-sec
 #else
         settings.minimumFetchInterval = 3600 // 1-hour
@@ -59,6 +60,9 @@ class FeatureService: FeatureServiceProtocol {
     }
 
     func isEnabled(feature: Feature) -> Bool {
+#if DEBUG
+        if CommandLine.arguments.contains("-uiTests") { return true }
+#endif
         let value = remoteConfig.configValue(forKey: feature.rawValue).boolValue
         DDLogDebug("Feature \(feature), isEnabled = \(value).")
         return value

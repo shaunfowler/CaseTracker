@@ -97,7 +97,7 @@ struct DetailsView: View {
             SafariView(url: CaseStatusURL.get(caseStatus.receiptNumber).url)
         }
         .alert(isPresented: $viewModel.isPresentingDeleteConfirmation) {
-            removeAlert 
+            removeAlert
         }
         .onAppear {
             MetricScreenView.viewCaseDetails.send(receiptNumber: caseStatus.receiptNumber)
