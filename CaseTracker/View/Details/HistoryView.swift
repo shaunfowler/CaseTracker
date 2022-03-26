@@ -15,8 +15,9 @@ struct HistoryView: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text("History")
-            ZStack(alignment: .leading) {
+                .font(.headline)
 
+            ZStack(alignment: .leading) {
                 Rectangle()
                     .foregroundColor(.ctBackgroundPrimary)
                     .frame(maxHeight: .infinity)
