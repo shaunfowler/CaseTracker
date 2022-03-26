@@ -33,7 +33,7 @@ struct AddCaseView: View {
             )
         }
         .onAppear {
-            InteractionMetric.viewAddCase.send()
+            MetricScreenView.viewAddCase.send()
         }
     }
 
@@ -41,7 +41,7 @@ struct AddCaseView: View {
         HStack {
             Spacer()
             Button(action: {
-                InteractionMetric.tabCloseAddCaseModalButton.send()
+                MetricInteraction.tapCloseAddCaseModalButton.send()
                 dismiss()
             }, label: {
                 Text("Close")
@@ -81,7 +81,7 @@ struct AddCaseView: View {
                           loading: viewModel.isLoading,
                           fullWidth: true) {
                 Task {
-                    InteractionMetric.tapAddCaseSubmitModalButton.send()
+                    MetricInteraction.tapAddCaseSubmitModalButton.send()
                     await viewModel.attemptAddCase()
                     if !viewModel.showError {
                         dismiss()

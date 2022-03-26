@@ -115,6 +115,7 @@ public class CaseStatusRepository: Repository {
 
             // Send remote data to publisher.
             data.value = result.sorted(by: { lhs, rhs in lhs.id < rhs.id })
+            MetricOperationalCount.caseCount.send(count: result.count)
             DDLogInfo("Finished querying \(result.count) cases.")
         } catch {
             self.error.value = error
@@ -139,7 +140,11 @@ public class CaseStatusRepository: Repository {
     }
 
     public func getHistory(receiptNumber: String) async -> Result<[CaseStatusHistorical], Error> {
-        await local.history(receiptNumber: receiptNumber)
+        let result = await local.history(receiptNumber: receiptNumber)
+        if case let .success(data) = result {
+            MetricOperationalCount.historyCount.send(count: data.count)
+        }
+        return result
     }
 
     // MARK: - Private Functions

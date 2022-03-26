@@ -38,7 +38,7 @@ struct HomeView: View {
                 }
                 .onDelete { indexSet in
                     if let index = indexSet.first {
-                        InteractionMetric.swipeDeleteCase.send()
+                        MetricInteraction.swipeDeleteCase.send()
                         viewModel.removeCase(atIndex: index)
                     }
                 }
@@ -51,7 +51,7 @@ struct HomeView: View {
     var addButton: some View {
         Button(
             action: {
-                InteractionMetric.tapAddNavBarButton.send()
+                MetricInteraction.tapAddNavBarButton.send()
                 onAddCasePressed()
             },
             label: {
@@ -76,7 +76,7 @@ struct HomeView: View {
                 caseList
                 if viewModel.isEmptyState {
                     FirstTimeUserView(onAddCase: {
-                        InteractionMetric.tapAddFirstTimeButton.send()
+                        MetricInteraction.tapAddFirstTimeButton.send()
                         onAddCasePressed()
                     })
                 }
@@ -98,11 +98,11 @@ struct HomeView: View {
             addCaseView
         }
         .refreshable {
-            InteractionMetric.pullToRefreshCaseList.send()
+            MetricInteraction.pullToRefreshCaseList.send()
             await refresh()
         }
         .onAppear {
-            InteractionMetric.viewHome.send()
+            MetricScreenView.viewHome.send()
         }
     }
 

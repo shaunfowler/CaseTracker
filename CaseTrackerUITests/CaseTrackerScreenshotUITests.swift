@@ -22,6 +22,8 @@ class CaseTrackerScreenshotUITests: XCTestCase {
         print(self.name)
     }
 
+    // MARK: - Case List
+
     func testScreenshotsCaseList_Light() {
         snapshot("CaseList-Light")
     }
@@ -29,6 +31,8 @@ class CaseTrackerScreenshotUITests: XCTestCase {
     func testScreenshotsCaseList_Dark() {
         snapshot("CaseList-Dark")
     }
+
+    // MARK: - Add Case
 
     func testScreenshotsAddCase_Light() {
         app.buttons["Add Case"].tap()
@@ -40,15 +44,21 @@ class CaseTrackerScreenshotUITests: XCTestCase {
         snapshot("AddCase-Dark")
     }
 
+    // MARK: - Case Details
+
     func testScreenshotCaseDetails_Light() {
         app.otherElements.buttons["MSC2119251333"].tap()
+        app.buttons["historyInfoButton"].tap()
         snapshot("CaseDetails-Light")
     }
 
     func testScreenshotCaseDetails_Dark() {
         app.otherElements.buttons["MSC2119251333"].tap()
+        app.buttons["historyInfoButton"].tap()
         snapshot("CaseDetails-Dark")
     }
+
+    // MARK: - Case Details > More Menu
 
     func testScreenshotCaseDetailsMoreMenu_Light() {
         app.otherElements.buttons["MSC2119251333"].tap()
@@ -60,5 +70,21 @@ class CaseTrackerScreenshotUITests: XCTestCase {
         app.otherElements.buttons["MSC2119251333"].tap()
         app.buttons["More"].tap()
         snapshot("CaseDetailsMoreMenu-Dark")
+    }
+
+    // MARK: - Case Details > Share
+
+    func testScreenshotCaseDetailsShare_Light() {
+        app.otherElements.buttons["MSC2119251333"].tap()
+        let toolbar = app.toolbars["Toolbar"]
+        toolbar.buttons["Share"].tap()
+        snapshot("CaseDetailsShare-Light")
+    }
+
+    func testScreenshotCaseDetailsShare_Dark() {
+        app.otherElements.buttons["MSC2119251333"].tap()
+        let toolbar = app.toolbars["Toolbar"]
+        toolbar.buttons["Share"].tap()
+        snapshot("CaseDetailsShare-Dark")
     }
 }

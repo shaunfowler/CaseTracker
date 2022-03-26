@@ -9,7 +9,6 @@ import SwiftUI
 
 struct DetailsView: View {
 
-    @Environment(\.openURL) var openURL
     @Environment(\.dismiss) var dismiss
 
     @StateObject var viewModel: DetailsViewModel
@@ -32,6 +31,7 @@ struct DetailsView: View {
                         .frame(width: 8, height: 8, alignment: .center)
                         .offset(y: -2)
                     Text(caseStatus.status)
+                        .font(.body)
                         .foregroundColor(.ctTextSecondary)
                 }
 
@@ -98,7 +98,7 @@ struct DetailsView: View {
             }
         }
         .onAppear {
-            InteractionMetric.viewCaseDetails.send()
+            MetricScreenView.viewCaseDetails.send(receiptNumber: caseStatus.receiptNumber)
          }
         .task {
             await viewModel.load(receiptNumber: caseStatus.receiptNumber)
@@ -106,17 +106,17 @@ struct DetailsView: View {
     }
 
     private func onMoreButtonPressed() {
-        InteractionMetric.tapMoreNavBarButton.send()
+        MetricInteraction.tapMoreNavBarButton.send()
         viewModel.isPresentingActionSheet = true
     }
 
     private func onShareButtonPressed() {
-        InteractionMetric.tapShareNavBarButton.send()
+        MetricInteraction.tapShareNavBarButton.send()
         viewModel.isShowingActivityViewController.toggle()
     }
 
     private func copyReceiptNumber() {
-        InteractionMetric.tapCopyReceiptNumberMenuButton.send()
+        MetricInteraction.tapCopyReceiptNumberMenuButton.send()
         UIPasteboard.general.setValue(caseStatus.receiptNumber, forPasteboardType: "public.plain-text")
     }
 
@@ -125,12 +125,12 @@ struct DetailsView: View {
     }
 
     private func removeCaseRequest() {
-        InteractionMetric.tapRequestRemoveCaseMenuButton.send()
+        MetricInteraction.tapRequestRemoveCaseMenuButton.send()
         viewModel.isPresentingDeleteConfirmation = true
     }
 
     private func performCaseRemove() {
-        InteractionMetric.tapRemoveCaseConfirmAlertButton.send()
+        MetricInteraction.tapRemoveCaseConfirmAlertButton.send()
         removeCase(caseStatus.receiptNumber)
         dismiss()
     }

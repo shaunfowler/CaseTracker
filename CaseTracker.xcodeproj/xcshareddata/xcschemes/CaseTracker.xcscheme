@@ -32,16 +32,6 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E6C59DDC27C08B5900391EBA"
-               BuildableName = "CaseTrackerCoreTests.xctest"
-               BlueprintName = "CaseTrackerCoreTests"
-               ReferencedContainer = "container:CaseTracker.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "366BF27AE2D5B090DCC0AE995DF8E55F"
                BuildableName = "CaseTrackerUITests.xctest"
                BlueprintName = "CaseTrackerUITests"
@@ -90,12 +80,8 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-FIRAnalyticsDebugEnabled"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
             argument = "-FIRDebugDisabled"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-com.apple.CoreData.ConcurrencyDebug 1"

@@ -10,16 +10,38 @@ import SwiftUI
 
 struct HistoryView: View {
 
+    @State var messageVisible = false
+
     var history = [CaseStatusHistorical]()
 
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("History")
-                .font(.headline)
+        VStack(alignment: .leading, spacing: 8) {
+            HStack {
+                Text("History")
+                    .font(.headline)
+                Spacer()
+                Button(
+                    action: {
+                        withAnimation {
+                            messageVisible.toggle()
+                        }
+                    }, label: {
+                        Image(systemName: "questionmark.circle")
+                            .font(.headline)
+                            .foregroundColor(.ctTextTertiary)
+                    })
+                    .accessibility(identifier: "historyInfoButton")
+            }
+
+            if messageVisible {
+                Text("Case history is only available below if the case status changed while the Case Tracker app is installed.")
+                    .font(.caption2)
+                    .foregroundColor(.ctTextTertiary)
+            }
 
             ZStack(alignment: .leading) {
                 Rectangle()
-                    .foregroundColor(.ctBackgroundPrimary)
+                    .foregroundColor(.ctTextTertiary.opacity(0.2))
                     .frame(maxHeight: .infinity)
                     .frame(width: 1)
                     .offset(x: 3.5)
