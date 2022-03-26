@@ -47,11 +47,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     }
 
     private func setupFirebase() {
-        //#if DEBUG
+        // #if DEBUG
         //        if CommandLine.arguments.contains("-uiTests") {
         //            return
         //        }
-        //#endif
+        // #endif
         FirebaseApp.configure()
         // Prime feature service
         _ = FeatureService.shared.isEnabled(feature: .history)
@@ -65,6 +65,12 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         let attributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor(.ctTextPrimary)]
         UINavigationBar.appearance().largeTitleTextAttributes = attributes
         UINavigationBar.appearance().titleTextAttributes = attributes
+
+#if DEBUG
+        if CommandLine.arguments.contains("-uiTests") {
+            UIView.setAnimationsEnabled(false)
+        }
+#endif
     }
 }
 

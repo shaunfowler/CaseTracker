@@ -27,7 +27,7 @@ class LocalCaseStatusPersitenceTests: XCTestCase {
         let historicalItems = try? await persistence.history(receiptNumber: PreviewDataRepository.case2.receiptNumber).get()
         XCTAssertEqual(historicalItems?.count, 1)
         XCTAssertEqual(historicalItems?.first?.receiptNumber, PreviewDataRepository.case2.receiptNumber)
-        XCTAssertEqual(historicalItems?.first?.date, PreviewDataRepository.case2.lastUpdated)
+        XCTAssertEqual(historicalItems?.first?.lastUpdated, PreviewDataRepository.case2.lastUpdated)
         XCTAssertEqual(historicalItems?.first?.status, PreviewDataRepository.case2.status)
     }
 
@@ -61,11 +61,11 @@ class LocalCaseStatusPersitenceTests: XCTestCase {
         XCTAssertEqual(historicalItems?.count, 2)
 
         XCTAssertEqual(historicalItems?.first?.receiptNumber, PreviewDataRepository.case2.receiptNumber)
-        XCTAssertEqual(historicalItems?.first?.date, finalCase.lastUpdated)
+        XCTAssertEqual(historicalItems?.first?.lastUpdated, finalCase.lastUpdated)
         XCTAssertEqual(historicalItems?.first?.status, finalCase.status)
 
         XCTAssertEqual(historicalItems?[1].receiptNumber, PreviewDataRepository.case2.receiptNumber)
-        XCTAssertEqual(historicalItems?[1].date, initialCase.lastUpdated)
+        XCTAssertEqual(historicalItems?[1].lastUpdated, initialCase.lastUpdated)
         XCTAssertEqual(historicalItems?[1].status, initialCase.status)
     }
 }

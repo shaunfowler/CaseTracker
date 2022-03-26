@@ -31,25 +31,29 @@ class PreviewDataRepository: Repository {
 
     static let case2History1 = CaseStatusHistorical(
         receiptNumber: PreviewDataRepository.case2.receiptNumber,
-        date: PreviewDataRepository.case2.lastUpdated!,
+        dateAdded: PreviewDataRepository.case2.lastUpdated!,
+        lastUpdated: PreviewDataRepository.case2.lastUpdated!,
         status: PreviewDataRepository.case2.status
     )
 
     static let case2History2 = CaseStatusHistorical(
         receiptNumber: PreviewDataRepository.case2.receiptNumber,
-        date: PreviewDataRepository.case2.lastUpdated! - 3000000,
+        dateAdded: PreviewDataRepository.case2.lastUpdated! - 3000000,
+        lastUpdated: PreviewDataRepository.case2.lastUpdated! - 3000000,
         status: Status.responseToUSCISRequestForEvidenceWasReceived.rawValue
     )
 
     static let case2History3 = CaseStatusHistorical(
         receiptNumber: PreviewDataRepository.case2.receiptNumber,
-        date: PreviewDataRepository.case2.lastUpdated! - 5000000,
+        dateAdded: PreviewDataRepository.case2.lastUpdated! - 5000000,
+        lastUpdated: PreviewDataRepository.case2.lastUpdated! - 5000000,
         status: Status.requestforInitialEvidenceWasSent.rawValue
     )
 
     static let case2History4 = CaseStatusHistorical(
         receiptNumber: PreviewDataRepository.case2.receiptNumber,
-        date: PreviewDataRepository.case2.lastUpdated! - 8000000,
+        dateAdded: PreviewDataRepository.case2.lastUpdated! - 8000000,
+        lastUpdated: PreviewDataRepository.case2.lastUpdated! - 8000000,
         status: Status.caseWasReceived.rawValue
     )
 

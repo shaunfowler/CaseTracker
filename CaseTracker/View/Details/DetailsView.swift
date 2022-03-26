@@ -89,13 +89,15 @@ struct DetailsView: View {
                 .confirmationDialog("", isPresented: $viewModel.isPresentingActionSheet, actions: {
                     Button("Copy Receipt Number", action: copyReceiptNumber)
                     Button("View on USCIS Website", action: openInWebView)
-                        .sheet(isPresented: $viewModel.isPresentingWebView) {
-                            SafariView(url: CaseStatusURL.get(caseStatus.receiptNumber).url)
-                        }
                     Button("Remove Case", role: .destructive, action: removeCaseRequest)
-                        .alert(isPresented: $viewModel.isPresentingDeleteConfirmation) { removeAlert }
                 })
             }
+        }
+        .sheet(isPresented: $viewModel.isPresentingWebView) {
+            SafariView(url: CaseStatusURL.get(caseStatus.receiptNumber).url)
+        }
+        .alert(isPresented: $viewModel.isPresentingDeleteConfirmation) {
+            removeAlert 
         }
         .onAppear {
             MetricScreenView.viewCaseDetails.send(receiptNumber: caseStatus.receiptNumber)

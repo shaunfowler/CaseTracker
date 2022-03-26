@@ -13,10 +13,11 @@ extension CaseStatusHistoricalManagedObject {
     // MARK: - Conversions
 
     func toModel() -> CaseStatusHistorical? {
-        if let receiptNumber = receiptNumber, let status = status, let date = date {
+        if let receiptNumber = receiptNumber, let status = status, let dateAdded = dateAdded {
             return CaseStatusHistorical(
                 receiptNumber: receiptNumber,
-                date: date,
+                dateAdded: dateAdded,
+                lastUpdated: lastUpdated,
                 status: status
             )
         }
@@ -27,7 +28,8 @@ extension CaseStatusHistoricalManagedObject {
     static func from(model: CaseStatusHistorical, context: NSManagedObjectContext) -> CaseStatusHistoricalManagedObject {
         let object = CaseStatusHistoricalManagedObject(context: context)
         object.receiptNumber = model.receiptNumber
-        object.date = model.date
+        object.dateAdded = model.dateAdded
+        object.lastUpdated = model.lastUpdated
         object.status = model.status
         return object
     }

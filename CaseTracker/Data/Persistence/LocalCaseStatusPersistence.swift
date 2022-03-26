@@ -72,7 +72,8 @@ extension LocalCaseStatusPersistence: CaseStatusWritable {
     private func createHistoricalItem(from caseStatus: CaseStatus) -> CaseStatusHistoricalManagedObject {
         let historicalItem = CaseStatusHistoricalManagedObject(context: viewContext)
         historicalItem.receiptNumber = caseStatus.receiptNumber
-        historicalItem.date = caseStatus.lastUpdated
+        historicalItem.lastUpdated = caseStatus.lastUpdated
+        historicalItem.dateAdded = Date.now
         historicalItem.status = caseStatus.status
         return historicalItem
     }
@@ -104,7 +105,7 @@ extension LocalCaseStatusPersistence: CaseStatusQueryable {
             var resultSet: [CaseStatusHistorical] = []
             try viewContext.performAndWait {
                 let request = CaseStatusHistoricalManagedObject.fetchBy(receiptNumber: receiptNumber)
-                request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
+                request.sortDescriptors = [NSSortDescriptor(key: "dateAdded", ascending: false)]
                 let result = try self.viewContext.fetch(request)
                 resultSet = result.compactMap { $0.toModel() }
             }

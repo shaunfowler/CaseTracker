@@ -10,7 +10,8 @@ import SwiftUI
 
 public struct CaseStatusHistorical {
     let receiptNumber: String
-    let date: Date
+    let dateAdded: Date
+    let lastUpdated: Date?
     let status: String
 }
 
@@ -20,7 +21,8 @@ extension CaseStatusHistorical {
         return Status(rawValue: status)?.color ?? .blue
     }
 
-    var lastUpdatedFormatted: String {
-        CaseStatus.dateFormatter.string(from: date)
+    var lastUpdatedFormatted: String? {
+        guard let lastUpdated = lastUpdated else { return nil }
+        return CaseStatus.dateFormatter.string(from: lastUpdated)
     }
 }

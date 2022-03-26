@@ -57,6 +57,38 @@ class CaseTrackerUITests: XCTestCase {
         app.buttons["Close"].tap()
     }
 
+    // MARK: - Removing case
+
+    func testAddRemoveCase() {
+        // Add case modal
+        app.buttons["Add Your First Case"].tap()
+
+        // Add case modal filled in
+        app.textFields["XYZ0123456789"].tap()
+        enterReceiptNumber(serviceCenter: "IOE", number: "9119251367")
+        app.buttons["Add Case"].tap()
+
+        // Swipe to delete case
+        app.otherElements.buttons["IOE9119251367"].swipeLeft()
+        app.buttons["Delete"].tap()
+    }
+
+    func testAddRemoveCaseFromDetailsView() {
+        // Add case modal
+        app.buttons["Add Your First Case"].tap()
+
+        // Add case modal filled in
+        app.textFields["XYZ0123456789"].tap()
+        enterReceiptNumber(serviceCenter: "IOE", number: "9119251367")
+        app.buttons["Add Case"].tap()
+
+        // Select case and delete
+        app.otherElements.buttons["IOE9119251367"].tap()
+        app.buttons["More"].tap()
+        app.buttons["Remove Case"].tap()
+        app.alerts["Remove Case"].buttons["Remove"].tap()
+    }
+
     // MARK: - Utilities
 
     private func enterText(_ text: String) {

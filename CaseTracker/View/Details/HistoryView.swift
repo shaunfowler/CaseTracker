@@ -48,7 +48,7 @@ struct HistoryView: View {
                     .padding(.horizontal)
 
                 VStack(alignment: .leading, spacing: 8) {
-                    ForEach(history, id: \.date) { historicalItem in
+                    ForEach(history, id: \.dateAdded) { historicalItem in
                         HStack(alignment: .center) {
                             Circle()
                                 .foregroundColor(historicalItem.color)
@@ -58,9 +58,11 @@ struct HistoryView: View {
                                 Text(historicalItem.status)
                                     .font(.caption2)
                                     .foregroundColor(.ctTextSecondary)
-                                Text(historicalItem.lastUpdatedFormatted)
-                                    .font(.caption2)
-                                    .foregroundColor(.ctTextTertiary)
+                                if let lastUpdatedFormatted = historicalItem.lastUpdatedFormatted {
+                                    Text(lastUpdatedFormatted)
+                                        .font(.caption2)
+                                        .foregroundColor(.ctTextTertiary)
+                                }
                             }
 
                             Spacer()
