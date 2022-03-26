@@ -34,6 +34,7 @@ struct HomeView: View {
                     }) {
                         CaseRowView(model: caseStatus)
                     }
+                    .accessibility(identifier: caseStatus.receiptNumber)
                 }
                 .onDelete { indexSet in
                     if let index = indexSet.first {

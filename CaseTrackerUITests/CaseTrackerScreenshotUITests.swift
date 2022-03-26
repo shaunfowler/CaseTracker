@@ -22,11 +22,43 @@ class CaseTrackerScreenshotUITests: XCTestCase {
         print(self.name)
     }
 
-    func testScreenshotsTestData_Light() {
-        snapshot("TestData-Light")
+    func testScreenshotsCaseList_Light() {
+        snapshot("CaseList-Light")
     }
 
-    func testScreenshotsTestData_Dark() {
-        snapshot("TestData-Dark")
+    func testScreenshotsCaseList_Dark() {
+        snapshot("CaseList-Dark")
+    }
+
+    func testScreenshotsAddCase_Light() {
+        app.buttons["Add Case"].tap()
+        snapshot("AddCase-Light")
+    }
+
+    func testScreenshotsAddCase_Dark() {
+        app.buttons["Add Case"].tap()
+        snapshot("AddCase-Dark")
+    }
+
+    func testScreenshotCaseDetails_Light() {
+        app.otherElements.buttons["MSC2119251333"].tap()
+        snapshot("CaseDetails-Light")
+    }
+
+    func testScreenshotCaseDetails_Dark() {
+        app.otherElements.buttons["MSC2119251333"].tap()
+        snapshot("CaseDetails-Dark")
+    }
+
+    func testScreenshotCaseDetailsMoreMenu_Light() {
+        app.otherElements.buttons["MSC2119251333"].tap()
+        app.buttons["More"].tap()
+        snapshot("CaseDetailsMoreMenu-Light")
+    }
+
+    func testScreenshotCaseDetailsMoreMenu_Dark() {
+        app.otherElements.buttons["MSC2119251333"].tap()
+        app.buttons["More"].tap()
+        snapshot("CaseDetailsMoreMenu-Dark")
     }
 }

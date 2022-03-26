@@ -52,19 +52,10 @@ struct DetailsView: View {
         }
     }
 
-    var externalLinkButton: some View {
-        Button("View on USCIS Website") {
-            viewModel.isPresentingWebView.toggle()
-        }
-        .sheet(isPresented: $viewModel.isPresentingWebView) {
-            SafariView(url: CaseStatusURL.get(caseStatus.receiptNumber).url)
-        }
-        .padding(.vertical)
-    }
-
     @ViewBuilder var history: some View {
         if viewModel.isHistoryAvailable {
             HistoryView(history: viewModel.history)
+                .padding(.top)
         } else {
             EmptyView()
         }
@@ -81,7 +72,6 @@ struct DetailsView: View {
     var body: some View {
         ScrollView {
             caseInfo
-            externalLinkButton
             history
         }
         .padding()
@@ -98,6 +88,10 @@ struct DetailsView: View {
                 }
                 .confirmationDialog("", isPresented: $viewModel.isPresentingActionSheet, actions: {
                     Button("Copy Receipt Number", action: copyReceiptNumber)
+                    Button("View on USCIS Website", action: openInWebView)
+                        .sheet(isPresented: $viewModel.isPresentingWebView) {
+                            SafariView(url: CaseStatusURL.get(caseStatus.receiptNumber).url)
+                        }
                     Button("Remove Case", role: .destructive, action: removeCaseRequest)
                         .alert(isPresented: $viewModel.isPresentingDeleteConfirmation) { removeAlert }
                 })
@@ -124,6 +118,10 @@ struct DetailsView: View {
     private func copyReceiptNumber() {
         InteractionMetric.tapCopyReceiptNumberMenuButton.send()
         UIPasteboard.general.setValue(caseStatus.receiptNumber, forPasteboardType: "public.plain-text")
+    }
+
+    private func openInWebView() {
+        viewModel.isPresentingWebView.toggle()
     }
 
     private func removeCaseRequest() {

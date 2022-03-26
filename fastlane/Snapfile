@@ -1,4 +1,4 @@
-scheme("CaseTrackerUITestsFaslane")
+scheme("CaseTrackerUITestsFastlane")
 
 devices([
   # "iPhone 8",
