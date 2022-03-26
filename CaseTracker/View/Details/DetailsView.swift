@@ -9,13 +9,9 @@ import SwiftUI
 
 struct DetailsView: View {
 
-    @Environment(\.openURL) var openURL
     @Environment(\.dismiss) var dismiss
 
-    @State var isPresentingActionSheet = false
-    @State var isPresentingDeleteConfirmation = false
-    @State var isShowingActivityViewController = false
-    @State var isPresentingWebView = false
+    @StateObject var viewModel: DetailsViewModel
 
     let caseStatus: CaseStatus
     let removeCase: (String) -> Void
@@ -35,6 +31,7 @@ struct DetailsView: View {
                         .frame(width: 8, height: 8, alignment: .center)
                         .offset(y: -2)
                     Text(caseStatus.status)
+                        .font(.body)
                         .foregroundColor(.ctTextSecondary)
                 }
 
@@ -48,25 +45,20 @@ struct DetailsView: View {
                     .cornerRadius(8)
             }
 
-            if isShowingActivityViewController {
+            if viewModel.isShowingActivityViewController {
                 ActivityViewController(url: CaseStatusURL.get(caseStatus.receiptNumber).url,
-                                       showing: $isShowingActivityViewController)
+                                       showing: $viewModel.isShowingActivityViewController)
             }
         }
     }
 
-    var externalLinkButton: some View {
-        Button("View on USCIS Website") {
-            isPresentingWebView.toggle()
+    @ViewBuilder var history: some View {
+        if viewModel.isHistoryAvailable {
+            HistoryView(history: viewModel.history)
+                .padding(.top)
+        } else {
+            EmptyView()
         }
-        .sheet(isPresented: $isPresentingWebView) {
-            SafariView(url: CaseStatusURL.get(caseStatus.receiptNumber).url)
-        }
-        .padding(.vertical, 24)
-    }
-
-    var history: some View {
-        EmptyView()
     }
 
     var removeAlert: Alert {
@@ -80,8 +72,7 @@ struct DetailsView: View {
     var body: some View {
         ScrollView {
             caseInfo
-            externalLinkButton
-            // history
+            history
         }
         .padding()
         .background(Color.ctBackgroundPrimary)
@@ -95,40 +86,53 @@ struct DetailsView: View {
                 Button(action: onMoreButtonPressed) {
                     Label("More", systemImage: "ellipsis.circle")
                 }
-                .confirmationDialog("", isPresented: $isPresentingActionSheet, actions: {
+                .confirmationDialog("", isPresented: $viewModel.isPresentingActionSheet, actions: {
                     Button("Copy Receipt Number", action: copyReceiptNumber)
+                    Button("View on USCIS Website", action: openInWebView)
                     Button("Remove Case", role: .destructive, action: removeCaseRequest)
-                        .alert(isPresented: $isPresentingDeleteConfirmation) { removeAlert }
                 })
             }
         }
+        .sheet(isPresented: $viewModel.isPresentingWebView) {
+            SafariView(url: CaseStatusURL.get(caseStatus.receiptNumber).url)
+        }
+        .alert(isPresented: $viewModel.isPresentingDeleteConfirmation) {
+            removeAlert
+        }
         .onAppear {
-            InteractionMetric.viewCaseDetails.send()
+            MetricScreenView.viewCaseDetails.send(receiptNumber: caseStatus.receiptNumber)
+         }
+        .task {
+            await viewModel.load(receiptNumber: caseStatus.receiptNumber)
         }
     }
 
     private func onMoreButtonPressed() {
-        InteractionMetric.tapMoreNavBarButton.send()
-        isPresentingActionSheet = true
+        MetricInteraction.tapMoreNavBarButton.send()
+        viewModel.isPresentingActionSheet = true
     }
 
     private func onShareButtonPressed() {
-        InteractionMetric.tapShareNavBarButton.send()
-        isShowingActivityViewController.toggle()
+        MetricInteraction.tapShareNavBarButton.send()
+        viewModel.isShowingActivityViewController.toggle()
     }
 
     private func copyReceiptNumber() {
-        InteractionMetric.tapCopyReceiptNumberMenuButton.send()
+        MetricInteraction.tapCopyReceiptNumberMenuButton.send()
         UIPasteboard.general.setValue(caseStatus.receiptNumber, forPasteboardType: "public.plain-text")
     }
 
+    private func openInWebView() {
+        viewModel.isPresentingWebView.toggle()
+    }
+
     private func removeCaseRequest() {
-        InteractionMetric.tapRequestRemoveCaseMenuButton.send()
-        isPresentingDeleteConfirmation = true
+        MetricInteraction.tapRequestRemoveCaseMenuButton.send()
+        viewModel.isPresentingDeleteConfirmation = true
     }
 
     private func performCaseRemove() {
-        InteractionMetric.tapRemoveCaseConfirmAlertButton.send()
+        MetricInteraction.tapRemoveCaseConfirmAlertButton.send()
         removeCase(caseStatus.receiptNumber)
         dismiss()
     }
@@ -136,6 +140,9 @@ struct DetailsView: View {
 
 struct DetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailsView(caseStatus: PreviewDataRepository.case1) { _ in }
+        DetailsView(
+            viewModel: DetailsViewModel(repository: PreviewDataRepository()),
+            caseStatus: PreviewDataRepository.case1
+        ) { _ in }
     }
 }

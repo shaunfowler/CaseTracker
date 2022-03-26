@@ -16,6 +16,8 @@ class PreviewDataRepository: Repository {
     var error: CurrentValueSubject<Error?, Never> = .init(nil)
     var networkReachable: CurrentValueSubject<Bool, Never> = .init(true)
 
+    // MARK: - Case 1
+
     static let case1 = CaseStatus(
         receiptNumber: "IOE9119251367",
         status: Status.caseIsActivelyBeingReviewedByUSCIS.rawValue,
@@ -23,6 +25,36 @@ class PreviewDataRepository: Repository {
         formType: "I-129",
         lastUpdated: Date.now,
         lastFetched: Date()
+    )
+
+    // MARK: - Case 2
+
+    static let case2History1 = CaseStatusHistorical(
+        receiptNumber: PreviewDataRepository.case2.receiptNumber,
+        dateAdded: PreviewDataRepository.case2.lastUpdated!,
+        lastUpdated: PreviewDataRepository.case2.lastUpdated!,
+        status: PreviewDataRepository.case2.status
+    )
+
+    static let case2History2 = CaseStatusHistorical(
+        receiptNumber: PreviewDataRepository.case2.receiptNumber,
+        dateAdded: PreviewDataRepository.case2.lastUpdated! - 3000000,
+        lastUpdated: PreviewDataRepository.case2.lastUpdated! - 3000000,
+        status: Status.responseToUSCISRequestForEvidenceWasReceived.rawValue
+    )
+
+    static let case2History3 = CaseStatusHistorical(
+        receiptNumber: PreviewDataRepository.case2.receiptNumber,
+        dateAdded: PreviewDataRepository.case2.lastUpdated! - 5000000,
+        lastUpdated: PreviewDataRepository.case2.lastUpdated! - 5000000,
+        status: Status.requestforInitialEvidenceWasSent.rawValue
+    )
+
+    static let case2History4 = CaseStatusHistorical(
+        receiptNumber: PreviewDataRepository.case2.receiptNumber,
+        dateAdded: PreviewDataRepository.case2.lastUpdated! - 8000000,
+        lastUpdated: PreviewDataRepository.case2.lastUpdated! - 8000000,
+        status: Status.caseWasReceived.rawValue
     )
 
     static let case2 = CaseStatus(
@@ -34,6 +66,8 @@ class PreviewDataRepository: Repository {
         lastFetched: Date()
     )
 
+    // MARK: - Case 3
+
     static let case3 = CaseStatus(
         receiptNumber: "MSC2119258454",
         status: Status.caseWasApproved.rawValue,
@@ -42,6 +76,8 @@ class PreviewDataRepository: Repository {
         lastUpdated: try! Date("2022-01-23T12:00:00+0000", strategy: .iso8601),
         lastFetched: Date()
     )
+
+    // MARK: - Case 4
 
     static let case4 = CaseStatus(
         receiptNumber: "LIN2118251021",
@@ -52,9 +88,25 @@ class PreviewDataRepository: Repository {
         lastFetched: Date()
     )
 
-    var cases = [PreviewDataRepository.case1, PreviewDataRepository.case2, PreviewDataRepository.case3, PreviewDataRepository.case4]
+    // MARK: - Instance Properties
 
-    init(cases: [CaseStatus]) {
+    var cases = [
+        PreviewDataRepository.case1,
+        PreviewDataRepository.case2,
+        PreviewDataRepository.case3,
+        PreviewDataRepository.case4
+    ]
+
+    var caseHistory = [
+        PreviewDataRepository.case2History1,
+        PreviewDataRepository.case2History2,
+        PreviewDataRepository.case2History3,
+        PreviewDataRepository.case2History4
+    ]
+
+    // MARK: Functions
+
+    init(cases: [CaseStatus], history: [CaseStatusHistorical]) {
         self.cases = cases
     }
 
@@ -70,5 +122,9 @@ class PreviewDataRepository: Repository {
 
     func removeCase(receiptNumber: String) async -> Result<(), Error> {
         .success(())
+    }
+
+    func getHistory(receiptNumber: String) async -> Result<[CaseStatusHistorical], Error> {
+        return .success([])
     }
 }

@@ -10,32 +10,68 @@ import SwiftUI
 
 struct HistoryView: View {
 
-    var history = [CaseStatus]()
+    @State var messageVisible = false
+
+    var history = [CaseStatusHistorical]()
 
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("History")
-            VStack(alignment: .leading, spacing: 8) {
-                ForEach(history, id: \.id) { historicalItem in
-                    HStack(alignment: .center) {
-                        Circle()
-                            .foregroundColor(historicalItem.color)
-                            .frame(width: 8, height: 8, alignment: .center)
-
-                        VStack(alignment: .leading) {
-                            Text(historicalItem.status)
-                                .font(.caption)
-                                .foregroundColor(.ctTextSecondary)
-                            Text(historicalItem.lastUpdatedFormatted)
-                                .font(.caption2)
-                                .foregroundColor(.ctTextTertiary)
+        VStack(alignment: .leading, spacing: 8) {
+            HStack {
+                Text("History")
+                    .font(.headline)
+                Spacer()
+                Button(
+                    action: {
+                        withAnimation {
+                            messageVisible.toggle()
                         }
+                    }, label: {
+                        Image(systemName: "questionmark.circle")
+                            .font(.headline)
+                            .foregroundColor(.ctTextTertiary)
+                    })
+                    .accessibility(identifier: "historyInfoButton")
+            }
 
-                        Spacer()
+            if messageVisible {
+                Text("Complete case history is only available below if the case status changed while the Case Tracker app was installed.")
+                    .font(.caption2)
+                    .foregroundColor(.ctTextTertiary)
+            }
+
+            ZStack(alignment: .leading) {
+                RoundedRectangle(cornerRadius: 2)
+                    .foregroundColor(.ctTextTertiary.opacity(0.2))
+                    .frame(maxHeight: .infinity)
+                    .frame(width: 4)
+                    .offset(x: 2)
+                    .padding(.horizontal)
+                    .padding(.vertical, 8)
+
+                VStack(alignment: .leading, spacing: 8) {
+                    ForEach(history, id: \.dateAdded) { historicalItem in
+                        HStack(alignment: .center) {
+                            Circle()
+                                .foregroundColor(historicalItem.color)
+                                .frame(width: 8, height: 8, alignment: .center)
+
+                            VStack(alignment: .leading) {
+                                Text(historicalItem.status)
+                                    .font(.caption2)
+                                    .foregroundColor(.ctTextSecondary)
+                                if let lastUpdatedFormatted = historicalItem.lastUpdatedFormatted {
+                                    Text(lastUpdatedFormatted)
+                                        .font(.caption2)
+                                        .foregroundColor(.ctTextTertiary)
+                                }
+                            }
+
+                            Spacer()
+                        }
                     }
                 }
+                .padding()
             }
-            .padding()
             .background(Color.ctBackgroundSecondary)
             .cornerRadius(8)
         }
@@ -44,6 +80,24 @@ struct HistoryView: View {
 
 struct HistoryView_Previews: PreviewProvider {
     static var previews: some View {
-        HistoryView(history: [PreviewDataRepository.case1, PreviewDataRepository.case2, PreviewDataRepository.case3])
+        Group {
+            HistoryView(history: [PreviewDataRepository().caseHistory.first!])
+                .padding()
+                .background(Color.ctBackgroundPrimary)
+                .preferredColorScheme(.light)
+            HistoryView(history: [PreviewDataRepository().caseHistory.first!])
+                .padding()
+                .background(Color.ctBackgroundPrimary)
+                .preferredColorScheme(.dark)
+            HistoryView(history: PreviewDataRepository().caseHistory)
+                .padding()
+                .background(Color.ctBackgroundPrimary)
+                .preferredColorScheme(.light)
+            HistoryView(history: PreviewDataRepository().caseHistory)
+                .padding()
+                .background(Color.ctBackgroundPrimary)
+                .preferredColorScheme(.dark)
+        }
+        .previewLayout(.fixed(width: 300, height: 220))
     }
 }

@@ -16,7 +16,7 @@ struct SafariViewWrapped: UIViewControllerRepresentable {
     func makeUIViewController(
         context: UIViewControllerRepresentableContext<SafariViewWrapped>
     ) -> SFSafariViewController {
-        InteractionMetric.viewWebsite.send()
+        MetricScreenView.viewWebsite.send()
         let viewController = SFSafariViewController(url: url)
         return viewController
     }

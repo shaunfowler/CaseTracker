@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="21D62" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="CaseStatusHistoricalManagedObject" representedClassName="CaseStatusHistoricalManagedObject" syncable="YES" codeGenerationType="class">
+        <attribute name="dateAdded" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="lastUpdated" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="receiptNumber" optional="YES" attributeType="String"/>
+        <attribute name="status" optional="YES" attributeType="String"/>
+        <relationship name="ofCase" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CaseStatusManagedObject" inverseName="history" inverseEntity="CaseStatusManagedObject"/>
+    </entity>
+    <entity name="CaseStatusManagedObject" representedClassName="CaseStatusManagedObject" syncable="YES" codeGenerationType="class">
+        <attribute name="body" optional="YES" attributeType="String"/>
+        <attribute name="formType" optional="YES" attributeType="String"/>
+        <attribute name="lastFetched" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="lastUpdated" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="receiptNumber" optional="YES" attributeType="String"/>
+        <attribute name="status" optional="YES" attributeType="String"/>
+        <relationship name="history" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CaseStatusHistoricalManagedObject" inverseName="ofCase" inverseEntity="CaseStatusHistoricalManagedObject"/>
+    </entity>
+    <fetchRequest name="FetchAllRequest" entity="CaseStatusManagedObject"/>
+    <fetchRequest name="FetchByIdRequest" entity="CaseStatusManagedObject" predicateString="id CONTAINS &quot;&quot;"/>
+    <elements>
+        <element name="CaseStatusHistoricalManagedObject" positionX="237.595947265625" positionY="284.0237426757812" width="128" height="104"/>
+        <element name="CaseStatusManagedObject" positionX="-63" positionY="-18" width="128" height="148"/>
+    </elements>
+</model>

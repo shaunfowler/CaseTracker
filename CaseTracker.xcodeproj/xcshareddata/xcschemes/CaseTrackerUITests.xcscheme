@@ -37,6 +37,11 @@
                BlueprintName = "CaseTrackerUITests"
                ReferencedContainer = "container:CaseTracker.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "CaseTrackerScreenshotUITests">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
    </TestAction>

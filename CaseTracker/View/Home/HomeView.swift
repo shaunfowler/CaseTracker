@@ -9,7 +9,6 @@ import SwiftUI
 
 struct HomeView: View {
 
-    @Environment(\.scenePhase) var scenePhase
     @State var refreshing = false
     @ObservedObject var viewModel: HomeViewModel
 
@@ -26,18 +25,20 @@ struct HomeView: View {
 
                 if let errorMessage = viewModel.errorMessage {
                     Text(errorMessage)
+                        .updatedCaptionTextStyle()
                 }
 
                 ForEach(viewModel.cases, id: \.id) { caseStatus in
-                    NavigationLink(destination: DetailsView(caseStatus: caseStatus) {
+                    NavigationLink(destination: DetailsView(viewModel: viewModel.createDetailsViewModel(), caseStatus: caseStatus) {
                         viewModel.removeCase(receiptNumber: $0)
                     }) {
                         CaseRowView(model: caseStatus)
                     }
+                    .accessibility(identifier: caseStatus.receiptNumber)
                 }
                 .onDelete { indexSet in
                     if let index = indexSet.first {
-                        InteractionMetric.swipeDeleteCase.send()
+                        MetricInteraction.swipeDeleteCase.send()
                         viewModel.removeCase(atIndex: index)
                     }
                 }
@@ -50,7 +51,7 @@ struct HomeView: View {
     var addButton: some View {
         Button(
             action: {
-                InteractionMetric.tapAddNavBarButton.send()
+                MetricInteraction.tapAddNavBarButton.send()
                 onAddCasePressed()
             },
             label: {
@@ -75,7 +76,7 @@ struct HomeView: View {
                 caseList
                 if viewModel.isEmptyState {
                     FirstTimeUserView(onAddCase: {
-                        InteractionMetric.tapAddFirstTimeButton.send()
+                        MetricInteraction.tapAddFirstTimeButton.send()
                         onAddCasePressed()
                     })
                 }
@@ -90,9 +91,6 @@ struct HomeView: View {
             .navigationBarTitle("My Cases")
         }
         .navigationViewStyle(.stack)
-        .onChange(of: scenePhase) { phase in
-            viewModel.phase = phase
-        }
         .alert(isPresented: $viewModel.isNetworkMessagePresented) {
             networkAlertView
         }
@@ -100,11 +98,11 @@ struct HomeView: View {
             addCaseView
         }
         .refreshable {
-            InteractionMetric.pullToRefreshCaseList.send()
+            MetricInteraction.pullToRefreshCaseList.send()
             await refresh()
         }
         .onAppear {
-            InteractionMetric.viewHome.send()
+            MetricScreenView.viewHome.send()
         }
     }
 
@@ -124,7 +122,7 @@ struct HomeView: View {
 struct ContentView_Previews: PreviewProvider {
 
     static let viewModel = HomeViewModel(repository: PreviewDataRepository())
-    static let viewModelEmpty = HomeViewModel(repository: PreviewDataRepository(cases: []))
+    static let viewModelEmpty = HomeViewModel(repository: PreviewDataRepository(cases: [], history: []))
 
     static var previews: some View {
         Group {
