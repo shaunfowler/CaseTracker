@@ -7,51 +7,89 @@
 
 import SwiftUI
 
-struct CaseRowView: View {
+struct CaseRowView<Content: View>: View {
 
     @ScaledMetric var fontSize: CGFloat = 14
+    @State var selected: Bool = false
 
     let model: CaseStatus
+    let destination: () -> Content
+
+    init(model: CaseStatus, @ViewBuilder destination: @escaping () -> Content) {
+        self.model = model
+        self.destination = destination
+    }
 
     var body: some View {
-        HStack(spacing: 0) {
+        NavigationLink(
+            destination: destination(),
+            isActive: $selected,
+            label: {
+                Button(
+                    action: {
+                        selected = true
+                    },
+                    label: {
+                        HStack(spacing: 0) {
 
-            RoundedRectangle(cornerRadius: 4)
-                .frame(width: 4)
-                .foregroundColor(model.color)
-                .padding(.trailing, 10)
-                .padding([.top, .bottom], 2)
+                            RoundedRectangle(cornerRadius: 4)
+                                .frame(width: 4)
+                                .foregroundColor(model.color)
+                                .padding(.trailing, 8)
+                                .padding([.top, .bottom], 2)
 
-            VStack(alignment: .leading, spacing: 4) {
+                            VStack(alignment: .leading, spacing: 4) {
 
-                HStack(alignment: .center, spacing: 8) {
-                    if let formType = model.formType {
-                        Text(formType)
-                            .fontWeight(.bold)
-                            .foregroundColor(.ctTextPrimary)
-                    }
-                    Text(model.id)
-                        .foregroundColor(.ctTextPrimary)
-                }
+                                HStack(alignment: .center, spacing: 8) {
+                                    if let formType = model.formType {
+                                        Text(formType)
+                                            .fontWeight(.bold)
+                                            .foregroundColor(.ctTextPrimary)
+                                    }
+                                    Text(model.id)
+                                        .foregroundColor(.ctTextPrimary)
+                                }
 
-                Text(model.status)
-                    .font(.system(size: fontSize))
-                    .foregroundColor(.ctTextSecondary)
+                                Text(model.status)
+                                    .font(.system(size: fontSize))
+                                    .foregroundColor(.ctTextSecondary)
 
-                if !model.lastUpdatedFormatted.isEmpty {
-                    HStack {
-                        Text(model.lastUpdatedFormatted)
-                        if !model.lastUpdatedRelativeDaysFormatted.isEmpty {
-                            Text("•")
-                            Text(model.lastUpdatedRelativeDaysFormatted)
+                                if !model.lastUpdatedFormatted.isEmpty {
+                                    HStack {
+                                        Text(model.lastUpdatedFormatted)
+                                        if !model.lastUpdatedRelativeDaysFormatted.isEmpty {
+                                            Text("•")
+                                            Text(model.lastUpdatedRelativeDaysFormatted)
+                                        }
+                                    }
+                                    .font(.system(size: fontSize))
+                                    .foregroundColor(.ctTextTertiary)
+                                }
+                            }
+
+                            Spacer()
                         }
-                    }
-                    .font(.system(size: fontSize))
-                    .foregroundColor(.ctTextTertiary)
-                }
+                        .background(Color.ctBackgroundSecondary.opacity(0.01)) // Increase touch area
+                        .padding(8)
+                    })
+                    .buttonStyle(CaseRowViewButtonStyle())
+                    .frame(maxWidth: .infinity)
             }
-        }
-        .padding([.top, .bottom], 15)
+        )
+            .padding(.trailing, 8)
+            .background(Color.ctBackgroundSecondary)
+            .clipShape(RoundedRectangle(cornerRadius: 4))
+            .listRowSeparator(.hidden)
+            .listRowBackground(Color.clear)
+            .accessibility(identifier: model.receiptNumber)
+    }
+}
+
+struct CaseRowViewButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration
+            .label
+            .opacity(configuration.isPressed ? 0.5 : 1)
     }
 }
 
@@ -78,16 +116,16 @@ struct CaseRowView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             VStack(alignment: .leading) {
-                CaseRowView(model: model1)
-                CaseRowView(model: model2)
-                CaseRowView(model: model3)
+                CaseRowView(model: model1) { EmptyView() }
+                CaseRowView(model: model2) { EmptyView() }
+                CaseRowView(model: model3) { EmptyView() }
             }
             .preferredColorScheme(.light)
 
             VStack(alignment: .leading) {
-                CaseRowView(model: model1)
-                CaseRowView(model: model2)
-                CaseRowView(model: model3)
+                CaseRowView(model: model1) { EmptyView() }
+                CaseRowView(model: model2) { EmptyView() }
+                CaseRowView(model: model3) { EmptyView() }
             }
             .preferredColorScheme(.dark)
         }

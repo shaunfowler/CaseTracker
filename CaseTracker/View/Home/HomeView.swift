@@ -20,20 +20,19 @@ struct HomeView: View {
 
     var caseList: some View {
         List {
-            Section(header: Text(viewModel.lastUpdatedLoadingMessage)
-                        .updatedCaptionTextStyle()) {
+            Section(header: Text(viewModel.lastUpdatedLoadingMessage).updatedCaptionTextStyle()) {
 
                 if let errorMessage = viewModel.errorMessage {
-                    Text(errorMessage)
-                        .updatedCaptionTextStyle()
+                    Text(errorMessage).updatedCaptionTextStyle()
                 }
 
                 ForEach(viewModel.cases, id: \.id) { caseStatus in
-                    NavigationLink(destination: DetailsView(viewModel: viewModel.createDetailsViewModel(), caseStatus: caseStatus) {
-                        viewModel.removeCase(receiptNumber: $0)
-                    }) {
-                        CaseRowView(model: caseStatus)
+                    CaseRowView(model: caseStatus) {
+                        DetailsView(viewModel: viewModel.createDetailsViewModel(), caseStatus: caseStatus) {
+                            viewModel.removeCase(receiptNumber: $0)
+                        }
                     }
+                    .opacity(viewModel.loading ? 0.3 : 1.0)
                     .accessibility(identifier: caseStatus.receiptNumber)
                 }
                 .onDelete { indexSet in
@@ -42,10 +41,10 @@ struct HomeView: View {
                         viewModel.removeCase(atIndex: index)
                     }
                 }
-                .opacity(viewModel.loading ? 0.3 : 1.0)
             }
         }
-        .listStyle(.grouped)
+        .background(Color.ctBackgroundPrimary)
+        .listStyle(.plain)
     }
 
     var addButton: some View {
@@ -90,6 +89,7 @@ struct HomeView: View {
             }
             .navigationBarTitle("My Cases")
         }
+        .background(Color.ctBackgroundPrimary)
         .navigationViewStyle(.stack)
         .alert(isPresented: $viewModel.isNetworkMessagePresented) {
             networkAlertView
