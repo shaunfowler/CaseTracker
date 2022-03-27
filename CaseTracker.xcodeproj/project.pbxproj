@@ -995,7 +995,7 @@
 				CODE_SIGN_ENTITLEMENTS = CaseTracker/CaseTracker.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"CaseTracker/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = QQR7KQB65R;
 				ENABLE_BITCODE = YES;
@@ -1032,7 +1032,7 @@
 				CODE_SIGN_ENTITLEMENTS = CaseTracker/CaseTracker.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"CaseTracker/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = QQR7KQB65R;
