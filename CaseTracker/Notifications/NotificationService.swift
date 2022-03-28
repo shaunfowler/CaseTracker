@@ -9,11 +9,11 @@ import Foundation
 import NotificationCenter
 import CocoaLumberjack
 
-public class NotificationService {
+class NotificationService {
 
     let factory = NotificationFactory()
 
-    public init() {
+    init() {
         UNUserNotificationCenter
             .current()
             .requestAuthorization(options: [.alert, .badge, .sound]) { result, error in
@@ -29,7 +29,7 @@ public class NotificationService {
         // }
     }
 
-    public func request(notification: Notification) {
+    func request(notification: Notification) {
 
         DDLogInfo("Displaying local notification.")
 

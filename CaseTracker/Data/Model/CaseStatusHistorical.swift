@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-public struct CaseStatusHistorical {
+struct CaseStatusHistorical {
     let receiptNumber: String
     let dateAdded: Date
     let lastUpdated: Date?

@@ -9,11 +9,11 @@ import Foundation
 import CoreData
 import OSLog
 
-public class LocalCaseStatusPersistence {
+class LocalCaseStatusPersistence {
 
     private let viewContext: NSManagedObjectContext
 
-    public init(viewContext: NSManagedObjectContext) {
+    init(viewContext: NSManagedObjectContext) {
         self.viewContext = viewContext
     }
 
@@ -24,7 +24,7 @@ public class LocalCaseStatusPersistence {
 
 extension LocalCaseStatusPersistence: CaseStatusWritable {
 
-    public func set(caseStatus: CaseStatus) async -> Result<(), Error> {
+    func set(caseStatus: CaseStatus) async -> Result<(), Error> {
         defer { os_signpost(.end, log: OSLog.caseTrackerPoi, name: "LocalCaseStatusPersistence_get") }
         os_signpost(.begin, log: OSLog.caseTrackerPoi, name: "LocalCaseStatusPersistence_get")
         do {
@@ -52,7 +52,7 @@ extension LocalCaseStatusPersistence: CaseStatusWritable {
         return .success(())
     }
 
-    public func remove(receiptNumber: String) async -> Result<(), Error> {
+    func remove(receiptNumber: String) async -> Result<(), Error> {
         defer { os_signpost(.end, log: OSLog.caseTrackerPoi, name: "LocalCaseStatusPersistence_remove") }
         os_signpost(.begin, log: OSLog.caseTrackerPoi, name: "LocalCaseStatusPersistence_remove")
         do {
@@ -81,7 +81,7 @@ extension LocalCaseStatusPersistence: CaseStatusWritable {
 
 extension LocalCaseStatusPersistence: CaseStatusQueryable {
 
-    public func query() async -> Result<[CaseStatus], Error> {
+    func query() async -> Result<[CaseStatus], Error> {
         defer { os_signpost(.end, log: OSLog.caseTrackerPoi, name: "LocalCaseStatusPersistence_query") }
         os_signpost(.begin, log: OSLog.caseTrackerPoi, name: "LocalCaseStatusPersistence_query")
         do {
@@ -98,7 +98,7 @@ extension LocalCaseStatusPersistence: CaseStatusQueryable {
         }
     }
 
-    public func history(receiptNumber: String) async -> Result<[CaseStatusHistorical], Error> {
+    func history(receiptNumber: String) async -> Result<[CaseStatusHistorical], Error> {
         defer { os_signpost(.end, log: OSLog.caseTrackerPoi, name: "LocalCaseStatusPersistence_history") }
         os_signpost(.begin, log: OSLog.caseTrackerPoi, name: "LocalCaseStatusPersistence_history")
         do {

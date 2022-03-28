@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseAnalytics
 
-public enum MetricInteraction: String {
+enum MetricInteraction: String {
 
     // Home
     case tapAddNavBarButton = "Case List - Add Button (Nav)"
@@ -28,27 +28,27 @@ public enum MetricInteraction: String {
     case tapRemoveCaseConfirmAlertButton = "Details - Remove Confirm"
     case tapViewOnWebsiteButton = "Details - View On Website"
 
-    public func send() {
+    func send() {
         Analytics.logEvent("interaction", parameters: [
             AnalyticsParameterItemName: self.rawValue
         ])
     }
 }
 
-public enum MetricScreenView: String {
+enum MetricScreenView: String {
 
     case viewHome = "Case List"
     case viewAddCase = "Add Case"
     case viewCaseDetails = "Case Details"
     case viewWebsite = "Website"
 
-    public func send() {
+    func send() {
         Analytics.logEvent(AnalyticsEventScreenView, parameters: [
             AnalyticsParameterScreenName: self.rawValue
         ])
     }
 
-    public func send(receiptNumber: String) {
+    func send(receiptNumber: String) {
         Analytics.logEvent(AnalyticsEventScreenView, parameters: [
             AnalyticsParameterItemName: self.rawValue,
             "ct_receipt_number": receiptNumber

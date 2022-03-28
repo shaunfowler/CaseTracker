@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum CSError: Error {
+enum CSError: Error {
     case corrupt(String)
     case decoding(String)
     case http(String, Int?)
@@ -35,7 +35,7 @@ public enum CSError: Error {
 
 extension CSError: CustomStringConvertible {
 
-    public var description: String {
+    var description: String {
         switch self {
         case .corrupt(let receiptNumber):
             return "corrupt{\(receiptNumber)}"
@@ -55,7 +55,7 @@ extension CSError: CustomStringConvertible {
 
 extension CSError: LocalizedError {
 
-    public var errorDescription: String? {
+    var errorDescription: String? {
         "Failed to fetch case \(receiptNumber) status from USCIS."
     }
 }

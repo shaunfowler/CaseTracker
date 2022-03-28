@@ -8,7 +8,7 @@
 import Foundation
 import UserNotifications
 
-public enum Notification {
+enum Notification {
     case statusUpdated(CaseStatus)
 }
 

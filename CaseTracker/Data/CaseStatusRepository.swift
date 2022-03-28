@@ -12,9 +12,9 @@ import OSLog
 import Network
 import CocoaLumberjack
 
-public typealias CaseStatusLocalCache = CaseStatusQueryable & CaseStatusWritable
+typealias CaseStatusLocalCache = CaseStatusQueryable & CaseStatusWritable
 
-public protocol Repository {
+protocol Repository {
 
     var data: CurrentValueSubject<[CaseStatus], Never> { get }
     var error: CurrentValueSubject<Error?, Never> { get }
@@ -26,7 +26,7 @@ public protocol Repository {
     func getHistory(receiptNumber: String) async -> Result<[CaseStatusHistorical], Error>
 }
 
-public class CaseStatusRepository: Repository {
+class CaseStatusRepository: Repository {
 
     // MARK: - Internal Types
 
@@ -37,9 +37,9 @@ public class CaseStatusRepository: Repository {
 
     // MARK: - Public Properties
 
-    public private(set) var data = CurrentValueSubject<[CaseStatus], Never>([])
-    public private(set) var error = CurrentValueSubject<Error?, Never>(nil)
-    public private(set) var networkReachable = CurrentValueSubject<Bool, Never>(true)
+    private(set) var data = CurrentValueSubject<[CaseStatus], Never>([])
+    private(set) var error = CurrentValueSubject<Error?, Never>(nil)
+    private(set) var networkReachable = CurrentValueSubject<Bool, Never>(true)
 
     // MARK: - Private Properties
 
@@ -53,13 +53,13 @@ public class CaseStatusRepository: Repository {
 
     // MARK: - Initialization
 
-    public convenience init(notificationService: NotificationService = NotificationService()) {
+    convenience init(notificationService: NotificationService = NotificationService()) {
         self.init(local: LocalCaseStatusPersistence(),
                   remote: RemoteCaseStatusAPI(),
                   notificationService: notificationService)
     }
 
-    public init(
+    init(
         local: CaseStatusLocalCache,
         remote: CaseStatusReadable,
         notificationService: NotificationService
@@ -74,7 +74,7 @@ public class CaseStatusRepository: Repository {
 
     // MARK: - Public Functions
 
-    public func query(force: Bool = false) async {
+    func query(force: Bool = false) async {
         defer { os_signpost(.end, log: OSLog.caseTrackerPoi, name: "CaseStatusRepository_query") }
         os_signpost(.begin, log: OSLog.caseTrackerPoi, name: "CaseStatusRepository_query")
 
@@ -123,7 +123,7 @@ public class CaseStatusRepository: Repository {
         }
     }
 
-    public func addCase(receiptNumber: String) async -> Result<CaseStatus, Error> {
+    func addCase(receiptNumber: String) async -> Result<CaseStatus, Error> {
         DDLogInfo("Adding new case: \(receiptNumber)...")
         let result = await get(forCaseId: receiptNumber)
         if case .success(let caseStatus) = result {
@@ -133,13 +133,13 @@ public class CaseStatusRepository: Repository {
         return result
     }
 
-    public func removeCase(receiptNumber: String) async -> Result<(), Error> {
+    func removeCase(receiptNumber: String) async -> Result<(), Error> {
         DDLogInfo("Removing case: \(receiptNumber)...")
         data.value = data.value.filter { $0.id != receiptNumber }
         return await local.remove(receiptNumber: receiptNumber)
     }
 
-    public func getHistory(receiptNumber: String) async -> Result<[CaseStatusHistorical], Error> {
+    func getHistory(receiptNumber: String) async -> Result<[CaseStatusHistorical], Error> {
         let result = await local.history(receiptNumber: receiptNumber)
         if case let .success(data) = result {
             MetricOperationalCount.historyCount.send(count: data.count)

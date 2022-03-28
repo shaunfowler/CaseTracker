@@ -8,13 +8,14 @@
 import Foundation
 import FirebaseAnalytics
 
-public enum MetricOperationalCount: String {
+enum MetricOperationalCount: String {
 
     case caseCount = "Case Count"
     case historyCount = "History Count"
 
-    public func send(count: Int) {
+    func send(count: Int) {
         Analytics.logEvent("operational_count", parameters: [
+            "ct_component": self.rawValue,
             "ct_count": count
         ])
     }

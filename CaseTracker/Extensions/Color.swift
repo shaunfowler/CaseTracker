@@ -9,17 +9,17 @@ import Foundation
 import SwiftUI
 
 extension Color {
-    public static let ctBackgroundPrimary = Color("BackgroundPrimary")
-    public static let ctBackgroundSecondary = Color("BackgroundSecondary")
+    static let ctBackgroundPrimary = Color("BackgroundPrimary")
+    static let ctBackgroundSecondary = Color("BackgroundSecondary")
 
-    public static let ctTextPrimary = Color("TextPrimary")
-    public static let ctTextSecondary = Color("TextSecondary")
-    public static let ctTextTertiary = Color("TextTertiary")
+    static let ctTextPrimary = Color("TextPrimary")
+    static let ctTextSecondary = Color("TextSecondary")
+    static let ctTextTertiary = Color("TextTertiary")
 
-    public static let ctGreen = Color("CTGreen")
-    public static let ctRed = Color("CTRed")
-    public static let ctYellow = Color("CTYellow")
-    public static let ctOrange = Color("CTOrange")
-    public static let ctGray = Color("CTGray")
-    public static let ctBlue = Color("CTBlue")
+    static let ctGreen = Color("CTGreen")
+    static let ctRed = Color("CTRed")
+    static let ctYellow = Color("CTYellow")
+    static let ctOrange = Color("CTOrange")
+    static let ctGray = Color("CTGray")
+    static let ctBlue = Color("CTBlue")
 }

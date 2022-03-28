@@ -11,7 +11,7 @@ import SwiftSoup
 import OSLog
 import CocoaLumberjack
 
-public struct CaseStatus: Codable, Identifiable {
+struct CaseStatus: Codable, Identifiable {
 
     static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -26,45 +26,36 @@ public struct CaseStatus: Codable, Identifiable {
         return formatter
     }()
 
-    public let receiptNumber: String
-    public var status: String
-    public var body: String
-    public var formType: String?
-    public var lastUpdated: Date?
-    public var lastFetched: Date?
+    let receiptNumber: String
+    var status: String
+    var body: String
+    var formType: String?
+    var lastUpdated: Date?
+    var lastFetched: Date?
 
-    public init(receiptNumber: String, status: String, body: String, formType: String?, lastUpdated: Date?, lastFetched: Date?) {
-        self.receiptNumber = receiptNumber
-        self.status = status
-        self.body = body
-        self.formType = formType
-        self.lastUpdated = lastUpdated
-        self.lastFetched = lastFetched
-    }
-
-    public var id: String {
+    var id: String {
         receiptNumber
     }
 
-    public var color: Color {
+    var color: Color {
         return Status(rawValue: status)?.color ?? .blue
     }
 
-    public var lastUpdatedFormatted: String {
+    var lastUpdatedFormatted: String {
         if let lastUpdated = lastUpdated {
             return CaseStatus.dateFormatter.string(from: lastUpdated)
         }
         return ""
     }
 
-    public var lastUpdatedRelativeFormatted: String {
+    var lastUpdatedRelativeFormatted: String {
         if let lastUpdated = lastUpdated {
             return CaseStatus.relativeDateFormatter.localizedString(for: lastUpdated, relativeTo: .now)
         }
         return ""
     }
 
-    public var lastUpdatedRelativeDaysFormatted: String {
+    var lastUpdatedRelativeDaysFormatted: String {
         if let lastUpdated = lastUpdated,
            let day = Calendar(identifier: .gregorian).dateComponents([.day], from: lastUpdated, to: .now).day {
             switch day {
@@ -81,14 +72,14 @@ public struct CaseStatus: Codable, Identifiable {
 }
 
 extension CaseStatus: CustomStringConvertible {
-    public var description: String {
+    var description: String {
         "CaseStatus(\(id), \(formType ?? "--"), \(status), "
         + "lastUpdated: \(String(describing: lastUpdated)), dateFetched: \(String(describing: lastFetched)))"
     }
 }
 
 extension CaseStatus {
-    public init(receiptNumber: String, htmlString: String) throws {
+    init(receiptNumber: String, htmlString: String) throws {
         defer { os_signpost(.end, log: OSLog.caseTrackerPoi, name: "CaseStatus_init") }
         os_signpost(.begin, log: OSLog.caseTrackerPoi, name: "CaseStatus_init")
 
