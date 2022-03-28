@@ -24,7 +24,9 @@ public class NotificationService {
                 }
             }
 
-        // request(notification: .statusUpdated(PreviewDataRepository.case1))
+        // DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3) {
+        //    self.request(notification: .statusUpdated(PreviewDataRepository.case1))
+        // }
     }
 
     public func request(notification: Notification) {

@@ -152,7 +152,6 @@
 		BA12C9754775922C812F38C5BC44D71D /* PreviewDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewDataRepository.swift; sourceTree = "<group>"; };
 		C23D19A526E2A6F15619884C9C6ED1A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C5DDD5164FE370A825583137968D54F8 /* NotificationFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationFactory.swift; sourceTree = "<group>"; };
-		C8343F5EE2F8FA1E47BAE99C5DC7933D /* CaseTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CaseTracker.entitlements; sourceTree = "<group>"; };
 		C8AE922CCCE5FE468218CF2FD7D2F824 /* LogFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogFormatter.swift; sourceTree = "<group>"; };
 		D0E67D286C8B284EFAFF69F1580DF7EF /* CaseStatusRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseStatusRepository.swift; sourceTree = "<group>"; };
 		D94C9E145FA9E3E8F0A2AF3E279BCB8D /* LocalCaseStatusPersitenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCaseStatusPersitenceTests.swift; sourceTree = "<group>"; };
@@ -472,7 +471,6 @@
 				A38A9A5DF4DEF08C939DC45894BD4267 /* Resources */,
 				5AECF404A4E0E30533F025BA029E95EF /* View */,
 				4696B06911507C0A5DD6D1DC9CC9BE24 /* AppDelegate.swift */,
-				C8343F5EE2F8FA1E47BAE99C5DC7933D /* CaseTracker.entitlements */,
 				DB9D85C56C67B078AC9C5CD0F59C9E0B /* CaseTrackerApp.swift */,
 			);
 			path = CaseTracker;
@@ -992,7 +990,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = CaseTracker/CaseTracker.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1029,7 +1026,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = CaseTracker/CaseTracker.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
