@@ -39,6 +39,9 @@ class PersistenceController {
         }
 #endif
 
+        // Avoid read-only error on upgrade.
+        container.persistentStoreDescriptions.first?.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+
         container.loadPersistentStores { _, error in
             defer { os_signpost(.end, log: OSLog.caseTrackerPoi, name: "PersistenceController_init") }
             if let error = error as NSError? {
