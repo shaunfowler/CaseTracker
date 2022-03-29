@@ -6,7 +6,7 @@
 //
 
 import XCTest
-import Case_Tracker
+@testable import Case_Tracker
 
 enum Receipt: String {
     case ABC1234

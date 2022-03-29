@@ -69,8 +69,8 @@ struct CaseCardView: View {
     var body: some View {
         HStack(alignment: .top, spacing: 8) {
 
-            OrbIndicator(color: model.color, orbSize: orbSize)
-                .padding(2)
+            // OrbIndicator(color: model.color, size: orbSize).padding(2)
+            BarIndicator(color: model.color, width: 8)
 
             VStack(alignment: .leading, spacing: 0) {
                 formSection

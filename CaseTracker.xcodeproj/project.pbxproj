@@ -52,6 +52,7 @@
 		C03AEEA18B0039FCC6ADAEFC8F198FCD /* CaseTrackerScreenshotUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15048B41BAD8CB179CED42965B57B9E5 /* CaseTrackerScreenshotUITests.swift */; };
 		C05D5C82564AF485BFCBFA0A1AC782B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C23D19A526E2A6F15619884C9C6ED1A3 /* Assets.xcassets */; };
 		C8CF5551431AEFBA3CCAB8BED5A7B5D4 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461B859879D7C429976788F7715A283D /* DetailsView.swift */; };
+		C94674F15A81F6A2560EB615A4E89B62 /* BarIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901653FF1971D8C140E2887FF896485D /* BarIndicator.swift */; };
 		CA76C50C55489A1748DC559D322EEE0A /* TestCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CA7944B5887DBFEEEA566BF37C49AA /* TestCoreDataStack.swift */; };
 		CB9A1B1C2229523245A8D9E3571105D2 /* MetricOperational.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEABD5A76304DB39198B940B23096F5 /* MetricOperational.swift */; };
 		D49ED6959E919DA3A92F7EC3BD69D699 /* Pods_CaseTrackerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FF79520D30FA6AC59F4C76B6D9F0749 /* Pods_CaseTrackerTests.framework */; };
@@ -146,6 +147,7 @@
 		8435D3F25257EBB6299441E928A66223 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		8445FEB069CC98544008CD0B6922369E /* Pods-CaseTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaseTracker.debug.xcconfig"; path = "Target Support Files/Pods-CaseTracker/Pods-CaseTracker.debug.xcconfig"; sourceTree = "<group>"; };
 		856A22BD1E9F7A0526D4BA03E180411E /* CaseStatusManagedObjectExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseStatusManagedObjectExtensions.swift; sourceTree = "<group>"; };
+		901653FF1971D8C140E2887FF896485D /* BarIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarIndicator.swift; sourceTree = "<group>"; };
 		93017DFA4D478D5F6B369E20F540CA01 /* LIN2119051098.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = LIN2119051098.html; sourceTree = "<group>"; };
 		961D10F645F88214FC4414FAF3E46E4B /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		9A699FDABD9B596D72907908D39C94C4 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 		79788704B2426690C3B6DF26A2CE86EA /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				901653FF1971D8C140E2887FF896485D /* BarIndicator.swift */,
 				0DEA0733497E5A17159F9EAFCFD23C3E /* OrbIndicator.swift */,
 				3C2AABCAD5984ECC4C91895C87EEFD63 /* PrimaryButton.swift */,
 				9A699FDABD9B596D72907908D39C94C4 /* SafariView.swift */,
@@ -754,6 +757,7 @@
 				1CA94EED81E148B0B4A3853E85A82779 /* AddCaseViewModel.swift in Sources */,
 				602EA629D288A5C8F90075CAB292C1D4 /* AppDelegate.swift in Sources */,
 				3E9EDBF363AAAA1A52F65B2B24F47877 /* BackgroundRefeshManager.swift in Sources */,
+				C94674F15A81F6A2560EB615A4E89B62 /* BarIndicator.swift in Sources */,
 				67BB01F7FE224294D21F1C3BC8BDF453 /* CSError.swift in Sources */,
 				63FFE11184821F474418992A9B22F810 /* CaseCardView.swift in Sources */,
 				AA9B5C9579202BF02ADD328C8C9BD9F6 /* CaseRowView.swift in Sources */,
