@@ -18,31 +18,43 @@ struct DetailsView: View {
 
     var caseInfo: some View {
         ZStack {
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 0) {
+
+                // Form
+
                 if let formType = caseStatus.formType {
                     Text("Form \(formType)")
                         .font(.headline)
                         .foregroundColor(.ctTextPrimary)
                 }
-
-                HStack(alignment: .firstTextBaseline) {
-                    Circle()
-                        .foregroundColor(caseStatus.color)
-                        .frame(width: 8, height: 8, alignment: .center)
-                        .offset(y: -2)
-                    Text(caseStatus.status)
-                        .font(.body)
-                        .foregroundColor(.ctTextSecondary)
+                if let formName = caseStatus.formName {
+                    Text(formName)
+                        .font(.caption)
+                        .foregroundColor(.ctTextTertiary)
                 }
 
-                Text(caseStatus.body)
-                    .multilineTextAlignment(.center)
-                    .font(.system(.body, design: .serif))
-                    .foregroundColor(.ctTextSecondary)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.ctBackgroundSecondary)
-                    .cornerRadius(8)
+                // Status
+
+                VStack {
+                    HStack(alignment: .center) {
+                        OrbIndicator(color: caseStatus.color)
+                        Text(caseStatus.status)
+                            .font(.subheadline)
+                            .foregroundColor(.ctTextSecondary)
+                    }
+
+                    Divider()
+
+                    Text(caseStatus.body)
+                        .multilineTextAlignment(.center)
+                        .font(.system(.callout, design: .serif))
+                        .foregroundColor(.ctTextSecondary)
+                }
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(Color.ctBackgroundSecondary)
+                .cornerRadius(8)
+                .padding(.top, 24)
             }
 
             if viewModel.isShowingActivityViewController {
@@ -55,7 +67,6 @@ struct DetailsView: View {
     @ViewBuilder var history: some View {
         if viewModel.isHistoryAvailable {
             HistoryView(history: viewModel.history)
-                .padding(.top)
         } else {
             EmptyView()
         }
@@ -72,9 +83,10 @@ struct DetailsView: View {
     var body: some View {
         ScrollView {
             caseInfo
+                .padding()
             history
+                .padding()
         }
-        .padding()
         .background(Color.ctBackgroundPrimary)
         .navigationBarTitle(caseStatus.receiptNumber)
         .navigationBarTitleDisplayMode(.inline)
@@ -101,7 +113,7 @@ struct DetailsView: View {
         }
         .onAppear {
             MetricScreenView.viewCaseDetails.send(receiptNumber: caseStatus.receiptNumber)
-         }
+        }
         .task {
             await viewModel.load(receiptNumber: caseStatus.receiptNumber)
         }

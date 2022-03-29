@@ -20,7 +20,7 @@ extension CaseStatusManagedObject {
                 body: body,
                 formType: formType,
                 lastUpdated: lastUpdated,
-                lastFetched: lastFetched! // bad
+                lastFetched: lastFetched ?? lastUpdated // bad
             )
         }
         return nil

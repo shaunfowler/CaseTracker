@@ -37,6 +37,13 @@ struct CaseStatus: Codable, Identifiable {
         receiptNumber
     }
 
+    var formName: String? {
+        if let formType = formType {
+            return Form(rawValue: formType)?.description
+        }
+        return nil
+    }
+
     var color: Color {
         return Status(rawValue: status)?.color ?? .blue
     }
