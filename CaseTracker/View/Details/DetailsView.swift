@@ -30,7 +30,7 @@ struct ActivityViewController1: UIViewControllerRepresentable {
 struct DetailsView: View {
 
     @Environment(\.dismiss) var dismiss
-    @ScaledMetric var indicatorSize = 16
+    @ScaledMetric var indicatorSize = 10
     @ScaledMetric var bodyFontSize = 15
     @StateObject var viewModel: DetailsViewModel
 
@@ -54,7 +54,7 @@ struct DetailsView: View {
                 }
             }
 
-            Section("Status") {
+            Section(header: Text("Status"), footer: statusFooter) {
                 HStack(alignment: .center) {
                     OrbIndicator(color: caseStatus.color, size: indicatorSize)
                     Text(caseStatus.status)
@@ -68,14 +68,7 @@ struct DetailsView: View {
                     .foregroundColor(.ctTextSecondary)
             }
 
-            Section(
-                header: Text("History"),
-                footer: Text("Complete case history is only available if the case status changed while the Case Tracker app was installed.")
-                        .font(.caption2)
-                        .foregroundColor(.ctTextTertiary.opacity(0.5))
-            ) {
-                history
-            }
+            history
         }
         .onAppear {
             UITableView.appearance().backgroundColor = .clear
@@ -86,9 +79,26 @@ struct DetailsView: View {
         }
     }
 
+    @ViewBuilder var statusFooter: some View {
+        if let lastFetchedFormatted = caseStatus.lastFetchedFormatted {
+            Text("Refreshed at \(lastFetchedFormatted).")
+                .font(.caption2)
+                .foregroundColor(.ctTextTertiary.opacity(0.5))
+        } else {
+            EmptyView()
+        }
+    }
+
     @ViewBuilder var history: some View {
         if viewModel.isHistoryAvailable {
-            HistoryView(history: viewModel.history)
+            Section(
+                header: Text("History"),
+                footer: Text("Complete case history is only available if the case status changed while the Case Tracker app was installed.")
+                        .font(.caption2)
+                        .foregroundColor(.ctTextTertiary.opacity(0.5))
+            ) {
+                HistoryView(history: viewModel.history)
+            }
         } else {
             EmptyView()
         }

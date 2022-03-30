@@ -42,7 +42,7 @@ struct CaseStatusNavigationLink<Content: View>: View {
             .listRowInsets(EdgeInsets(top: 6, leading: 16, bottom: 6, trailing: 16))
             .listRowSeparator(.hidden)
             .listRowBackground(Color.clear)
-            .shadow(color: Color.ctShadow.opacity(0.2), radius: 8, x: 0, y: 0)
+            .shadow(color: Color.ctShadow, radius: 8, x: 0, y: 0)
             .accessibility(identifier: model.receiptNumber)
     }
 }

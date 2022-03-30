@@ -20,6 +20,13 @@ struct CaseStatus: Codable, Identifiable {
         return formatter
     }()
 
+    static let dateTimeFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .medium
+        return formatter
+    }()
+
     static let relativeDateFormatter: RelativeDateTimeFormatter = {
         let formatter = RelativeDateTimeFormatter()
         formatter.unitsStyle = .full
@@ -46,6 +53,13 @@ struct CaseStatus: Codable, Identifiable {
 
     var color: Color {
         return Status(rawValue: status)?.color ?? .blue
+    }
+
+    var lastFetchedFormatted: String? {
+        if let lastFetched = lastFetched {
+            return CaseStatus.dateTimeFormatter.string(from: lastFetched)
+        }
+        return nil
     }
 
     var lastUpdatedFormatted: String {
