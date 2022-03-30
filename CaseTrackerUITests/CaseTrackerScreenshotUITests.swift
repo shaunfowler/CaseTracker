@@ -48,13 +48,11 @@ class CaseTrackerScreenshotUITests: XCTestCase {
 
     func testScreenshotCaseDetails_Light() {
         app.otherElements.buttons["MSC2119251333"].tap()
-        app.buttons["historyInfoButton"].tap()
         snapshot("CaseDetails-Light")
     }
 
     func testScreenshotCaseDetails_Dark() {
         app.otherElements.buttons["MSC2119251333"].tap()
-        app.buttons["historyInfoButton"].tap()
         snapshot("CaseDetails-Dark")
     }
 
@@ -76,15 +74,31 @@ class CaseTrackerScreenshotUITests: XCTestCase {
 
     func testScreenshotCaseDetailsShare_Light() {
         app.otherElements.buttons["MSC2119251333"].tap()
-        let toolbar = app.toolbars["Toolbar"]
-        toolbar.buttons["Share"].tap()
+        app.buttons["More"].tap()
+        app.buttons["Share"].tap()
         snapshot("CaseDetailsShare-Light")
     }
 
     func testScreenshotCaseDetailsShare_Dark() {
         app.otherElements.buttons["MSC2119251333"].tap()
-        let toolbar = app.toolbars["Toolbar"]
-        toolbar.buttons["Share"].tap()
+        app.buttons["More"].tap()
+        app.buttons["Share"].tap()
         snapshot("CaseDetailsShare-Dark")
+    }
+
+    // MARK: - Case Details > Website
+
+    func testScreenshotCaseDetailsWebsite_Light() {
+        app.otherElements.buttons["MSC2119251333"].tap()
+        app.buttons["More"].tap()
+        app.buttons["View on USCIS Website"].tap()
+        snapshot("CaseDetailsWebsite-Light")
+    }
+
+    func testScreenshotCaseDetailsWebsite_Dark () {
+        app.otherElements.buttons["MSC2119251333"].tap()
+        app.buttons["More"].tap()
+        app.buttons["View on USCIS Website"].tap()
+        snapshot("CaseDetailsWebsite-Dark")
     }
 }

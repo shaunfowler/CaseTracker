@@ -7,60 +7,82 @@
 
 import SwiftUI
 
+struct ActivityViewController1: UIViewControllerRepresentable {
+
+    var url: URL
+    var excludedActivityTypes: [UIActivity.ActivityType]?
+
+    func makeUIViewController(
+        context: UIViewControllerRepresentableContext<ActivityViewController1>
+    ) -> UIActivityViewController {
+        let controller = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        return controller
+    }
+
+    func updateUIViewController(
+        _ uiViewController: UIActivityViewController,
+        context: UIViewControllerRepresentableContext<ActivityViewController1>
+    ) {
+
+    }
+}
+
 struct DetailsView: View {
 
     @Environment(\.dismiss) var dismiss
-
+    @ScaledMetric var indicatorSize = 16
+    @ScaledMetric var bodyFontSize = 15
     @StateObject var viewModel: DetailsViewModel
 
     let caseStatus: CaseStatus
     let removeCase: (String) -> Void
 
     var caseInfo: some View {
-        ZStack {
-            VStack(alignment: .leading, spacing: 0) {
-
-                // Form
-
-                if let formType = caseStatus.formType {
-                    Text("Form \(formType)")
-                        .font(.headline)
-                        .foregroundColor(.ctTextPrimary)
-                }
-                if let formName = caseStatus.formName {
-                    Text(formName)
-                        .font(.caption)
-                        .foregroundColor(.ctTextTertiary)
-                }
-
-                // Status
-
-                VStack {
-                    HStack(alignment: .center) {
-                        OrbIndicator(color: caseStatus.color)
-                        Text(caseStatus.status)
-                            .font(.subheadline)
-                            .foregroundColor(.ctTextSecondary)
+        List {
+            Section("Form") {
+                VStack(alignment: .leading) {
+                    if let formType = caseStatus.formType {
+                        Text("\(formType)")
+                            .font(.headline)
+                            .foregroundColor(.ctTextPrimary)
                     }
+                    if let formName = caseStatus.formName {
+                        Text(formName)
+                            .font(.caption)
+                            .foregroundColor(.ctTextTertiary)
+                    }
+                }
+            }
 
-                    Divider()
-
-                    Text(caseStatus.body)
-                        .multilineTextAlignment(.center)
-                        .font(.system(.callout, design: .serif))
+            Section("Status") {
+                HStack(alignment: .center) {
+                    OrbIndicator(color: caseStatus.color, size: indicatorSize)
+                    Text(caseStatus.status)
+                        .font(.subheadline)
                         .foregroundColor(.ctTextSecondary)
                 }
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color.ctBackgroundSecondary)
-                .cornerRadius(8)
-                .padding(.top, 24)
+
+                Text(caseStatus.body)
+                    .multilineTextAlignment(.center)
+                    .font(.system(size: bodyFontSize, design: .serif))
+                    .foregroundColor(.ctTextSecondary)
             }
 
-            if viewModel.isShowingActivityViewController {
-                ActivityViewController(url: CaseStatusURL.get(caseStatus.receiptNumber).url,
-                                       showing: $viewModel.isShowingActivityViewController)
+            Section(
+                header: Text("History"),
+                footer: Text("Complete case history is only available if the case status changed while the Case Tracker app was installed.")
+                        .font(.caption2)
+                        .foregroundColor(.ctTextTertiary.opacity(0.5))
+            ) {
+                history
             }
+        }
+        .onAppear {
+            UITableView.appearance().backgroundColor = .clear
+        }
+        .background(Color.ctBackgroundPrimary)
+        .sheet(isPresented: $viewModel.isShowingActivityViewController) {
+            ActivityViewController(url: CaseStatusURL.get(caseStatus.receiptNumber).url)
         }
     }
 
@@ -81,42 +103,41 @@ struct DetailsView: View {
     }
 
     var body: some View {
-        ScrollView {
-            caseInfo
-                .padding()
-            history
-                .padding()
-        }
-        .background(Color.ctBackgroundPrimary)
-        .navigationBarTitle(caseStatus.receiptNumber)
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            ToolbarItemGroup(placement: .bottomBar) {
-                Button(action: onShareButtonPressed, label: {
-                    Label("Share", systemImage: "square.and.arrow.up")
-                })
-                Button(action: onMoreButtonPressed) {
-                    Label("More", systemImage: "ellipsis.circle")
+        caseInfo
+            .background(Color.ctBackgroundPrimary)
+            .navigationBarTitle(caseStatus.receiptNumber)
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    Menu {
+                        Button(action: onShareButtonPressed, label: {
+                            Label("Share", systemImage: "square.and.arrow.up")
+                        })
+                        Button(action: copyReceiptNumber) {
+                            Label("Copy Receipt Number", systemImage: "doc.on.doc")
+                        }
+                        Button(action: openInWebView) {
+                            Label("View on USCIS Website", systemImage: "globe")
+                        }
+                        Button(role: .destructive, action: removeCaseRequest) {
+                            Label("Remove Case", systemImage: "trash")
+                        }
+                    } label: {
+                        Label("More", systemImage: "ellipsis.circle")
+                    }
                 }
-                .confirmationDialog("", isPresented: $viewModel.isPresentingActionSheet, actions: {
-                    Button("Copy Receipt Number", action: copyReceiptNumber)
-                    Button("View on USCIS Website", action: openInWebView)
-                    Button("Remove Case", role: .destructive, action: removeCaseRequest)
-                })
             }
-        }
-        .sheet(isPresented: $viewModel.isPresentingWebView) {
-            SafariView(url: CaseStatusURL.get(caseStatus.receiptNumber).url)
-        }
-        .alert(isPresented: $viewModel.isPresentingDeleteConfirmation) {
-            removeAlert
-        }
-        .onAppear {
-            MetricScreenView.viewCaseDetails.send(receiptNumber: caseStatus.receiptNumber)
-        }
-        .task {
-            await viewModel.load(receiptNumber: caseStatus.receiptNumber)
-        }
+            .sheet(isPresented: $viewModel.isPresentingWebView) {
+                SafariView(url: CaseStatusURL.get(caseStatus.receiptNumber).url)
+            }
+            .alert(isPresented: $viewModel.isPresentingDeleteConfirmation) {
+                removeAlert
+            }
+            .onAppear {
+                MetricScreenView.viewCaseDetails.send(receiptNumber: caseStatus.receiptNumber)
+            }
+            .task {
+                await viewModel.load(receiptNumber: caseStatus.receiptNumber)
+            }
     }
 
     private func onMoreButtonPressed() {

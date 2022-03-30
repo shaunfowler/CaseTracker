@@ -125,6 +125,6 @@ class PreviewDataRepository: Repository {
     }
 
     func getHistory(receiptNumber: String) async -> Result<[CaseStatusHistorical], Error> {
-        return .success([])
+        return .success(caseHistory)
     }
 }

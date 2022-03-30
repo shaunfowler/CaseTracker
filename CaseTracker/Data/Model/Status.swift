@@ -151,7 +151,7 @@ enum Status: String {
                 .requestForADuplicateCardWasApproved,
                 .travelDocumentWasMailed,
                 .caseWasApprovedAndMyDecisionWasEmailed:
-            return .ctGreen
+            return .green
 
         case .caseApprovalWasRevoked,
                 .caseRejectedBecauseISentAnIncorrectFee,
@@ -172,7 +172,7 @@ enum Status: String {
                 .petitionWithdrawnOver180DaysNotAutomaticallyRevoked,
                 .revocationNoticeWasSent,
                 .statusTerminationNoticeWasMailed:
-            return .ctRed
+            return .red
 
         case .interviewWasRescheduled,
                 .interviewWasScheduled,
@@ -183,7 +183,7 @@ enum Status: String {
                 .requestForInitialEvidenceWasSent,
                 .resubmittedFeeWasNotAccepted,
                 .terminationOfLitigationNoticeWasMailed:
-            return .ctYellow
+            return .yellow
 
         case .cardIsBeingReturnedtoUSCISbyPostOffice,
                 .cardWasReturnedToUSCIS,
@@ -200,7 +200,7 @@ enum Status: String {
                 .requestWasRejected,
                 .travelDocumentWasDestroyedAfterUSCISHeldItFor180Days,
                 .travelDocumentWasReturnedtoUSCISAndWillBeHeldFor180Days:
-            return .ctOrange
+            return .orange
 
         case .cardDestroyed,
                 .caseIsOnHold,
@@ -208,16 +208,16 @@ enum Status: String {
                 .caseWasAutomaticallyRevoked,
                 .caseWasNotRevokedorCancelledByUSCIS,
                 .documentDestroyed:
-            return .ctGray
+            return .gray
 
         default:
             if rawValue.contains("Approved") {
-                return .ctGreen
+                return .green
             }
             if rawValue.contains("Rejected") {
-                return .ctRed
+                return .red
             }
-            return .ctBlue
+            return .blue
         }
     }
 }

@@ -16,10 +16,5 @@ extension Color {
     static let ctTextSecondary = Color("TextSecondary")
     static let ctTextTertiary = Color("TextTertiary")
 
-    static let ctGreen = Color("CTGreen")
-    static let ctRed = Color("CTRed")
-    static let ctYellow = Color("CTYellow")
-    static let ctOrange = Color("CTOrange")
-    static let ctGray = Color("CTGray")
-    static let ctBlue = Color("CTBlue")
+    static let ctShadow = Color("Shadow")
 }

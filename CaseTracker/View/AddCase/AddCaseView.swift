@@ -81,7 +81,7 @@ struct AddCaseView: View {
                           loading: viewModel.isLoading,
                           fullWidth: true) {
                 Task {
-                    MetricInteraction.tapAddCaseSubmitModalButton.send()
+                    MetricInteraction.tapAddCaseSubmitModalButton.send(receiptNumber: viewModel.receiptNumber)
                     await viewModel.attemptAddCase()
                     if !viewModel.showError {
                         dismiss()

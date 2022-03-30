@@ -33,6 +33,13 @@ enum MetricInteraction: String {
             AnalyticsParameterItemName: self.rawValue
         ])
     }
+
+    func send(receiptNumber: String) {
+        Analytics.logEvent("interaction", parameters: [
+            AnalyticsParameterItemName: self.rawValue,
+            "ct_receipt_number": receiptNumber
+        ])
+    }
 }
 
 enum MetricScreenView: String {
@@ -50,7 +57,7 @@ enum MetricScreenView: String {
 
     func send(receiptNumber: String) {
         Analytics.logEvent(AnalyticsEventScreenView, parameters: [
-            AnalyticsParameterItemName: self.rawValue,
+            AnalyticsParameterScreenName: self.rawValue,
             "ct_receipt_number": receiptNumber
         ])
     }

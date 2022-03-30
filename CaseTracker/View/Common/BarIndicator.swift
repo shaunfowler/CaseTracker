@@ -18,15 +18,14 @@ struct BarIndicator: View {
     }
 
     var body: some View {
-        ZStack(alignment: .leading) {
-            Rectangle()
+        ZStack(alignment: .center) {
+            RoundedRectangle(cornerRadius: 2)
                 .foregroundColor(color)
-                .frame(width: width / 2, alignment: .center)
-            Rectangle()
-                .foregroundColor(color.opacity(0.2))
-                .frame(width: width, alignment: .center)
+                .padding(2)
+            RoundedRectangle(cornerRadius: 4)
+                .foregroundColor(color.opacity(0.3))
         }
-        .clipShape(RoundedRectangle(cornerRadius: 2))
+        .frame(width: width, alignment: .center)
     }
 }
 
@@ -34,6 +33,8 @@ struct BarIndicator_Previews: PreviewProvider {
 
     static var content: some View {
         HStack {
+            BarIndicator(color: .blue, width: 20)
+            BarIndicator(color: .blue, width: 5)
             BarIndicator(color: .blue)
             BarIndicator(color: .green)
             BarIndicator(color: .yellow)
@@ -42,6 +43,7 @@ struct BarIndicator_Previews: PreviewProvider {
             BarIndicator(color: .gray)
         }
         .padding()
+        .background(Color.ctBackgroundSecondary)
     }
 
     static var previews: some View {
@@ -49,6 +51,6 @@ struct BarIndicator_Previews: PreviewProvider {
             content.preferredColorScheme(.light)
             content.preferredColorScheme(.dark)
         }
-        .previewLayout(.fixed(width: 200, height: 200))
+        .previewLayout(.fixed(width: 160, height: 100))
     }
 }
