@@ -1,5 +1,5 @@
 //
-//  MockRemoteCaseStatusAPI.swift
+//  UITestsRemoteCaseStatusAPI.swift
 //  CaseTracker
 //
 //  Created by Shaun Fowler on 3/18/22.
@@ -8,7 +8,7 @@
 import Foundation
 
 /// Mock for UITests.
-class MockRemoteCaseStatusAPI: CaseStatusReadable {
+class UITestsRemoteCaseStatusAPI: CaseStatusReadable {
 
     private var cases: [String: CaseStatus] = [
         PreviewDataRepository.case1.id: PreviewDataRepository.case1,

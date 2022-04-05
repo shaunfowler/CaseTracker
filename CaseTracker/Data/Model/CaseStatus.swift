@@ -99,6 +99,10 @@ extension CaseStatus: CustomStringConvertible {
     }
 }
 
+extension CaseStatus: Equatable {
+    
+}
+
 extension CaseStatus {
     init(receiptNumber: String, htmlString: String) throws {
         defer { os_signpost(.end, log: OSLog.caseTrackerPoi, name: "CaseStatus_init") }

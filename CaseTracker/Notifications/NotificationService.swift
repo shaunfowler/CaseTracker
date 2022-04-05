@@ -9,7 +9,11 @@ import Foundation
 import NotificationCenter
 import CocoaLumberjack
 
-class NotificationService {
+protocol NotificationServiceProtocol {
+    func request(notification: Notification)
+}
+
+class NotificationService: NotificationServiceProtocol {
 
     let factory = NotificationFactory()
 

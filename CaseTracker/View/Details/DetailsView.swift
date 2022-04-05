@@ -64,6 +64,7 @@ struct DetailsView: View {
                 }
 
                 Text(caseStatus.body)
+                    .textSelection(.enabled)
                     .multilineTextAlignment(.center)
                     .font(.system(size: bodyFontSize, design: .serif))
                     .foregroundColor(.ctTextSecondary)

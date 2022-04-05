@@ -29,7 +29,7 @@ struct CaseTrackerApp: App {
             print("*** Using mocked remote API ***")
             repository = CaseStatusRepository(
                 local: LocalCaseStatusPersistence(),
-                remote: MockRemoteCaseStatusAPI(),
+                remote: UITestsRemoteCaseStatusAPI(),
                 notificationService: notificationService
             )
         } else {

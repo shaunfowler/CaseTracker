@@ -68,4 +68,33 @@ class LocalCaseStatusPersitenceTests: XCTestCase {
         XCTAssertEqual(historicalItems?[1].lastUpdated, initialCase.lastUpdated)
         XCTAssertEqual(historicalItems?[1].status, initialCase.status)
     }
+
+    func testReuseFormTypeFromPreviousStatus() async {
+
+        let caseInitial = CaseStatus(
+            receiptNumber: "IOE9119251367",
+            status: Status.caseIsActivelyBeingReviewedByUSCIS.rawValue,
+            body: "...",
+            formType: "I-129",
+            lastUpdated: Date.now - 100_000,
+            lastFetched: Date() - 100_000
+        )
+
+        let caseFinal_WithoutFormType = CaseStatus(
+            receiptNumber: "IOE9119251367",
+            status: Status.caseApproved.rawValue,
+            body: "...",
+            formType: nil, // nil
+            lastUpdated: Date.now,
+            lastFetched: Date()
+        )
+
+        _ = await persistence.set(caseStatus: caseInitial)
+        let results1 = try? await persistence.query().get()
+        XCTAssertEqual(results1?[0].formType, caseInitial.formType)
+
+        _ = await persistence.set(caseStatus: caseFinal_WithoutFormType)
+        let results2 = try? await persistence.query().get()
+        XCTAssertEqual(results2?[0].formType, caseInitial.formType)
+    }
 }

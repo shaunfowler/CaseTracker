@@ -24,9 +24,10 @@ class LocalCaseStatusPersistence {
 
 extension LocalCaseStatusPersistence: CaseStatusWritable {
 
-    func set(caseStatus: CaseStatus) async -> Result<(), Error> {
+    func set(caseStatus: CaseStatus) async -> Result<CaseStatus, Error> {
         defer { os_signpost(.end, log: OSLog.caseTrackerPoi, name: "LocalCaseStatusPersistence_get") }
         os_signpost(.begin, log: OSLog.caseTrackerPoi, name: "LocalCaseStatusPersistence_get")
+        var caseStatus = caseStatus
         do {
             try viewContext.performAndWait {
 
@@ -35,7 +36,11 @@ extension LocalCaseStatusPersistence: CaseStatusWritable {
 
                 let result = try self.viewContext.fetch(fetchRequest)
                 if let existing = result.first {
-                    existing.update(from: caseStatus, context: self.viewContext) // update
+                    // Preserve form type in case the updated status text no longer contains it
+                    caseStatus.formType = existing.formType
+
+                    // Update local persistence
+                    existing.update(from: caseStatus, context: self.viewContext)
                     if try self.viewContext.fetch(fetchRequestHistorical).isEmpty {
                         existing.addToHistory(createHistoricalItem(from: caseStatus))
                     }
@@ -49,7 +54,7 @@ extension LocalCaseStatusPersistence: CaseStatusWritable {
         } catch {
             return .failure(error)
         }
-        return .success(())
+        return .success(caseStatus)
     }
 
     func remove(receiptNumber: String) async -> Result<(), Error> {

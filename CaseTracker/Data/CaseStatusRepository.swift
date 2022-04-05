@@ -45,7 +45,7 @@ class CaseStatusRepository: Repository {
 
     private let local: CaseStatusLocalCache
     private let remote: CaseStatusReadable
-    private let notificationService: NotificationService
+    private let notificationService: NotificationServiceProtocol
 
     private var cancellables = Set<AnyCancellable>()
     private let networkMonitorQueue = DispatchQueue(label: "network-monitor")
@@ -53,7 +53,7 @@ class CaseStatusRepository: Repository {
 
     // MARK: - Initialization
 
-    convenience init(notificationService: NotificationService = NotificationService()) {
+    convenience init(notificationService: NotificationServiceProtocol = NotificationService()) {
         self.init(local: LocalCaseStatusPersistence(),
                   remote: RemoteCaseStatusAPI(),
                   notificationService: notificationService)
@@ -62,7 +62,7 @@ class CaseStatusRepository: Repository {
     init(
         local: CaseStatusLocalCache,
         remote: CaseStatusReadable,
-        notificationService: NotificationService
+        notificationService: NotificationServiceProtocol
     ) {
         self.local = local
         self.remote = remote
@@ -169,8 +169,8 @@ class CaseStatusRepository: Repository {
                 detectChanges(existingCase: cachedValue, updatedCase: updatedCase)
             }
             updatedCase.lastFetched = Date.now
-            await local.set(caseStatus: updatedCase)
-            return .success(updatedCase)
+            return await local.set(caseStatus: updatedCase)
+//            return .success(updatedCase)
 
         case .failure(let error):
             DDLogError("Error fetching case from remote API: \(error.localizedDescription).")
@@ -198,6 +198,7 @@ class CaseStatusRepository: Repository {
     }
 
     private func detectChanges(existingCase: CaseStatus, updatedCase: CaseStatus) {
+        guard existingCase.receiptNumber == updatedCase.receiptNumber else { return }
         if existingCase.lastUpdated != updatedCase.lastUpdated || existingCase.status != updatedCase.status {
             DDLogInfo("Detected case change from status [\(existingCase.status)] to [\(updatedCase.status)].")
             notificationService.request(notification: .statusUpdated(updatedCase))

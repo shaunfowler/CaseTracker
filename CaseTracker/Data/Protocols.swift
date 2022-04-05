@@ -18,6 +18,6 @@ protocol CaseStatusQueryable {
 
 protocol CaseStatusWritable {
     @discardableResult
-    func set(caseStatus: CaseStatus) async -> Result<(), Error>
+    func set(caseStatus: CaseStatus) async -> Result<CaseStatus, Error>
     func remove(receiptNumber: String) async -> Result<(), Error>
 }

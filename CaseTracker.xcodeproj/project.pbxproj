@@ -13,7 +13,9 @@
 		105D5D3FE0D14E16F451B309D36662A9 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B69D74A3BEEF1F4B2CA9ECEB8051C98 /* Status.swift */; };
 		1073AFE6534E04F80150E9F2BD49B7FB /* LIN2119051098.html in Resources */ = {isa = PBXBuildFile; fileRef = 93017DFA4D478D5F6B369E20F540CA01 /* LIN2119051098.html */; };
 		11F5C10F99649FA58092BA806DDAD7A8 /* RemoteCaseStatusAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB9C87238E4EEAE18CB0C7C7EB83D3F /* RemoteCaseStatusAPI.swift */; };
+		1A5187D1478AF807D9E4550BA85A6720 /* CaseStatusRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB191ADC7DB53F5D1BE25B9EB212A291 /* CaseStatusRepositoryTests.swift */; };
 		1CA94EED81E148B0B4A3853E85A82779 /* AddCaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281A29036E4280FF808A8FA87906CCAB /* AddCaseViewModel.swift */; };
+		251101073AF5C19D0FB2001DE31DEE74 /* UITestsRemoteCaseStatusAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18B6BFAC4EE04A47D57A598CB757843 /* UITestsRemoteCaseStatusAPI.swift */; };
 		28314B9D7FFCB48F93887C70F5ADC1A4 /* CaseStatusManagedObjectExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856A22BD1E9F7A0526D4BA03E180411E /* CaseStatusManagedObjectExtensions.swift */; };
 		2AEF42264D5211515CAF59E83994C001 /* CaseStatusHistorical.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55010E5FF5C182C0404E65197552B509 /* CaseStatusHistorical.swift */; };
 		2B20553DF1BAA014B21CD03CC61B7BE1 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2AABCAD5984ECC4C91895C87EEFD63 /* PrimaryButton.swift */; };
@@ -33,12 +35,12 @@
 		67BB01F7FE224294D21F1C3BC8BDF453 /* CSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131C3F07A32ECE23D65E425FC1713823 /* CSError.swift */; };
 		6806634062C14BFE4128F972EA9B4DBE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79260E849CA9AFD52860404557F6C4DF /* HomeView.swift */; };
 		6AE2528E888F07251FDF7C36C35B85A3 /* OSLog+caseTrackerPoi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFF2A0428B8474B3E5CBEC2CABBD9B6 /* OSLog+caseTrackerPoi.swift */; };
-		6E2335FE25B9E3CC2BF2AB7CD08AB574 /* MockRemoteCaseStatusAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE506A868FB582A3ABF9FFF2CF9F4CD /* MockRemoteCaseStatusAPI.swift */; };
 		6E71A6C7192D4CA8B1DDF76AD066C2C9 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C299DB08A3A12581F66DEE24C4E6AE /* NotificationService.swift */; };
 		7486C919543AD5B92DF88E660D41BDCE /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961D10F645F88214FC4414FAF3E46E4B /* PersistenceController.swift */; };
 		7492F1F6301A63DB3D770627DAFC60F6 /* LocalCaseStatusPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BD57E5011042C400128991527571F1 /* LocalCaseStatusPersistence.swift */; };
 		7D1B3B595A3048782F06A62E007C4A18 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E41BC630B960DD03008433674A0DBD7 /* HistoryView.swift */; };
 		80336BA7B86C5B5B62B1763B777E3BC4 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8435D3F25257EBB6299441E928A66223 /* CloudKit.framework */; };
+		88E546CCD2ED3DC928093235ABE82AD5 /* MockNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAECE396072F7C349004317DF7AE2A3 /* MockNotificationService.swift */; };
 		932690C708328200496016CDB5980239 /* LogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AE922CCCE5FE468218CF2FD7D2F824 /* LogFormatter.swift */; };
 		96B40B0FC4B06DA6FD876F4C8096EC72 /* Form.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453B5E62DAC8903A2D87E885F4775157 /* Form.swift */; };
 		9D21D76394F5641A5849C3CE7BC4E562 /* PreviewDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA12C9754775922C812F38C5BC44D71D /* PreviewDataRepository.swift */; };
@@ -55,6 +57,7 @@
 		C94674F15A81F6A2560EB615A4E89B62 /* BarIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901653FF1971D8C140E2887FF896485D /* BarIndicator.swift */; };
 		CA76C50C55489A1748DC559D322EEE0A /* TestCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CA7944B5887DBFEEEA566BF37C49AA /* TestCoreDataStack.swift */; };
 		CB9A1B1C2229523245A8D9E3571105D2 /* MetricOperational.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEABD5A76304DB39198B940B23096F5 /* MetricOperational.swift */; };
+		D2C8801701256DCDBE0AAE116DB27A5C /* MockLocalCaseStatusAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8220EC4ED21B4F945B8A9A930361856F /* MockLocalCaseStatusAPI.swift */; };
 		D49ED6959E919DA3A92F7EC3BD69D699 /* Pods_CaseTrackerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FF79520D30FA6AC59F4C76B6D9F0749 /* Pods_CaseTrackerTests.framework */; };
 		D520B7C749F65938C554514509D6EE32 /* CaseStatusRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E67D286C8B284EFAFF69F1580DF7EF /* CaseStatusRepository.swift */; };
 		DAC3A40671BE2422D0AAEE60FF57E33B /* LocalCaseStatusPersitenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94C9E145FA9E3E8F0A2AF3E279BCB8D /* LocalCaseStatusPersitenceTests.swift */; };
@@ -69,6 +72,7 @@
 		F64255D829D75725388C765D54DCCE41 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483B7392FAF9C2C57F8E6398E26285A1 /* SnapshotHelper.swift */; };
 		F963B185C1B63B5EA83A9A60E7CE9A12 /* AddCaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65CD8EB00F3E7CD3E06D2C78A6B1A76 /* AddCaseView.swift */; };
 		FA231E684165BA8E0DF867D75B5F7118 /* CaseTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68F81B6602C9BE078C0375FDAD6D9F4 /* CaseTrackerUITests.swift */; };
+		FA4183568D060BEAD8C6F58D49359C4C /* MockRemoteCaseStatusAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B6F1B604744209200ED4AA22D4CBD5 /* MockRemoteCaseStatusAPI.swift */; };
 		FA6B4186E5241EB8D8063A5FB6A3D137 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6998BCA882A4C02EDB67079EACB6D742 /* Color.swift */; };
 /* End PBXBuildFile section */
 
@@ -121,13 +125,13 @@
 		2AFF2A0428B8474B3E5CBEC2CABBD9B6 /* OSLog+caseTrackerPoi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OSLog+caseTrackerPoi.swift"; sourceTree = "<group>"; };
 		35777688413BC9B7A5F8FCF26631A311 /* Pods-CaseTrackerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaseTrackerTests.debug.xcconfig"; path = "Target Support Files/Pods-CaseTrackerTests/Pods-CaseTrackerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3C2AABCAD5984ECC4C91895C87EEFD63 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
-		3CE506A868FB582A3ABF9FFF2CF9F4CD /* MockRemoteCaseStatusAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRemoteCaseStatusAPI.swift; sourceTree = "<group>"; };
 		453B5E62DAC8903A2D87E885F4775157 /* Form.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Form.swift; sourceTree = "<group>"; };
 		461B859879D7C429976788F7715A283D /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
 		4696B06911507C0A5DD6D1DC9CC9BE24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		483B7392FAF9C2C57F8E6398E26285A1 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		4C944B015E8716F77632FF4AB8A91939 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4DD58041028FF912C02E169DC54CF6EB /* ABC1234.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ABC1234.html; sourceTree = "<group>"; };
+		50B6F1B604744209200ED4AA22D4CBD5 /* MockRemoteCaseStatusAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRemoteCaseStatusAPI.swift; sourceTree = "<group>"; };
 		51371CEBEA711A87364123E69E96A241 /* CaseStatusURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseStatusURL.swift; sourceTree = "<group>"; };
 		55010E5FF5C182C0404E65197552B509 /* CaseStatusHistorical.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseStatusHistorical.swift; sourceTree = "<group>"; };
 		56E85018D586C414050AC13A5E22E49E /* CaseRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseRowView.swift; sourceTree = "<group>"; };
@@ -144,6 +148,8 @@
 		7966C45E504CFCDBA05FF9DC91B6C1DA /* Case Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Case Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B1B91CDC3A131BFE18B4454C56F2ADE /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		7B69D74A3BEEF1F4B2CA9ECEB8051C98 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
+		7FAECE396072F7C349004317DF7AE2A3 /* MockNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNotificationService.swift; sourceTree = "<group>"; };
+		8220EC4ED21B4F945B8A9A930361856F /* MockLocalCaseStatusAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLocalCaseStatusAPI.swift; sourceTree = "<group>"; };
 		8435D3F25257EBB6299441E928A66223 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		8445FEB069CC98544008CD0B6922369E /* Pods-CaseTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaseTracker.debug.xcconfig"; path = "Target Support Files/Pods-CaseTracker/Pods-CaseTracker.debug.xcconfig"; sourceTree = "<group>"; };
 		856A22BD1E9F7A0526D4BA03E180411E /* CaseStatusManagedObjectExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseStatusManagedObjectExtensions.swift; sourceTree = "<group>"; };
@@ -159,6 +165,7 @@
 		B0FFFEED23E2ED7BF4D518F3D6F882C7 /* BackgroundRefeshManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundRefeshManager.swift; sourceTree = "<group>"; };
 		B68F81B6602C9BE078C0375FDAD6D9F4 /* CaseTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseTrackerUITests.swift; sourceTree = "<group>"; };
 		BA12C9754775922C812F38C5BC44D71D /* PreviewDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewDataRepository.swift; sourceTree = "<group>"; };
+		C18B6BFAC4EE04A47D57A598CB757843 /* UITestsRemoteCaseStatusAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestsRemoteCaseStatusAPI.swift; sourceTree = "<group>"; };
 		C23D19A526E2A6F15619884C9C6ED1A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C5DDD5164FE370A825583137968D54F8 /* NotificationFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationFactory.swift; sourceTree = "<group>"; };
 		C8AE922CCCE5FE468218CF2FD7D2F824 /* LogFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogFormatter.swift; sourceTree = "<group>"; };
@@ -175,6 +182,7 @@
 		EC25DE962C8399BC6A006265A20904CE /* CaseStatusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseStatusTests.swift; sourceTree = "<group>"; };
 		F65CD8EB00F3E7CD3E06D2C78A6B1A76 /* AddCaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCaseView.swift; sourceTree = "<group>"; };
 		FAFEC498DE0879618E6071CBE58F74C9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		FB191ADC7DB53F5D1BE25B9EB212A291 /* CaseStatusRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseStatusRepositoryTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,6 +240,16 @@
 				21EA8B01F46C0457BE183A91B2FBBFEB /* RemoteConfigDefaults.plist */,
 			);
 			path = RemoteConfiguration;
+			sourceTree = "<group>";
+		};
+		72B3FA382DBCCF9F75064CB0B62F70E7 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				8220EC4ED21B4F945B8A9A930361856F /* MockLocalCaseStatusAPI.swift */,
+				7FAECE396072F7C349004317DF7AE2A3 /* MockNotificationService.swift */,
+				50B6F1B604744209200ED4AA22D4CBD5 /* MockRemoteCaseStatusAPI.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		299A2120EB635DFA8E223348B409BECE /* Model */ = {
@@ -350,7 +368,7 @@
 		91D1D4A0DFC89EDB7B03A571FD080D2B /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
-				3CE506A868FB582A3ABF9FFF2CF9F4CD /* MockRemoteCaseStatusAPI.swift */,
+				C18B6BFAC4EE04A47D57A598CB757843 /* UITestsRemoteCaseStatusAPI.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -404,6 +422,8 @@
 			isa = PBXGroup;
 			children = (
 				BEC33E3E2C5E376D2D003C9F0C886808 /* MockData */,
+				72B3FA382DBCCF9F75064CB0B62F70E7 /* Mocks */,
+				FB191ADC7DB53F5D1BE25B9EB212A291 /* CaseStatusRepositoryTests.swift */,
 				EC25DE962C8399BC6A006265A20904CE /* CaseStatusTests.swift */,
 				D94C9E145FA9E3E8F0A2AF3E279BCB8D /* LocalCaseStatusPersitenceTests.swift */,
 				72CA7944B5887DBFEEEA566BF37C49AA /* TestCoreDataStack.swift */,
@@ -784,7 +804,6 @@
 				932690C708328200496016CDB5980239 /* LogFormatter.swift in Sources */,
 				63E9270AAA9E81F812AE66DBF1378B45 /* MetricInteraction.swift in Sources */,
 				CB9A1B1C2229523245A8D9E3571105D2 /* MetricOperational.swift in Sources */,
-				6E2335FE25B9E3CC2BF2AB7CD08AB574 /* MockRemoteCaseStatusAPI.swift in Sources */,
 				3DB3C8F004B40C4DBA7C1B8B0044D84B /* NotificationFactory.swift in Sources */,
 				6E71A6C7192D4CA8B1DDF76AD066C2C9 /* NotificationService.swift in Sources */,
 				6AE2528E888F07251FDF7C36C35B85A3 /* OSLog+caseTrackerPoi.swift in Sources */,
@@ -796,6 +815,7 @@
 				11F5C10F99649FA58092BA806DDAD7A8 /* RemoteCaseStatusAPI.swift in Sources */,
 				4D9838671D0760AB359684B1B5A06C23 /* SafariView.swift in Sources */,
 				105D5D3FE0D14E16F451B309D36662A9 /* Status.swift in Sources */,
+				251101073AF5C19D0FB2001DE31DEE74 /* UITestsRemoteCaseStatusAPI.swift in Sources */,
 				EC2875C124423E57A1F6FF6C1ACD07BF /* UpdatedCaptionTextViewModifier.swift in Sources */,
 				023AC3B65911AA9182EB4373C7AF29BD /* Utils.swift in Sources */,
 			);
@@ -815,8 +835,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A5187D1478AF807D9E4550BA85A6720 /* CaseStatusRepositoryTests.swift in Sources */,
 				E88BB4B6C8922EAFA6F2DB6E7241EED7 /* CaseStatusTests.swift in Sources */,
 				DAC3A40671BE2422D0AAEE60FF57E33B /* LocalCaseStatusPersitenceTests.swift in Sources */,
+				D2C8801701256DCDBE0AAE116DB27A5C /* MockLocalCaseStatusAPI.swift in Sources */,
+				88E546CCD2ED3DC928093235ABE82AD5 /* MockNotificationService.swift in Sources */,
+				FA4183568D060BEAD8C6F58D49359C4C /* MockRemoteCaseStatusAPI.swift in Sources */,
 				CA76C50C55489A1748DC559D322EEE0A /* TestCoreDataStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1012,7 +1036,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CaseTracker/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = QQR7KQB65R;
 				ENABLE_BITCODE = YES;
@@ -1028,7 +1052,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.20;
+				MARKETING_VERSION = 1.21;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.shaunfowler.CaseTracker;
 				PRODUCT_NAME = "Case Tracker";
@@ -1048,7 +1072,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"CaseTracker/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = QQR7KQB65R;
@@ -1065,7 +1089,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.20;
+				MARKETING_VERSION = 1.21;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.shaunfowler.CaseTracker;
 				PRODUCT_NAME = "Case Tracker";
