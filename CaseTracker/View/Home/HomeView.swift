@@ -137,5 +137,11 @@ struct ContentView_Previews: PreviewProvider {
                 }
         }
         .preferredColorScheme(.dark)
+
+        HomeView(viewModel: viewModel)
+            .task {
+                await viewModel.fetch()
+            }
+            .previewLayout(.fixed(width: 500, height: 600))
     }
 }

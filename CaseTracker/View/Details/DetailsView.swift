@@ -39,17 +39,18 @@ struct DetailsView: View {
 
     var caseInfo: some View {
         List {
-            Section("Form") {
-                VStack(alignment: .leading) {
-                    if let formType = caseStatus.formType {
+            if let formType = caseStatus.formType {
+                Section("Form") {
+                    VStack(alignment: .leading) {
                         Text("\(formType)")
                             .font(.headline)
                             .foregroundColor(.ctTextPrimary)
-                    }
-                    if let formName = caseStatus.formName {
-                        Text(formName)
-                            .font(.caption)
-                            .foregroundColor(.ctTextTertiary)
+
+                        if let formName = caseStatus.formName {
+                            Text(formName)
+                                .font(.caption)
+                                .foregroundColor(.ctTextTertiary)
+                        }
                     }
                 }
             }
@@ -182,10 +183,16 @@ struct DetailsView: View {
 }
 
 struct DetailsView_Previews: PreviewProvider {
+
     static var previews: some View {
         DetailsView(
             viewModel: DetailsViewModel(repository: PreviewDataRepository()),
             caseStatus: PreviewDataRepository.case1
+        ) { _ in }
+
+        DetailsView(
+            viewModel: DetailsViewModel(repository: PreviewDataRepository()),
+            caseStatus: PreviewDataRepository.case1WithoutForm
         ) { _ in }
     }
 }

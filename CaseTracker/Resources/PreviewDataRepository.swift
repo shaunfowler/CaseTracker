@@ -27,6 +27,12 @@ class PreviewDataRepository: Repository {
         lastFetched: Date()
     )
 
+    static let case1WithoutForm: CaseStatus = {
+        var result = PreviewDataRepository.case1
+        result.formType = nil
+        return result
+    }()
+
     // MARK: - Case 2
 
     static let case2History1 = CaseStatusHistorical(
@@ -91,7 +97,7 @@ class PreviewDataRepository: Repository {
     // MARK: - Instance Properties
 
     var cases = [
-        PreviewDataRepository.case1,
+        PreviewDataRepository.case1WithoutForm,
         PreviewDataRepository.case2,
         PreviewDataRepository.case3,
         PreviewDataRepository.case4

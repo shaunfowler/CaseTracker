@@ -38,6 +38,7 @@ struct CaseCardView: View {
             Text(model.receiptNumber)
                 .font(.headline)
                 .foregroundColor(.ctTextSecondary)
+                .frame(maxWidth: .infinity, alignment: .leading)
         }
         // Divider().opacity(0.5).padding(.top, 8)
     }
@@ -86,13 +87,11 @@ struct CaseCardView: View {
 
 struct CaseCardView_Previews: PreviewProvider {
     static var previews: some View {
-        VStack(spacing: 0) {
+        Group {
             CaseCardView(model: PreviewDataRepository.case1)
-                .padding()
+            CaseCardView(model: PreviewDataRepository.case1WithoutForm)
             CaseCardView(model: PreviewDataRepository.case2)
-                .padding()
         }
-        .background(Color.ctBackgroundPrimary)
-        .previewLayout(.sizeThatFits)
+        .previewLayout(.fixed(width: 400, height: 100))
     }
 }
