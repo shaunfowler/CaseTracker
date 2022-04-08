@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "51000DD31EC26A7F96C833C331CA9984"
-               BuildableName = "Case Tracker.app"
+               BuildableName = "CaseTracker.app"
                BlueprintName = "CaseTracker"
                ReferencedContainer = "container:CaseTracker.xcodeproj">
             </BuildableReference>
@@ -65,7 +65,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "51000DD31EC26A7F96C833C331CA9984"
-            BuildableName = "Case Tracker.app"
+            BuildableName = "CaseTracker.app"
             BlueprintName = "CaseTracker"
             ReferencedContainer = "container:CaseTracker.xcodeproj">
          </BuildableReference>
@@ -107,7 +107,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "51000DD31EC26A7F96C833C331CA9984"
-            BuildableName = "Case Tracker.app"
+            BuildableName = "CaseTracker.app"
             BlueprintName = "CaseTracker"
             ReferencedContainer = "container:CaseTracker.xcodeproj">
          </BuildableReference>

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-@testable import Case_Tracker
+@testable import CaseTracker
 
 class MockLocalCaseStatusAPI: CaseStatusQueryable, CaseStatusWritable {
 

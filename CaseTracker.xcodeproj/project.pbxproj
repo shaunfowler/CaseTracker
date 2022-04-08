@@ -117,6 +117,7 @@
 		13CA56B6E18A05910F6F909500A6CE2C /* CaseStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseStatus.swift; sourceTree = "<group>"; };
 		15048B41BAD8CB179CED42965B57B9E5 /* CaseTrackerScreenshotUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseTrackerScreenshotUITests.swift; sourceTree = "<group>"; };
 		194AD5A0282647F8DB77990EB1AF1E70 /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
+		1F7D548B6BCCBDF5F0E81EE7D404F854 /* CaseTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CaseTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F9A1300DB8D807E12941E9C87A2E53C /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		1FF79520D30FA6AC59F4C76B6D9F0749 /* Pods_CaseTrackerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CaseTrackerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		21EA8B01F46C0457BE183A91B2FBBFEB /* RemoteConfigDefaults.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RemoteConfigDefaults.plist; sourceTree = "<group>"; };
@@ -145,7 +146,6 @@
 		7195E4FA66FEBD3EAF7C88A8DA649429 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		72CA7944B5887DBFEEEA566BF37C49AA /* TestCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCoreDataStack.swift; sourceTree = "<group>"; };
 		79260E849CA9AFD52860404557F6C4DF /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		7966C45E504CFCDBA05FF9DC91B6C1DA /* Case Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Case Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B1B91CDC3A131BFE18B4454C56F2ADE /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		7B69D74A3BEEF1F4B2CA9ECEB8051C98 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		7FAECE396072F7C349004317DF7AE2A3 /* MockNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNotificationService.swift; sourceTree = "<group>"; };
@@ -242,16 +242,6 @@
 			path = RemoteConfiguration;
 			sourceTree = "<group>";
 		};
-		72B3FA382DBCCF9F75064CB0B62F70E7 /* Mocks */ = {
-			isa = PBXGroup;
-			children = (
-				8220EC4ED21B4F945B8A9A930361856F /* MockLocalCaseStatusAPI.swift */,
-				7FAECE396072F7C349004317DF7AE2A3 /* MockNotificationService.swift */,
-				50B6F1B604744209200ED4AA22D4CBD5 /* MockRemoteCaseStatusAPI.swift */,
-			);
-			path = Mocks;
-			sourceTree = "<group>";
-		};
 		299A2120EB635DFA8E223348B409BECE /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -274,7 +264,7 @@
 		419FBDFFE404EB96C5553F60A91D3635 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7966C45E504CFCDBA05FF9DC91B6C1DA /* Case Tracker.app */,
+				1F7D548B6BCCBDF5F0E81EE7D404F854 /* CaseTracker.app */,
 				24A7C80C4312B803D00E387D53821661 /* CaseTrackerTests.xctest */,
 				AABAB6D4019EFE4FC4CB711A8A2E42E9 /* CaseTrackerUITests.xctest */,
 			);
@@ -309,6 +299,16 @@
 				6998BCA882A4C02EDB67079EACB6D742 /* Color.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		72B3FA382DBCCF9F75064CB0B62F70E7 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				8220EC4ED21B4F945B8A9A930361856F /* MockLocalCaseStatusAPI.swift */,
+				7FAECE396072F7C349004317DF7AE2A3 /* MockNotificationService.swift */,
+				50B6F1B604744209200ED4AA22D4CBD5 /* MockRemoteCaseStatusAPI.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		79788704B2426690C3B6DF26A2CE86EA /* Common */ = {
@@ -563,7 +563,7 @@
 				895781B4CF62630C1AE924C188301595 /* ShellScript */,
 				2C9834104B244245676E2D583B2424B3 /* Embed Frameworks */,
 				A65AB476A6E7D9D019D695C2EC0EC9C7 /* [CP] Embed Pods Frameworks */,
-				FEE60196870257E60C1D219FB33CC226 /* Run Script */,
+				A05D71B6B6519FA76EE76590ECBC5347 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -571,7 +571,7 @@
 			);
 			name = CaseTracker;
 			productName = CaseTracker;
-			productReference = 7966C45E504CFCDBA05FF9DC91B6C1DA /* Case Tracker.app */;
+			productReference = 1F7D548B6BCCBDF5F0E81EE7D404F854 /* CaseTracker.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -745,7 +745,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FEE60196870257E60C1D219FB33CC226 /* Run Script */ = {
+		A05D71B6B6519FA76EE76590ECBC5347 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -763,7 +763,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
+			shellScript = "echo ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}\nls -la ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}\necho $(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)\n\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1043,6 +1043,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CaseTracker/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Case Tracker";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -1055,7 +1056,7 @@
 				MARKETING_VERSION = 1.21;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.shaunfowler.CaseTracker;
-				PRODUCT_NAME = "Case Tracker";
+				PRODUCT_NAME = CaseTracker;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1080,6 +1081,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CaseTracker/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Case Tracker";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -1092,7 +1094,7 @@
 				MARKETING_VERSION = 1.21;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.shaunfowler.CaseTracker;
-				PRODUCT_NAME = "Case Tracker";
+				PRODUCT_NAME = CaseTracker;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

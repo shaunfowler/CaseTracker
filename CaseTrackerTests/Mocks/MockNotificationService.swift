@@ -6,13 +6,13 @@
 //
 
 import Foundation
-@testable import Case_Tracker
+@testable import CaseTracker
 
 class MockNotificationService: NotificationServiceProtocol {
 
-    var onRequestCalled: ((Case_Tracker.Notification) -> Void)?
+    var onRequestCalled: ((CaseTracker.Notification) -> Void)?
 
-    func request(notification: Case_Tracker.Notification) {
+    func request(notification: CaseTracker.Notification) {
         onRequestCalled?(notification)
     }
 }
