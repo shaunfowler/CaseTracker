@@ -9,26 +9,24 @@ import Foundation
 
 enum CaseStatusURL {
 
-    private static let baseUrl = "https://egov.uscis.gov/casestatus/mycasestatus.do?"
-
-    private static func buildUrl(receiptNumber: String) -> URL {
-        // language=ENGLISH&caseStatusSearch=caseStatusPage&appReceiptNum=XXX
-        var urlComponents = URLComponents(string: CaseStatusURL.baseUrl)!
-        let queryItems = [
-            URLQueryItem(name: "language", value: "ENGLISH"),
-            URLQueryItem(name: "caseStatusSearch", value: "caseStatusPage"),
-            URLQueryItem(name: "appReceiptNum", value: receiptNumber)
-        ]
-        urlComponents.queryItems = queryItems
-        return urlComponents.url!
+    private static let baseUrl = URL(string: "https://egov.uscis.gov/casestatus/mycasestatus.do")!
+    
+    private static func buildRequestPayload(receiptNumber: String) -> String {
+        "[\"appReceiptNum\": \"\(receiptNumber)\"]"
     }
 
-    case get(String)
+    case post(String)
 
-    var url: URL {
+    var request: URLRequest {
         switch self {
-        case .get(let receiptNumber):
-            return Self.buildUrl(receiptNumber: receiptNumber)
+        case .post(let receiptNumber):
+            var request = URLRequest(url: Self.baseUrl)
+            request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+            request.httpMethod = "POST"
+            var urlComponents = URLComponents()
+            urlComponents.queryItems = [.init(name: "appReceiptNum", value: receiptNumber)]
+            request.httpBody = urlComponents.query?.data(using: .utf8)
+            return request
         }
     }
 }

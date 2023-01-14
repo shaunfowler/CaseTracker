@@ -22,11 +22,13 @@ actor RemoteCaseStatusAPI: CaseStatusReadable {
         defer { os_signpost(.end, log: OSLog.caseTrackerPoi, name: "RemoteCaseStatusAPI_get") }
         os_signpost(.begin, log: OSLog.caseTrackerPoi, name: "RemoteCaseStatusAPI_get")
         do {
-            let urlContainer = CaseStatusURL.get(id)
-            let url = urlContainer.url
+            let urlRequest = CaseStatusURL.post(id).request
+            guard let url = urlRequest.url else {
+                throw CSError.corrupt("?")
+            }
 
             DDLogInfo("Requesting URL: \(url.absoluteString).")
-            let (data, response) = try await urlSession.data(for: URLRequest(url: url))
+            let (data, response) = try await urlSession.data(for: urlRequest)
             await urlSession.reset()
 
             let statusCode = (response as? HTTPURLResponse)?.statusCode
