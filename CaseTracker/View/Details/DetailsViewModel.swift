@@ -12,7 +12,6 @@ class DetailsViewModel: ObservableObject {
 
     @Published var isPresentingActionSheet = false
     @Published var isPresentingDeleteConfirmation = false
-    @Published var isShowingActivityViewController = false
     @Published var isPresentingWebView = false
     @Published var history = [CaseStatusHistorical]()
 

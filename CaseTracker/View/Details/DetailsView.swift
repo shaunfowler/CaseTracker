@@ -76,9 +76,6 @@ struct DetailsView: View {
             UITableView.appearance().backgroundColor = .clear
         }
         .background(Color.ctBackgroundPrimary)
-        //.sheet(isPresented: $viewModel.isShowingActivityViewController) {
-        //    ActivityViewController(url: CaseStatusURL.post(caseStatus.receiptNumber).request.url!)
-        //}
     }
 
     @ViewBuilder var statusFooter: some View {
@@ -121,15 +118,12 @@ struct DetailsView: View {
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Menu {
-                        //Button(action: onShareButtonPressed, label: {
-                        //    Label("Share", systemImage: "square.and.arrow.up")
-                        //})
                         Button(action: copyReceiptNumber) {
                             Label("Copy Receipt Number", systemImage: "doc.on.doc")
                         }
-                        //Button(action: openInWebView) {
-                        //   Label("View on USCIS Website", systemImage: "globe")
-                        //}
+                        Button(action: openInWebView) {
+                           Label("View on USCIS Website", systemImage: "globe")
+                        }
                         Button(role: .destructive, action: removeCaseRequest) {
                             Label("Remove Case", systemImage: "trash")
                         }
@@ -138,9 +132,9 @@ struct DetailsView: View {
                     }
                 }
             }
-            //.sheet(isPresented: $viewModel.isPresentingWebView) {
-            //    SafariView(url: CaseStatusURL.post(caseStatus.receiptNumber).request)
-            //}
+            .sheet(isPresented: $viewModel.isPresentingWebView) {
+                SafariView(request: CaseStatusURL.post(caseStatus.receiptNumber).request)
+            }
             .alert(isPresented: $viewModel.isPresentingDeleteConfirmation) {
                 removeAlert
             }
@@ -155,11 +149,6 @@ struct DetailsView: View {
     private func onMoreButtonPressed() {
         MetricInteraction.tapMoreNavBarButton.send()
         viewModel.isPresentingActionSheet = true
-    }
-
-    private func onShareButtonPressed() {
-        MetricInteraction.tapShareNavBarButton.send()
-        viewModel.isShowingActivityViewController.toggle()
     }
 
     private func copyReceiptNumber() {

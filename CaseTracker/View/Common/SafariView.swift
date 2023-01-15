@@ -8,35 +8,37 @@
 import SwiftUI
 import UIKit
 import SafariServices
+import WebKit
 
-struct SafariViewWrapped: UIViewControllerRepresentable {
+struct WebViewWrapped: UIViewRepresentable {
 
-    let url: URL
+    let request: URLRequest
 
-    func makeUIViewController(
-        context: UIViewControllerRepresentableContext<SafariViewWrapped>
-    ) -> SFSafariViewController {
+    func makeUIView(
+        context: UIViewRepresentableContext<WebViewWrapped>
+    ) -> WKWebView {
         MetricScreenView.viewWebsite.send()
-        let viewController = SFSafariViewController(url: url)
-        return viewController
+        return WKWebView()
     }
 
-    func updateUIViewController(
-        _ uiViewController: SFSafariViewController,
-        context: UIViewControllerRepresentableContext<SafariViewWrapped>
-    ) { }
+    func updateUIView(
+        _ uiView: WKWebView,
+        context: UIViewRepresentableContext<WebViewWrapped>
+    ) {
+        uiView.load(request)
+    }
 }
 
 struct SafariView: View {
-    let url: URL
+    let request: URLRequest
     var body: some View {
-        SafariViewWrapped(url: url)
+        WebViewWrapped(request: request)
             .edgesIgnoringSafeArea(.all)
     }
 }
 
 struct SafariView_Previews: PreviewProvider {
     static var previews: some View {
-        SafariView(url: URL(string: "https://apple.com")!)
+        SafariView(request: URLRequest(url: URL(string: "https://apple.com")!))
     }
 }
