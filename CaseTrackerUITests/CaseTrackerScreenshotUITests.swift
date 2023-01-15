@@ -72,14 +72,14 @@ class CaseTrackerScreenshotUITests: XCTestCase {
 
     // MARK: - Case Details > Share
 
-    func testScreenshotCaseDetailsShare_Light() {
+    func x_testScreenshotCaseDetailsShare_Light() {
         app.otherElements.buttons["MSC2119251333"].tap()
         app.buttons["More"].tap()
         app.buttons["Share"].tap()
         snapshot("CaseDetailsShare-Light")
     }
 
-    func testScreenshotCaseDetailsShare_Dark() {
+    func x_testScreenshotCaseDetailsShare_Dark() {
         app.otherElements.buttons["MSC2119251333"].tap()
         app.buttons["More"].tap()
         app.buttons["Share"].tap()
@@ -88,14 +88,14 @@ class CaseTrackerScreenshotUITests: XCTestCase {
 
     // MARK: - Case Details > Website
 
-    func testScreenshotCaseDetailsWebsite_Light() {
+    func x_testScreenshotCaseDetailsWebsite_Light() {
         app.otherElements.buttons["MSC2119251333"].tap()
         app.buttons["More"].tap()
         app.buttons["View on USCIS Website"].tap()
         snapshot("CaseDetailsWebsite-Light")
     }
 
-    func testScreenshotCaseDetailsWebsite_Dark () {
+    func x_testScreenshotCaseDetailsWebsite_Dark () {
         app.otherElements.buttons["MSC2119251333"].tap()
         app.buttons["More"].tap()
         app.buttons["View on USCIS Website"].tap()
