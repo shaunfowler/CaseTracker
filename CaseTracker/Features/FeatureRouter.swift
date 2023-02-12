@@ -19,7 +19,7 @@ class FeatureRouter {
     let dependencies: DependencyFactory
     let navigationController = UINavigationController()
 
-    lazy var myCasesFeature = MyCasesFeatureFactory(dependencies: dependencies)
+    lazy var myCasesFeature = CasesFeatureFactory(dependencies: dependencies)
 
     init(dependencies: DependencyFactory) {
         self.dependencies = dependencies

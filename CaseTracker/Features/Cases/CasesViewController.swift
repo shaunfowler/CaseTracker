@@ -8,41 +8,9 @@
 import UIKit
 import Combine
 
-class CaseListCell: UICollectionViewListCell {
-    static let reuseId = "CaseListCell"
+class CasesViewController: ViewController<CasesViewAction, CasesViewState, CasesFeatureEvent> {
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-
-        NSLayoutConstraint.activate([
-            contentView.leftAnchor.constraint(equalTo: leftAnchor),
-            contentView.rightAnchor.constraint(equalTo: rightAnchor),
-            contentView.topAnchor.constraint(equalTo: topAnchor),
-            contentView.bottomAnchor.constraint(equalTo: bottomAnchor),
-        ])
-    }
-}
-
-class MyCasesViewController: UIViewController {
-
-    private var cancellables = Set<AnyCancellable>()
-    private let viewModel: MyCasesViewModel
-
-    init(viewModel: MyCasesViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    var viewEventPublisher = PassthroughSubject<MyCasesViewModel.ViewAction, Never>()
-    var items = [String]()
-
-    lazy var collectionView: UICollectionView = {
+    private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
@@ -56,35 +24,20 @@ class MyCasesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        bind()
-
-        viewEventPublisher
-            .send(.viewDidLoad)
+        view.backgroundColor = .systemBackground
 
         setupCollectionView()
+        
+        presenter.interactor.handle(action: .viewDidLoad)
     }
 
-    private func bind() {
-        viewModel
-            .handle(input: viewEventPublisher.eraseToAnyPublisher())
-            .sink { [weak self] viewResult in
-                guard let self else { return }
-                switch viewResult {
-                case .loaded(let items):
-                    self.items = items
-                    self.collectionView.reloadData()
-                case .loading:
-                    break
-                case .failed(_):
-                    break
-                }
-            }
-            .store(in: &cancellables)
+    override func handle(viewState: CasesViewState, previousViewState: CasesViewState?) {
+        if viewState.cases != previousViewState?.cases {
+            collectionView.reloadData()
+        }
     }
 
     private func setupCollectionView() {
-        view.backgroundColor = .systemBackground
         view.addSubview(collectionView)
 
         NSLayoutConstraint.activate([
@@ -96,26 +49,25 @@ class MyCasesViewController: UIViewController {
     }
 }
 
-extension MyCasesViewController: UICollectionViewDelegate {
+extension CasesViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        viewEventPublisher.send(.caseSelected(items[indexPath.row]))
+        presenter.interactor.handle(action: .caseSelected(presenter.viewState.cases[indexPath.row]))
         collectionView.deselectItem(at: indexPath, animated: true)
     }
 }
 
-extension MyCasesViewController: UICollectionViewDelegateFlowLayout {
+extension CasesViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: collectionView.frame.width, height: 100)
     }
 }
 
-extension MyCasesViewController: UICollectionViewDataSource {
+extension CasesViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("numberOfItemsInSection", items.count, items)
-        return items.count
+        return presenter.viewState.cases.count
     }
 
 
@@ -125,7 +77,7 @@ extension MyCasesViewController: UICollectionViewDataSource {
         }
 
         var configuration = cell.defaultContentConfiguration()
-        configuration.text = items[indexPath.row]
+        configuration.text = presenter.viewState.cases[indexPath.row].receiptNumber
         cell.contentConfiguration = configuration
         cell.backgroundColor = .systemBackground
         return cell

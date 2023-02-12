@@ -23,13 +23,16 @@
 		28CF2E44298457B700E0E491 /* CaseTrackerWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CF2E43298457B700E0E491 /* CaseTrackerWidget.swift */; };
 		28CF2E46298457B900E0E491 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28CF2E45298457B900E0E491 /* Assets.xcassets */; };
 		28CF2E4A298457B900E0E491 /* CaseTrackerWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 28CF2E3D298457B600E0E491 /* CaseTrackerWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		28CF2E592986145600E0E491 /* MyCasesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CF2E582986145600E0E491 /* MyCasesViewController.swift */; };
+		28CF2E592986145600E0E491 /* CasesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CF2E582986145600E0E491 /* CasesViewController.swift */; };
 		28CF2E5B298614A200E0E491 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CF2E5A298614A200E0E491 /* SceneDelegate.swift */; };
 		28CF2E5D298622A800E0E491 /* FeatureRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CF2E5C298622A800E0E491 /* FeatureRouter.swift */; };
 		28CF2E5F298623D200E0E491 /* DependencyFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CF2E5E298623D200E0E491 /* DependencyFactory.swift */; };
-		28D830B52998332100C4B13B /* MyCasesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D830B42998332100C4B13B /* MyCasesViewModel.swift */; };
 		28D830B82998338600C4B13B /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D830B72998338600C4B13B /* ViewModel.swift */; };
-		28D830BA2998339F00C4B13B /* MyCasesFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D830B92998339F00C4B13B /* MyCasesFeature.swift */; };
+		28D830BA2998339F00C4B13B /* CasesFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D830B92998339F00C4B13B /* CasesFeature.swift */; };
+		28D830BE29998AA800C4B13B /* Feature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D830BD29998AA800C4B13B /* Feature.swift */; };
+		28D830C0299993DF00C4B13B /* CasesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D830BF299993DF00C4B13B /* CasesPresenter.swift */; };
+		28D830C2299993E800C4B13B /* CasesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D830C1299993E800C4B13B /* CasesInteractor.swift */; };
+		28D830C42999A11900C4B13B /* CaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D830C32999A11900C4B13B /* CaseCell.swift */; };
 		2AEF42264D5211515CAF59E83994C001 /* CaseStatusHistorical.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55010E5FF5C182C0404E65197552B509 /* CaseStatusHistorical.swift */; };
 		2B20553DF1BAA014B21CD03CC61B7BE1 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2AABCAD5984ECC4C91895C87EEFD63 /* PrimaryButton.swift */; };
 		346F62AFFB0CF3175A1F61E8F3D50496 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7195E4FA66FEBD3EAF7C88A8DA649429 /* GoogleService-Info.plist */; };
@@ -163,13 +166,16 @@
 		28CF2E47298457B900E0E491 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28CF2E4E29845AD300E0E491 /* CaseTrackerWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CaseTrackerWidgetExtension.entitlements; sourceTree = "<group>"; };
 		28CF2E4F29845AE000E0E491 /* CaseTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CaseTracker.entitlements; sourceTree = "<group>"; };
-		28CF2E582986145600E0E491 /* MyCasesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCasesViewController.swift; sourceTree = "<group>"; };
+		28CF2E582986145600E0E491 /* CasesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CasesViewController.swift; sourceTree = "<group>"; };
 		28CF2E5A298614A200E0E491 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		28CF2E5C298622A800E0E491 /* FeatureRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureRouter.swift; sourceTree = "<group>"; };
 		28CF2E5E298623D200E0E491 /* DependencyFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyFactory.swift; sourceTree = "<group>"; };
-		28D830B42998332100C4B13B /* MyCasesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCasesViewModel.swift; sourceTree = "<group>"; };
 		28D830B72998338600C4B13B /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
-		28D830B92998339F00C4B13B /* MyCasesFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCasesFeature.swift; sourceTree = "<group>"; };
+		28D830B92998339F00C4B13B /* CasesFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CasesFeature.swift; sourceTree = "<group>"; };
+		28D830BD29998AA800C4B13B /* Feature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feature.swift; sourceTree = "<group>"; };
+		28D830BF299993DF00C4B13B /* CasesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CasesPresenter.swift; sourceTree = "<group>"; };
+		28D830C1299993E800C4B13B /* CasesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CasesInteractor.swift; sourceTree = "<group>"; };
+		28D830C32999A11900C4B13B /* CaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseCell.swift; sourceTree = "<group>"; };
 		2AFF2A0428B8474B3E5CBEC2CABBD9B6 /* OSLog+caseTrackerPoi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OSLog+caseTrackerPoi.swift"; sourceTree = "<group>"; };
 		35777688413BC9B7A5F8FCF26631A311 /* Pods-CaseTrackerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaseTrackerTests.debug.xcconfig"; path = "Target Support Files/Pods-CaseTrackerTests/Pods-CaseTrackerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3C2AABCAD5984ECC4C91895C87EEFD63 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
@@ -312,26 +318,29 @@
 		28CF2E562986117400E0E491 /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				28CF2E572986118600E0E491 /* MyCases */,
+				28CF2E572986118600E0E491 /* Cases */,
 				28CF2E5C298622A800E0E491 /* FeatureRouter.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
 		};
-		28CF2E572986118600E0E491 /* MyCases */ = {
+		28CF2E572986118600E0E491 /* Cases */ = {
 			isa = PBXGroup;
 			children = (
-				28CF2E582986145600E0E491 /* MyCasesViewController.swift */,
-				28D830B42998332100C4B13B /* MyCasesViewModel.swift */,
-				28D830B92998339F00C4B13B /* MyCasesFeature.swift */,
+				28CF2E582986145600E0E491 /* CasesViewController.swift */,
+				28D830B92998339F00C4B13B /* CasesFeature.swift */,
+				28D830BF299993DF00C4B13B /* CasesPresenter.swift */,
+				28D830C1299993E800C4B13B /* CasesInteractor.swift */,
+				28D830C32999A11900C4B13B /* CaseCell.swift */,
 			);
-			path = MyCases;
+			path = Cases;
 			sourceTree = "<group>";
 		};
 		28D830B62998337D00C4B13B /* Infra */ = {
 			isa = PBXGroup;
 			children = (
 				28D830B72998338600C4B13B /* ViewModel.swift */,
+				28D830BD29998AA800C4B13B /* Feature.swift */,
 			);
 			path = Infra;
 			sourceTree = "<group>";
@@ -909,10 +918,12 @@
 			files = (
 				BC68D0E24A5A0E7B6ECA4EDADB7711B5 /* ActivityView.swift in Sources */,
 				F963B185C1B63B5EA83A9A60E7CE9A12 /* AddCaseView.swift in Sources */,
+				28D830C2299993E800C4B13B /* CasesInteractor.swift in Sources */,
 				1CA94EED81E148B0B4A3853E85A82779 /* AddCaseViewModel.swift in Sources */,
 				602EA629D288A5C8F90075CAB292C1D4 /* AppDelegate.swift in Sources */,
 				28CF2E5D298622A800E0E491 /* FeatureRouter.swift in Sources */,
 				3E9EDBF363AAAA1A52F65B2B24F47877 /* BackgroundRefeshManager.swift in Sources */,
+				28D830BE29998AA800C4B13B /* Feature.swift in Sources */,
 				28D830B82998338600C4B13B /* ViewModel.swift in Sources */,
 				C94674F15A81F6A2560EB615A4E89B62 /* BarIndicator.swift in Sources */,
 				67BB01F7FE224294D21F1C3BC8BDF453 /* CSError.swift in Sources */,
@@ -931,13 +942,13 @@
 				487A614CFFFE4A176FC5D0D0C1064C4C /* CrashlyticsLogger.swift in Sources */,
 				C8CF5551431AEFBA3CCAB8BED5A7B5D4 /* DetailsView.swift in Sources */,
 				F49A758C83670F2F260410B08D6D6CF4 /* DetailsViewModel.swift in Sources */,
+				28D830C0299993DF00C4B13B /* CasesPresenter.swift in Sources */,
 				61967BD870AD4F7426ACA9AC278621A4 /* FeatureService.swift in Sources */,
-				28D830B52998332100C4B13B /* MyCasesViewModel.swift in Sources */,
 				28CF2E5B298614A200E0E491 /* SceneDelegate.swift in Sources */,
 				5268CEA0967B38269FDCA0AA719283B9 /* FirstTimeUserView.swift in Sources */,
 				96B40B0FC4B06DA6FD876F4C8096EC72 /* Form.swift in Sources */,
 				7D1B3B595A3048782F06A62E007C4A18 /* HistoryView.swift in Sources */,
-				28D830BA2998339F00C4B13B /* MyCasesFeature.swift in Sources */,
+				28D830BA2998339F00C4B13B /* CasesFeature.swift in Sources */,
 				6806634062C14BFE4128F972EA9B4DBE /* HomeView.swift in Sources */,
 				AA5DC5B34CCD80E91FFD479B0C1353A6 /* HomeViewModel.swift in Sources */,
 				7492F1F6301A63DB3D770627DAFC60F6 /* LocalCaseStatusPersistence.swift in Sources */,
@@ -947,7 +958,7 @@
 				3DB3C8F004B40C4DBA7C1B8B0044D84B /* NotificationFactory.swift in Sources */,
 				6E71A6C7192D4CA8B1DDF76AD066C2C9 /* NotificationService.swift in Sources */,
 				6AE2528E888F07251FDF7C36C35B85A3 /* OSLog+caseTrackerPoi.swift in Sources */,
-				28CF2E592986145600E0E491 /* MyCasesViewController.swift in Sources */,
+				28CF2E592986145600E0E491 /* CasesViewController.swift in Sources */,
 				34B9CC984A3D7DDC8ED0C23E4AE24633 /* OrbIndicator.swift in Sources */,
 				7486C919543AD5B92DF88E660D41BDCE /* PersistenceController.swift in Sources */,
 				9D21D76394F5641A5849C3CE7BC4E562 /* PreviewDataRepository.swift in Sources */,
@@ -958,6 +969,7 @@
 				105D5D3FE0D14E16F451B309D36662A9 /* Status.swift in Sources */,
 				251101073AF5C19D0FB2001DE31DEE74 /* UITestsRemoteCaseStatusAPI.swift in Sources */,
 				EC2875C124423E57A1F6FF6C1ACD07BF /* UpdatedCaptionTextViewModifier.swift in Sources */,
+				28D830C42999A11900C4B13B /* CaseCell.swift in Sources */,
 				023AC3B65911AA9182EB4373C7AF29BD /* Utils.swift in Sources */,
 				28CF2E5F298623D200E0E491 /* DependencyFactory.swift in Sources */,
 			);
