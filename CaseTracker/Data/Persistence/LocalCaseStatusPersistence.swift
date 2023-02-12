@@ -8,13 +8,58 @@
 import Foundation
 import CoreData
 import OSLog
+import SwiftUI
+
+struct WidgetEntry: Codable {
+    var name: String
+    var colorR: CGFloat
+    var colorG: CGFloat
+    var colorB: CGFloat
+}
+
+class WidgetPersistence {
+    
+    let jsonEncoder = JSONEncoder()
+    let jsonDecoder = JSONDecoder()
+    let userDefaults = UserDefaults(suiteName: "group.com.shaunfowler.CaseTracker.appGroup")
+    
+    func set(receiptNumber: String, name: String, color: Color) {
+        let cgColor = UIColor(color).cgColor
+        let widgetEntry = WidgetEntry(
+            name: name,
+            colorR: cgColor.components?[0] ?? 0,
+            colorG: cgColor.components?[1] ?? 0,
+            colorB: cgColor.components?[2] ?? 0
+        )
+
+        let encoded = try? jsonEncoder.encode(widgetEntry)
+        userDefaults?.set(encoded, forKey: receiptNumber)
+    }
+
+    func get() -> [WidgetEntry] {
+        var result: [WidgetEntry] = []
+        if let data = userDefaults?.dictionaryRepresentation().values {
+            data.forEach { entry in
+                if let entry = entry as? Data,
+                   let decoded = try? jsonDecoder.decode(WidgetEntry.self, from: entry) {
+                    result.append(decoded)
+                    print(decoded)
+                }
+                print(entry)
+            }
+        }
+        return result
+    }
+}
 
 class LocalCaseStatusPersistence {
 
     private let viewContext: NSManagedObjectContext
+    private let widgetPersistence: WidgetPersistence
 
-    init(viewContext: NSManagedObjectContext) {
+    init(viewContext: NSManagedObjectContext, widgetPersistence: WidgetPersistence = .init()) {
         self.viewContext = viewContext
+        self.widgetPersistence = widgetPersistence
     }
 
     convenience init() {
@@ -54,6 +99,9 @@ extension LocalCaseStatusPersistence: CaseStatusWritable {
         } catch {
             return .failure(error)
         }
+
+        widgetPersistence.set(receiptNumber: caseStatus.receiptNumber, name: caseStatus.formType ?? caseStatus.formName ?? caseStatus.receiptNumber, color: caseStatus.color)
+
         return .success(caseStatus)
     }
 

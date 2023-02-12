@@ -17,6 +17,19 @@
 		1CA94EED81E148B0B4A3853E85A82779 /* AddCaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281A29036E4280FF808A8FA87906CCAB /* AddCaseViewModel.swift */; };
 		251101073AF5C19D0FB2001DE31DEE74 /* UITestsRemoteCaseStatusAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18B6BFAC4EE04A47D57A598CB757843 /* UITestsRemoteCaseStatusAPI.swift */; };
 		28314B9D7FFCB48F93887C70F5ADC1A4 /* CaseStatusManagedObjectExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856A22BD1E9F7A0526D4BA03E180411E /* CaseStatusManagedObjectExtensions.swift */; };
+		28CF2E3E298457B700E0E491 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28CF2E212984560A00E0E491 /* WidgetKit.framework */; };
+		28CF2E3F298457B700E0E491 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28CF2E232984560A00E0E491 /* SwiftUI.framework */; };
+		28CF2E42298457B700E0E491 /* CaseTrackerWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CF2E41298457B700E0E491 /* CaseTrackerWidgetBundle.swift */; };
+		28CF2E44298457B700E0E491 /* CaseTrackerWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CF2E43298457B700E0E491 /* CaseTrackerWidget.swift */; };
+		28CF2E46298457B900E0E491 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28CF2E45298457B900E0E491 /* Assets.xcassets */; };
+		28CF2E4A298457B900E0E491 /* CaseTrackerWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 28CF2E3D298457B600E0E491 /* CaseTrackerWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		28CF2E592986145600E0E491 /* MyCasesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CF2E582986145600E0E491 /* MyCasesViewController.swift */; };
+		28CF2E5B298614A200E0E491 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CF2E5A298614A200E0E491 /* SceneDelegate.swift */; };
+		28CF2E5D298622A800E0E491 /* FeatureRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CF2E5C298622A800E0E491 /* FeatureRouter.swift */; };
+		28CF2E5F298623D200E0E491 /* DependencyFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CF2E5E298623D200E0E491 /* DependencyFactory.swift */; };
+		28D830B52998332100C4B13B /* MyCasesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D830B42998332100C4B13B /* MyCasesViewModel.swift */; };
+		28D830B82998338600C4B13B /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D830B72998338600C4B13B /* ViewModel.swift */; };
+		28D830BA2998339F00C4B13B /* MyCasesFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D830B92998339F00C4B13B /* MyCasesFeature.swift */; };
 		2AEF42264D5211515CAF59E83994C001 /* CaseStatusHistorical.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55010E5FF5C182C0404E65197552B509 /* CaseStatusHistorical.swift */; };
 		2B20553DF1BAA014B21CD03CC61B7BE1 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2AABCAD5984ECC4C91895C87EEFD63 /* PrimaryButton.swift */; };
 		346F62AFFB0CF3175A1F61E8F3D50496 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7195E4FA66FEBD3EAF7C88A8DA649429 /* GoogleService-Info.plist */; };
@@ -77,6 +90,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		28CF2E48298457B900E0E491 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 441E842EAE7DD5D3B8CF420B590A2162 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 28CF2E3C298457B600E0E491;
+			remoteInfo = CaseTrackerWidgetExtension;
+		};
 		3BFCA4D63DDF61D8DF5348915B21C219 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 441E842EAE7DD5D3B8CF420B590A2162 /* Project object */;
@@ -94,6 +114,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		28CF2E382984560D00E0E491 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				28CF2E4A298457B900E0E491 /* CaseTrackerWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2C9834104B244245676E2D583B2424B3 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -123,6 +154,22 @@
 		21EA8B01F46C0457BE183A91B2FBBFEB /* RemoteConfigDefaults.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RemoteConfigDefaults.plist; sourceTree = "<group>"; };
 		24A7C80C4312B803D00E387D53821661 /* CaseTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaseTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		281A29036E4280FF808A8FA87906CCAB /* AddCaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCaseViewModel.swift; sourceTree = "<group>"; };
+		28CF2E212984560A00E0E491 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		28CF2E232984560A00E0E491 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		28CF2E3D298457B600E0E491 /* CaseTrackerWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CaseTrackerWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		28CF2E41298457B700E0E491 /* CaseTrackerWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseTrackerWidgetBundle.swift; sourceTree = "<group>"; };
+		28CF2E43298457B700E0E491 /* CaseTrackerWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseTrackerWidget.swift; sourceTree = "<group>"; };
+		28CF2E45298457B900E0E491 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		28CF2E47298457B900E0E491 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		28CF2E4E29845AD300E0E491 /* CaseTrackerWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CaseTrackerWidgetExtension.entitlements; sourceTree = "<group>"; };
+		28CF2E4F29845AE000E0E491 /* CaseTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CaseTracker.entitlements; sourceTree = "<group>"; };
+		28CF2E582986145600E0E491 /* MyCasesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCasesViewController.swift; sourceTree = "<group>"; };
+		28CF2E5A298614A200E0E491 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		28CF2E5C298622A800E0E491 /* FeatureRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureRouter.swift; sourceTree = "<group>"; };
+		28CF2E5E298623D200E0E491 /* DependencyFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyFactory.swift; sourceTree = "<group>"; };
+		28D830B42998332100C4B13B /* MyCasesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCasesViewModel.swift; sourceTree = "<group>"; };
+		28D830B72998338600C4B13B /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		28D830B92998339F00C4B13B /* MyCasesFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCasesFeature.swift; sourceTree = "<group>"; };
 		2AFF2A0428B8474B3E5CBEC2CABBD9B6 /* OSLog+caseTrackerPoi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OSLog+caseTrackerPoi.swift"; sourceTree = "<group>"; };
 		35777688413BC9B7A5F8FCF26631A311 /* Pods-CaseTrackerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaseTrackerTests.debug.xcconfig"; path = "Target Support Files/Pods-CaseTrackerTests/Pods-CaseTrackerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3C2AABCAD5984ECC4C91895C87EEFD63 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
@@ -186,6 +233,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		28CF2E3A298457B600E0E491 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28CF2E3F298457B700E0E491 /* SwiftUI.framework in Frameworks */,
+				28CF2E3E298457B700E0E491 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7073005A08EB1DB65A6ED8CA4AC0DD73 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -242,6 +298,44 @@
 			path = RemoteConfiguration;
 			sourceTree = "<group>";
 		};
+		28CF2E40298457B700E0E491 /* CaseTrackerWidget */ = {
+			isa = PBXGroup;
+			children = (
+				28CF2E41298457B700E0E491 /* CaseTrackerWidgetBundle.swift */,
+				28CF2E43298457B700E0E491 /* CaseTrackerWidget.swift */,
+				28CF2E45298457B900E0E491 /* Assets.xcassets */,
+				28CF2E47298457B900E0E491 /* Info.plist */,
+			);
+			path = CaseTrackerWidget;
+			sourceTree = "<group>";
+		};
+		28CF2E562986117400E0E491 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				28CF2E572986118600E0E491 /* MyCases */,
+				28CF2E5C298622A800E0E491 /* FeatureRouter.swift */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		28CF2E572986118600E0E491 /* MyCases */ = {
+			isa = PBXGroup;
+			children = (
+				28CF2E582986145600E0E491 /* MyCasesViewController.swift */,
+				28D830B42998332100C4B13B /* MyCasesViewModel.swift */,
+				28D830B92998339F00C4B13B /* MyCasesFeature.swift */,
+			);
+			path = MyCases;
+			sourceTree = "<group>";
+		};
+		28D830B62998337D00C4B13B /* Infra */ = {
+			isa = PBXGroup;
+			children = (
+				28D830B72998338600C4B13B /* ViewModel.swift */,
+			);
+			path = Infra;
+			sourceTree = "<group>";
+		};
 		299A2120EB635DFA8E223348B409BECE /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -267,6 +361,7 @@
 				1F7D548B6BCCBDF5F0E81EE7D404F854 /* CaseTracker.app */,
 				24A7C80C4312B803D00E387D53821661 /* CaseTrackerTests.xctest */,
 				AABAB6D4019EFE4FC4CB711A8A2E42E9 /* CaseTrackerUITests.xctest */,
+				28CF2E3D298457B600E0E491 /* CaseTrackerWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -380,6 +475,8 @@
 				5C77D08F54842BD3C9C1856C091B1E6B /* Pods_CaseTracker.framework */,
 				04642A0176483ED3B19434F417FFF363 /* Pods_CaseTrackerCore.framework */,
 				1FF79520D30FA6AC59F4C76B6D9F0749 /* Pods_CaseTrackerTests.framework */,
+				28CF2E212984560A00E0E491 /* WidgetKit.framework */,
+				28CF2E232984560A00E0E491 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -475,9 +572,11 @@
 		DBFC9C24FCE6D3653F6846689937B8F8 = {
 			isa = PBXGroup;
 			children = (
+				28CF2E4E29845AD300E0E491 /* CaseTrackerWidgetExtension.entitlements */,
 				FD36C0E6A4FA5E1587D59AE504CF0131 /* CaseTracker */,
 				BD5CBE4E9316D7FAF44D62192C4B1E87 /* CaseTrackerTests */,
 				0919EDE0901ADFC3633BFDED9A38ED94 /* CaseTrackerUITests */,
+				28CF2E40298457B700E0E491 /* CaseTrackerWidget */,
 				9CF3C0C8063E53E26CCAC5F8085AC2FC /* Frameworks */,
 				5DDA49EAD149DEF10563C7D942B779D4 /* Pods */,
 				419FBDFFE404EB96C5553F60A91D3635 /* Products */,
@@ -497,6 +596,9 @@
 		FD36C0E6A4FA5E1587D59AE504CF0131 /* CaseTracker */ = {
 			isa = PBXGroup;
 			children = (
+				28D830B62998337D00C4B13B /* Infra */,
+				28CF2E562986117400E0E491 /* Features */,
+				28CF2E4F29845AE000E0E491 /* CaseTracker.entitlements */,
 				79A3C10BD0C3F9C46897A66EB2E47177 /* Data */,
 				8B40B41C249B038C39F2A6A1470AD3EF /* Diagnostics */,
 				6FE79CFEB756AE814F1BD008B5C93AAE /* Extensions */,
@@ -507,6 +609,8 @@
 				5AECF404A4E0E30533F025BA029E95EF /* View */,
 				4696B06911507C0A5DD6D1DC9CC9BE24 /* AppDelegate.swift */,
 				DB9D85C56C67B078AC9C5CD0F59C9E0B /* CaseTrackerApp.swift */,
+				28CF2E5A298614A200E0E491 /* SceneDelegate.swift */,
+				28CF2E5E298623D200E0E491 /* DependencyFactory.swift */,
 			);
 			path = CaseTracker;
 			sourceTree = "<group>";
@@ -514,6 +618,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		28CF2E3C298457B600E0E491 /* CaseTrackerWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 28CF2E4B298457B900E0E491 /* Build configuration list for PBXNativeTarget "CaseTrackerWidgetExtension" */;
+			buildPhases = (
+				28CF2E39298457B600E0E491 /* Sources */,
+				28CF2E3A298457B600E0E491 /* Frameworks */,
+				28CF2E3B298457B600E0E491 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CaseTrackerWidgetExtension;
+			productName = CaseTrackerWidgetExtension;
+			productReference = 28CF2E3D298457B600E0E491 /* CaseTrackerWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		366BF27AE2D5B090DCC0AE995DF8E55F /* CaseTrackerUITests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D60C15B1763BA6AE02EFBF3822BA3CC9 /* Build configuration list for PBXNativeTarget "CaseTrackerUITests" */;
@@ -564,10 +685,12 @@
 				2C9834104B244245676E2D583B2424B3 /* Embed Frameworks */,
 				A65AB476A6E7D9D019D695C2EC0EC9C7 /* [CP] Embed Pods Frameworks */,
 				A05D71B6B6519FA76EE76590ECBC5347 /* Run Script */,
+				28CF2E382984560D00E0E491 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				28CF2E49298457B900E0E491 /* PBXTargetDependency */,
 			);
 			name = CaseTracker;
 			productName = CaseTracker;
@@ -581,9 +704,12 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1320;
+				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
+					28CF2E3C298457B600E0E491 = {
+						CreatedOnToolsVersion = 14.2;
+					};
 					366BF27AE2D5B090DCC0AE995DF8E55F = {
 						CreatedOnToolsVersion = 13.2.1;
 						TestTargetID = 51000DD31EC26A7F96C833C331CA9984;
@@ -613,6 +739,7 @@
 				51000DD31EC26A7F96C833C331CA9984 /* CaseTracker */,
 				3D3C3E7BEF35CACCEADC7A513E2CCF5D /* CaseTrackerTests */,
 				366BF27AE2D5B090DCC0AE995DF8E55F /* CaseTrackerUITests */,
+				28CF2E3C298457B600E0E491 /* CaseTrackerWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -625,6 +752,14 @@
 				66AD4A5BE3BF6E860D0DEA414B1AA79C /* ABC1234.html in Resources */,
 				1073AFE6534E04F80150E9F2BD49B7FB /* LIN2119051098.html in Resources */,
 				B193E847ADED1D9D94CBA4356AAE0768 /* LIN2119051099.html in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		28CF2E3B298457B600E0E491 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28CF2E46298457B900E0E491 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -776,7 +911,9 @@
 				F963B185C1B63B5EA83A9A60E7CE9A12 /* AddCaseView.swift in Sources */,
 				1CA94EED81E148B0B4A3853E85A82779 /* AddCaseViewModel.swift in Sources */,
 				602EA629D288A5C8F90075CAB292C1D4 /* AppDelegate.swift in Sources */,
+				28CF2E5D298622A800E0E491 /* FeatureRouter.swift in Sources */,
 				3E9EDBF363AAAA1A52F65B2B24F47877 /* BackgroundRefeshManager.swift in Sources */,
+				28D830B82998338600C4B13B /* ViewModel.swift in Sources */,
 				C94674F15A81F6A2560EB615A4E89B62 /* BarIndicator.swift in Sources */,
 				67BB01F7FE224294D21F1C3BC8BDF453 /* CSError.swift in Sources */,
 				63FFE11184821F474418992A9B22F810 /* CaseCardView.swift in Sources */,
@@ -795,9 +932,12 @@
 				C8CF5551431AEFBA3CCAB8BED5A7B5D4 /* DetailsView.swift in Sources */,
 				F49A758C83670F2F260410B08D6D6CF4 /* DetailsViewModel.swift in Sources */,
 				61967BD870AD4F7426ACA9AC278621A4 /* FeatureService.swift in Sources */,
+				28D830B52998332100C4B13B /* MyCasesViewModel.swift in Sources */,
+				28CF2E5B298614A200E0E491 /* SceneDelegate.swift in Sources */,
 				5268CEA0967B38269FDCA0AA719283B9 /* FirstTimeUserView.swift in Sources */,
 				96B40B0FC4B06DA6FD876F4C8096EC72 /* Form.swift in Sources */,
 				7D1B3B595A3048782F06A62E007C4A18 /* HistoryView.swift in Sources */,
+				28D830BA2998339F00C4B13B /* MyCasesFeature.swift in Sources */,
 				6806634062C14BFE4128F972EA9B4DBE /* HomeView.swift in Sources */,
 				AA5DC5B34CCD80E91FFD479B0C1353A6 /* HomeViewModel.swift in Sources */,
 				7492F1F6301A63DB3D770627DAFC60F6 /* LocalCaseStatusPersistence.swift in Sources */,
@@ -807,6 +947,7 @@
 				3DB3C8F004B40C4DBA7C1B8B0044D84B /* NotificationFactory.swift in Sources */,
 				6E71A6C7192D4CA8B1DDF76AD066C2C9 /* NotificationService.swift in Sources */,
 				6AE2528E888F07251FDF7C36C35B85A3 /* OSLog+caseTrackerPoi.swift in Sources */,
+				28CF2E592986145600E0E491 /* MyCasesViewController.swift in Sources */,
 				34B9CC984A3D7DDC8ED0C23E4AE24633 /* OrbIndicator.swift in Sources */,
 				7486C919543AD5B92DF88E660D41BDCE /* PersistenceController.swift in Sources */,
 				9D21D76394F5641A5849C3CE7BC4E562 /* PreviewDataRepository.swift in Sources */,
@@ -818,6 +959,16 @@
 				251101073AF5C19D0FB2001DE31DEE74 /* UITestsRemoteCaseStatusAPI.swift in Sources */,
 				EC2875C124423E57A1F6FF6C1ACD07BF /* UpdatedCaptionTextViewModifier.swift in Sources */,
 				023AC3B65911AA9182EB4373C7AF29BD /* Utils.swift in Sources */,
+				28CF2E5F298623D200E0E491 /* DependencyFactory.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		28CF2E39298457B600E0E491 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28CF2E44298457B700E0E491 /* CaseTrackerWidget.swift in Sources */,
+				28CF2E42298457B700E0E491 /* CaseTrackerWidgetBundle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -848,6 +999,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		28CF2E49298457B900E0E491 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 28CF2E3C298457B600E0E491 /* CaseTrackerWidgetExtension */;
+			targetProxy = 28CF2E48298457B900E0E491 /* PBXContainerItemProxy */;
+		};
 		4C9A52CB699847A9D013DF5F26A194E9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 51000DD31EC26A7F96C833C331CA9984 /* CaseTracker */;
@@ -1028,12 +1184,76 @@
 			};
 			name = Debug;
 		};
+		28CF2E4C298457B900E0E491 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = CaseTrackerWidgetExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QQR7KQB65R;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CaseTrackerWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CaseTrackerWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shaunfowler.CaseTracker.CaseTrackerWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		28CF2E4D298457B900E0E491 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = CaseTrackerWidgetExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QQR7KQB65R;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CaseTrackerWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CaseTrackerWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shaunfowler.CaseTracker.CaseTrackerWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		29C2CA87915DA635FB9CF9222C110435 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6236CC77612D818BCE7BC42976ABC7A5 /* Pods-CaseTracker.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CaseTracker/CaseTracker.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1053,7 +1273,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.21;
+				MARKETING_VERSION = 1.30;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.shaunfowler.CaseTracker;
 				PRODUCT_NAME = CaseTracker;
@@ -1069,8 +1289,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8445FEB069CC98544008CD0B6922369E /* Pods-CaseTracker.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CaseTracker/CaseTracker.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1091,7 +1313,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.21;
+				MARKETING_VERSION = 1.30;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.shaunfowler.CaseTracker;
 				PRODUCT_NAME = CaseTracker;
@@ -1142,6 +1364,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		28CF2E4B298457B900E0E491 /* Build configuration list for PBXNativeTarget "CaseTrackerWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				28CF2E4C298457B900E0E491 /* Debug */,
+				28CF2E4D298457B900E0E491 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		56D56ABFD62AAB035E80597760DFFB2B /* Build configuration list for PBXProject "CaseTracker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -10,7 +10,10 @@ import UIKit
 import CocoaLumberjack
 import Firebase
 
+@main
 class AppDelegate: NSObject, UIApplicationDelegate {
+
+    // MARK: UIApplicationDelegate
 
     func application(
         _ application: UIApplication,
@@ -22,6 +25,16 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         setupAppearance()
         return true
     }
+
+    // MARK: UISceneSession Lifecycle
+
+    func application(_ application: UIApplication,
+                     configurationForConnecting connectingSceneSession: UISceneSession,
+                     options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+    }
+
+    // MARK: - Private Functions
 
     private func setupLogging() {
         // OSLog

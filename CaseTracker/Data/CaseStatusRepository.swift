@@ -170,7 +170,6 @@ class CaseStatusRepository: Repository {
             }
             updatedCase.lastFetched = Date.now
             return await local.set(caseStatus: updatedCase)
-//            return .success(updatedCase)
 
         case .failure(let error):
             DDLogError("Error fetching case from remote API: \(error.localizedDescription).")

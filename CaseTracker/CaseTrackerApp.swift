@@ -8,7 +8,7 @@
 import SwiftUI
 import UIKit
 
-@main
+// @main
 struct CaseTrackerApp: App {
 
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
@@ -21,25 +21,25 @@ struct CaseTrackerApp: App {
 
     init() {
         // Dependency tree
-        self.notificationService = NotificationService()
+                self.notificationService = NotificationService()
 
-        var repository: CaseStatusRepository
-#if DEBUG
-        if CommandLine.arguments.contains("-uiTests") {
-            print("*** Using mocked remote API ***")
-            repository = CaseStatusRepository(
-                local: LocalCaseStatusPersistence(),
-                remote: UITestsRemoteCaseStatusAPI(),
-                notificationService: notificationService
-            )
-        } else {
-            repository = CaseStatusRepository(notificationService: notificationService)
-        }
-#else
-        repository = CaseStatusRepository(notificationService: notificationService)
-#endif
+                var repository: CaseStatusRepository
+        #if DEBUG
+                if CommandLine.arguments.contains("-uiTests") {
+                    print("*** Using mocked remote API ***")
+                    repository = CaseStatusRepository(
+                        local: LocalCaseStatusPersistence(),
+                        remote: UITestsRemoteCaseStatusAPI(),
+                        notificationService: notificationService
+                    )
+                } else {
+                    repository = CaseStatusRepository(notificationService: notificationService)
+                }
+        #else
+                repository = CaseStatusRepository(notificationService: notificationService)
+        #endif
 
-        self.repository = repository
+                self.repository = repository
 
         self._homeViewModel = StateObject(wrappedValue: HomeViewModel(repository: repository))
 
