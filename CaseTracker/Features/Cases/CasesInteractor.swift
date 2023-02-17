@@ -40,6 +40,8 @@ class CasesInteractor: Interactor<CasesViewAction, CasesFeatureEvent>, Observabl
             Task { await repository.query(force: true) }
         case .caseSelected(let caseStatus):
             eventSubject.send(.caseSelected(caseStatus))
+        case .addCaseTapped:
+            eventSubject.send(.addNewCaseTapped)
         }
     }
 }

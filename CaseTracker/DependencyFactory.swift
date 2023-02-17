@@ -9,6 +9,14 @@ import Foundation
 
 class DependencyFactory {
 
+    private var sharedRouter: Router?
+    var router: Router {
+        if let sharedRouter { return sharedRouter }
+        let router = FeatureRouter(dependencies: self)
+        sharedRouter = router
+        return router
+    }
+
     func getRepository() -> Repository {
         let notificationService = NotificationService()
 
@@ -29,5 +37,9 @@ class DependencyFactory {
 #endif
 
         return repository
+    }
+
+    func getRouter() -> Router {
+        return router
     }
 }

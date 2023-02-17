@@ -11,15 +11,16 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var dependencies = DependencyFactory()
-    lazy var router = FeatureRouter(dependencies: dependencies)
+    lazy var router = dependencies.getRouter()
     var window: UIWindow?
+    let navigationController = UINavigationController()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
-        router.route(to: .myCases)
         window = UIWindow(windowScene: windowScene)
         window?.rootViewController = router.navigationController
+        router.route(to: .myCases)
         window?.makeKeyAndVisible()
     }
 }

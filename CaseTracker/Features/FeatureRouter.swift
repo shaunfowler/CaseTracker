@@ -11,25 +11,41 @@ import Combine
 
 enum Route {
     case myCases
+    case addNewCase
+    case caseDetails(CaseStatus)
 }
 
-class FeatureRouter {
+protocol Router {
+    var navigationController: UINavigationController { get }
+    func route(to route: Route)
+}
+
+class FeatureRouter: Router {
 
     var sub: AnyCancellable?
     let dependencies: DependencyFactory
-    let navigationController = UINavigationController()
+    var navigationController: UINavigationController
 
     lazy var myCasesFeature = CasesFeatureFactory(dependencies: dependencies)
 
-    init(dependencies: DependencyFactory) {
+    init(dependencies: DependencyFactory, navigationController: UINavigationController = .init()) {
         self.dependencies = dependencies
+        self.navigationController = navigationController
     }
 
     func route(to route: Route) {
         switch route {
         case .myCases:
-            // Task { await dependencies.getRepository().addCase(receiptNumber: "LIN2119051059") } // test
-            navigationController.pushViewController(myCasesFeature.build(), animated: true)
+            Task {
+                // await dependencies.getRepository().addCase(receiptNumber: "LIN2119051059")
+                // await dependencies.getRepository().addCase(receiptNumber: "LIN2119051058")
+                // await dependencies.getRepository().addCase(receiptNumber: "LIN2119051057")
+            }
+            navigationController.viewControllers = [myCasesFeature.build()]
+        case .addNewCase:
+            navigationController.present(UIViewController(), animated: true)
+        case .caseDetails:
+            navigationController.present(UIViewController(), animated: true)
         }
     }
 }

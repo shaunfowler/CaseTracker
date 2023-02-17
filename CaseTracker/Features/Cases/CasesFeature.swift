@@ -10,11 +10,13 @@ import Combine
 import UIKit
 
 enum CasesFeatureEvent {
+    case addNewCaseTapped
     case caseSelected(CaseStatus)
 }
 
 enum CasesViewAction {
     case viewDidLoad
+    case addCaseTapped
     case caseSelected(CaseStatus)
 }
 
@@ -24,22 +26,28 @@ struct CasesViewState {
 
 class CasesFeature: BaseFeature<CasesFeatureEvent> {
 
+    let router: Router
     let repository: Repository
 
     public lazy var rootViewController: UIViewController = {
         let interactor = CasesInteractor(eventSubject: eventSubject, repository: repository)
-        let presenter = CasesPresenter(interactor: interactor) { interactor in
-            return .init(cases: interactor.casesPublisher ?? [])
-        }
+        let presenter = CasesPresenter(interactor: interactor)
         return CasesViewController(presenter: presenter)
     }()
 
-    init(repository: Repository) {
+    init(repository: Repository, router: Router) {
         self.repository = repository
+        self.router = router
     }
 
     override func handle(event: CasesFeatureEvent) {
         print("feature event", event)
+        switch event {
+        case .caseSelected(let caseStatus):
+            router.route(to: .caseDetails(caseStatus))
+        case .addNewCaseTapped:
+            router.route(to: .addNewCase)
+        }
     }
 }
 
@@ -48,7 +56,10 @@ class CasesFeatureFactory {
     private var cancellables = Set<AnyCancellable>()
     private let dependencies: DependencyFactory
 
-    lazy var feature = CasesFeature(repository: dependencies.getRepository())
+    lazy var feature = CasesFeature(
+        repository: dependencies.getRepository(),
+        router: dependencies.getRouter()
+    )
 
     init(dependencies: DependencyFactory) {
         self.dependencies = dependencies

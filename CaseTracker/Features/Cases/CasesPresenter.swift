@@ -9,4 +9,9 @@ import Foundation
 
 class CasesPresenter: Presenter<CasesViewAction, CasesViewState, CasesFeatureEvent> {
 
+    init(interactor: CasesInteractor) {
+        super.init(interactor: interactor) { interactor in
+                .init(cases: interactor.casesPublisher ?? [])
+        }
+    }
 }

@@ -27,7 +27,7 @@ open class ViewController<Action, State, Event>: UIViewController {
     open override func viewDidLoad() {
         super.viewDidLoad()
         presenter.$viewState
-            .dropFirst()
+            .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] output in
                 self?.handle(viewState: output)
             })
