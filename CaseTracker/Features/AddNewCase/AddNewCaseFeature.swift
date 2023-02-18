@@ -17,6 +17,7 @@ enum AddNewCaseFeatureFeatureEvent {
 enum AddNewCaseFeatureViewAction {
     case addCaseTapped(String)
     case closeTapped
+    case acknowledgeError
 }
 
 struct AddNewCaseFeatureViewState {

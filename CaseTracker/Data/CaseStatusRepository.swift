@@ -64,12 +64,17 @@ class CaseStatusRepository: Repository {
         remote: CaseStatusReadable,
         notificationService: NotificationServiceProtocol
     ) {
+        print("INIT REPO")
         self.local = local
         self.remote = remote
         self.notificationService = notificationService
 
         startNetworkMonitor()
         setupTimer()
+    }
+
+    deinit {
+        print("DEINIT REPO")
     }
 
     // MARK: - Public Functions
@@ -128,7 +133,9 @@ class CaseStatusRepository: Repository {
         let result = await get(forCaseId: receiptNumber)
         if case .success(let caseStatus) = result {
             DDLogDebug("Adding case to local repository publisher.")
-            data.value = ([caseStatus] + data.value).sorted(by: { lhs, rhs in lhs.id < rhs.id })
+            print("ADDING \(caseStatus.receiptNumber)")
+            var updated = ([caseStatus] + data.value).sorted(by: { lhs, rhs in lhs.id < rhs.id })
+            data.send(updated)
         }
         return result
     }

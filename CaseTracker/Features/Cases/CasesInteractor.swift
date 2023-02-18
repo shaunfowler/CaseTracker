@@ -14,6 +14,7 @@ class CasesInteractor: Interactor<CasesViewAction, CasesFeatureEvent>, Observabl
 
     var casesPublisher: [CaseStatus]? = nil {
         didSet {
+            print("CP")
             objectWillChange.send()
         }
     }
@@ -25,9 +26,14 @@ class CasesInteractor: Interactor<CasesViewAction, CasesFeatureEvent>, Observabl
         bind()
     }
 
+    deinit {
+        print("LIN21 DEINIT")
+    }
+
     private func bind() {
         repository
             .data
+            .print("RD")
             .receive(on: DispatchQueue.main)
             .sink { [weak self] cases in
                 guard let self else { return }
@@ -39,11 +45,17 @@ class CasesInteractor: Interactor<CasesViewAction, CasesFeatureEvent>, Observabl
     override func handle(action: CasesViewAction) {
         switch action {
         case .viewDidLoad:
-            Task { await repository.query(force: true) }
+            Task {
+                await repository.query(force: true)
+            }
         case .caseSelected(let caseStatus):
             eventSubject.send(.caseSelected(caseStatus))
         case .addCaseTapped:
             eventSubject.send(.addNewCaseTapped)
+        case .deleteCase(let caseId):
+            Task {
+                await repository.removeCase(receiptNumber: caseId)
+            }
         }
     }
 }

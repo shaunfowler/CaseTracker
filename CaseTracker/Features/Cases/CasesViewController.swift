@@ -30,7 +30,9 @@ class CasesViewController: ViewController<CasesViewAction, CasesViewState, Cases
     }()
 
     private func handleDeleteAction(forIndexPath indexPath: IndexPath) {
-
+        let caseStatus = presenter.viewState.cases[indexPath.row]
+        presenter.interactor.handle(action: .deleteCase(caseStatus.receiptNumber))
+        collectionView.deleteItems(at: [indexPath])
     }
 
     private lazy var collectionView: UICollectionView = {
@@ -53,6 +55,7 @@ class CasesViewController: ViewController<CasesViewAction, CasesViewState, Cases
     }
 
     override func handle(viewState: CasesViewState, previousViewState: CasesViewState?) {
+        print("VS", viewState.cases.map( { $0.receiptNumber }))
         if viewState.cases != previousViewState?.cases {
             collectionView.reloadData()
         }

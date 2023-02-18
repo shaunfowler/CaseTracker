@@ -18,6 +18,7 @@ enum CasesViewAction {
     case viewDidLoad
     case addCaseTapped
     case caseSelected(CaseStatus)
+    case deleteCase(String)
 }
 
 struct CasesViewState {

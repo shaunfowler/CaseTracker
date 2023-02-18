@@ -112,6 +112,7 @@ class AddNewCaseViewController: ViewController<AddNewCaseFeatureViewAction, AddN
             let alert = UIAlertController(title: error.localizedDescription, message: nil, preferredStyle: .alert)
             alert.addAction(.init(title: "OK", style: .cancel))
             present(alert, animated: true)
+            presenter.interactor.handle(action: .acknowledgeError)
         }
     }
 

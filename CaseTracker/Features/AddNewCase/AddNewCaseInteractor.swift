@@ -32,6 +32,8 @@ class AddNewCaseInteractor: Interactor<AddNewCaseFeatureViewAction, AddNewCaseFe
         switch action {
         case .closeTapped:
             eventSubject.send(.cancel)
+        case .acknowledgeError:
+            self.error = nil
         case .addCaseTapped(let receiptNumber):
             loading = true
             Task { [weak self] in

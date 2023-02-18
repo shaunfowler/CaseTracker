@@ -17,7 +17,11 @@ class DependencyFactory {
         return router
     }
 
+    private var sharedRepository: Repository?
     func getRepository() -> Repository {
+
+        if let sharedRepository { return sharedRepository }
+
         let notificationService = NotificationService()
 
         var repository: CaseStatusRepository
@@ -36,6 +40,7 @@ class DependencyFactory {
         repository = CaseStatusRepository(notificationService: notificationService)
 #endif
 
+        sharedRepository = repository
         return repository
     }
 
