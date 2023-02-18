@@ -41,7 +41,6 @@ class CasesFeature: BaseFeature<CasesFeatureEvent> {
     }
 
     override func handle(event: CasesFeatureEvent) {
-        print("feature event", event)
         switch event {
         case .caseSelected(let caseStatus):
             router.route(to: .caseDetails(caseStatus))
@@ -51,7 +50,7 @@ class CasesFeature: BaseFeature<CasesFeatureEvent> {
     }
 }
 
-class CasesFeatureFactory {
+class CasesFeatureFactory: FeatureFactory {
 
     private var cancellables = Set<AnyCancellable>()
     private let dependencies: DependencyFactory
@@ -67,9 +66,5 @@ class CasesFeatureFactory {
 
     func build() -> UIViewController {
         feature.rootViewController
-    }
-
-    deinit {
-        print("deinit MyCasesFeatureFactory")
     }
 }

@@ -6,3 +6,12 @@
 //
 
 import Foundation
+
+class AddNewCasePresenter: Presenter<AddNewCaseFeatureViewAction, AddNewCaseFeatureViewState, AddNewCaseFeatureFeatureEvent> {
+
+    init(interactor: AddNewCaseInteractor) {
+        super.init(interactor: interactor) { interactor in
+                .init()
+        }
+    }
+}

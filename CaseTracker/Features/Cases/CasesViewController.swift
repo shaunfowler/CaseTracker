@@ -26,7 +26,7 @@ class CasesViewController: ViewController<CasesViewAction, CasesViewState, Cases
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
 
-        let size = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(100))
+        let size = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(120))
         let item = NSCollectionLayoutItem(layoutSize: size)
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: size, subitem: item, count: 1)
         let section = NSCollectionLayoutSection(group: group)

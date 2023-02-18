@@ -17,54 +17,69 @@ class CaseListCell: UICollectionViewCell {
 
     static let reuseId = "CaseListCell"
 
-    private lazy var titleLabel: UILabel = {
+    private var titleLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
-    private lazy var formTypeLabel: UILabel = {
+    private var formTypeLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
-    private lazy var formNameLabel: UILabel = {
+    private var formNameLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
-    private lazy var descriptionLabel: UILabel = {
+    private var descriptionLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 2
         return label
     }()
 
+    private var indicatorView: UIView = {
+        let view = UIView(frame: .zero)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .systemFill
+        view.layer.cornerRadius = 2.0
+        return view
+    }()
+
     override func layoutSubviews() {
         super.layoutSubviews()
 
+        contentView.addSubview(indicatorView)
         contentView.addSubview(titleLabel)
         contentView.addSubview(formNameLabel)
         contentView.addSubview(formTypeLabel)
         contentView.addSubview(descriptionLabel)
 
         NSLayoutConstraint.activate([
+            indicatorView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            indicatorView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+            indicatorView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 8),
+            indicatorView.widthAnchor.constraint(equalToConstant: 4),
+
             formTypeLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            formTypeLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 8),
+            formTypeLabel.leftAnchor.constraint(equalTo: indicatorView.rightAnchor, constant: 8),
+            formTypeLabel.bottomAnchor.constraint(equalTo: titleLabel.bottomAnchor),
 
-            titleLabel.bottomAnchor.constraint(equalTo: formTypeLabel.bottomAnchor),
-            titleLabel.leftAnchor.constraint(equalTo: formTypeLabel.rightAnchor, constant: 8),
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            titleLabel.leftAnchor.constraint(equalTo: formTypeLabel.rightAnchor, constant: caseStatus?.formName == nil ? 0 : 8),
 
-            formNameLabel.topAnchor.constraint(equalTo: formTypeLabel.bottomAnchor, constant: 8),
+            formNameLabel.topAnchor.constraint(equalTo: formTypeLabel.bottomAnchor, constant: caseStatus?.formName == nil ? 0 : 8),
             formNameLabel.leftAnchor.constraint(equalTo: formTypeLabel.leftAnchor),
             formNameLabel.rightAnchor.constraint(lessThanOrEqualTo: contentView.rightAnchor),
 
             descriptionLabel.leftAnchor.constraint(equalTo: formTypeLabel.leftAnchor),
+            descriptionLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -8),
             descriptionLabel.topAnchor.constraint(equalTo: formNameLabel.bottomAnchor, constant: 8),
-            descriptionLabel.bottomAnchor.constraint(greaterThanOrEqualTo: contentView.bottomAnchor, constant: 8),
-            descriptionLabel.rightAnchor.constraint(lessThanOrEqualTo: contentView.rightAnchor),
+            descriptionLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: 8),
         ])
     }
 
@@ -73,6 +88,7 @@ class CaseListCell: UICollectionViewCell {
 
         titleLabel.text = caseStatus.receiptNumber
         descriptionLabel.text = caseStatus.status
+        indicatorView.backgroundColor = UIColor(caseStatus.color)
 
         if let formType = caseStatus.formType {
             formTypeLabel.text = formType

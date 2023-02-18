@@ -49,6 +49,10 @@ open class ViewController<Action, State, Event>: UIViewController {
      }
 }
 
+protocol FeatureFactory {
+    func build() -> UIViewController
+}
+
 open class BaseFeature<Event> {
 
     public let eventSubject = PassthroughSubject<Event, Never>()
