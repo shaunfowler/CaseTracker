@@ -334,12 +334,20 @@
 		2811D33E29A045E500C1707C /* CaseDetails */ = {
 			isa = PBXGroup;
 			children = (
+				2855361929A09A3000803240 /* Cells */,
 				2811D34129A0460100C1707C /* CaseDetailsFeature.swift */,
 				2811D33F29A045F800C1707C /* CaseDetailsViewController.swift */,
 				2811D34329A0460D00C1707C /* CaseDetailsInteractor.swift */,
 				2811D34529A0461700C1707C /* CaseDetailsPresenter.swift */,
 			);
 			path = CaseDetails;
+			sourceTree = "<group>";
+		};
+		2855361929A09A3000803240 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		28CF2E40298457B700E0E491 /* CaseTrackerWidget */ = {

@@ -6,3 +6,12 @@
 //
 
 import Foundation
+
+class CaseDetailsPresenter: Presenter<CaseDetailsFeatureViewAction, CaseDetailsFeatureViewState, CaseDetailsFeatureFeatureEvent> {
+
+    init(interactor: CaseDetailsInteractor) {
+        super.init(interactor: interactor) { interactor in
+            return CaseDetailsFeatureViewState(caseStatus: interactor.caseStatus)
+        }
+    }
+}

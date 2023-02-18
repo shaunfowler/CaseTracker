@@ -6,3 +6,16 @@
 //
 
 import Foundation
+import Combine
+
+class CaseDetailsInteractor: Interactor<CaseDetailsFeatureViewAction, CaseDetailsFeatureFeatureEvent>, ObservableObject {
+
+    let caseStatus: CaseStatus
+    let repository: Repository
+
+    init(eventSubject: PassthroughSubject<CaseDetailsFeatureFeatureEvent, Never>, repository: Repository, caseStatus: CaseStatus) {
+        self.repository = repository
+        self.caseStatus = caseStatus
+        super.init(eventSubject: eventSubject)
+    }
+}

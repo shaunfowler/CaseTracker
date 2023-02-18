@@ -28,6 +28,7 @@ class FeatureRouter: Router {
 
     lazy var myCasesFeature = CasesFeatureFactory(dependencies: dependencies)
     lazy var addNewCaseFeature = AddNewCaseFeatureFeatureFactory(dependencies: dependencies)
+    var caseDetailsFeature: CaseDetailsFeatureFeatureFactory?
 
     init(dependencies: DependencyFactory, navigationController: UINavigationController = .init()) {
         self.dependencies = dependencies
@@ -47,8 +48,10 @@ class FeatureRouter: Router {
             navigationController.viewControllers = [myCasesFeature.build()]
         case .addNewCase:
             navigationController.present(addNewCaseFeature.build(), animated: true)
-        case .caseDetails:
-            navigationController.present(UIViewController(), animated: true)
+        case .caseDetails(let caseStatus):
+            let feature = CaseDetailsFeatureFeatureFactory(dependencies: dependencies, caseStatus: caseStatus)
+            caseDetailsFeature = feature
+            navigationController.pushViewController(feature.build(), animated: true)
         }
     }
 }

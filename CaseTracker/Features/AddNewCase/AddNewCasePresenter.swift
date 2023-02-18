@@ -9,16 +9,10 @@ import Combine
 
 class AddNewCasePresenter: Presenter<AddNewCaseFeatureViewAction, AddNewCaseFeatureViewState, AddNewCaseFeatureFeatureEvent> {
 
-
     init(interactor: AddNewCaseInteractor) {
         super.init(interactor: interactor) { interactor in
             print("interactor update", interactor.error, interactor.loading)
             return AddNewCaseFeatureViewState(error: interactor.error, loading: interactor.loading)
         }
-
-//        interactor.$loading.sink { val in
-//            print("Loading value", val)
-//        }
-//        .store(in: &cancellables)
     }
 }

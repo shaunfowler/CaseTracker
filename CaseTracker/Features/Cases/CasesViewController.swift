@@ -17,33 +17,21 @@ extension UICollectionView {
 
 class CasesViewController: ViewController<CasesViewAction, CasesViewState, CasesFeatureEvent> {
 
-    private var layout: UICollectionViewCompositionalLayout = {
-        let size = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1),
-            heightDimension: .estimated(120)
-        )
-
-        let item = NSCollectionLayoutItem(
-            layoutSize: size
-        )
-
-        let group = NSCollectionLayoutGroup.horizontal(
-            layoutSize: size,
-            subitem: item,
-            count: 1
-        )
-
-        let section = NSCollectionLayoutSection(
-            group: group
-        )
-        section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
-        section.interGroupSpacing = 8
-
-        return UICollectionViewCompositionalLayout(
-            section: section,
-            configuration: UICollectionViewCompositionalLayoutConfiguration()
-        )
+    private lazy var layout: UICollectionViewCompositionalLayout = {
+        var config = UICollectionLayoutListConfiguration(appearance: .plain)
+        config.trailingSwipeActionsConfigurationProvider = { [unowned self] indexPath in
+            let deleteAction = UIContextualAction(style: .destructive, title: "Delete", handler: { action, view, completion in
+                self.handleDeleteAction(forIndexPath: indexPath)
+            })
+            return UISwipeActionsConfiguration(actions: [deleteAction])
+        }
+        var layout = UICollectionViewCompositionalLayout.list(using: config)
+        return layout
     }()
+
+    private func handleDeleteAction(forIndexPath indexPath: IndexPath) {
+
+    }
 
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
