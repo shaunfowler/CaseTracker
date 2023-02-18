@@ -15,26 +15,38 @@ extension UICollectionView {
     }
 }
 
-class FullWidthCollectionViewCell: UICollectionViewListCell {
-
-}
-
 class CasesViewController: ViewController<CasesViewAction, CasesViewState, CasesFeatureEvent> {
 
-    private lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 0
-        layout.minimumInteritemSpacing = 0
+    private var layout: UICollectionViewCompositionalLayout = {
+        let size = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .estimated(120)
+        )
 
-        let size = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(120))
-        let item = NSCollectionLayoutItem(layoutSize: size)
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: size, subitem: item, count: 1)
-        let section = NSCollectionLayoutSection(group: group)
+        let item = NSCollectionLayoutItem(
+            layoutSize: size
+        )
+
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: size,
+            subitem: item,
+            count: 1
+        )
+
+        let section = NSCollectionLayoutSection(
+            group: group
+        )
         section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
         section.interGroupSpacing = 8
-        let compositionalLayout = UICollectionViewCompositionalLayout(section: section, configuration: UICollectionViewCompositionalLayoutConfiguration())
 
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: compositionalLayout)
+        return UICollectionViewCompositionalLayout(
+            section: section,
+            configuration: UICollectionViewCompositionalLayoutConfiguration()
+        )
+    }()
+
+    private lazy var collectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(CaseListCell.self, forCellWithReuseIdentifier: CaseListCell.reuseId)
         collectionView.delegate = self
@@ -54,7 +66,6 @@ class CasesViewController: ViewController<CasesViewAction, CasesViewState, Cases
 
     override func handle(viewState: CasesViewState, previousViewState: CasesViewState?) {
         if viewState.cases != previousViewState?.cases {
-        print("handle", viewState)
             collectionView.reloadData()
         }
     }
@@ -77,7 +88,6 @@ class CasesViewController: ViewController<CasesViewAction, CasesViewState, Cases
     }
 
     @objc private func onAddButtonTapped(_ sender: UIBarButtonItem) {
-        print("add tapped")
         presenter.interactor.handle(action: .addCaseTapped)
     }
 }

@@ -56,6 +56,6 @@ extension CSError: CustomStringConvertible {
 extension CSError: LocalizedError {
 
     var errorDescription: String? {
-        "Failed to fetch case \(receiptNumber) status from USCIS."
+        "Failed to fetch case '\(receiptNumber)' status from USCIS."
     }
 }

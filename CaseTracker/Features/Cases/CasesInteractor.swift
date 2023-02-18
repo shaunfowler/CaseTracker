@@ -12,7 +12,11 @@ class CasesInteractor: Interactor<CasesViewAction, CasesFeatureEvent>, Observabl
 
     let repository: Repository
 
-    @Published var casesPublisher: [CaseStatus]? = nil
+    var casesPublisher: [CaseStatus]? = nil {
+        didSet {
+            objectWillChange.send()
+        }
+    }
 
     init(eventSubject: PassthroughSubject<CasesFeatureEvent, Never>, repository: Repository) {
         self.repository = repository
@@ -25,10 +29,8 @@ class CasesInteractor: Interactor<CasesViewAction, CasesFeatureEvent>, Observabl
         repository
             .data
             .receive(on: DispatchQueue.main)
-            .removeDuplicates()
             .sink { [weak self] cases in
                 guard let self else { return }
-                print(cases)
                 self.casesPublisher = cases
             }
             .store(in: &cancellables)

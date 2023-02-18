@@ -11,7 +11,8 @@ class CasesPresenter: Presenter<CasesViewAction, CasesViewState, CasesFeatureEve
 
     init(interactor: CasesInteractor) {
         super.init(interactor: interactor) { interactor in
-                .init(cases: interactor.casesPublisher ?? [])
+            print("interactor cases", interactor.casesPublisher?.map { $0.receiptNumber })
+            return CasesViewState(cases: interactor.casesPublisher ?? [])
         }
     }
 }

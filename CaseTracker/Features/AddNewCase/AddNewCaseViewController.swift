@@ -45,11 +45,12 @@ class AddNewCaseViewController: ViewController<AddNewCaseFeatureViewAction, AddN
         return textView
     }()
 
-    private var confirmButton: UIButton = {
+    private lazy var confirmButton: UIButton = {
         let button = UIButton(frame: .zero)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.configuration = .filled()
         button.setTitle("Add Case", for: .normal)
+        button.addTarget(self, action: #selector(onAddCaseTapped), for: .touchUpInside)
         return button
     }()
 
@@ -105,10 +106,20 @@ class AddNewCaseViewController: ViewController<AddNewCaseFeatureViewAction, AddN
     }
 
     override func handle(viewState: AddNewCaseFeatureViewState, previousViewState: AddNewCaseFeatureViewState?) {
-
+        confirmButton.isEnabled = !viewState.loading
+        receiptNumberTextInput.isEditable = !viewState.loading
+        if let error = viewState.error {
+            let alert = UIAlertController(title: error.localizedDescription, message: nil, preferredStyle: .alert)
+            alert.addAction(.init(title: "OK", style: .cancel))
+            present(alert, animated: true)
+        }
     }
 
     @objc private func onCloseTapped(_ sender: UIBarButtonItem) {
         presenter.interactor.handle(action: .closeTapped)
+    }
+
+    @objc private func onAddCaseTapped(_ sender: UIButton) {
+        presenter.interactor.handle(action: .addCaseTapped(receiptNumberTextInput.text))
     }
 }

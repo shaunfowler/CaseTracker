@@ -32,6 +32,8 @@ class CaseListCell: UICollectionViewCell {
     private var formNameLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 2
+        label.font = .systemFont(ofSize: 14)
         return label
     }()
 
@@ -39,6 +41,7 @@ class CaseListCell: UICollectionViewCell {
         let label = UILabel(frame: .zero)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 2
+        label.font = .systemFont(ofSize: 14)
         return label
     }()
 
@@ -90,18 +93,10 @@ class CaseListCell: UICollectionViewCell {
         descriptionLabel.text = caseStatus.status
         indicatorView.backgroundColor = UIColor(caseStatus.color)
 
-        if let formType = caseStatus.formType {
-            formTypeLabel.text = formType
-            formTypeLabel.isHidden = false
-        } else {
-            formTypeLabel.isHidden = true
-        }
+        formTypeLabel.isHidden = caseStatus.formType == nil
+        formTypeLabel.text = caseStatus.formType
 
-        if let formName = caseStatus.formName {
-            formNameLabel.text = formName
-            formNameLabel.isHidden = false
-        } else {
-            formNameLabel.isHidden = true
-        }
+        formNameLabel.isHidden = caseStatus.formName == nil
+        formNameLabel.text = caseStatus.formName
     }
 }

@@ -20,7 +20,8 @@ enum AddNewCaseFeatureViewAction {
 }
 
 struct AddNewCaseFeatureViewState {
-    
+    var error: Error?
+    var loading: Bool
 }
 
 class AddNewCaseFeature: BaseFeature<AddNewCaseFeatureFeatureEvent> {
