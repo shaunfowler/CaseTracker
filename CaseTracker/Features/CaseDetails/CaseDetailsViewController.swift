@@ -8,33 +8,7 @@
 import Foundation
 import UIKit
 
-extension UILabel {
-
-    static func easyText(
-        text: String,
-        font: UIFont = .systemFont(ofSize: UIFont.systemFontSize),
-        alignment: NSTextAlignment = .left,
-        numberOfLines: Int = 1,
-        color: UIColor? = nil
-    ) -> UILabel {
-        let label = UILabel(frame: .zero)
-        label.text = text
-        label.font = font
-        label.textColor = color
-        label.numberOfLines = numberOfLines
-        label.textAlignment = alignment
-        return label
-    }
-}
-
 class CaseDetailsViewController: ViewController<CaseDetailsFeatureViewAction, CaseDetailsFeatureViewState, CaseDetailsFeatureFeatureEvent> {
-
-    private var sectionTitleForm: UILabel = {
-        let label = UILabel(frame: .zero)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Form"
-        return label
-    }()
 
     private var stackView: UIStackView = {
         let stackView = UIStackView()
@@ -49,6 +23,11 @@ class CaseDetailsViewController: ViewController<CaseDetailsFeatureViewAction, Ca
 
         view.backgroundColor = .systemBackground
 
+        setupNavbar()
+        setupViews()
+    }
+
+    private func setupViews() {
         let formType = presenter.viewState.caseStatus.formType
         let formName = presenter.viewState.caseStatus.formName
         if formName != nil || formType != nil {
@@ -84,6 +63,26 @@ class CaseDetailsViewController: ViewController<CaseDetailsFeatureViewAction, Ca
             stackView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -16),
             stackView.bottomAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
+    }
+
+    private func setupNavbar() {
+        let moreMenu = UIMenu(children: [
+            UIAction(title: "View on USCIS Website", image: UIImage(systemName: "globe")) { [weak self] action in
+                guard let self else { return }
+                self.present(WebViewController(receiptNumber: self.presenter.viewState.caseStatus.receiptNumber), animated: true)
+            },
+            UIAction(title: "Copy Receipt Number", image: UIImage(systemName: "doc.on.doc")) { [weak self] _ in
+                guard let self else { return }
+                UIPasteboard.general.setValue(self.presenter.viewState.caseStatus.receiptNumber, forPasteboardType: "public.plain-text")
+            },
+            UIAction(title: "Delete Case", image: UIImage(systemName: "trash"), attributes: .destructive) { [weak self] _ in
+                self?.presenter.interactor.handle(action: .deleteCaseTapped)
+            },
+        ])
+
+        let moreButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), menu: moreMenu)
+
+        navigationItem.rightBarButtonItem = moreButton
     }
 
     override func handle(viewState: CaseDetailsFeatureViewState, previousViewState: CaseDetailsFeatureViewState?) {

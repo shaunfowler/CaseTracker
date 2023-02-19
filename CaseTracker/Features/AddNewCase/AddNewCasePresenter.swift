@@ -11,7 +11,6 @@ class AddNewCasePresenter: Presenter<AddNewCaseFeatureViewAction, AddNewCaseFeat
 
     init(interactor: AddNewCaseInteractor) {
         super.init(interactor: interactor) { interactor in
-            print("interactor update", interactor.error, interactor.loading)
             return AddNewCaseFeatureViewState(error: interactor.error, loading: interactor.loading)
         }
     }

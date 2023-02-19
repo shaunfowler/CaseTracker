@@ -10,9 +10,11 @@ import Combine
 import UIKit
 
 enum CaseDetailsFeatureFeatureEvent {
+    case deleteCase
 }
 
 enum CaseDetailsFeatureViewAction {
+    case deleteCaseTapped
 }
 
 struct CaseDetailsFeatureViewState {
@@ -38,7 +40,13 @@ class CaseDetailsFeature: BaseFeature<CaseDetailsFeatureFeatureEvent> {
     }
 
     override func handle(event: CaseDetailsFeatureFeatureEvent) {
-
+        switch event {
+        case .deleteCase:
+            Task {
+                await repository.removeCase(receiptNumber: caseStatus.receiptNumber)
+            }
+            router.route(to: .myCases)
+        }
     }
 }
 

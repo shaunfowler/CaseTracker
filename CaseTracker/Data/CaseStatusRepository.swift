@@ -64,17 +64,12 @@ class CaseStatusRepository: Repository {
         remote: CaseStatusReadable,
         notificationService: NotificationServiceProtocol
     ) {
-        print("INIT REPO")
         self.local = local
         self.remote = remote
         self.notificationService = notificationService
 
         startNetworkMonitor()
         setupTimer()
-    }
-
-    deinit {
-        print("DEINIT REPO")
     }
 
     // MARK: - Public Functions
@@ -130,10 +125,14 @@ class CaseStatusRepository: Repository {
 
     func addCase(receiptNumber: String) async -> Result<CaseStatus, Error> {
         DDLogInfo("Adding new case: \(receiptNumber)...")
+        if let existing = data.value.first(where: { $0.receiptNumber == receiptNumber }) {
+            DDLogInfo("Case already added: \(receiptNumber), skipping...")
+            return .success(existing)
+        }
+
         let result = await get(forCaseId: receiptNumber)
         if case .success(let caseStatus) = result {
             DDLogDebug("Adding case to local repository publisher.")
-            print("ADDING \(caseStatus.receiptNumber)")
             var updated = ([caseStatus] + data.value).sorted(by: { lhs, rhs in lhs.id < rhs.id })
             data.send(updated)
         }

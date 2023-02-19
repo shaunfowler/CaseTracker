@@ -8,13 +8,6 @@
 import UIKit
 import Combine
 
-extension UICollectionView {
-    var widestCellWidth: CGFloat {
-        let insets = contentInset.left + contentInset.right
-        return bounds.width - insets
-    }
-}
-
 class CasesViewController: ViewController<CasesViewAction, CasesViewState, CasesFeatureEvent> {
 
     private lazy var layout: UICollectionViewCompositionalLayout = {
@@ -25,8 +18,7 @@ class CasesViewController: ViewController<CasesViewAction, CasesViewState, Cases
             })
             return UISwipeActionsConfiguration(actions: [deleteAction])
         }
-        var layout = UICollectionViewCompositionalLayout.list(using: config)
-        return layout
+        return UICollectionViewCompositionalLayout.list(using: config)
     }()
 
     private func handleDeleteAction(forIndexPath indexPath: IndexPath) {
@@ -55,7 +47,6 @@ class CasesViewController: ViewController<CasesViewAction, CasesViewState, Cases
     }
 
     override func handle(viewState: CasesViewState, previousViewState: CasesViewState?) {
-        print("VS", viewState.cases.map( { $0.receiptNumber }))
         if viewState.cases != previousViewState?.cases {
             collectionView.reloadData()
         }

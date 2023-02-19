@@ -45,7 +45,11 @@ class FeatureRouter: Router {
 //                await dependencies.getRepository().addCase(receiptNumber: "LIN2119151272")
             }
             navigationController.presentedViewController?.dismiss(animated: true)
-            navigationController.viewControllers = [myCasesFeature.build()]
+            if navigationController.viewControllers.contains(where: { $0 is CasesViewController }) {
+                navigationController.popToRootViewController(animated: true)
+            } else {
+                navigationController.viewControllers = [myCasesFeature.build()]
+            }
         case .addNewCase:
             navigationController.present(addNewCaseFeature.build(), animated: true)
         case .caseDetails(let caseStatus):

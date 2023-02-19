@@ -18,4 +18,11 @@ class CaseDetailsInteractor: Interactor<CaseDetailsFeatureViewAction, CaseDetail
         self.caseStatus = caseStatus
         super.init(eventSubject: eventSubject)
     }
+
+    override func handle(action: CaseDetailsFeatureViewAction) {
+        switch action {
+        case .deleteCaseTapped:
+            eventSubject.send(.deleteCase)
+        }
+    }
 }

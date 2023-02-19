@@ -25,6 +25,9 @@
 		2811D34C29A0462E00C1707C /* AddNewCaseInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2811D34B29A0462E00C1707C /* AddNewCaseInteractor.swift */; };
 		2811D34E29A0463500C1707C /* AddNewCasePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2811D34D29A0463500C1707C /* AddNewCasePresenter.swift */; };
 		28314B9D7FFCB48F93887C70F5ADC1A4 /* CaseStatusManagedObjectExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856A22BD1E9F7A0526D4BA03E180411E /* CaseStatusManagedObjectExtensions.swift */; };
+		2855361B29A1A4AE00803240 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2855361A29A1A4AE00803240 /* WebViewController.swift */; };
+		2855361D29A1B30E00803240 /* WKWebView+forCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2855361C29A1B30E00803240 /* WKWebView+forCase.swift */; };
+		2855361F29A1BD9C00803240 /* UILabel+easyText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2855361E29A1BD9C00803240 /* UILabel+easyText.swift */; };
 		28CF2E3E298457B700E0E491 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28CF2E212984560A00E0E491 /* WidgetKit.framework */; };
 		28CF2E3F298457B700E0E491 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28CF2E232984560A00E0E491 /* SwiftUI.framework */; };
 		28CF2E42298457B700E0E491 /* CaseTrackerWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CF2E41298457B700E0E491 /* CaseTrackerWidgetBundle.swift */; };
@@ -173,6 +176,9 @@
 		2811D34B29A0462E00C1707C /* AddNewCaseInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewCaseInteractor.swift; sourceTree = "<group>"; };
 		2811D34D29A0463500C1707C /* AddNewCasePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewCasePresenter.swift; sourceTree = "<group>"; };
 		281A29036E4280FF808A8FA87906CCAB /* AddCaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCaseViewModel.swift; sourceTree = "<group>"; };
+		2855361A29A1A4AE00803240 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		2855361C29A1B30E00803240 /* WKWebView+forCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WKWebView+forCase.swift"; sourceTree = "<group>"; };
+		2855361E29A1BD9C00803240 /* UILabel+easyText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+easyText.swift"; sourceTree = "<group>"; };
 		28CF2E212984560A00E0E491 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		28CF2E232984560A00E0E491 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		28CF2E3D298457B600E0E491 /* CaseTrackerWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CaseTrackerWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -339,6 +345,7 @@
 				2811D33F29A045F800C1707C /* CaseDetailsViewController.swift */,
 				2811D34329A0460D00C1707C /* CaseDetailsInteractor.swift */,
 				2811D34529A0461700C1707C /* CaseDetailsPresenter.swift */,
+				2855361A29A1A4AE00803240 /* WebViewController.swift */,
 			);
 			path = CaseDetails;
 			sourceTree = "<group>";
@@ -449,6 +456,8 @@
 			isa = PBXGroup;
 			children = (
 				6998BCA882A4C02EDB67079EACB6D742 /* Color.swift */,
+				2855361C29A1B30E00803240 /* WKWebView+forCase.swift */,
+				2855361E29A1BD9C00803240 /* UILabel+easyText.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -968,6 +977,7 @@
 				F963B185C1B63B5EA83A9A60E7CE9A12 /* AddCaseView.swift in Sources */,
 				28D830C2299993E800C4B13B /* CasesInteractor.swift in Sources */,
 				1CA94EED81E148B0B4A3853E85A82779 /* AddCaseViewModel.swift in Sources */,
+				2855361F29A1BD9C00803240 /* UILabel+easyText.swift in Sources */,
 				2811D34829A0461F00C1707C /* AddNewCaseFeature.swift in Sources */,
 				602EA629D288A5C8F90075CAB292C1D4 /* AppDelegate.swift in Sources */,
 				28CF2E5D298622A800E0E491 /* FeatureRouter.swift in Sources */,
@@ -1004,6 +1014,7 @@
 				28D830BA2998339F00C4B13B /* CasesFeature.swift in Sources */,
 				6806634062C14BFE4128F972EA9B4DBE /* HomeView.swift in Sources */,
 				AA5DC5B34CCD80E91FFD479B0C1353A6 /* HomeViewModel.swift in Sources */,
+				2855361D29A1B30E00803240 /* WKWebView+forCase.swift in Sources */,
 				7492F1F6301A63DB3D770627DAFC60F6 /* LocalCaseStatusPersistence.swift in Sources */,
 				932690C708328200496016CDB5980239 /* LogFormatter.swift in Sources */,
 				63E9270AAA9E81F812AE66DBF1378B45 /* MetricInteraction.swift in Sources */,
@@ -1027,6 +1038,7 @@
 				EC2875C124423E57A1F6FF6C1ACD07BF /* UpdatedCaptionTextViewModifier.swift in Sources */,
 				28D830C42999A11900C4B13B /* CaseCell.swift in Sources */,
 				023AC3B65911AA9182EB4373C7AF29BD /* Utils.swift in Sources */,
+				2855361B29A1A4AE00803240 /* WebViewController.swift in Sources */,
 				28CF2E5F298623D200E0E491 /* DependencyFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
