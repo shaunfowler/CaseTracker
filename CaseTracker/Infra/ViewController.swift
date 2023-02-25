@@ -1,5 +1,5 @@
 //
-//  Feature.swift
+//  ViewController.swift
 //  CaseTracker
 //
 //  Created by Shaun Fowler on 2023-02-12.
@@ -47,39 +47,4 @@ open class ViewController<Action, State>: UIViewController {
     open func handle(viewState: State, previousViewState: State?) {
          assertionFailure("implement handle(viewState:)")
      }
-}
-
-open class Presenter<Action, State> {
-
-    @Published public private(set) var viewState: State
-
-    public var cancellables = Set<AnyCancellable>()
-    public let interactor: Interactor<Action>
-
-    public init<I: Interactor<Action>>(
-        interactor: I,
-        initialViewState: State? = nil,
-        mapToViewState: @escaping (I) -> State
-    ) where I: ObservableObject, I.ObjectWillChangePublisher.Output == Void {
-        self.interactor = interactor
-        self.viewState = initialViewState ?? mapToViewState(interactor)
-
-        interactor
-            .objectWillChange
-            .compactMap { [weak interactor] in
-                guard let interactor else { return nil }
-                return mapToViewState(interactor)
-            }
-            .receive(on: DispatchQueue.main)
-            .assign(to: &$viewState)
-    }
-}
-
-open class Interactor<Action> {
-
-    public var cancellables = Set<AnyCancellable>()
-
-    open func handle(action: Action) {
-        assertionFailure("Failed to implement `handle(action:)`")
-    }
 }

@@ -9,10 +9,6 @@ import Foundation
 import Combine
 import UIKit
 
-//enum CaseDetailsFeatureFeatureEvent {
-//    case deleteCase
-//}
-
 enum CaseDetailsFeatureViewAction {
     case deleteCaseTapped
 }
@@ -38,14 +34,4 @@ class CaseDetailsFeature {
         self.caseStatus = caseStatus
         self.router = router
     }
-
-//    override func handle(event: CaseDetailsFeatureFeatureEvent) {
-//        switch event {
-//        case .deleteCase:
-//            Task {
-//                await repository.removeCase(receiptNumber: caseStatus.receiptNumber)
-//            }
-//            router.route(to: .myCases)
-//        }
-//    }
 }

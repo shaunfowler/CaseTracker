@@ -9,11 +9,6 @@ import Foundation
 import Combine
 import UIKit
 
-//enum AddNewCaseFeatureFeatureEvent {
-//    case confirm(String)
-//    case cancel
-//}
-
 enum AddNewCaseFeatureViewAction {
     case addCaseTapped(String)
     case closeTapped

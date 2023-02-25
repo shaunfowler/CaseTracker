@@ -23,9 +23,6 @@ class WebViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-
         let webview = WKWebView.forCase(withReceiptNumber: receiptNumber)
         view.addSubview(webview)
         webview.frame = view.bounds
