@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class AddNewCaseViewController: ViewController<AddNewCaseFeatureViewAction, AddNewCaseFeatureViewState, AddNewCaseFeatureFeatureEvent> {
+class AddNewCaseViewController: ViewController<AddNewCaseFeatureViewAction, AddNewCaseFeatureViewState> {
 
     private lazy var closeButton: UIButton = {
         let button = UIButton(type: .close)

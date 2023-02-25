@@ -8,21 +8,27 @@
 import Foundation
 import Combine
 
-class CaseDetailsInteractor: Interactor<CaseDetailsFeatureViewAction, CaseDetailsFeatureFeatureEvent>, ObservableObject {
+class CaseDetailsInteractor: Interactor<CaseDetailsFeatureViewAction>, ObservableObject {
 
     let caseStatus: CaseStatus
     let repository: Repository
+    let router: Router
 
-    init(eventSubject: PassthroughSubject<CaseDetailsFeatureFeatureEvent, Never>, repository: Repository, caseStatus: CaseStatus) {
+    init(repository: Repository, router: Router, caseStatus: CaseStatus) {
         self.repository = repository
+        self.router = router
         self.caseStatus = caseStatus
-        super.init(eventSubject: eventSubject)
     }
 
     override func handle(action: CaseDetailsFeatureViewAction) {
         switch action {
         case .deleteCaseTapped:
-            eventSubject.send(.deleteCase)
+            Task {
+                _ = await repository.removeCase(receiptNumber: caseStatus.receiptNumber)
+                DispatchQueue.main.async { [weak self] in
+                    self?.router.route(to: .myCases)
+                }
+            }
         }
     }
 }

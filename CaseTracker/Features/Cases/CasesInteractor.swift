@@ -8,9 +8,10 @@
 import Foundation
 import Combine
 
-class CasesInteractor: Interactor<CasesViewAction, CasesFeatureEvent>, ObservableObject {
+class CasesInteractor: Interactor<CasesViewAction>, ObservableObject {
 
     let repository: Repository
+    let router: Router
 
     var casesPublisher: [CaseStatus]? = nil {
         didSet {
@@ -18,10 +19,10 @@ class CasesInteractor: Interactor<CasesViewAction, CasesFeatureEvent>, Observabl
         }
     }
 
-    init(eventSubject: PassthroughSubject<CasesFeatureEvent, Never>, repository: Repository) {
+    init(repository: Repository, router: Router) {
         self.repository = repository
-        super.init(eventSubject: eventSubject)
-
+        self.router = router
+        super.init()
         bind()
     }
 
@@ -43,9 +44,11 @@ class CasesInteractor: Interactor<CasesViewAction, CasesFeatureEvent>, Observabl
                 await repository.query(force: true)
             }
         case .caseSelected(let caseStatus):
-            eventSubject.send(.caseSelected(caseStatus))
+            router.route(to: .caseDetails(caseStatus))
+            print("TODO")
         case .addCaseTapped:
-            eventSubject.send(.addNewCaseTapped)
+            router.route(to: .addNewCase)
+            print("TODO")
         case .deleteCase(let caseId):
             Task {
                 await repository.removeCase(receiptNumber: caseId)

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CasesPresenter: Presenter<CasesViewAction, CasesViewState, CasesFeatureEvent> {
+class CasesPresenter: Presenter<CasesViewAction, CasesViewState> {
 
     init(interactor: CasesInteractor) {
         super.init(interactor: interactor) { interactor in

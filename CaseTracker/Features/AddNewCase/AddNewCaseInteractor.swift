@@ -8,9 +8,10 @@
 import Foundation
 import Combine
 
-class AddNewCaseInteractor: Interactor<AddNewCaseFeatureViewAction, AddNewCaseFeatureFeatureEvent>, ObservableObject {
+class AddNewCaseInteractor: Interactor<AddNewCaseFeatureViewAction>, ObservableObject {
 
     let repository: Repository
+    let router: Router
 
     var error: Error? {
         didSet {
@@ -23,15 +24,15 @@ class AddNewCaseInteractor: Interactor<AddNewCaseFeatureViewAction, AddNewCaseFe
         }
     }
 
-    init(eventSubject: PassthroughSubject<AddNewCaseFeatureFeatureEvent, Never>, repository: Repository) {
+    init(repository: Repository, router: Router) {
         self.repository = repository
-        super.init(eventSubject: eventSubject)
+        self.router = router
     }
     
     override func handle(action: AddNewCaseFeatureViewAction) {
         switch action {
         case .closeTapped:
-            eventSubject.send(.cancel)
+            router.route(to: .myCases)
         case .acknowledgeError:
             self.error = nil
         case .addCaseTapped(let receiptNumber):
@@ -41,7 +42,7 @@ class AddNewCaseInteractor: Interactor<AddNewCaseFeatureViewAction, AddNewCaseFe
                 let result = await self.repository.addCase(receiptNumber: receiptNumber)
                 switch result {
                 case .success(_):
-                    self.eventSubject.send(.confirm(receiptNumber))
+                    router.route(to: .myCases)
                 case .failure(let error):
                     self.error = error
                 }

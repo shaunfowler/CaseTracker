@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-class CasesViewController: ViewController<CasesViewAction, CasesViewState, CasesFeatureEvent> {
+class CasesViewController: ViewController<CasesViewAction, CasesViewState> {
 
     private lazy var layout: UICollectionViewCompositionalLayout = {
         var config = UICollectionLayoutListConfiguration(appearance: .plain)

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CaseDetailsPresenter: Presenter<CaseDetailsFeatureViewAction, CaseDetailsFeatureViewState, CaseDetailsFeatureFeatureEvent> {
+class CaseDetailsPresenter: Presenter<CaseDetailsFeatureViewAction, CaseDetailsFeatureViewState> {
 
     init(interactor: CaseDetailsInteractor) {
         super.init(interactor: interactor) { interactor in

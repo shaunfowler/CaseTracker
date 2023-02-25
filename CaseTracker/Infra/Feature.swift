@@ -9,13 +9,13 @@ import Combine
 import Foundation
 import UIKit
 
-open class ViewController<Action, State, Event>: UIViewController {
+open class ViewController<Action, State>: UIViewController {
 
-    public let presenter: Presenter<Action, State, Event>
+    public let presenter: Presenter<Action, State>
     public var cancellables = Set<AnyCancellable>()
     private var previousViewState: State?
 
-    public init(presenter: Presenter<Action, State, Event>) {
+    public init(presenter: Presenter<Action, State>) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
     }
@@ -49,36 +49,14 @@ open class ViewController<Action, State, Event>: UIViewController {
      }
 }
 
-protocol FeatureFactory {
-    func build() -> UIViewController
-}
-
-open class BaseFeature<Event> {
-
-    public let eventSubject = PassthroughSubject<Event, Never>()
-    public var cancellables = Set<AnyCancellable>()
-
-    init() {
-        eventSubject
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] (event) in
-                self?.handle(event: event)
-            }.store(in: &cancellables)
-    }
-
-    open func handle(event: Event) {
-         // no-op
-     }
-}
-
-open class Presenter<Action, State, Event> {
+open class Presenter<Action, State> {
 
     @Published public private(set) var viewState: State
 
     public var cancellables = Set<AnyCancellable>()
-    public let interactor: Interactor<Action, Event>
+    public let interactor: Interactor<Action>
 
-    public init<I: Interactor<Action, Event>>(
+    public init<I: Interactor<Action>>(
         interactor: I,
         initialViewState: State? = nil,
         mapToViewState: @escaping (I) -> State
@@ -97,14 +75,9 @@ open class Presenter<Action, State, Event> {
     }
 }
 
-open class Interactor<Action, Event> {
+open class Interactor<Action> {
 
-    public let eventSubject: any Subject<Event, Never>
     public var cancellables = Set<AnyCancellable>()
-
-    public init(eventSubject: some Subject<Event, Never>) {
-        self.eventSubject = eventSubject
-    }
 
     open func handle(action: Action) {
         assertionFailure("Failed to implement `handle(action:)`")

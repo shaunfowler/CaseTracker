@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class CaseDetailsViewController: ViewController<CaseDetailsFeatureViewAction, CaseDetailsFeatureViewState, CaseDetailsFeatureFeatureEvent> {
+class CaseDetailsViewController: ViewController<CaseDetailsFeatureViewAction, CaseDetailsFeatureViewState> {
 
     private var stackView: UIStackView = {
         let stackView = UIStackView()

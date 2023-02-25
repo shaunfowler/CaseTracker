@@ -7,7 +7,7 @@
 
 import Combine
 
-class AddNewCasePresenter: Presenter<AddNewCaseFeatureViewAction, AddNewCaseFeatureViewState, AddNewCaseFeatureFeatureEvent> {
+class AddNewCasePresenter: Presenter<AddNewCaseFeatureViewAction, AddNewCaseFeatureViewState> {
 
     init(interactor: AddNewCaseInteractor) {
         super.init(interactor: interactor) { interactor in
