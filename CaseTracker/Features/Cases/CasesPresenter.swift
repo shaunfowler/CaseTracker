@@ -7,11 +7,18 @@
 
 import Foundation
 
-class CasesPresenter: Presenter<CasesViewAction, CasesViewState> {
+protocol CasesPresenterProtocol {
+    func onCaseListUpdated(_ cases: [CaseStatus])
+}
 
-    init(interactor: CasesInteractor) {
-        super.init(interactor: interactor) { interactor in
-            return CasesViewState(cases: interactor.casesPublisher ?? [])
-        }
+class CasesPresenter {
+
+    weak var view: CasesViewProtocol?
+}
+
+extension CasesPresenter: CasesPresenterProtocol {
+
+    func onCaseListUpdated(_ cases: [CaseStatus]) {
+        view?.caseListUpdated(cases)
     }
 }

@@ -7,11 +7,20 @@
 
 import Combine
 
-class AddNewCasePresenter: Presenter<AddNewCaseFeatureViewAction, AddNewCaseFeatureViewState> {
+protocol AddNewCasePresenterProtocol {
+    func setLoading(_ isLoading: Bool)
+    func showError(_ error: Error)
+}
 
-    init(interactor: AddNewCaseInteractor) {
-        super.init(interactor: interactor) { interactor in
-            return AddNewCaseFeatureViewState(error: interactor.error, loading: interactor.loading)
-        }
+class AddNewCasePresenter: AddNewCasePresenterProtocol {
+
+    weak var view: AddNewCaseViewProtocol?
+
+    func setLoading(_ isLoading: Bool) {
+        view?.loadingStateChanged(isLoading)
+    }
+
+    func showError(_ error: Error) {
+        view?.didReceive(error: error)
     }
 }

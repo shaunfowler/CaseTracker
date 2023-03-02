@@ -24,9 +24,9 @@
 		2811D34A29A0462800C1707C /* AddNewCaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2811D34929A0462800C1707C /* AddNewCaseViewController.swift */; };
 		2811D34C29A0462E00C1707C /* AddNewCaseInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2811D34B29A0462E00C1707C /* AddNewCaseInteractor.swift */; };
 		2811D34E29A0463500C1707C /* AddNewCasePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2811D34D29A0463500C1707C /* AddNewCasePresenter.swift */; };
-		2820A72929A9B32A0000C6C5 /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2820A72829A9B32A0000C6C5 /* Interactor.swift */; };
-		2820A72B29A9B3310000C6C5 /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2820A72A29A9B3310000C6C5 /* Presenter.swift */; };
 		28314B9D7FFCB48F93887C70F5ADC1A4 /* CaseStatusManagedObjectExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856A22BD1E9F7A0526D4BA03E180411E /* CaseStatusManagedObjectExtensions.swift */; };
+		284AC8B429B036C700260FA2 /* UIViewController+child.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284AC8B329B036C700260FA2 /* UIViewController+child.swift */; };
+		284AC8B629B0381000260FA2 /* FTUEViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284AC8B529B0381000260FA2 /* FTUEViewController.swift */; };
 		2855361B29A1A4AE00803240 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2855361A29A1A4AE00803240 /* WebViewController.swift */; };
 		2855361D29A1B30E00803240 /* WKWebView+forCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2855361C29A1B30E00803240 /* WKWebView+forCase.swift */; };
 		2855361F29A1BD9C00803240 /* UILabel+easyText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2855361E29A1BD9C00803240 /* UILabel+easyText.swift */; };
@@ -41,7 +41,6 @@
 		28CF2E5D298622A800E0E491 /* FeatureRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CF2E5C298622A800E0E491 /* FeatureRouter.swift */; };
 		28CF2E5F298623D200E0E491 /* DependencyFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CF2E5E298623D200E0E491 /* DependencyFactory.swift */; };
 		28D830BA2998339F00C4B13B /* CasesFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D830B92998339F00C4B13B /* CasesFeature.swift */; };
-		28D830BE29998AA800C4B13B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D830BD29998AA800C4B13B /* ViewController.swift */; };
 		28D830C0299993DF00C4B13B /* CasesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D830BF299993DF00C4B13B /* CasesPresenter.swift */; };
 		28D830C2299993E800C4B13B /* CasesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D830C1299993E800C4B13B /* CasesInteractor.swift */; };
 		28D830C42999A11900C4B13B /* CaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D830C32999A11900C4B13B /* CaseCell.swift */; };
@@ -177,8 +176,8 @@
 		2811D34B29A0462E00C1707C /* AddNewCaseInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewCaseInteractor.swift; sourceTree = "<group>"; };
 		2811D34D29A0463500C1707C /* AddNewCasePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewCasePresenter.swift; sourceTree = "<group>"; };
 		281A29036E4280FF808A8FA87906CCAB /* AddCaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCaseViewModel.swift; sourceTree = "<group>"; };
-		2820A72829A9B32A0000C6C5 /* Interactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
-		2820A72A29A9B3310000C6C5 /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
+		284AC8B329B036C700260FA2 /* UIViewController+child.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+child.swift"; sourceTree = "<group>"; };
+		284AC8B529B0381000260FA2 /* FTUEViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUEViewController.swift; sourceTree = "<group>"; };
 		2855361A29A1A4AE00803240 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		2855361C29A1B30E00803240 /* WKWebView+forCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WKWebView+forCase.swift"; sourceTree = "<group>"; };
 		2855361E29A1BD9C00803240 /* UILabel+easyText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+easyText.swift"; sourceTree = "<group>"; };
@@ -196,7 +195,6 @@
 		28CF2E5C298622A800E0E491 /* FeatureRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureRouter.swift; sourceTree = "<group>"; };
 		28CF2E5E298623D200E0E491 /* DependencyFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyFactory.swift; sourceTree = "<group>"; };
 		28D830B92998339F00C4B13B /* CasesFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CasesFeature.swift; sourceTree = "<group>"; };
-		28D830BD29998AA800C4B13B /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		28D830BF299993DF00C4B13B /* CasesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CasesPresenter.swift; sourceTree = "<group>"; };
 		28D830C1299993E800C4B13B /* CasesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CasesInteractor.swift; sourceTree = "<group>"; };
 		28D830C32999A11900C4B13B /* CaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseCell.swift; sourceTree = "<group>"; };
@@ -381,18 +379,9 @@
 				28D830C1299993E800C4B13B /* CasesInteractor.swift */,
 				28D830BF299993DF00C4B13B /* CasesPresenter.swift */,
 				28D830C32999A11900C4B13B /* CaseCell.swift */,
+				284AC8B529B0381000260FA2 /* FTUEViewController.swift */,
 			);
 			path = Cases;
-			sourceTree = "<group>";
-		};
-		28D830B62998337D00C4B13B /* Infra */ = {
-			isa = PBXGroup;
-			children = (
-				28D830BD29998AA800C4B13B /* ViewController.swift */,
-				2820A72829A9B32A0000C6C5 /* Interactor.swift */,
-				2820A72A29A9B3310000C6C5 /* Presenter.swift */,
-			);
-			path = Infra;
 			sourceTree = "<group>";
 		};
 		299A2120EB635DFA8E223348B409BECE /* Model */ = {
@@ -453,6 +442,7 @@
 				6998BCA882A4C02EDB67079EACB6D742 /* Color.swift */,
 				2855361C29A1B30E00803240 /* WKWebView+forCase.swift */,
 				2855361E29A1BD9C00803240 /* UILabel+easyText.swift */,
+				284AC8B329B036C700260FA2 /* UIViewController+child.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -657,7 +647,6 @@
 		FD36C0E6A4FA5E1587D59AE504CF0131 /* CaseTracker */ = {
 			isa = PBXGroup;
 			children = (
-				28D830B62998337D00C4B13B /* Infra */,
 				28CF2E562986117400E0E491 /* Features */,
 				28CF2E4F29845AE000E0E491 /* CaseTracker.entitlements */,
 				79A3C10BD0C3F9C46897A66EB2E47177 /* Data */,
@@ -973,11 +962,11 @@
 				28D830C2299993E800C4B13B /* CasesInteractor.swift in Sources */,
 				1CA94EED81E148B0B4A3853E85A82779 /* AddCaseViewModel.swift in Sources */,
 				2855361F29A1BD9C00803240 /* UILabel+easyText.swift in Sources */,
+				284AC8B429B036C700260FA2 /* UIViewController+child.swift in Sources */,
 				2811D34829A0461F00C1707C /* AddNewCaseFeature.swift in Sources */,
 				602EA629D288A5C8F90075CAB292C1D4 /* AppDelegate.swift in Sources */,
 				28CF2E5D298622A800E0E491 /* FeatureRouter.swift in Sources */,
 				3E9EDBF363AAAA1A52F65B2B24F47877 /* BackgroundRefeshManager.swift in Sources */,
-				28D830BE29998AA800C4B13B /* ViewController.swift in Sources */,
 				C94674F15A81F6A2560EB615A4E89B62 /* BarIndicator.swift in Sources */,
 				67BB01F7FE224294D21F1C3BC8BDF453 /* CSError.swift in Sources */,
 				63FFE11184821F474418992A9B22F810 /* CaseCardView.swift in Sources */,
@@ -987,6 +976,7 @@
 				2AEF42264D5211515CAF59E83994C001 /* CaseStatusHistorical.swift in Sources */,
 				5AD564362D3BCF0F64F1D00B0D1DDF00 /* CaseStatusHistoricalManagedObjectExtensions.swift in Sources */,
 				28314B9D7FFCB48F93887C70F5ADC1A4 /* CaseStatusManagedObjectExtensions.swift in Sources */,
+				284AC8B629B0381000260FA2 /* FTUEViewController.swift in Sources */,
 				EDA88AA02B9615D4107617ED3E6B6F82 /* CaseStatusNavigationLink.swift in Sources */,
 				D520B7C749F65938C554514509D6EE32 /* CaseStatusRepository.swift in Sources */,
 				2811D34029A045F800C1707C /* CaseDetailsViewController.swift in Sources */,
@@ -1022,7 +1012,6 @@
 				9D21D76394F5641A5849C3CE7BC4E562 /* PreviewDataRepository.swift in Sources */,
 				2811D34A29A0462800C1707C /* AddNewCaseViewController.swift in Sources */,
 				2B20553DF1BAA014B21CD03CC61B7BE1 /* PrimaryButton.swift in Sources */,
-				2820A72B29A9B3310000C6C5 /* Presenter.swift in Sources */,
 				EFC21A178D81CD3CE4E34702013414D1 /* Protocols.swift in Sources */,
 				11F5C10F99649FA58092BA806DDAD7A8 /* RemoteCaseStatusAPI.swift in Sources */,
 				4D9838671D0760AB359684B1B5A06C23 /* SafariView.swift in Sources */,
@@ -1030,7 +1019,6 @@
 				2811D34429A0460D00C1707C /* CaseDetailsInteractor.swift in Sources */,
 				251101073AF5C19D0FB2001DE31DEE74 /* UITestsRemoteCaseStatusAPI.swift in Sources */,
 				2811D34629A0461700C1707C /* CaseDetailsPresenter.swift in Sources */,
-				2820A72929A9B32A0000C6C5 /* Interactor.swift in Sources */,
 				EC2875C124423E57A1F6FF6C1ACD07BF /* UpdatedCaptionTextViewModifier.swift in Sources */,
 				28D830C42999A11900C4B13B /* CaseCell.swift in Sources */,
 				023AC3B65911AA9182EB4373C7AF29BD /* Utils.swift in Sources */,

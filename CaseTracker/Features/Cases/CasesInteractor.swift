@@ -8,21 +8,24 @@
 import Foundation
 import Combine
 
-class CasesInteractor: Interactor<CasesViewAction>, ObservableObject {
+protocol CasesInteracterProtocol {
+    func loadCases()
+    func caseSelected(_ case: CaseStatus)
+    func addNewCase()
+    func deleteCase(receiptNumber: String)
+}
 
+class CasesInteractor {
+
+    private var cancellables = Set<AnyCancellable>()
     let repository: Repository
     let router: Router
+    private var presenter: CasesPresenterProtocol
 
-    var casesPublisher: [CaseStatus]? = nil {
-        didSet {
-            objectWillChange.send()
-        }
-    }
-
-    init(repository: Repository, router: Router) {
+    init(presenter: CasesPresenterProtocol, repository: Repository, router: Router) {
+        self.presenter = presenter
         self.repository = repository
         self.router = router
-        super.init()
         bind()
     }
 
@@ -32,27 +35,35 @@ class CasesInteractor: Interactor<CasesViewAction>, ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] cases in
                 guard let self else { return }
-                self.casesPublisher = cases
+                // self.casesPublisher = cases
+                // to presenter
+                self.presenter.onCaseListUpdated(cases)
+
             }
             .store(in: &cancellables)
     }
+}
 
-    override func handle(action: CasesViewAction) {
-        switch action {
-        case .viewDidLoad:
-            Task {
-                await repository.query(force: true)
-            }
-        case .caseSelected(let caseStatus):
-            router.route(to: .caseDetails(caseStatus))
-            print("TODO")
-        case .addCaseTapped:
-            router.route(to: .addNewCase)
-            print("TODO")
-        case .deleteCase(let caseId):
-            Task {
-                await repository.removeCase(receiptNumber: caseId)
-            }
+extension CasesInteractor: CasesInteracterProtocol {
+    func loadCases() {
+        Task {
+            await repository.query(force: true)
+        }
+    }
+
+    func caseSelected(_ case: CaseStatus) {
+        router.route(to: .caseDetails(`case`))
+
+    }
+
+    func addNewCase() {
+        router.route(to: .addNewCase)
+
+    }
+
+    func deleteCase(receiptNumber: String) {
+        Task {
+            await repository.removeCase(receiptNumber: receiptNumber)
         }
     }
 }

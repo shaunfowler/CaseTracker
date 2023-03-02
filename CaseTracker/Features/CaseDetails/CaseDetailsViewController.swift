@@ -8,7 +8,14 @@
 import Foundation
 import UIKit
 
-class CaseDetailsViewController: ViewController<CaseDetailsFeatureViewAction, CaseDetailsFeatureViewState> {
+protocol CaseDetailsViewProtocol: AnyObject {
+
+}
+
+class CaseDetailsViewController: UIViewController, CaseDetailsViewProtocol {
+
+    private var interactor: CaseDetailsInteractorProtocol
+    private var caseStatus: CaseStatus
 
     private var stackView: UIStackView = {
         let stackView = UIStackView()
@@ -18,18 +25,29 @@ class CaseDetailsViewController: ViewController<CaseDetailsFeatureViewAction, Ca
         return stackView
     }()
 
+    init(interactor: CaseDetailsInteractorProtocol, caseStatus: CaseStatus) {
+        self.interactor = interactor
+        self.caseStatus = caseStatus
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = .systemBackground
+        title = caseStatus.receiptNumber
 
         setupNavbar()
         setupViews()
     }
 
     private func setupViews() {
-        let formType = presenter.viewState.caseStatus.formType
-        let formName = presenter.viewState.caseStatus.formName
+        let formType = caseStatus.formType
+        let formName = caseStatus.formName
         if formName != nil || formType != nil {
             stackView.addArrangedSubview(UILabel.easyText(text: "FORM", font: .systemFont(ofSize: UIFont.smallSystemFontSize, weight: .semibold)))
             stackView.addArrangedSubview(UILabel.easyText(text: formType ?? "", font: .systemFont(ofSize: UIFont.systemFontSize, weight: .bold)))
@@ -38,8 +56,8 @@ class CaseDetailsViewController: ViewController<CaseDetailsFeatureViewAction, Ca
             stackView.setCustomSpacing(36, after: nameLabel)
         }
 
-        let status = presenter.viewState.caseStatus.status
-        let body = presenter.viewState.caseStatus.body
+        let status = caseStatus.status
+        let body = caseStatus.body
         stackView.addArrangedSubview(UILabel.easyText(text: "STATUS", font: .systemFont(ofSize: UIFont.smallSystemFontSize, weight: .semibold)))
         stackView.addArrangedSubview(UILabel.easyText(text: status, font: .systemFont(ofSize: UIFont.systemFontSize, weight: .bold)))
         stackView.addArrangedSubview(UILabel.easyText(
@@ -49,7 +67,7 @@ class CaseDetailsViewController: ViewController<CaseDetailsFeatureViewAction, Ca
             alignment: .center,
             numberOfLines: 0))
 
-        if let refreshedDate = presenter.viewState.caseStatus.lastFetchedFormatted {
+        if let refreshedDate = caseStatus.lastFetchedFormatted {
             let refreshedLabel = UILabel.easyText(text: "Refreshed at \(refreshedDate)")
             stackView.addArrangedSubview(refreshedLabel)
             stackView.setCustomSpacing(36, after: refreshedLabel)
@@ -69,23 +87,19 @@ class CaseDetailsViewController: ViewController<CaseDetailsFeatureViewAction, Ca
         let moreMenu = UIMenu(children: [
             UIAction(title: "View on USCIS Website", image: UIImage(systemName: "globe")) { [weak self] action in
                 guard let self else { return }
-                self.present(WebViewController(receiptNumber: self.presenter.viewState.caseStatus.receiptNumber), animated: true)
+                self.present(WebViewController(receiptNumber: self.caseStatus.receiptNumber), animated: true)
             },
             UIAction(title: "Copy Receipt Number", image: UIImage(systemName: "doc.on.doc")) { [weak self] _ in
                 guard let self else { return }
-                UIPasteboard.general.setValue(self.presenter.viewState.caseStatus.receiptNumber, forPasteboardType: "public.plain-text")
+                UIPasteboard.general.setValue(self.caseStatus.receiptNumber, forPasteboardType: "public.plain-text")
             },
             UIAction(title: "Delete Case", image: UIImage(systemName: "trash"), attributes: .destructive) { [weak self] _ in
-                self?.presenter.interactor.handle(action: .deleteCaseTapped)
+                self?.interactor.deleteCase()
             },
         ])
 
         let moreButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), menu: moreMenu)
 
         navigationItem.rightBarButtonItem = moreButton
-    }
-
-    override func handle(viewState: CaseDetailsFeatureViewState, previousViewState: CaseDetailsFeatureViewState?) {
-        title = viewState.caseStatus.receiptNumber
     }
 }

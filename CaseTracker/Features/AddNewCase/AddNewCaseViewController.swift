@@ -8,7 +8,14 @@
 import Foundation
 import UIKit
 
-class AddNewCaseViewController: ViewController<AddNewCaseFeatureViewAction, AddNewCaseFeatureViewState> {
+protocol AddNewCaseViewProtocol: AnyObject {
+    func didReceive(error: Error)
+    func loadingStateChanged(_ isLoading: Bool)
+}
+
+class AddNewCaseViewController: UIViewController, AddNewCaseViewProtocol {
+
+    private var interactor: AddNewCaseInteractorProtocol
 
     private lazy var closeButton: UIButton = {
         let button = UIButton(type: .close)
@@ -60,6 +67,15 @@ class AddNewCaseViewController: ViewController<AddNewCaseFeatureViewAction, AddN
         return scrollView
     }()
 
+    init(interactor: AddNewCaseInteractorProtocol) {
+        self.interactor = interactor
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -105,22 +121,25 @@ class AddNewCaseViewController: ViewController<AddNewCaseFeatureViewAction, AddN
         receiptNumberTextInput.becomeFirstResponder()
     }
 
-    override func handle(viewState: AddNewCaseFeatureViewState, previousViewState: AddNewCaseFeatureViewState?) {
-        confirmButton.isEnabled = !viewState.loading
-        receiptNumberTextInput.isEditable = !viewState.loading
-        if let error = viewState.error {
-            let alert = UIAlertController(title: error.localizedDescription, message: nil, preferredStyle: .alert)
-            alert.addAction(.init(title: "OK", style: .cancel))
-            present(alert, animated: true)
-            presenter.interactor.handle(action: .acknowledgeError)
-        }
-    }
-
     @objc private func onCloseTapped(_ sender: UIBarButtonItem) {
-        presenter.interactor.handle(action: .closeTapped)
+        interactor.close()
     }
 
     @objc private func onAddCaseTapped(_ sender: UIButton) {
-        presenter.interactor.handle(action: .addCaseTapped(receiptNumberTextInput.text))
+        interactor.addCase(withReceiptNumber: receiptNumberTextInput.text)
+    }
+
+    func didReceive(error: Error) {
+        let alert = UIAlertController(title: error.localizedDescription, message: nil, preferredStyle: .alert)
+        alert.addAction(.init(title: "OK", style: .cancel))
+        present(alert, animated: true)
+    }
+
+    func loadingStateChanged(_ isLoading: Bool) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            self.confirmButton.isEnabled = !isLoading
+            self.receiptNumberTextInput.isEditable = !isLoading
+        }
     }
 }

@@ -26,9 +26,11 @@ class AddNewCaseFeature {
     let repository: Repository
 
     public lazy var rootViewController: UIViewController = {
-        let interactor = AddNewCaseInteractor(repository: repository, router: router)
-        let presenter = AddNewCasePresenter(interactor: interactor)
-        return AddNewCaseViewController(presenter: presenter)
+        let presenter = AddNewCasePresenter()
+        let interactor = AddNewCaseInteractor(presenter: presenter, repository: repository, router: router)
+        let viewController = AddNewCaseViewController(interactor: interactor)
+        presenter.view = viewController
+        return viewController
     }()
 
     init(repository: Repository, router: Router) {

@@ -7,11 +7,11 @@
 
 import Foundation
 
-class CaseDetailsPresenter: Presenter<CaseDetailsFeatureViewAction, CaseDetailsFeatureViewState> {
+protocol CaseDetailsPresenterProtocol {
 
-    init(interactor: CaseDetailsInteractor) {
-        super.init(interactor: interactor) { interactor in
-            return CaseDetailsFeatureViewState(caseStatus: interactor.caseStatus)
-        }
-    }
+}
+
+class CaseDetailsPresenter: CaseDetailsPresenterProtocol {
+
+    weak var view: CaseDetailsViewProtocol?
 }

@@ -8,7 +8,15 @@
 import UIKit
 import Combine
 
-class CasesViewController: ViewController<CasesViewAction, CasesViewState> {
+protocol CasesViewProtocol: AnyObject {
+    func caseListUpdated(_ cases: [CaseStatus])
+}
+
+class CasesViewController: UIViewController {
+
+    var interactor: CasesInteracterProtocol
+
+    var cases: [CaseStatus] = []
 
     private lazy var layout: UICollectionViewCompositionalLayout = {
         var config = UICollectionLayoutListConfiguration(appearance: .plain)
@@ -22,8 +30,7 @@ class CasesViewController: ViewController<CasesViewAction, CasesViewState> {
     }()
 
     private func handleDeleteAction(forIndexPath indexPath: IndexPath) {
-        let caseStatus = presenter.viewState.cases[indexPath.row]
-        presenter.interactor.handle(action: .deleteCase(caseStatus.receiptNumber))
+        interactor.deleteCase(receiptNumber: cases[indexPath.row].receiptNumber)
         collectionView.deleteItems(at: [indexPath])
     }
 
@@ -36,20 +43,27 @@ class CasesViewController: ViewController<CasesViewAction, CasesViewState> {
         return collectionView
     }()
 
+    private lazy var ftueChildVc = FTUEViewController {
+        self.interactor.addNewCase()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
 
         setupNavigationItems()
         setupCollectionView()
-        
-        presenter.interactor.handle(action: .viewDidLoad)
+
+        interactor.loadCases()
     }
 
-    override func handle(viewState: CasesViewState, previousViewState: CasesViewState?) {
-        if viewState.cases != previousViewState?.cases {
-            collectionView.reloadData()
-        }
+    init(interactor: CasesInteracterProtocol) {
+        self.interactor = interactor
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError()
     }
 
     private func setupNavigationItems() {
@@ -70,14 +84,26 @@ class CasesViewController: ViewController<CasesViewAction, CasesViewState> {
     }
 
     @objc private func onAddButtonTapped(_ sender: UIBarButtonItem) {
-        presenter.interactor.handle(action: .addCaseTapped)
+        interactor.addNewCase()
+    }
+}
+
+extension CasesViewController: CasesViewProtocol {
+    func caseListUpdated(_ cases: [CaseStatus]) {
+        if cases.isEmpty {
+            add(ftueChildVc)
+        } else {
+            ftueChildVc.remove()
+        }
+        self.cases = cases
+        collectionView.reloadData()
     }
 }
 
 extension CasesViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        presenter.interactor.handle(action: .caseSelected(presenter.viewState.cases[indexPath.row]))
+        interactor.caseSelected(cases[indexPath.row])
         collectionView.deselectItem(at: indexPath, animated: true)
     }
 }
@@ -85,12 +111,12 @@ extension CasesViewController: UICollectionViewDelegate {
 extension CasesViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return presenter.viewState.cases.count
+        return cases.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CaseListCell.reuseId, for: indexPath) as! CaseListCell
-        cell.caseStatus = presenter.viewState.cases[indexPath.row]
+        cell.caseStatus = cases[indexPath.row]
         return cell
     }
 }

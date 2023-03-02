@@ -24,9 +24,11 @@ class CaseDetailsFeature {
     let caseStatus: CaseStatus
 
     public lazy var rootViewController: UIViewController = {
-        let interactor = CaseDetailsInteractor(repository: repository, router: router, caseStatus: caseStatus)
-        let presenter = CaseDetailsPresenter(interactor: interactor)
-        return CaseDetailsViewController(presenter: presenter)
+        let presenter = CaseDetailsPresenter()
+        let interactor = CaseDetailsInteractor(presenter: presenter,repository: repository, router: router, caseStatus: caseStatus)
+        let viewController = CaseDetailsViewController(interactor: interactor, caseStatus: caseStatus)
+        presenter.view = viewController
+        return viewController
     }()
 
     init(repository: Repository, router: Router, caseStatus: CaseStatus) {
