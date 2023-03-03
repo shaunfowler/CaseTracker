@@ -9,6 +9,7 @@ import Foundation
 import Combine
 
 protocol CaseDetailsInteractorProtocol {
+    func loadHistory()
     func deleteCase()
 }
 
@@ -25,6 +26,15 @@ class CaseDetailsInteractor: CaseDetailsInteractorProtocol {
         self.repository = repository
         self.router = router
         self.caseStatus = caseStatus
+    }
+
+    func loadHistory() {
+        Task {
+            let history = try? await repository.getHistory(receiptNumber: caseStatus.receiptNumber).get()
+            if let history {
+                presenter.historyLoaded(history)
+            }
+        }
     }
 
     func deleteCase() {

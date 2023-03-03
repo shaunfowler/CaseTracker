@@ -31,12 +31,12 @@ class PersistenceController {
 
         // Use in-memory store for UITests.
 #if DEBUG
-        if CommandLine.arguments.contains("-uiTests") {
+//        if CommandLine.arguments.contains("-uiTests") {
             print("*** Using in-memory persistence container ***")
             let description = NSPersistentStoreDescription()
             description.url = URL(fileURLWithPath: "/dev/null")
             container.persistentStoreDescriptions = [description]
-        }
+//        }
 #endif
 
         // Avoid read-only error on upgrade.
@@ -51,10 +51,10 @@ class PersistenceController {
 
             // Use test data for UITests for screenshotting.
 #if DEBUG
-            if CommandLine.arguments.contains("-uiTests") && CommandLine.arguments.contains("-uiTestsScreenshots") {
+//            if CommandLine.arguments.contains("-uiTests") && CommandLine.arguments.contains("-uiTestsScreenshots") {
                 print("*** Seeding CoreData with text data ***")
                 self.seedTestData()
-            }
+//            }
 #endif
         }
     }

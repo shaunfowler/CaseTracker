@@ -8,10 +8,14 @@
 import Foundation
 
 protocol CaseDetailsPresenterProtocol {
-
+    func historyLoaded(_ history: [CaseStatusHistorical])
 }
 
 class CaseDetailsPresenter: CaseDetailsPresenterProtocol {
 
     weak var view: CaseDetailsViewProtocol?
+
+    func historyLoaded(_ history: [CaseStatusHistorical]) {
+        view?.historyLoaded(history)
+    }
 }

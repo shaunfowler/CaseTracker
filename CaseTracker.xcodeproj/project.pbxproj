@@ -27,6 +27,8 @@
 		28314B9D7FFCB48F93887C70F5ADC1A4 /* CaseStatusManagedObjectExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856A22BD1E9F7A0526D4BA03E180411E /* CaseStatusManagedObjectExtensions.swift */; };
 		284AC8B429B036C700260FA2 /* UIViewController+child.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284AC8B329B036C700260FA2 /* UIViewController+child.swift */; };
 		284AC8B629B0381000260FA2 /* FTUEViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284AC8B529B0381000260FA2 /* FTUEViewController.swift */; };
+		284AC8B829B12BAB00260FA2 /* CaseHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284AC8B729B12BAB00260FA2 /* CaseHistoryView.swift */; };
+		284AC8B929B15ABB00260FA2 /* CaseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2811D33F29A045F800C1707C /* CaseDetailsViewController.swift */; };
 		2855361B29A1A4AE00803240 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2855361A29A1A4AE00803240 /* WebViewController.swift */; };
 		2855361D29A1B30E00803240 /* WKWebView+forCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2855361C29A1B30E00803240 /* WKWebView+forCase.swift */; };
 		2855361F29A1BD9C00803240 /* UILabel+easyText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2855361E29A1BD9C00803240 /* UILabel+easyText.swift */; };
@@ -178,6 +180,7 @@
 		281A29036E4280FF808A8FA87906CCAB /* AddCaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCaseViewModel.swift; sourceTree = "<group>"; };
 		284AC8B329B036C700260FA2 /* UIViewController+child.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+child.swift"; sourceTree = "<group>"; };
 		284AC8B529B0381000260FA2 /* FTUEViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUEViewController.swift; sourceTree = "<group>"; };
+		284AC8B729B12BAB00260FA2 /* CaseHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseHistoryView.swift; sourceTree = "<group>"; };
 		2855361A29A1A4AE00803240 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		2855361C29A1B30E00803240 /* WKWebView+forCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WKWebView+forCase.swift"; sourceTree = "<group>"; };
 		2855361E29A1BD9C00803240 /* UILabel+easyText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+easyText.swift"; sourceTree = "<group>"; };
@@ -345,6 +348,7 @@
 				2811D34329A0460D00C1707C /* CaseDetailsInteractor.swift */,
 				2811D34529A0461700C1707C /* CaseDetailsPresenter.swift */,
 				2855361A29A1A4AE00803240 /* WebViewController.swift */,
+				284AC8B729B12BAB00260FA2 /* CaseHistoryView.swift */,
 			);
 			path = CaseDetails;
 			sourceTree = "<group>";
@@ -986,6 +990,7 @@
 				FA6B4186E5241EB8D8063A5FB6A3D137 /* Color.swift in Sources */,
 				487A614CFFFE4A176FC5D0D0C1064C4C /* CrashlyticsLogger.swift in Sources */,
 				2811D34E29A0463500C1707C /* AddNewCasePresenter.swift in Sources */,
+				284AC8B829B12BAB00260FA2 /* CaseHistoryView.swift in Sources */,
 				C8CF5551431AEFBA3CCAB8BED5A7B5D4 /* DetailsView.swift in Sources */,
 				F49A758C83670F2F260410B08D6D6CF4 /* DetailsViewModel.swift in Sources */,
 				28D830C0299993DF00C4B13B /* CasesPresenter.swift in Sources */,
@@ -1043,6 +1048,7 @@
 				C03AEEA18B0039FCC6ADAEFC8F198FCD /* CaseTrackerScreenshotUITests.swift in Sources */,
 				FA231E684165BA8E0DF867D75B5F7118 /* CaseTrackerUITests.swift in Sources */,
 				F64255D829D75725388C765D54DCCE41 /* SnapshotHelper.swift in Sources */,
+				284AC8B929B15ABB00260FA2 /* CaseDetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
