@@ -10,6 +10,9 @@ import Combine
 
 protocol CasesViewProtocol: AnyObject {
     func caseListUpdated(_ cases: [CaseStatus])
+    func loadingStateChanged(_ isLoading: Bool)
+    func errorReceived(_ error: Error)
+    func fetchStatusLabelUpdated(text: String)
 }
 
 class CasesViewController: UIViewController {
@@ -19,13 +22,15 @@ class CasesViewController: UIViewController {
     var cases: [CaseStatus] = []
 
     private lazy var layout: UICollectionViewCompositionalLayout = {
-        var config = UICollectionLayoutListConfiguration(appearance: .plain)
+        var config = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
         config.trailingSwipeActionsConfigurationProvider = { [unowned self] indexPath in
             let deleteAction = UIContextualAction(style: .destructive, title: "Delete", handler: { action, view, completion in
                 self.handleDeleteAction(forIndexPath: indexPath)
             })
             return UISwipeActionsConfiguration(actions: [deleteAction])
         }
+//        config.showsSeparators = false
+        config.backgroundColor = .ctBackgroundPrimary
         return UICollectionViewCompositionalLayout.list(using: config)
     }()
 
@@ -37,10 +42,22 @@ class CasesViewController: UIViewController {
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = .ctBackgroundPrimary
         collectionView.register(CaseListCell.self, forCellWithReuseIdentifier: CaseListCell.reuseId)
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.refreshControl = RefreshControl()
+        collectionView.refreshControl?.addTarget(self, action: #selector(onRefresh), for: .valueChanged)
         return collectionView
+    }()
+
+    private var fetchStatusLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: UIFont.smallSystemFontSize, weight: .bold)
+        label.textAlignment = .center
+        label.textColor = .systemGray
+        return label
     }()
 
     private lazy var ftueChildVc = FTUEViewController {
@@ -49,7 +66,7 @@ class CasesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .ctBackgroundPrimary
 
         setupNavigationItems()
         setupCollectionView()
@@ -73,10 +90,13 @@ class CasesViewController: UIViewController {
     }
 
     private func setupCollectionView() {
+        view.addSubview(fetchStatusLabel)
         view.addSubview(collectionView)
 
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            fetchStatusLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            fetchStatusLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            fetchStatusLabel.bottomAnchor.constraint(equalTo: collectionView.topAnchor, constant: -20),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             collectionView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
             collectionView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor)
@@ -86,9 +106,28 @@ class CasesViewController: UIViewController {
     @objc private func onAddButtonTapped(_ sender: UIBarButtonItem) {
         interactor.addNewCase()
     }
+
+    @objc private func onRefresh(_ sender: UIRefreshControl) {
+        interactor.refreshCases()
+    }
 }
 
 extension CasesViewController: CasesViewProtocol {
+
+    func fetchStatusLabelUpdated(text: String) {
+        fetchStatusLabel.text = text
+    }
+
+    func errorReceived(_ error: Error) { }
+
+    func loadingStateChanged(_ isLoading: Bool) {
+        if isLoading {
+            collectionView.refreshControl?.beginRefreshing()
+        } else {
+            collectionView.refreshControl?.endRefreshing()
+        }
+    }
+
     func caseListUpdated(_ cases: [CaseStatus]) {
         if cases.isEmpty {
             add(ftueChildVc)

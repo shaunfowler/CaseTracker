@@ -12,18 +12,21 @@ protocol CaseDetailsViewProtocol: AnyObject {
     func historyLoaded(_ history: [CaseStatusHistorical])
 }
 
-class CaseDetailsViewController: UIViewController, CaseDetailsViewProtocol {
+class CaseDetailsViewController: UIViewController {
 
     private var interactor: CaseDetailsInteractorProtocol
+    
     private var caseStatus: CaseStatus
 
     private var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.spacing = 4
+        stackView.spacing = 20
         stackView.axis = .vertical
         return stackView
     }()
+
+    private var historyStack = HistoryStackView()
 
     private var scrollView: UIScrollView = {
         let scrollView = UIScrollView(frame: .zero)
@@ -44,7 +47,7 @@ class CaseDetailsViewController: UIViewController, CaseDetailsViewProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .ctBackgroundPrimary
         title = caseStatus.receiptNumber
 
         interactor.loadHistory()
@@ -53,52 +56,14 @@ class CaseDetailsViewController: UIViewController, CaseDetailsViewProtocol {
         setupViews()
     }
 
-    var historyStack: HistoryStackView = {
-        let stackView = HistoryStackView()
-        return stackView
-    }()
-
     private func setupViews() {
-        let formType = caseStatus.formType
-        let formName = caseStatus.formName
-        if formName != nil || formType != nil {
-            stackView.addArrangedSubview(UILabel.easyText(text: "FORM", font: .systemFont(ofSize: UIFont.smallSystemFontSize, weight: .semibold)))
-            stackView.addArrangedSubview(UILabel.easyText(text: formType ?? "", font: .systemFont(ofSize: UIFont.systemFontSize, weight: .bold)))
-            let nameLabel = UILabel.easyText(text: formName ?? "", font: .systemFont(ofSize: UIFont.systemFontSize))
-            stackView.addArrangedSubview(nameLabel)
-            stackView.setCustomSpacing(36, after: nameLabel)
-        }
-
-        let status = caseStatus.status
-        let body = caseStatus.body
-        let bodyLabel = UILabel.easyText(
-            text: body,
-            font: .init(descriptor: .preferredFontDescriptor(withTextStyle: .body).withDesign(.serif)!, size: 14),
-            alignment: .center,
-            numberOfLines: 0
-        )
-        stackView.addArrangedSubview(UILabel.easyText(text: "STATUS", font: .systemFont(ofSize: UIFont.smallSystemFontSize, weight: .semibold)))
-        stackView.addArrangedSubview(UILabel.easyText(text: status, font: .systemFont(ofSize: UIFont.systemFontSize, weight: .bold)))
-        stackView.addArrangedSubview(bodyLabel)
-        stackView.setCustomSpacing(36, after: bodyLabel)
-        
-
-        if let refreshedDate = caseStatus.lastFetchedFormatted {
-            let refreshedLabel = UILabel.easyText(text: "Refreshed at \(refreshedDate)")
-            refreshedLabel.translatesAutoresizingMaskIntoConstraints = false
-            view.addSubview(refreshedLabel)
-
-            NSLayoutConstraint.activate([
-                refreshedLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
-                refreshedLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-            ])
-        }
-
-        stackView.addArrangedSubview(historyStack)
+        setupFormView()
+        setupStatusView()
+        setupHistoryView()
+        setupRefreshStatusView()
 
         view.addSubview(scrollView)
         scrollView.addSubview(stackView)
-
         scrollView.contentSize = stackView.frame.size
 
         NSLayoutConstraint.activate([
@@ -112,6 +77,57 @@ class CaseDetailsViewController: UIViewController, CaseDetailsViewProtocol {
             scrollView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -16),
             scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -40),
         ])
+    }
+
+    private func setupFormView() {
+        let detailGroupForm = DetailGroupView()
+        detailGroupForm.title = "Form"
+
+        if let formType = caseStatus.formType {
+            detailGroupForm.addDetailView(UILabel.easyText(text: formType, font: .preferredFont(forTextStyle: .headline)))
+        }
+        if let formName = caseStatus.formName {
+            detailGroupForm.addDetailView(UILabel.easyText(text: formName, font: .preferredFont(forTextStyle: .subheadline)))
+        }
+
+        stackView.addArrangedSubview(detailGroupForm)
+    }
+
+    private func setupStatusView() {
+        let detailGroupForm = DetailGroupView()
+        detailGroupForm.title = "Status"
+
+        detailGroupForm.addDetailView(UILabel.easyText(text: caseStatus.status, font: .preferredFont(forTextStyle: .headline)))
+        detailGroupForm.addDetailView(UILabel.easyText(
+            text: caseStatus.body,
+            font: .init(descriptor: .preferredFontDescriptor(withTextStyle: .body).withDesign(.serif)!, size: 14),
+            alignment: .justified))
+        detailGroupForm.spacing = 10
+
+        stackView.addArrangedSubview(detailGroupForm)
+    }
+
+    private func setupHistoryView() {
+        let detailGroupHistory = DetailGroupView()
+        detailGroupHistory.title = "History"
+        detailGroupHistory.addDetailView(historyStack)
+        stackView.addArrangedSubview(detailGroupHistory)
+    }
+
+    private func setupRefreshStatusView() {
+        if let refreshedDate = caseStatus.lastFetchedFormatted {
+            let refreshedLabel = UILabel.easyText(text: "Refreshed at \(refreshedDate)")
+            refreshedLabel.translatesAutoresizingMaskIntoConstraints = false
+            refreshedLabel.font = .systemFont(ofSize: UIFont.smallSystemFontSize, weight: .bold)
+            refreshedLabel.textAlignment = .center
+            refreshedLabel.textColor = .systemGray
+            view.addSubview(refreshedLabel)
+
+            NSLayoutConstraint.activate([
+                refreshedLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+                refreshedLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            ])
+        }
     }
 
     private func setupNavbar() {
@@ -133,16 +149,17 @@ class CaseDetailsViewController: UIViewController, CaseDetailsViewProtocol {
 
         navigationItem.rightBarButtonItem = moreButton
     }
+}
+
+extension CaseDetailsViewController: CaseDetailsViewProtocol {
 
     func historyLoaded(_ history: [CaseStatusHistorical]) {
-        print("HISTORY", history)
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
             history.forEach { historicalItem in
                 self.historyStack.addHistoricalItem(
-                        status: historicalItem.status,
-                        color: UIColor(historicalItem.color
-                    )
+                    status: historicalItem.status,
+                    color: UIColor(historicalItem.color)
                 )
             }
         }

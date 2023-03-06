@@ -18,3 +18,14 @@ extension Color {
 
     static let ctShadow = Color("Shadow")
 }
+
+extension UIColor {
+    static let ctBackgroundPrimary = UIColor(Color.ctBackgroundPrimary)
+    static let ctBackgroundSecondary = UIColor(Color.ctBackgroundSecondary)
+
+    static let ctTextPrimary = UIColor(Color.ctTextPrimary)
+    static let ctTextSecondary = UIColor(Color.ctTextSecondary)
+    static let ctTextTertiary = UIColor(Color.ctTextTertiary)
+
+    static let ctShadow = UIColor(Color.ctShadow)
+}

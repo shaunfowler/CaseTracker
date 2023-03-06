@@ -17,6 +17,7 @@ typealias CaseStatusLocalCache = CaseStatusQueryable & CaseStatusWritable
 protocol Repository {
 
     var data: CurrentValueSubject<[CaseStatus], Never> { get }
+    var loading: CurrentValueSubject<Bool, Never> { get }
     var error: CurrentValueSubject<Error?, Never> { get }
     var networkReachable: CurrentValueSubject<Bool, Never> { get }
 
@@ -38,6 +39,7 @@ class CaseStatusRepository: Repository {
     // MARK: - Public Properties
 
     private(set) var data = CurrentValueSubject<[CaseStatus], Never>([])
+    private(set) var loading = CurrentValueSubject<Bool, Never>(false)
     private(set) var error = CurrentValueSubject<Error?, Never>(nil)
     private(set) var networkReachable = CurrentValueSubject<Bool, Never>(true)
 
@@ -75,7 +77,10 @@ class CaseStatusRepository: Repository {
     // MARK: - Public Functions
 
     func query(force: Bool = false) async {
-        defer { os_signpost(.end, log: OSLog.caseTrackerPoi, name: "CaseStatusRepository_query") }
+        defer {
+            loading.value = false
+            os_signpost(.end, log: OSLog.caseTrackerPoi, name: "CaseStatusRepository_query")
+        }
         os_signpost(.begin, log: OSLog.caseTrackerPoi, name: "CaseStatusRepository_query")
 
         DDLogInfo("Querying all cases...")
@@ -88,6 +93,7 @@ class CaseStatusRepository: Repository {
             let localResults = try await local.query().get().sorted(by: { lhs, rhs in lhs.id < rhs.id })
             data.value = localResults
 
+            
             // If no case has expired cache, skip the `.get()` call
             let now = Date.now
             if !force {
@@ -98,6 +104,8 @@ class CaseStatusRepository: Repository {
                     return
                 }
             }
+
+            loading.value = true
 
             // USCIS doesn't properly return responses for simultaneous requests so request serially.
             for localResult in localResults {
@@ -133,7 +141,7 @@ class CaseStatusRepository: Repository {
         let result = await get(forCaseId: receiptNumber)
         if case .success(let caseStatus) = result {
             DDLogDebug("Adding case to local repository publisher.")
-            var updated = ([caseStatus] + data.value).sorted(by: { lhs, rhs in lhs.id < rhs.id })
+            let updated = ([caseStatus] + data.value).sorted(by: { lhs, rhs in lhs.id < rhs.id })
             data.send(updated)
         }
         return result

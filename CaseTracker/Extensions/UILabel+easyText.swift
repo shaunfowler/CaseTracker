@@ -13,10 +13,10 @@ extension UILabel {
         text: String,
         font: UIFont = .systemFont(ofSize: UIFont.systemFontSize),
         alignment: NSTextAlignment = .left,
-        numberOfLines: Int = 1,
+        numberOfLines: Int = 0,
         color: UIColor? = nil
-    ) -> UILabel {
-        let label = UILabel(frame: .zero)
+    ) -> Self {
+        let label = Self(frame: .zero)
         label.text = text
         label.font = font
         label.textColor = color

@@ -9,6 +9,7 @@ import Foundation
 
 protocol CasesPresenterProtocol {
     func onCaseListUpdated(_ cases: [CaseStatus])
+    func onLoadingStateChanged(_ isLoading: Bool)
 }
 
 class CasesPresenter {
@@ -20,5 +21,23 @@ extension CasesPresenter: CasesPresenterProtocol {
 
     func onCaseListUpdated(_ cases: [CaseStatus]) {
         view?.caseListUpdated(cases)
+
+        let lastFetch = cases
+            .compactMap { $0.lastFetched }
+            .sorted { lhs, rhs in lhs < rhs }
+            .first // earliest date
+
+        if let lastFetch {
+            view?.fetchStatusLabelUpdated(text: "Last refreshed \(lastFetch.formatted())")
+        } else {
+            view?.fetchStatusLabelUpdated(text: "")
+        }
+    }
+
+    func onLoadingStateChanged(_ isLoading: Bool) {
+        view?.loadingStateChanged(isLoading)
+        if isLoading {
+            view?.fetchStatusLabelUpdated(text: "Refreshing...")
+        }
     }
 }

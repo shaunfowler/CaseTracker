@@ -13,6 +13,7 @@ import Combine
 class PreviewDataRepository: Repository {
 
     var data: CurrentValueSubject<[CaseStatus], Never> = .init([case1, case2])
+    var loading: CurrentValueSubject<Bool, Never> = .init(false)
     var error: CurrentValueSubject<Error?, Never> = .init(nil)
     var networkReachable: CurrentValueSubject<Bool, Never> = .init(true)
 

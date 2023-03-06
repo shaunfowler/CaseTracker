@@ -9,6 +9,8 @@ import UIKit
 
 class HistoryStackView: UIStackView {
 
+    private let timelineLayer = CAShapeLayer()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         axis = .vertical
@@ -21,24 +23,31 @@ class HistoryStackView: UIStackView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        let timelineLayer = CAShapeLayer()
         timelineLayer.path = UIBezierPath(roundedRect: CGRect(x: 14, y: 0, width: 2, height: frame.height), cornerRadius: 4).cgPath
-        timelineLayer.fillColor = UIColor.systemGray5.cgColor
+        updateColors()
         layer.insertSublayer(timelineLayer, at: 0)
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        updateColors()
     }
 
     func addHistoricalItem(status: String, color: UIColor) {
         let view = CaseHistoryItemView(status: status, color: color)
         super.addArrangedSubview(view)
     }
+
+    private func updateColors() {
+        timelineLayer.fillColor = UIColor.systemGray5.cgColor
+    }
 }
 
-class CaseHistoryItemView: UIView {
+fileprivate class CaseHistoryItemView: UIView {
 
     var statusOrb: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.backgroundColor = UIColor.systemRed.cgColor
         view.layer.cornerRadius = 5
         view.widthAnchor.constraint(equalToConstant: 10).isActive = true
         view.heightAnchor.constraint(equalToConstant: 10).isActive = true

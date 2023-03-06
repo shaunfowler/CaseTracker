@@ -70,6 +70,8 @@ class CaseListCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
 
+        backgroundColor = .ctBackgroundSecondary
+
         contentView.addSubview(indicatorView)
         contentView.addSubview(titleLabel)
         contentView.addSubview(formNameLabel)
@@ -84,11 +86,11 @@ class CaseListCell: UICollectionViewCell {
 
             indicatorView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             indicatorView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
-            indicatorView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 8),
+            indicatorView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 12),
             indicatorView.widthAnchor.constraint(equalToConstant: 4),
 
             formTypeLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            formTypeLabel.leftAnchor.constraint(equalTo: indicatorView.rightAnchor, constant: 8),
+            formTypeLabel.leftAnchor.constraint(equalTo: indicatorView.rightAnchor, constant: 12),
             formTypeLabel.bottomAnchor.constraint(equalTo: titleLabel.bottomAnchor),
 
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
@@ -99,7 +101,7 @@ class CaseListCell: UICollectionViewCell {
             formNameLabel.rightAnchor.constraint(lessThanOrEqualTo: contentView.rightAnchor),
 
             descriptionLabel.leftAnchor.constraint(equalTo: formTypeLabel.leftAnchor),
-            descriptionLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -8),
+            descriptionLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -12),
             descriptionLabel.topAnchor.constraint(equalTo: formNameLabel.bottomAnchor, constant: 8),
             descriptionLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -8),
         ])

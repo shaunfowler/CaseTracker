@@ -29,6 +29,8 @@
 		284AC8B629B0381000260FA2 /* FTUEViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284AC8B529B0381000260FA2 /* FTUEViewController.swift */; };
 		284AC8B829B12BAB00260FA2 /* CaseHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284AC8B729B12BAB00260FA2 /* CaseHistoryView.swift */; };
 		284AC8B929B15ABB00260FA2 /* CaseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2811D33F29A045F800C1707C /* CaseDetailsViewController.swift */; };
+		284AC8BC29B4401200260FA2 /* RefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284AC8BB29B4401200260FA2 /* RefreshControl.swift */; };
+		284AC8C029B5713600260FA2 /* DetailGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284AC8BF29B5713600260FA2 /* DetailGroupView.swift */; };
 		2855361B29A1A4AE00803240 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2855361A29A1A4AE00803240 /* WebViewController.swift */; };
 		2855361D29A1B30E00803240 /* WKWebView+forCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2855361C29A1B30E00803240 /* WKWebView+forCase.swift */; };
 		2855361F29A1BD9C00803240 /* UILabel+easyText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2855361E29A1BD9C00803240 /* UILabel+easyText.swift */; };
@@ -181,6 +183,8 @@
 		284AC8B329B036C700260FA2 /* UIViewController+child.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+child.swift"; sourceTree = "<group>"; };
 		284AC8B529B0381000260FA2 /* FTUEViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUEViewController.swift; sourceTree = "<group>"; };
 		284AC8B729B12BAB00260FA2 /* CaseHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseHistoryView.swift; sourceTree = "<group>"; };
+		284AC8BB29B4401200260FA2 /* RefreshControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshControl.swift; sourceTree = "<group>"; };
+		284AC8BF29B5713600260FA2 /* DetailGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailGroupView.swift; sourceTree = "<group>"; };
 		2855361A29A1A4AE00803240 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		2855361C29A1B30E00803240 /* WKWebView+forCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WKWebView+forCase.swift"; sourceTree = "<group>"; };
 		2855361E29A1BD9C00803240 /* UILabel+easyText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+easyText.swift"; sourceTree = "<group>"; };
@@ -349,8 +353,17 @@
 				2811D34529A0461700C1707C /* CaseDetailsPresenter.swift */,
 				2855361A29A1A4AE00803240 /* WebViewController.swift */,
 				284AC8B729B12BAB00260FA2 /* CaseHistoryView.swift */,
+				284AC8BF29B5713600260FA2 /* DetailGroupView.swift */,
 			);
 			path = CaseDetails;
+			sourceTree = "<group>";
+		};
+		284AC8BA29B43FED00260FA2 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				284AC8BB29B4401200260FA2 /* RefreshControl.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		28CF2E40298457B700E0E491 /* CaseTrackerWidget */ = {
@@ -651,6 +664,7 @@
 		FD36C0E6A4FA5E1587D59AE504CF0131 /* CaseTracker */ = {
 			isa = PBXGroup;
 			children = (
+				284AC8BA29B43FED00260FA2 /* Shared */,
 				28CF2E562986117400E0E491 /* Features */,
 				28CF2E4F29845AE000E0E491 /* CaseTracker.entitlements */,
 				79A3C10BD0C3F9C46897A66EB2E47177 /* Data */,
@@ -988,6 +1002,7 @@
 				B5C2AB21528C2EF76EFF2CC170F67E24 /* CaseTrackerApp.swift in Sources */,
 				E5F538896B5AEF7AE5E5F8A6A8780345 /* CaseTrackerModel.xcdatamodeld in Sources */,
 				FA6B4186E5241EB8D8063A5FB6A3D137 /* Color.swift in Sources */,
+				284AC8C029B5713600260FA2 /* DetailGroupView.swift in Sources */,
 				487A614CFFFE4A176FC5D0D0C1064C4C /* CrashlyticsLogger.swift in Sources */,
 				2811D34E29A0463500C1707C /* AddNewCasePresenter.swift in Sources */,
 				284AC8B829B12BAB00260FA2 /* CaseHistoryView.swift in Sources */,
@@ -1015,6 +1030,7 @@
 				34B9CC984A3D7DDC8ED0C23E4AE24633 /* OrbIndicator.swift in Sources */,
 				7486C919543AD5B92DF88E660D41BDCE /* PersistenceController.swift in Sources */,
 				9D21D76394F5641A5849C3CE7BC4E562 /* PreviewDataRepository.swift in Sources */,
+				284AC8BC29B4401200260FA2 /* RefreshControl.swift in Sources */,
 				2811D34A29A0462800C1707C /* AddNewCaseViewController.swift in Sources */,
 				2B20553DF1BAA014B21CD03CC61B7BE1 /* PrimaryButton.swift in Sources */,
 				EFC21A178D81CD3CE4E34702013414D1 /* Protocols.swift in Sources */,

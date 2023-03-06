@@ -10,6 +10,7 @@ import Combine
 
 protocol CasesInteracterProtocol {
     func loadCases()
+    func refreshCases()
     func caseSelected(_ case: CaseStatus)
     func addNewCase()
     func deleteCase(receiptNumber: String)
@@ -35,17 +36,31 @@ class CasesInteractor {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] cases in
                 guard let self else { return }
-                // self.casesPublisher = cases
-                // to presenter
                 self.presenter.onCaseListUpdated(cases)
 
+            }
+            .store(in: &cancellables)
+
+        repository
+            .loading
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] loading in
+                guard let self else { return }
+                self.presenter.onLoadingStateChanged(loading)
             }
             .store(in: &cancellables)
     }
 }
 
 extension CasesInteractor: CasesInteracterProtocol {
+
     func loadCases() {
+        Task {
+            await repository.query(force: false)
+        }
+    }
+
+    func refreshCases() {
         Task {
             await repository.query(force: true)
         }
