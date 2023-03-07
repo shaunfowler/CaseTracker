@@ -19,18 +19,20 @@ class CasesViewController: UIViewController {
 
     var interactor: CasesInteracterProtocol
 
+    var fetchStatusLabelText: String = ""
     var cases: [CaseStatus] = []
 
     private lazy var layout: UICollectionViewCompositionalLayout = {
-        var config = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
+        var config = UICollectionLayoutListConfiguration(appearance: .plain)
         config.trailingSwipeActionsConfigurationProvider = { [unowned self] indexPath in
             let deleteAction = UIContextualAction(style: .destructive, title: "Delete", handler: { action, view, completion in
                 self.handleDeleteAction(forIndexPath: indexPath)
             })
             return UISwipeActionsConfiguration(actions: [deleteAction])
         }
-//        config.showsSeparators = false
+        config.showsSeparators = false
         config.backgroundColor = .ctBackgroundPrimary
+        config.footerMode = .supplementary
         return UICollectionViewCompositionalLayout.list(using: config)
     }()
 
@@ -44,6 +46,7 @@ class CasesViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .ctBackgroundPrimary
         collectionView.register(CaseListCell.self, forCellWithReuseIdentifier: CaseListCell.reuseId)
+        collectionView.register(FetchStatusSupplementalView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: FetchStatusSupplementalView.reuseId)
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.refreshControl = RefreshControl()
@@ -51,14 +54,6 @@ class CasesViewController: UIViewController {
         return collectionView
     }()
 
-    private var fetchStatusLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: UIFont.smallSystemFontSize, weight: .bold)
-        label.textAlignment = .center
-        label.textColor = .systemGray
-        return label
-    }()
 
     private lazy var ftueChildVc = FTUEViewController {
         self.interactor.addNewCase()
@@ -86,17 +81,16 @@ class CasesViewController: UIViewController {
     private func setupNavigationItems() {
         title = "My Cases"
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.rightBarButtonItem = .init(barButtonSystemItem: .add, target: self, action: #selector(onAddButtonTapped))
+        navigationItem.setRightBarButtonItems([
+            .init(barButtonSystemItem: .add, target: self, action: #selector(onAddButtonTapped))
+        ], animated: true)
     }
 
     private func setupCollectionView() {
-        view.addSubview(fetchStatusLabel)
         view.addSubview(collectionView)
 
         NSLayoutConstraint.activate([
-            fetchStatusLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            fetchStatusLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            fetchStatusLabel.bottomAnchor.constraint(equalTo: collectionView.topAnchor, constant: -20),
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             collectionView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
             collectionView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor)
@@ -108,6 +102,7 @@ class CasesViewController: UIViewController {
     }
 
     @objc private func onRefresh(_ sender: UIRefreshControl) {
+        sender.endRefreshing()
         interactor.refreshCases()
     }
 }
@@ -115,17 +110,19 @@ class CasesViewController: UIViewController {
 extension CasesViewController: CasesViewProtocol {
 
     func fetchStatusLabelUpdated(text: String) {
-        fetchStatusLabel.text = text
+        fetchStatusLabelText = text
+        collectionView.reloadData()
     }
 
     func errorReceived(_ error: Error) { }
 
     func loadingStateChanged(_ isLoading: Bool) {
-        if isLoading {
-            collectionView.refreshControl?.beginRefreshing()
-        } else {
-            collectionView.refreshControl?.endRefreshing()
-        }
+//        if isLoading {
+//            collectionView.refreshControl?.beginRefreshing()
+//        } else {
+//            collectionView.refreshControl?.endRefreshing()
+//        }
+//        loadingIndicator
     }
 
     func caseListUpdated(_ cases: [CaseStatus]) {
@@ -158,5 +155,19 @@ extension CasesViewController: UICollectionViewDataSource {
         cell.caseStatus = cases[indexPath.row]
         return cell
     }
+
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == UICollectionView.elementKindSectionFooter {
+             return collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: FetchStatusSupplementalView.reuseId, for: indexPath)
+        }
+        fatalError()
+    }
+
+    func collectionView(_ collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) {
+        guard let headerView = view as? FetchStatusSupplementalView else { return }
+        headerView.text = fetchStatusLabelText
+    }
 }
+
+
 

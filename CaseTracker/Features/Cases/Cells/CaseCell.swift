@@ -17,6 +17,17 @@ class CaseListCell: UICollectionViewCell {
 
     static let reuseId = "CaseListCell"
 
+    private var container: UIView = {
+        let view = UIView(frame: .zero)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .ctBackgroundSecondary
+        view.layer.cornerRadius = 4.0
+        view.layer.shadowColor = UIColor.ctShadow.cgColor
+        view.layer.shadowOpacity = 1
+        view.layer.shadowRadius = 5
+        return view
+    }()
+
     private var titleLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -45,6 +56,14 @@ class CaseListCell: UICollectionViewCell {
         return label
     }()
 
+    private var dateLabel: UILabel = {
+        let label = UILabel(frame: .zero)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 1
+        label.font = .systemFont(ofSize: 12)
+        return label
+    }()
+
     private var indicatorView: UIView = {
         let view = UIView(frame: .zero)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -63,37 +82,47 @@ class CaseListCell: UICollectionViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        titleLabelLeftAnchorConstraint.isActive = false
-        formNameLabelTopAnchorConstraint.isActive = false
+
     }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupViews()
+    }
 
-        backgroundColor = .ctBackgroundSecondary
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
-        contentView.addSubview(indicatorView)
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(formNameLabel)
-        contentView.addSubview(formTypeLabel)
-        contentView.addSubview(descriptionLabel)
+    private func setupViews() {
+        contentView.addSubview(container)
+        container.addSubview(indicatorView)
+        container.addSubview(titleLabel)
+        container.addSubview(formNameLabel)
+        container.addSubview(formTypeLabel)
+        container.addSubview(descriptionLabel)
+        container.addSubview(dateLabel)
 
         titleLabelLeftAnchorConstraint.constant = caseStatus?.formType == nil ? 0 : 8
         formNameLabelTopAnchorConstraint.constant = caseStatus?.formName == nil ? 0 : 8
 
         NSLayoutConstraint.activate([
-            contentView.heightAnchor.constraint(lessThanOrEqualToConstant: 150),
 
-            indicatorView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            indicatorView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
-            indicatorView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 12),
+            container.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
+            container.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor),
+            container.leftAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leftAnchor, constant: 10),
+            container.rightAnchor.constraint(equalTo: contentView.layoutMarginsGuide.rightAnchor, constant: -10),
+
+            indicatorView.topAnchor.constraint(equalTo: container.layoutMarginsGuide.topAnchor),
+            indicatorView.bottomAnchor.constraint(equalTo: container.layoutMarginsGuide.bottomAnchor),
+            indicatorView.leftAnchor.constraint(equalTo: container.layoutMarginsGuide.leftAnchor),
             indicatorView.widthAnchor.constraint(equalToConstant: 4),
 
-            formTypeLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            formTypeLabel.topAnchor.constraint(equalTo: container.layoutMarginsGuide.topAnchor),
             formTypeLabel.leftAnchor.constraint(equalTo: indicatorView.rightAnchor, constant: 12),
             formTypeLabel.bottomAnchor.constraint(equalTo: titleLabel.bottomAnchor),
 
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            titleLabel.topAnchor.constraint(equalTo: container.layoutMarginsGuide.topAnchor),
             titleLabelLeftAnchorConstraint,
 
             formNameLabelTopAnchorConstraint,
@@ -101,9 +130,13 @@ class CaseListCell: UICollectionViewCell {
             formNameLabel.rightAnchor.constraint(lessThanOrEqualTo: contentView.rightAnchor),
 
             descriptionLabel.leftAnchor.constraint(equalTo: formTypeLabel.leftAnchor),
-            descriptionLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -12),
+            descriptionLabel.rightAnchor.constraint(equalTo: container.layoutMarginsGuide.rightAnchor),
             descriptionLabel.topAnchor.constraint(equalTo: formNameLabel.bottomAnchor, constant: 8),
-            descriptionLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -8),
+            descriptionLabel.bottomAnchor.constraint(equalTo: dateLabel.topAnchor, constant: -8),
+
+            dateLabel.leftAnchor.constraint(equalTo: formTypeLabel.leftAnchor),
+            dateLabel.rightAnchor.constraint(equalTo: formTypeLabel.rightAnchor),
+            dateLabel.bottomAnchor.constraint(lessThanOrEqualTo: container.layoutMarginsGuide.bottomAnchor),
         ])
     }
 
@@ -120,6 +153,11 @@ class CaseListCell: UICollectionViewCell {
         formNameLabel.isHidden = caseStatus.formName == nil
         formNameLabel.text = caseStatus.formName
 
-        layoutSubviews()
+        dateLabel.text = "Howdy"
+
+        titleLabelLeftAnchorConstraint.constant = caseStatus.formType == nil ? 0 : 8
+        formNameLabelTopAnchorConstraint.constant = caseStatus.formName == nil ? 0 : 8
+
+        setNeedsLayout()
     }
 }

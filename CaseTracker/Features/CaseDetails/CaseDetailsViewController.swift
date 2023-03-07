@@ -26,6 +26,9 @@ class CaseDetailsViewController: UIViewController {
         return stackView
     }()
 
+
+    private let detailGroupHistory = DetailGroupView()
+
     private var historyStack = HistoryStackView()
 
     private var scrollView: UIScrollView = {
@@ -60,7 +63,6 @@ class CaseDetailsViewController: UIViewController {
         setupFormView()
         setupStatusView()
         setupHistoryView()
-        setupRefreshStatusView()
 
         view.addSubview(scrollView)
         scrollView.addSubview(stackView)
@@ -97,6 +99,10 @@ class CaseDetailsViewController: UIViewController {
         let detailGroupForm = DetailGroupView()
         detailGroupForm.title = "Status"
 
+        if let refreshedDate = caseStatus.lastFetchedFormatted {
+            detailGroupForm.note = "Refreshed on \(refreshedDate)"
+        }
+
         detailGroupForm.addDetailView(UILabel.easyText(text: caseStatus.status, font: .preferredFont(forTextStyle: .headline)))
         detailGroupForm.addDetailView(UILabel.easyText(
             text: caseStatus.body,
@@ -108,26 +114,10 @@ class CaseDetailsViewController: UIViewController {
     }
 
     private func setupHistoryView() {
-        let detailGroupHistory = DetailGroupView()
         detailGroupHistory.title = "History"
+        detailGroupHistory.note = "Complete case history is only available if the case status changed while the Case Tracker app was installed."
         detailGroupHistory.addDetailView(historyStack)
         stackView.addArrangedSubview(detailGroupHistory)
-    }
-
-    private func setupRefreshStatusView() {
-        if let refreshedDate = caseStatus.lastFetchedFormatted {
-            let refreshedLabel = UILabel.easyText(text: "Refreshed at \(refreshedDate)")
-            refreshedLabel.translatesAutoresizingMaskIntoConstraints = false
-            refreshedLabel.font = .systemFont(ofSize: UIFont.smallSystemFontSize, weight: .bold)
-            refreshedLabel.textAlignment = .center
-            refreshedLabel.textColor = .systemGray
-            view.addSubview(refreshedLabel)
-
-            NSLayoutConstraint.activate([
-                refreshedLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
-                refreshedLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-            ])
-        }
     }
 
     private func setupNavbar() {
@@ -156,6 +146,9 @@ extension CaseDetailsViewController: CaseDetailsViewProtocol {
     func historyLoaded(_ history: [CaseStatusHistorical]) {
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
+
+            self.detailGroupHistory.isHidden = history.isEmpty
+
             history.forEach { historicalItem in
                 self.historyStack.addHistoricalItem(
                     status: historicalItem.status,

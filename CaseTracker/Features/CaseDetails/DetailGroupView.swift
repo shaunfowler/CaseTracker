@@ -17,6 +17,15 @@ class DetailGroupView: UIView {
         return label
     }()
 
+    private var noteLabel: UILabel = {
+        let label = UILabel(frame: .zero)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .secondaryLabel
+        label.font = .preferredFont(forTextStyle: .caption2)
+        label.numberOfLines = 0
+        return label
+    }()
+
     private var stackView: UIStackView = {
         let stackView = UIStackView(frame: .zero)
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -34,6 +43,12 @@ class DetailGroupView: UIView {
         }
     }
 
+    var note: String = "" {
+        didSet {
+            noteLabel.text = note
+        }
+    }
+
     var spacing: CGFloat = UIStackView.spacingUseDefault {
         didSet {
             stackView.spacing = spacing
@@ -47,6 +62,7 @@ class DetailGroupView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         addSubview(titleLabel)
+        addSubview(noteLabel)
         addSubview(stackView)
 
         NSLayoutConstraint.activate([
@@ -56,7 +72,10 @@ class DetailGroupView: UIView {
             titleLabel.bottomAnchor.constraint(equalTo: stackView.topAnchor, constant: -5),
             stackView.leftAnchor.constraint(equalTo: leftAnchor),
             stackView.rightAnchor.constraint(equalTo: rightAnchor),
-            stackView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            noteLabel.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 10),
+            noteLabel.leftAnchor.constraint(equalTo: stackView.layoutMarginsGuide.leftAnchor),
+            noteLabel.rightAnchor.constraint(equalTo: rightAnchor),
+            noteLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
 }

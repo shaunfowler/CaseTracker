@@ -7,6 +7,10 @@
 
 import Foundation
 
+struct CaseDetailsViewModel {
+
+}
+
 protocol CaseDetailsPresenterProtocol {
     func historyLoaded(_ history: [CaseStatusHistorical])
 }
