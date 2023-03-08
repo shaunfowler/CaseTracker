@@ -54,6 +54,7 @@ class CasesViewController: UIViewController {
         return collectionView
     }()
 
+    private let activityIndicator = UIActivityIndicatorView()
 
     private lazy var ftueChildVc = FTUEViewController {
         self.interactor.addNewCase()
@@ -79,10 +80,15 @@ class CasesViewController: UIViewController {
     }
 
     private func setupNavigationItems() {
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        activityIndicator.widthAnchor.constraint(equalToConstant: 50).isActive = true
+
         title = "My Cases"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.setRightBarButtonItems([
-            .init(barButtonSystemItem: .add, target: self, action: #selector(onAddButtonTapped))
+            .init(barButtonSystemItem: .add, target: self, action: #selector(onAddButtonTapped)),
+            .init(customView: activityIndicator)
         ], animated: true)
     }
 
@@ -117,12 +123,13 @@ extension CasesViewController: CasesViewProtocol {
     func errorReceived(_ error: Error) { }
 
     func loadingStateChanged(_ isLoading: Bool) {
-//        if isLoading {
-//            collectionView.refreshControl?.beginRefreshing()
-//        } else {
-//            collectionView.refreshControl?.endRefreshing()
-//        }
-//        loadingIndicator
+        if isLoading {
+            collectionView.alpha = 0.75
+            activityIndicator.startAnimating()
+        } else {
+            collectionView.alpha = 1.0
+            activityIndicator.stopAnimating()
+        }
     }
 
     func caseListUpdated(_ cases: [CaseStatus]) {

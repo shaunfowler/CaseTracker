@@ -130,9 +130,12 @@ class AddNewCaseViewController: UIViewController, AddNewCaseViewProtocol {
     }
 
     func didReceive(error: Error) {
-        let alert = UIAlertController(title: error.localizedDescription, message: nil, preferredStyle: .alert)
-        alert.addAction(.init(title: "OK", style: .cancel))
-        present(alert, animated: true)
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            let alert = UIAlertController(title: error.localizedDescription, message: nil, preferredStyle: .alert)
+            alert.addAction(.init(title: "OK", style: .cancel))
+            self.present(alert, animated: true)
+        }
     }
 
     func loadingStateChanged(_ isLoading: Bool) {
