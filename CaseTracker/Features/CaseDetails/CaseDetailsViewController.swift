@@ -50,7 +50,7 @@ class CaseDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .ctBackgroundPrimary
+        view.backgroundColor = .systemBackground
         title = caseStatus.receiptNumber
 
         interactor.loadHistory()

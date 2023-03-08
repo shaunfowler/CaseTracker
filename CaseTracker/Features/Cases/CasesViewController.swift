@@ -31,7 +31,7 @@ class CasesViewController: UIViewController {
             return UISwipeActionsConfiguration(actions: [deleteAction])
         }
         config.showsSeparators = false
-        config.backgroundColor = .ctBackgroundPrimary
+        config.backgroundColor = .systemBackground
         config.footerMode = .supplementary
         return UICollectionViewCompositionalLayout.list(using: config)
     }()
@@ -44,7 +44,7 @@ class CasesViewController: UIViewController {
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = .ctBackgroundPrimary
+        collectionView.backgroundColor = .systemBackground
         collectionView.register(CaseListCell.self, forCellWithReuseIdentifier: CaseListCell.reuseId)
         collectionView.register(FetchStatusSupplementalView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: FetchStatusSupplementalView.reuseId)
         collectionView.delegate = self
@@ -61,7 +61,7 @@ class CasesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .ctBackgroundPrimary
+        view.backgroundColor = .systemBackground
 
         setupNavigationItems()
         setupCollectionView()

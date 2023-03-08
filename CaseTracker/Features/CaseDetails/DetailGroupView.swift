@@ -32,7 +32,7 @@ class DetailGroupView: UIView {
         stackView.axis = .vertical
         stackView.isLayoutMarginsRelativeArrangement = true
         stackView.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
-        stackView.backgroundColor = .ctBackgroundSecondary
+        stackView.backgroundColor = .tertiarySystemFill
         stackView.layer.cornerRadius = 5
         return stackView
     }()

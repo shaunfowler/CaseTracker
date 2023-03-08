@@ -113,6 +113,10 @@ class CaseStatusRepository: Repository {
                 switch fetched {
                 case .success(let caseStatus):
                     result.append(caseStatus)
+                    let index = data.value.firstIndex { $0.receiptNumber == caseStatus.receiptNumber }
+                    if let index {
+                        data.value[index] = caseStatus
+                    }
                 case .failure(let error):
                     // Fallback to expired result.
                     DDLogError("Error reloading remote case: \(localResult.receiptNumber).")
